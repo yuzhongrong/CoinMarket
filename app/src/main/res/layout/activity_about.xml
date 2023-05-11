@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+<!--        <variable-->
+<!--            name="vm"-->
+<!--            type="com.zksg.kudoud.state.CreateFeedViewModel" />-->
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.AboutActivity.ClickProxy" />
+
+
+    </data>
+
+    <com.hjq.shape.layout.ShapeRelativeLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/dp15"
+        android:background="@mipmap/ic_devicestate_bg"
+       >
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:title="@string/str_about"
+            app:titleColor="@color/c_333333"
+            app:titleGravity="center" />
+
+
+        <ImageView
+            android:id="@+id/ic_feed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp118"
+            android:src="@mipmap/icon_kudoud_launcher" />
+
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="@string/str_app_name"
+            android:layout_below="@+id/ic_feed"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp20"
+            android:textSize="16sp"
+            android:textColor="@color/c_333333"
+            />
+
+
+        <TextView
+            android:id="@+id/app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/app_name"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp8"
+            android:text="V1.2.4"
+            android:textColor="@color/c_666666"
+            android:textSize="16sp" />
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_below="@+id/app_version"
+    android:layout_marginTop="@dimen/dp40"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+    <com.zksg.kudoud.widgets.SettingBar
+        android:id="@+id/show_time"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        app:bar_lineVisible="false"
+        android:background="@drawable/bg_settingbar"
+        android:gravity="center_vertical"
+
+        app:bar_leftText="版本更新"
+        app:bar_rightDrawable="@mipmap/ic_right_back" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="@dimen/dp52"
+            android:layout_marginRight="@dimen/dp45"
+            android:src="@mipmap/ic_version_update"
+            />
+    </RelativeLayout>
+
+    <com.zksg.kudoud.widgets.SettingBar
+        android:id="@+id/factory_reset"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:background="@drawable/bg_settingbar"
+        android:gravity="center_vertical"
+        app:bar_leftText="@string/str_reset"
+        app:bar_lineVisible="false"
+        app:bar_rightDrawable="@mipmap/ic_right_back"
+        android:onClick="@{()->click.showFactoryReset()}"
+        >
+
+
+    </com.zksg.kudoud.widgets.SettingBar>
+</LinearLayout>
+
+
+    </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+</layout>

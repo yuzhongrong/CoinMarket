@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="bean"
+            type="com.zksg.lib_api.baby.FeedTip" />
+
+    </data>
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/dp15"
+        app:shape_radius="@dimen/dp10"
+        app:shape_solidColor="@color/white"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp8"
+        android:background="@color/white"
+        android:elevation="@dimen/dp10"
+
+        >
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/dp20"
+                android:text="@{bean.tiptime}"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_666666"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:text="周一到周五"
+                android:layout_marginTop="@dimen/dp5" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <com.suke.widget.SwitchButton
+                android:id="@+id/switch_button"
+                android:layout_width="@dimen/dp40"
+                android:layout_height="@dimen/dp26"
+                app:sb_button_color="@color/c_d7f137"
+                app:sb_checked_color="@color/c_d7f137"
+                app:sb_show_indicator="false"
+                android:checked="true"
+                android:layout_marginTop="@dimen/dp15" />
+
+        </LinearLayout>
+
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+</layout>

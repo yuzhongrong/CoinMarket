@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dp15"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/dp15"
+    app:shape_topLeftRadius="@dimen/dp30"
+    app:shape_topRightRadius="@dimen/dp30"
+    android:background="@drawable/bg_dialog_border_white"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+
+
+        >
+
+         <androidx.appcompat.widget.AppCompatImageView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@mipmap/ic_common_dialog_tip"
+             />
+
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_shake_type"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp53"
+            android:layout_gravity="left"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp0.5"
+            android:background="@mipmap/ic_divider"
+            android:layout_marginTop="@dimen/dp16"
+            />
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp26"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_control_fb_unenable"
+                    android:id="@+id/face_background"
+
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/c_666666"
+                    android:text="@string/str_fb"
+                    android:layout_marginTop="@dimen/dp6"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_leftright_unenable"
+                    android:id="@+id/left_right"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/c_666666"
+                    android:text="@string/str_left_right"
+                    android:layout_marginTop="@dimen/dp6"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_clockwise_unenable"
+                    android:id="@+id/clockwise"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/c_666666"
+                    android:text="顺时针"
+                    android:layout_marginTop="@dimen/dp6"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_counterclockwise_unenable"
+                    android:id="@+id/counterclockwise"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/c_666666"
+                    android:text="顺时针"
+                    android:layout_marginTop="@dimen/dp6"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1"
+                >
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_hd_unenable"
+                    android:id="@+id/fb"
+                    />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="@color/c_666666"
+                    android:text="@string/str_hd"
+                    android:layout_marginTop="@dimen/dp6"
+                    />
+            </LinearLayout>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp31"
+
+        >
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_shake_speed"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp37"
+
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp0.5"
+            android:background="@mipmap/ic_divider"
+            android:layout_marginTop="@dimen/dp16"
+            />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp26"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+
+                android:layout_marginBottom="@dimen/dp20"
+                >
+
+                <com.hjq.shape.view.ShapeButton
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="@dimen/dp35"
+                    android:text="@string/str_low"
+                    android:gravity="center"
+                    app:shape_textColor="@color/c_666666"
+                    app:shape_radius="@dimen/dp30"
+                    android:layout_weight="1"
+                    app:shape_solidColor="@color/white"
+
+
+                    />
+
+                <com.hjq.shape.view.ShapeButton
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="@dimen/dp35"
+                    android:text="@string/str_middler"
+                    android:gravity="center"
+                    app:shape_radius="@dimen/dp30"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp20"
+                    app:shape_solidColor="@color/white"
+
+                    />
+
+
+                <com.hjq.shape.view.ShapeButton
+                    android:layout_width="@dimen/dp80"
+                    android:layout_height="@dimen/dp35"
+                    android:text="@string/str_hight"
+                    android:gravity="center"
+                    app:shape_radius="@dimen/dp30"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp20"
+                    app:shape_solidColor="@color/white"
+                    />
+
+
+            </LinearLayout>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <com.hjq.shape.view.ShapeButton
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:text="@string/str_save"
+            android:textColor="@color/c_cff32b"
+            android:layout_gravity="right|top"
+            android:textSize="@dimen/dp20"
+            android:gravity="center"
+            app:shape_radius="@dimen/dp30"
+            app:shape_solidColor="@color/c_cff32b"
+            app:shape_textColor="@color/white"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:layout_marginBottom="@dimen/dp15"
+
+            />
+    </LinearLayout>
+
+</com.hjq.shape.layout.ShapeLinearLayout>
+

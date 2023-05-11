@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.SearchDeviceViewModel" />
+
+<!--        <variable-->
+<!--            name="click"-->
+<!--            type="" />-->
+
+    </data>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:windowSoftInputMode="adjustPan"
+        android:layout_height="match_parent"
+        android:background="@mipmap/ic_devicestate_bg"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <com.hjq.bar.TitleBar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:barStyle="transparent"
+            android:padding="@dimen/dp5"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_333333"
+            android:textSize="@dimen/dp24"
+            android:text="@string/str_device_finding"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="请确认设备在旁边"
+            android:textColor="@color/c_666666"
+            android:layout_marginTop="@dimen/dp20"
+
+            />
+
+        <TextView
+            android:id="@+id/tip_pair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_tip_pair"
+            android:layout_marginTop="@dimen/dp20"
+            android:textColor="@color/c_666666"
+            android:textSize="12sp"
+
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_find_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp40"
+            android:background="@null"
+            default_linearAdapter="@{vm.adapter}"
+            submitList="@{vm.devices}"
+            itemspace="@{50}"
+            />
+
+
+    </LinearLayout>
+
+</layout>

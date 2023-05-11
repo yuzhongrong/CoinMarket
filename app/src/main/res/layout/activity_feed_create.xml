@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.CreateFeedViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.NewFeedActivity.ClickProxy" />
+
+
+    </data>
+
+    <com.hjq.shape.layout.ShapeRelativeLayout
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/dp15"
+        app:shape_solidColor="@color/c_common_bg"
+       >
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:title="@string/str_add"
+            app:titleColor="@color/c_333333"
+            app:titleGravity="center" />
+
+
+        <ImageView
+            android:id="@+id/ic_feed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="@dimen/dp118"
+            android:src="@mipmap/ic_feed" />
+
+
+        <com.hjq.shape.layout.ShapeRelativeLayout
+            android:id="@+id/show_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:onClick="@{()->click.showTimerData()}"
+            app:shape_radius="@dimen/dp8"
+            app:shape_solidColor="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="时间"
+                android:textColor="@color/c_666666"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp15"
+                android:text="12:00"
+                android:textColor="@color/black80"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+        <com.hjq.shape.layout.ShapeRelativeLayout
+            android:id="@+id/show_time_value"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:layout_below="@+id/show_time"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp15"
+            android:gravity="center_vertical"
+            android:onClick="@{()->click.showRules()}"
+            app:shape_radius="@dimen/dp8"
+            app:shape_solidColor="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp15"
+                android:text="重复"
+                android:textColor="@color/c_666666"
+                android:textSize="14sp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp15"
+                android:text="周一至周五"
+                android:textColor="@color/black80"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+        <com.hjq.shape.view.ShapeButton
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:text="@string/str_save"
+            android:textColor="@color/c_cff32b"
+            android:layout_gravity="right|top"
+            android:textSize="16sp"
+            android:gravity="center"
+            app:shape_radius="@dimen/dp30"
+            app:shape_solidColor="@color/white"
+            app:shape_textColor="@color/c_666666"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_alignParentBottom="true"
+
+            />
+
+    </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+</layout>

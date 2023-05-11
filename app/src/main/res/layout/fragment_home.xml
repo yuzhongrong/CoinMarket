@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.HomeFragmentViewModel" />
+
+        <!--        <variable-->
+        <!--            name="click"-->
+        <!--            type="" />-->
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.hjq.bar.TitleBar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftTitleColor="@color/c_333333"
+            app:leftTitle="@string/str_baby"
+            app:leftTitleStyle="bold"
+            app:leftTitleSize="18sp"
+            android:paddingLeft="@dimen/dp10"
+            app:leftIcon="@mipmap/ic_down_bottom"
+            app:leftIconGravity="right"
+            app:rightIcon="@mipmap/ic_msg"
+            app:rightIconGravity="left"
+            app:rightTitleColor="@color/c_333333"
+            android:visibility="gone"
+            />
+
+
+
+
+    <androidx.core.widget.NestedScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/content"
+            >
+            <include layout="@layout/search_layout" />
+
+
+            <com.bigkoo.convenientbanner.ConvenientBanner
+                android:id="@+id/convenientBanner"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp150"
+                app:canLoop="true"
+                android:layout_marginTop="@dimen/dp15"
+                bannerPic="@{vm.banner_datas}"
+            />
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp32"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
+                >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:text="@string/str_today_upload"
+                    android:textColor="@color/c_333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/dp15"
+
+
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    linearAdapter="@{vm.todayHealthAdapter}"
+                    cannotScrollVertically="@{false}"
+                    itemspace="@{15}"
+                    orientation="@{0}"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp150"
+                    android:layout_marginTop="@dimen/dp8"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp32"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
+                >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:text="@string/str_today_hot_wallet"
+                    android:textColor="@color/c_333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/dp15"
+
+
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    linearAdapter="@{vm.todayhotAdapter}"
+                    cannotScrollVertically="@{false}"
+                    itemspace="@{15}"
+                    orientation="@{0}"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp150"
+                    android:layout_marginTop="@dimen/dp8"
+
+                    />
+
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp32"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
+                >
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:text="@string/str_coin_hot"
+                    android:textColor="@color/c_333333"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/dp15"
+
+
+                    />
+
+
+                <androidx.recyclerview.widget.RecyclerView
+
+                    linearAdapter="@{vm.coininstallAdapter}"
+                    cannotScrollVertically="@{true}"
+                    itemspace="@{15}"
+                    orientation="@{1}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+
+                    />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</layout>

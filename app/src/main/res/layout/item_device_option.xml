@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="@dimen/dp90"
+    android:layout_height="@dimen/dp159"
+    app:shape_radius="@dimen/dp20"
+    app:shape_solidColor="@color/white"
+    android:layout_marginStart="@dimen/dp15"
+
+
+
+    >
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dp18"
+        android:src="@mipmap/ic_device" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/icon"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dp14"
+        android:text="---"
+        android:textColor="@color/c_080720"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+
+    <com.hjq.shape.layout.ShapeFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/dp13"
+        >
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/open"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp35"
+        app:shape_bottomLeftRadius="@dimen/dp20"
+        app:shape_bottomRightRadius="@dimen/dp20"
+        />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/dp24"
+            android:layout_height="@dimen/dp24"
+            android:src="@mipmap/ic_common_switch"
+            android:layout_gravity="center"
+            />
+
+    </com.hjq.shape.layout.ShapeFrameLayout>
+
+
+
+</com.hjq.shape.layout.ShapeRelativeLayout>

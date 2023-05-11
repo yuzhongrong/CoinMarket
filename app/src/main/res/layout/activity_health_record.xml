@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.HealRecordViewModel" />
+
+<!--        <variable-->
+<!--            name="click"-->
+<!--            type="com.zksg.kudoud.activitys.AboutActivity.ClickProxy" />-->
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:title="健康记录"
+            app:titleColor="@color/c_333333"
+            app:titleGravity="center"
+            app:rightIcon="@mipmap/ic_calculater"
+            app:rightIconWidth="@dimen/dp16"
+            app:rightIconHeight="@dimen/dp16"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/ic_devicestate_bg"
+                >
+
+                <com.hjq.shape.layout.ShapeRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp71"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:gravity="center_vertical"
+                    app:shape_solidColor="@color/white"
+                    app:shape_radius="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp30"
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/left"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_weight"
+                            android:textColor="@color/c_666666"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11月12日"
+                            android:textColor="@color/c_666666"
+                            android:textSize="14sp"
+                            android:layout_marginTop="@dimen/dp4"
+                            />
+
+
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="@dimen/dp1"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/dp16"
+                        android:layout_marginBottom="@dimen/dp16"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:background="@mipmap/ic_line"
+                        android:layout_toRightOf="@+id/left"
+                        />
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true"
+
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="32"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/c_333333" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="kg"
+                            android:textSize="12sp"
+                            android:textColor="@color/c_666666" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true"
+
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="32"
+                            android:textSize="40sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/c_333333" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="kg"
+                            android:textSize="12sp"
+                            android:textColor="@color/c_666666" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginRight="@dimen/dp20"
+
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_weight_up"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+1kg"
+                            android:textSize="12sp"
+                            android:layout_marginTop="@dimen/dp2"
+                            android:textColor="@color/c_666666" />
+
+
+                    </LinearLayout>
+
+                </com.hjq.shape.layout.ShapeRelativeLayout>
+
+                <com.hjq.shape.layout.ShapeRelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp140"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:gravity="center_vertical"
+                    app:shape_solidColor="@color/white"
+                    app:shape_radius="@dimen/dp10"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/scroe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="睡眠得分"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp14"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="11月12日"
+                        android:textSize="12sp"
+                        android:layout_toRightOf="@+id/scroe"
+                        android:layout_marginLeft="@dimen/dp8"
+                        android:layout_marginTop="@dimen/dp14"
+
+                        />
+
+                    <ImageView
+                        android:id="@+id/progress_circular"
+                        android:layout_width="@dimen/dp79"
+                        android:layout_height="@dimen/dp79"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:src="@mipmap/ic_progress"
+                        android:layout_toRightOf="@+id/left"
+                        android:layout_below="@+id/scroe"
+                        android:layout_marginTop="@dimen/dp15"
+                        />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp1"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/dp42"
+                        android:layout_marginBottom="@dimen/dp14"
+                        android:layout_marginLeft="@dimen/dp32"
+                        android:background="@mipmap/ic_line"
+                        android:layout_toRightOf="@+id/progress_circular"
+                        />
+
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dp16"
+                        android:layout_below="@+id/scroe"
+                        android:layout_marginLeft="@dimen/dp44"
+
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="一般"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/c_333333" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="睡眠低于80分，关注baby睡眠\n健康！"
+                            android:textSize="12sp"
+                            android:layout_marginTop="@dimen/dp16"
+                            android:textColor="@color/c_666666" />
+
+
+                    </LinearLayout>
+
+
+
+
+                </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+                <com.hjq.shape.layout.ShapeLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="@dimen/dp20"
+                    android:layout_marginRight="@dimen/dp20"
+                    android:gravity="center_vertical"
+                    app:shape_solidColor="@color/white"
+                    app:shape_radius="@dimen/dp10"
+
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="睡眠阶段"
+                        android:textSize="14sp"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp14"
+
+                        />
+
+
+                    <com.zksg.kudoud.widgets.SleepLevelView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp160"
+                        android:layout_marginTop="@dimen/dp15"
+                        sleepDatas="@{vm.datas}"
+                        />
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp15"
+                        android:layout_marginBottom="@dimen/dp16"
+                        >
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginRight="@dimen/dp16"
+                            >
+                            <com.hjq.shape.view.ShapeImageView
+                                android:layout_width="@dimen/dp6"
+                                android:layout_height="@dimen/dp6"
+                                app:shape_solidColor="@color/red"
+                                app:shape="oval"
+
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="清醒"
+                                android:textSize="14sp"
+                                android:textColor="@color/c_666666"
+                                android:layout_marginLeft="@dimen/dp4"
+                                />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_centerInParent="true"
+                            android:layout_marginLeft="@dimen/dp16"
+                            >
+                            <com.hjq.shape.view.ShapeImageView
+                                android:layout_width="@dimen/dp6"
+                                android:layout_height="@dimen/dp6"
+                                app:shape_solidColor="@color/deepskyblue"
+                                app:shape="oval"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="浅睡"
+                                android:textSize="14sp"
+                                android:textColor="@color/c_666666"
+                                android:layout_marginLeft="@dimen/dp4"
+                                />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/dp16"
+                            >
+                            <com.hjq.shape.view.ShapeImageView
+                                android:layout_width="@dimen/dp6"
+                                android:layout_height="@dimen/dp6"
+                                app:shape_solidColor="@color/slateblue"
+                                app:shape="oval"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="深睡"
+                                android:textSize="14sp"
+                                android:textColor="@color/c_666666"
+                                android:layout_marginLeft="@dimen/dp4"
+                                />
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+
+
+
+
+
+                </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+
+                    >
+
+                    <com.hjq.shape.layout.ShapeLinearLayout
+                        android:layout_width="@dimen/dp150"
+                        android:layout_height="@dimen/dp161"
+                        android:orientation="vertical"
+                        app:shape_solidColor="@color/white"
+                        app:shape_radius="@dimen/dp10"
+                        android:layout_marginLeft="@dimen/dp20"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="深睡"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="@dimen/dp14"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/dp14"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_horizontal"
+
+                            >
+
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="368"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/c_333333"
+                                />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="min"
+                                android:textSize="12sp"
+                                android:textColor="@color/c_333333"
+                                android:layout_marginLeft="@dimen/dp4"
+                                />
+
+                        </LinearLayout>
+
+
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp15"
+                            android:theme="@android:style/Widget.Material.ProgressBar.Horizontal"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:text="已达标"
+                            android:textColor="@color/green"
+                            android:layout_gravity="center"
+                            />
+
+                    </com.hjq.shape.layout.ShapeLinearLayout>
+
+                    <com.hjq.shape.layout.ShapeLinearLayout
+                        android:layout_width="@dimen/dp150"
+                        android:layout_height="@dimen/dp161"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        app:shape_solidColor="@color/white"
+                        app:shape_radius="@dimen/dp10"
+                        android:layout_marginRight="@dimen/dp20"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="清醒"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="@dimen/dp14"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginTop="@dimen/dp14"
+                            android:gravity="center_vertical"
+                            android:layout_gravity="center_horizontal"
+
+                            >
+
+                            <TextView
+                                android:layout_gravity="center_horizontal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="214"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/c_333333"
+                                />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="min"
+                                android:textSize="12sp"
+                                android:textColor="@color/c_333333"
+                                android:layout_marginLeft="@dimen/dp4"
+                                />
+
+                        </LinearLayout>
+
+
+
+                        <ProgressBar
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp15"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp15"
+                            android:text="正常"
+                            android:textColor="@color/green"
+                            android:layout_gravity="center"
+                            />
+
+                    </com.hjq.shape.layout.ShapeLinearLayout>
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+
+                    >
+
+                    <com.hjq.shape.layout.ShapeLinearLayout
+                        android:layout_width="@dimen/dp150"
+                        android:layout_height="@dimen/dp118"
+                        android:orientation="vertical"
+                        app:shape_solidColor="@color/white"
+                        app:shape_radius="@dimen/dp10"
+                        android:layout_marginLeft="@dimen/dp20"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_heart_rate"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="@dimen/dp14"
+                            />
+
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/ic_heart_rate"
+                            android:layout_marginLeft="@dimen/dp15"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:layout_marginRight="@dimen/dp15"/>
+
+
+
+                    </com.hjq.shape.layout.ShapeLinearLayout>
+
+                    <com.hjq.shape.layout.ShapeLinearLayout
+                        android:layout_width="@dimen/dp150"
+                        android:layout_height="@dimen/dp118"
+                        android:orientation="vertical"
+                        android:layout_alignParentRight="true"
+                        app:shape_solidColor="@color/white"
+                        app:shape_radius="@dimen/dp10"
+                        android:layout_marginRight="@dimen/dp20"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_breathe"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="@dimen/dp14"
+                            />
+
+
+
+
+
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/item_breathe"
+                            android:layout_marginTop="@dimen/dp12"
+                            android:layout_marginLeft="@dimen/dp15"
+                            android:layout_marginRight="@dimen/dp15"/>
+
+
+
+                    </com.hjq.shape.layout.ShapeLinearLayout>
+                </RelativeLayout>
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+
+
+</layout>

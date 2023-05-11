@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zksg.kudoud"
+    >
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/icon_kudoud_launcher"
+        android:icon="@mipmap/icon_kudoud_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:name=".app.KudoudApplication"
+        tools:targetApi="31" >
+
+        <activity
+            android:name=".activitys.MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true"
+            tools:ignore="AppLinkUrlError,IntentFilterExportedReceiver">
+
+            <!-- 程序入口 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activitys.SearchDeviceActivity"
+            android:exported="true"
+            />
+        <activity android:name=".activitys.DeviceSettingActivity"
+            android:exported="true"
+         />
+
+        <activity android:name=".activitys.BabyDetailActivity"
+            android:exported="false"
+            />
+
+        <activity android:name=".activitys.CreateEnvActivity"
+            android:exported="false"
+            />
+        <activity android:name=".activitys.ShakeSettingctivity"
+            android:exported="false"
+            />
+
+        <activity android:name=".activitys.MusicSettingctivity"
+            android:exported="false"
+            />
+        <activity android:name=".activitys.AboutActivity"
+            android:exported="false"
+            />
+
+
+        <activity android:name=".activitys.MoreActivity"
+            android:exported="false"
+            />
+        <activity android:name=".activitys.AccountSecurityActivity"
+            android:exported="false"
+            />
+
+        <activity android:name=".activitys.SmallLightctivity"
+            android:exported="false"
+            />
+        <activity android:name=".activitys.StarLightctivity"
+            android:exported="false"
+            />
+
+        <activity android:name=".activitys.AtmosphereLightctivity"
+            android:exported="false"
+            />
+
+        <activity android:name=".activitys.FeedTippctivity"
+            android:exported="false"
+            />
+
+
+        <activity android:name=".activitys.NewFeedActivity"
+            android:exported="false"
+            />
+
+
+        <activity android:name=".activitys.HeartRateDatasActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+        <activity android:name=".activitys.WeightDatasActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+        <activity android:name=".activitys.HealthRecordActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+
+
+
+
+
+        <activity android:name=".activitys.SearchDeviceIngActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activitys.ControlDeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activitys.ControlMusicPlayActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/dialog_activity_style" />
+
+
+
+
+
+    </application>
+
+</manifest>

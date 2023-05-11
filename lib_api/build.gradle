@@ -1,0 +1,31 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+
+    defaultConfig {
+        applicationId rootProject.android.applicationId
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+        multiDexEnabled rootProject.android.multiDexEnabled
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.depsLibs.gson
+    implementation this.rootProject.depsLibs.BaseRecyclerViewAdapterHelper
+    //Room
+    implementation this.rootProject.depsLibs.room
+    implementation this.rootProject.depsLibs.room_rxjava2
+    annotationProcessor this.rootProject.depsLibs.room_compiler
+}

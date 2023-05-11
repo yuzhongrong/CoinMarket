@@ -1,0 +1,45 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.android.applicationId
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+        multiDexEnabled rootProject.android.multiDexEnabled
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api rootProject.depsLibs.okhttp //okttp依赖
+    api rootProject.depsLibs.cookieJar //cookie依赖
+    api rootProject.depsLibs.gson
+    //retrofit2
+    api this.rootProject.depsLibs.retrofit
+    api this.rootProject.depsLibs.retrofit_rxjava2
+    api this.rootProject.depsLibs.retrofit_gson
+
+    //rxjava库
+    implementation this.rootProject.depsLibs.rxjava
+    implementation this.rootProject.depsLibs.rxandroid
+    // okhttp log
+    api this.rootProject.depsLibs.okhttp_log_interceptor
+    implementation project(':architecture')
+	compileOnly project(':lib_api')
+}

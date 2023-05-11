@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.FeedTipViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.FeedTippctivity.ClickProxy" />
+
+        <variable
+            name="adapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+
+
+    </data>
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/dp15"
+        app:shape_solidColor="@color/c_common_bg"
+       >
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:title="@string/str_feed_tip"
+            app:titleColor="@color/c_333333"
+            app:titleGravity="center" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/times"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_below="@+id/title"
+            default_linearAdapter="@{adapter}"
+            submitList="@{vm.datas}"
+            />
+
+        <com.hjq.shape.view.ShapeButton
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:text="@string/str_add"
+            android:textColor="@color/c_cff32b"
+            android:layout_gravity="right|top"
+            android:textSize="16sp"
+            android:gravity="center"
+            app:shape_radius="@dimen/dp30"
+            app:shape_solidColor="@color/white"
+            app:shape_textColor="@color/c_666666"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_alignParentBottom="true"
+            android:onClick="@{()->click.startAddTimer()}"
+            />
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+</layout>

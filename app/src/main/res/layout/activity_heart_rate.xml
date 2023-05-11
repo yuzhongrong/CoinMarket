@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.HeartRatePagerAdapter" />
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.HeartRateViewModel" />
+    </data>
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:shape_radius="@dimen/dp25"
+        android:background="@mipmap/ic_devicestate_bg"
+        >
+
+
+        <com.hjq.bar.TitleBar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:titleColor="@color/c_333333"
+            app:title="@string/str_heart_rate"
+            app:rightTitleColor="@color/c_333333"
+            app:titleStyle="bold"
+            android:layout_marginLeft="@dimen/dp10"
+            />
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/magic_indicator_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp35"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            customIndicatorTitle="@{vm.indicatorTitle}"
+            />
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            viewPagerAdapter="@{vm.adapter}"
+            viewPagerOffsetLimit="@{3}"
+
+            />
+    </com.hjq.shape.layout.ShapeLinearLayout>
+</layout>

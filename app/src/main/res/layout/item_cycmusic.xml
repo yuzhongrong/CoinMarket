@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="info"
+            type="com.zksg.lib_api.playlist.BasicMusicInfo" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
+        android:padding="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp0.5"
+      >
+
+        <com.hjq.shape.view.ShapeImageView
+            android:id="@+id/inner"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            app:shape_solidColor="@color/c_cff32b"
+            app:shape="oval"
+            android:visibility="gone"
+
+            />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"
+            android:text="1"
+            android:textStyle="bold"
+
+            />
+
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"
+            android:text="@{info.name}"
+            android:layout_marginLeft="@dimen/dp31"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/number"
+
+
+            />
+
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"
+            android:text="@{info.leng}"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/dp67"
+            android:layout_alignParentRight="true"
+
+
+            />
+
+
+        <com.hjq.shape.view.ShapeImageView
+            android:id="@+id/iv_draw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_td"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp5"
+
+
+            />
+    </RelativeLayout>
+</layout>

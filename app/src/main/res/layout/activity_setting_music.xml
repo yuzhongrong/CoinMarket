@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.MusicSettingViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.MusicSettingctivity.ClickProxy" />
+    </data>
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/dp15"
+        app:shape_topLeftRadius="@dimen/dp30"
+        app:shape_topRightRadius="@dimen/dp30"
+        app:shape_solidColor="@color/c_common_bg"
+       >
+
+        <com.hjq.bar.TitleBar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:titleColor="@color/c_333333"
+            app:title="@string/str_music"
+            app:rightTitle="@string/str_save"
+            app:rightTitleColor="@color/c_333333"
+            />
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:shape_solidColor="@color/white"
+            app:shape_radius="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            >
+
+            <com.zksg.kudoud.widgets.SettingBar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                app:bar_leftText="定时(min)"
+                app:bar_rightText="15"
+                app:bar_lineVisible="false"
+                app:bar_rightTextColor="@color/c_333333"
+                app:bar_leftTextColor="@color/c_666666"
+
+
+                />
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15"
+            app:shape_solidColor="@color/white"
+            app:shape_radius="@dimen/dp15"
+            >
+
+            <com.hjq.shape.layout.ShapeRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:padding="@dimen/dp5"
+                android:gravity="center_vertical"
+                >
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_custome_list_tip"
+                    android:textSize="14sp"
+                    android:textColor="@color/c_666666"
+                    android:layout_marginLeft="@dimen/dp15"
+
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:src="@mipmap/ic_muti_select"
+                    android:layout_marginRight="@dimen/dp17"
+                    />
+            </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp0.5"
+                android:background="@mipmap/ic_divider"
+                android:layout_marginTop="@dimen/dp16"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_find_list"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                default_linearAdapter="@{adapter}"
+                itemspace="@{10}"
+                android:layout_weight="1"
+                submitList="@{vm.datas}"
+                />
+
+            <include layout="@layout/common_music_bottom" />
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+
+
+
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+</layout>

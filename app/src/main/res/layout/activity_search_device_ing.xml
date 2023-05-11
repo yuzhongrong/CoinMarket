@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.SearchDeviceIngViewModel" />
+
+        <!--        <variable-->
+        <!--            name="click"-->
+        <!--            type="" />-->
+
+    </data>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/ic_devicestate_bg"
+            android:alpha="60"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            >
+            <com.hjq.bar.TitleBar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                app:leftIcon="@mipmap/ic_left_back"
+                app:barStyle="transparent"
+                android:padding="@dimen/dp5"
+                />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c_333333"
+                android:textSize="@dimen/dp24"
+                android:text="@string/str_device_finding"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dp14"
+                android:text="@string/string_dont_leave"
+                android:textColor="@color/c_666666"
+                android:layout_marginTop="@dimen/dp20"
+
+                />
+
+            <TextView
+                android:id="@+id/tip_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/dp14"
+                android:text="@string/string_devoce_bottom_tip"
+                android:textColor="@color/c_666666"
+                android:layout_marginTop="@dimen/dp280"
+
+                />
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical"
+               android:gravity="bottom|center_horizontal"
+               android:layout_marginTop="@dimen/dp90"
+               >
+
+               <com.hjq.shape.view.ShapeButton
+                   android:id="@+id/number"
+                   android:layout_width="match_parent"
+                   android:layout_height="@dimen/dp50"
+                   android:text="@string/str_action_connect_cancel"
+                   android:textColor="@color/c_666666"
+                   android:textSize="@dimen/dp14"
+                   app:shape_solidSelectedColor="@color/c_cff32b"
+                   app:shape_strokeColor="@color/c_cff32b"
+                   app:shape_strokeWidth="@dimen/dp1"
+                   app:shape_textSelectedColor="@color/white"
+                   android:gravity="center"
+                   app:shape_radius="@dimen/dp25"
+                   android:textStyle="bold"
+                   android:layout_marginBottom="@dimen/dp45"
+                   android:layout_marginLeft="@dimen/dp15"
+                   android:layout_marginRight="@dimen/dp15"
+
+
+
+                   />
+
+           </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+</layout>

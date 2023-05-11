@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+<!--        <variable-->
+<!--            name="vm"-->
+<!--            type="com.zksg.kudoud.state.MusicSettingViewModel" />-->
+
+<!--        <variable-->
+<!--            name="adapter"-->
+<!--            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />-->
+
+
+<!--        <variable-->
+<!--            name="click"-->
+<!--            type="com.zksg.kudoud.activitys.MusicSettingctivity.ClickProxy" />-->
+    </data>
+
+    <com.hjq.shape.layout.ShapeRelativeLayout
+
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/dp15"
+        app:shape_topLeftRadius="@dimen/dp30"
+        app:shape_topRightRadius="@dimen/dp30"
+        app:shape_solidColor="@color/c_common_bg"
+       >
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:titleColor="@color/c_333333"
+            app:title="@string/str_light"
+            />
+
+        <LinearLayout
+            android:id="@+id/layout_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_below="@+id/title"
+            >
+
+            <include layout="@layout/include_common_light"/>
+
+
+        </LinearLayout>
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:id="@+id/timer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:shape_solidColor="@color/white"
+            app:shape_radius="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            android:layout_below="@+id/layout_light"
+            >
+
+            <com.zksg.kudoud.widgets.SettingBar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                app:bar_leftText="定时(min)"
+                app:bar_rightText="15"
+                app:bar_lineVisible="false"
+                app:bar_rightTextColor="@color/c_333333"
+                app:bar_leftTextColor="@color/c_666666"
+
+
+                />
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+        <com.hjq.shape.view.ShapeButton
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:text="@string/str_save"
+            android:textColor="@color/c_cff32b"
+            android:layout_gravity="right|top"
+            android:textSize="16sp"
+            android:gravity="center"
+            app:shape_radius="@dimen/dp30"
+            app:shape_solidColor="@color/white"
+            app:shape_textColor="@color/c_666666"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:layout_marginBottom="@dimen/dp15"
+            android:layout_alignParentBottom="true"
+
+            />
+
+    </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+</layout>

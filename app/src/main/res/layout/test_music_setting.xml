@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="adapter"
+            type="androidx.viewpager2.adapter.FragmentStateAdapter" />
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.MusicPlaylistActivityViewModel" />
+
+    </data>
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:shape_radius="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp80"
+        app:shape_solidColor="@color/white"
+        >
+
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/magic_indicator_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp10"
+            commonIndicatorTitleWithDivide="@{vm.indicatorTitle}"
+            android:background="?android:attr/selectableItemBackground" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/app_background" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            viewPagerAdapter="@{vm.adapter}"
+            viewPagerOffsetLimit="@{3}"
+
+            />
+    </com.hjq.shape.layout.ShapeLinearLayout>
+</layout>

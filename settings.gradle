@@ -1,0 +1,9 @@
+
+include ':app'
+rootProject.name = 'Kudoud'
+include ':architecture'
+include ':lib_image_loader'
+include ':lib_api'
+include ':lib_network'
+include ':lib_common_ui'
+include ':MPChartLib'

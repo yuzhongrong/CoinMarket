@@ -1,0 +1,151 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt' //support kotlin
+
+
+android {
+
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.android.applicationId
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('./kudoud.jks')
+            storePassword "123456"
+        }
+        debug {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('./kudoud.jks')
+            storePassword '123456'
+        }
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = "kudoud_v${defaultConfig.versionName}.apk"
+                }
+            }
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testImplementation 'junit:junit:4.12'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.10'
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:1.7.0"
+    testCompile "org.robolectric:robolectric:3.3.2"
+
+    // PowerMock brings in the mockito dependency
+    testCompile 'org.powermock:powermock-module-junit4:1.6.5'
+    testCompile 'org.powermock:powermock-module-junit4-rule:1.6.5'
+    testCompile 'org.powermock:powermock-api-mockito:1.6.5'
+    testCompile 'org.powermock:powermock-classloading-xstream:1.6.5'
+
+    implementation this.rootProject.depsLibs.refresh_layout_kernel   //核心必须依赖
+    implementation this.rootProject.depsLibs.refresh_header_classics //经典刷新头
+
+    implementation this.rootProject.depsLibs.slidinguppanel
+    implementation this.rootProject.depsLibs.materialiconlib
+
+    implementation this.rootProject.depsLibs.material
+    implementation this.rootProject.depsLibs.constraintlayout
+
+    //implementation 'com.kunminx.archi:binding-recyclerview:3.3.2-beta3'
+    // eventBus
+    implementation this.rootProject.depsLibs.eventbus
+    implementation this.rootProject.depsLibs.vptransforms
+    //glide
+    annotationProcessor this.rootProject.depsLibs.glidecompiler
+    implementation this.rootProject.depsLibs.glide
+    //gson
+    annotationProcessor this.rootProject.depsLibs.gson
+    //拼音库
+    implementation this.rootProject.depsLibs.tinypinyin
+    //rxjava库
+    implementation this.rootProject.depsLibs.rxjava
+    implementation this.rootProject.depsLibs.rxandroid
+    //MagicIndicator
+    implementation this.rootProject.depsLibs.magicindicator
+    //视频播放
+    implementation this.rootProject.depsLibs.videoplayer
+    //xpop
+    implementation this.rootProject.depsLibs.xpopup
+    implementation this.rootProject.depsLibs.xpopup_ext
+
+    //RecyclerView adapter
+    implementation this.rootProject.depsLibs.BaseRecyclerViewAdapterHelper
+    //RecycerView
+    implementation this.rootProject.depsLibs.recyclerview
+    //permission
+    implementation this.rootProject.depsLibs.easypermission
+    //Room
+    implementation this.rootProject.depsLibs.room
+    implementation this.rootProject.depsLibs.room_rxjava2
+    implementation this.rootProject.depsLibs.utilcodex
+
+
+    implementation project(path: ':lib_common_ui')
+    implementation project(path: ':lib_image_loader')
+//    //implementation project(path: ':lib_webview')
+//    implementation project(path: ':lib_audio')
+//    implementation project(path: ':lib_video')
+    implementation project(path: ':lib_api')
+    implementation project(path: ':lib_network')
+    implementation project(':architecture')
+    implementation project(path: ':MPChartLib')
+
+    //implementation project(path: ':lib_share')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'androidx.core:core-ktx:1.3.1'
+
+
+    implementation 'com.github.getActivity:ShapeView:6.2'
+    implementation 'com.github.getActivity:TitleBar:9.2'
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+    implementation 'com.github.duanhong169:colorpicker:1.1.6'
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+
+}

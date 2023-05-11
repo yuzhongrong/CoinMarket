@@ -1,0 +1,65 @@
+/*
+ * Copyright 2018-present KunMinX
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+
+    api this.rootProject.depsLibs.appcompat
+    api this.rootProject.depsLibs.recyclerview
+    api this.rootProject.depsLibs.lifecycle_runtime
+    api this.rootProject.depsLibs.lifecycle_common_java8
+    api this.rootProject.depsLibs.lifecycle_viewmodel //java打开
+    api  this.rootProject.depsLibs.lifecycle_viewmodel_ktx //kotlin打开
+    api this.rootProject.depsLibs.lifecycle_livedata
+    api this.rootProject.depsLibs.navigation_runtime
+    api this.rootProject.depsLibs.unpeek
+
+//    api 'com.kunminx.arch:unpeek-livedata:7.2.0-beta1'
+    api 'com.github.KunMinX:UnPeek-LiveData:7.8.0'
+    api 'com.kunminx.arch:smooth-navigation:4.0.0-beta1'
+    api 'com.kunminx.arch:strict-databinding:4.0.0-beta1'
+    api 'com.github.KunMinX.Strict-DataBinding:binding_state:5.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+
+}

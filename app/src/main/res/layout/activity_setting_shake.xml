@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.ShakeSettingViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.ShakeSettingctivity.ClickProxy" />
+    </data>
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/dp10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="@dimen/dp15"
+        app:shape_topLeftRadius="@dimen/dp30"
+        app:shape_topRightRadius="@dimen/dp30"
+        app:shape_solidColor="@color/c_common_bg"
+       >
+
+        <com.hjq.bar.TitleBar
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:barStyle="transparent"
+            app:leftIcon="@mipmap/ic_left_back"
+            app:title="@string/str_shake"
+            app:titleColor="@color/c_333333"
+            app:titleGravity="center" />
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            app:shape_solidColor="@color/c_fdfafb"
+            app:shape_radius="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_shake_type"
+                android:textSize="14sp"
+                android:textColor="@color/c_666666"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_gravity="left"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp0.5"
+                android:background="@mipmap/ic_divider"
+                android:layout_marginTop="@dimen/dp16"
+                />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp26"
+                >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    >
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_control_fb_unenable"
+                        android:id="@+id/face_background"
+
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/c_666666"
+                        android:text="@string/str_fb"
+                        android:layout_marginTop="@dimen/dp6"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    >
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_leftright_unenable"
+                        android:id="@+id/left_right"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/c_666666"
+                        android:text="@string/str_left_right"
+                        android:layout_marginTop="@dimen/dp6"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    >
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_clockwise_unenable"
+                        android:id="@+id/clockwise"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/c_666666"
+                        android:text="顺时针"
+                        android:layout_marginTop="@dimen/dp6"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    >
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_counterclockwise_unenable"
+                        android:id="@+id/counterclockwise"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/c_666666"
+                        android:text="顺时针"
+                        android:layout_marginTop="@dimen/dp6"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    >
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_hd_unenable"
+                        android:id="@+id/fb"
+                        />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"
+                        android:textColor="@color/c_666666"
+                        android:text="@string/str_hd"
+                        android:layout_marginTop="@dimen/dp6"
+                        />
+                </LinearLayout>
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp31"
+            app:shape_solidColor="@color/c_fdfafb"
+            app:shape_radius="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_shake_speed"
+                android:textSize="14sp"
+                android:textColor="@color/c_666666"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp37"
+
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp0.5"
+                android:background="@mipmap/ic_divider"
+                android:layout_marginTop="@dimen/dp16"
+                />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp26"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/dp20"
+
+                    >
+
+
+
+                    <com.hjq.shape.view.ShapeButton
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp60"
+                        android:gravity="center"
+                        android:text="@string/str_low"
+                        android:textColor="@color/c_666666"
+                        android:textSize="14sp"
+                        android:layout_weight="1"
+                        app:shape_radius="20dp"
+                        app:shape_shadowColor="#20000000"
+                        app:shape_shadowSize="@dimen/dp10"
+                        app:shape_solidColor="@color/white" />
+
+                    <com.hjq.shape.view.ShapeButton
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp60"
+                        android:gravity="center"
+                        android:text="@string/str_middler"
+                        android:textColor="@color/c_666666"
+                        android:textSize="14sp"
+                        app:shape_radius="20dp"
+                        app:shape_shadowColor="#20000000"
+                        app:shape_shadowSize="@dimen/dp10"
+                        app:shape_solidColor="@color/white"
+                        android:layout_weight="1"
+                        />
+
+
+
+                    <com.hjq.shape.view.ShapeButton
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp60"
+                        android:gravity="center"
+                        android:text="@string/str_hight"
+                        android:textColor="@color/c_666666"
+                        android:textSize="14sp"
+                        app:shape_radius="20dp"
+                        app:shape_shadowColor="#20000000"
+                        app:shape_shadowSize="@dimen/dp10"
+                        app:shape_solidColor="@color/white"
+                        android:layout_weight="1"
+
+                        />
+
+
+
+                </LinearLayout>
+
+
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:shape_solidColor="@color/white"
+            app:shape_radius="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            >
+
+            <com.zksg.kudoud.widgets.SettingBar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                app:bar_leftText="定时(min)"
+                app:bar_rightText="15"
+                app:bar_lineVisible="false"
+                app:bar_rightTextColor="@color/c_333333"
+                app:bar_leftTextColor="@color/c_666666"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+
+                />
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            >
+
+            <com.hjq.shape.view.ShapeButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:text="@string/str_save"
+                android:textColor="@color/c_cff32b"
+                android:layout_gravity="right|top"
+                android:textSize="16sp"
+                android:gravity="center"
+                app:shape_radius="@dimen/dp30"
+                app:shape_solidColor="@color/white"
+                app:shape_textColor="@color/c_666666"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:layout_marginBottom="@dimen/dp15"
+
+                />
+
+        </LinearLayout>
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+</layout>

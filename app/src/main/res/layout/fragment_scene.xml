@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.SceneFragmentViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.SceneFragment.ClickProxy" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:windowSoftInputMode="adjustPan"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp21"
+            android:textSize="@dimen/dp18"
+            android:textColor="@color/c_333333"
+            android:layout_marginLeft="@dimen/dp20"
+            android:text="@string/str_scene"
+            android:textStyle="bold"
+            />
+        
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp28"
+            >
+
+
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp200"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:shape_solidColor="@color/white"
+            app:shape_radius="@dimen/dp5"
+            android:padding="@dimen/dp15"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="@dimen/dp20"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_ti_helper"
+                android:textColor="@color/c_333333"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_babybed"
+
+
+                />
+            <ImageView
+                android:id="@+id/cb_box_open"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:src="@mipmap/ic_switch" />
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:id="@+id/create_env"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp200"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            app:shape_solidColor="@color/white"
+            app:shape_radius="@dimen/dp5"
+            android:padding="@dimen/dp15"
+            android:layout_weight="0.5"
+            android:layout_marginLeft="@dimen/dp35"
+            android:layout_marginRight="@dimen/dp20"
+            android:onClick="@{()->click.CreateEnv()}"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_create_scene"
+                android:textColor="@color/c_333333"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dp33"
+
+                />
+
+
+
+            <ImageView
+                android:id="@+id/add_scene"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp53"
+                android:src="@mipmap/ic_add_scene"
+
+                />
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

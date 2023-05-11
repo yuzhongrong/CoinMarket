@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/dp15"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/dp15"
+    app:shape_topLeftRadius="@dimen/dp50"
+    app:shape_topRightRadius="@dimen/dp50"
+    android:background="@drawable/bg_dialog_border_white">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@mipmap/ic_common_dialog_tip"
+        android:layout_marginTop="@dimen/dp15"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/dp5"
+        android:paddingBottom="@dimen/dp5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+
+        >
+
+        <TextView
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:text="@string/xpopup_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/_xpopup_dark_color"
+            android:textSize="16sp" />
+
+        <Space
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"/>
+
+        <TextView
+            android:id="@+id/btnConfirm"
+            android:textStyle="bold"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textColor="@color/_xpopup_dark_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/xpopup_ok"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+    <com.contrarywind.view.WheelView
+        android:id="@+id/commonWheel"
+        android:gravity="center"
+        android:minHeight="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>

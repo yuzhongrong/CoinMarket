@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.BabyDetailViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.BabyDetailActivity.ClickProxy" />
+
+
+
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:windowSoftInputMode="adjustPan"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp9"
+        android:background="@mipmap/ic_devicestate_bg"
+        android:orientation="vertical">
+
+       <com.hjq.bar.TitleBar
+           android:layout_width="match_parent"
+           android:layout_height="@dimen/dp45"
+           app:barStyle="transparent"
+           app:leftIcon="@mipmap/ic_left_back"
+           app:titleColor="@color/c_333333"
+           app:titleGravity="center"
+           app:title="@string/str_baby"
+           />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            >
+
+            <ImageView
+                android:id="@+id/avator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_baby_avator"
+                android:layout_marginTop="@dimen/dp34"
+                android:layout_gravity="center_horizontal"
+                />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_camera"
+                android:layout_marginTop="@dimen/dp34"
+                android:layout_gravity="right|bottom"
+                />
+
+        </FrameLayout>
+
+
+        <com.zksg.kudoud.widgets.SettingBar
+            android:id="@+id/sb_baby_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:layout_marginTop="@dimen/dp50"
+            android:background="@color/white"
+            app:bar_leftText="@string/str_baby_name"
+            app:bar_leftTextColor="@color/c_333333"
+            app:bar_rightTextSize="14sp"
+            app:bar_rightDrawable="@mipmap/ic_right_back"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            app:bindSettingBar_right="@{vm.name}"
+            app:bar_lineVisible="false"
+            android:onClick="@{()->click.showname()}"
+            />
+
+
+        <com.zksg.kudoud.widgets.SettingBar
+            android:id="@+id/sb_baby_sex"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:background="@color/white"
+            app:bar_leftText="@string/str_baby_sex"
+            app:bar_leftTextColor="@color/c_333333"
+            app:bar_rightTextSize="14sp"
+            app:bar_lineVisible="false"
+            app:bar_rightDrawable="@mipmap/ic_right_back"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            app:bindSettingBar_right="@{vm.gender}"
+            android:onClick="@{()->click.showGender()}"
+            />
+
+
+        <com.zksg.kudoud.widgets.SettingBar
+            android:id="@+id/sb_baby_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:background="@color/white"
+            app:bar_leftText="@string/str_birthday"
+            app:bar_leftTextColor="@color/c_333333"
+            app:bar_rightTextSize="14sp"
+            app:bar_rightDrawable="@mipmap/ic_right_back"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            app:bar_lineVisible="false"
+            app:bindSettingBar_right="@{vm.birthday}"
+            android:onClick="@{()->click.showBirthday()}"
+            />
+
+
+
+        <com.zksg.kudoud.widgets.SettingBar
+            android:id="@+id/sb_baby_weight"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:background="@color/white"
+            app:bar_leftText="体重 (kg)"
+            app:bar_leftTextColor="@color/c_333333"
+            app:bar_rightTextSize="14sp"
+            app:bar_rightDrawable="@mipmap/ic_right_back"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            app:bindSettingBar_right="@{vm.weight}"
+            app:bar_lineVisible="false"
+            android:onClick="@{()->click.showWeight()}"
+            />
+
+        <com.zksg.kudoud.widgets.SettingBar
+            android:id="@+id/sb_baby_high"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:background="@color/white"
+            app:bar_leftText="身高 (cm)"
+            app:bar_leftTextColor="@color/c_333333"
+            app:bar_rightTextSize="14sp"
+            app:bar_rightDrawable="@mipmap/ic_right_back"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            app:bar_lineVisible="false"
+            app:bindSettingBar_right="@{vm.hight}"
+            android:onClick="@{()->click.showHigh()}"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            >
+
+            <com.hjq.shape.view.ShapeButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:text="@string/str_save"
+                app:shape_radius="@dimen/dp25"
+                app:shape_solidColor="@color/white"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginBottom="@dimen/dp25"
+                android:textStyle="bold"
+                />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

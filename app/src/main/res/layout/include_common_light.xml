@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/dp10"
+    app:shape_solidColor="@color/white"
+
+    android:gravity="center_horizontal">
+
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_light_lever"
+            android:textSize="14sp"
+            android:textColor="@color/c_666666"
+
+            android:layout_marginTop="@dimen/dp13"
+            android:layout_gravity="left"
+            android:layout_marginLeft="@dimen/dp5"
+            />
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp0.5"
+            android:background="@mipmap/ic_divider"
+            android:layout_marginTop="@dimen/dp10"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp10"
+            >
+            <com.warkiz.widget.IndicatorSeekBar
+                android:id="@+id/seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp2"
+                app:isb_max="100"
+                app:isb_min="0"
+                app:isb_seek_smoothly="true"
+                app:isb_thumb_color="@color/c_cff32b"
+                app:isb_thumb_size="20dp"
+                app:isb_show_indicator="rounded_rectangle"
+                app:isb_indicator_color="@color/c_a0a0ab"
+                app:isb_indicator_text_color="@color/c_cff32b"
+                app:isb_indicator_text_size="18sp"
+                app:isb_track_background_color="@color/c_a0a0ab"
+                app:isb_track_background_size="2dp"
+                app:isb_track_progress_color="@color/c_cff32b"
+                app:isb_track_progress_size="4dp"
+                android:layout_marginRight="@dimen/dp30"
+                />
+            <TextView
+                android:id="@+id/progress_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/c_666666"
+                android:layout_alignParentRight="true"
+                android:text="0%"
+                android:layout_marginLeft="@dimen/dp14"
+                />
+        </RelativeLayout>
+
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
