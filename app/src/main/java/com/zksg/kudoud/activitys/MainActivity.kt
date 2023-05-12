@@ -5,6 +5,8 @@ import com.zksg.kudoud.state.MainActivityViewModel
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.R
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 //import com.kunminx.architecture.ui.page.StateHolder
 //import com.kunminx.architecture.ui.state.State
 //import com.kunminx.architecture.utils.BarUtils
@@ -33,8 +35,6 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initView(mainBinding: ActivityMainBinding) {
-
-
 
         val HOME_PAGE = getString(R.string.str_home)
         mainBinding.homeNavigate!!.addTab(HomeFragment::class.java,
@@ -99,6 +99,7 @@ class MainActivity : BaseActivity() {
 //        val openDrawer = State(false)
 //        val allowDrawerOpen = State(true)
 //    }
+
 
 
 

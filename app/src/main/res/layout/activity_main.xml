@@ -18,10 +18,8 @@
         android:layout_width="match_parent"
         android:windowSoftInputMode="adjustPan"
         android:layout_height="match_parent"
-        android:background="@mipmap/ic_devicestate_bg"
-        android:alpha="60"
+        android:background="@color/c_191a1f"
         android:fitsSystemWindows="true"
-
 
         >
 
@@ -29,17 +27,20 @@
             android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:layout_above="@+id/nav_root"
+
+            />
 
 
         <com.hjq.shape.layout.ShapeLinearLayout
+            android:id="@+id/nav_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/dp16"
-            app:shape_solidColor="@color/white"
+            app:shape_solidColor="@color/c_212026"
             app:shape_radius="@dimen/dp24"
-
             android:layout_alignParentBottom="true"
             >
 

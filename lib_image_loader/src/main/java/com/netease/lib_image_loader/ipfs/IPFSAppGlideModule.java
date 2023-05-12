@@ -18,7 +18,7 @@ import java.io.InputStream;
 import io.ipfs.api.IPFS;
 
 
-@GlideModule
+//@GlideModule
 public class IPFSAppGlideModule extends AppGlideModule {
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {

@@ -81,7 +81,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp4"
                     android:text="@string/str_today_upload"
-                    android:textColor="@color/c_333333"
+                    android:textColor="@color/c_666666"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/dp15"
@@ -95,7 +95,7 @@
                     itemspace="@{15}"
                     orientation="@{0}"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp150"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp8"
 
                     />
@@ -117,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp4"
                     android:text="@string/str_today_hot_wallet"
-                    android:textColor="@color/c_333333"
+                    android:textColor="@color/c_666666"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/dp15"
@@ -132,7 +132,7 @@
                     itemspace="@{15}"
                     orientation="@{0}"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp150"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp8"
 
                     />
@@ -157,7 +157,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp4"
                     android:text="@string/str_coin_hot"
-                    android:textColor="@color/c_333333"
+                    android:textColor="@color/c_666666"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/dp15"

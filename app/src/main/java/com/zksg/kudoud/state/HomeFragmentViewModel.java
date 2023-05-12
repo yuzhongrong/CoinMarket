@@ -17,7 +17,8 @@ public class HomeFragmentViewModel extends ViewModel {
     public ObservableField<List<String>> banner_datas = new ObservableField<>();
 
     {
-        banner_datas.set(Arrays.asList("QmX7XYebHia8wQysKWMV8iaeLJXBGUX1ihvBUGaFM5U2Ca"
+        banner_datas.set(Arrays.asList("ipfs://QmP6UJ6cNYEh8BYbcdGKecZB1uKK3uKp5JWxnSkDQJZqQf",
+                "ipfs://QmP6UJ6cNYEh8BYbcdGKecZB1uKK3uKp5JWxnSkDQJZqQf"
 
                 ));
     }

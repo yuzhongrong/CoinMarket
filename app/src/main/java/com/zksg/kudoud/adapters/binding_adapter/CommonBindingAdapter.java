@@ -177,7 +177,7 @@ public class CommonBindingAdapter {
                 .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                 .setPageTransformer(new DefaultTransformer())
                 .setOnItemClickListener(listener)
-                .setCanLoop(false);
+                .setCanLoop(true);
     }
 
     @BindingAdapter(value = "onChooseAreaListener")

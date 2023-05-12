@@ -124,11 +124,17 @@ public class ImageLoaderManager {
 
 
 	public void displayImageForCornerIpfs(final ImageView imageView, String url, int corner) {
+		String resultUrl="";
+		if(url!=null&&url.startsWith("ipfs://")){
+			resultUrl="https://ipfs.io/ipfs/"+url.substring(7);
+		}else{
+			resultUrl=url;
+		}
 		CornerTransform transformation = new CornerTransform(imageView.getContext(), ImageUtils.dip2px(imageView.getContext(), corner));
 		transformation.setExceptCorner(false, false, false, false);
 		Glide.with(imageView.getContext())
 				.asBitmap()
-				.load(url)
+				.load(resultUrl)
 				.apply(initCommonRequestOption())
 				.transform(transformation)
 				.into(imageView);

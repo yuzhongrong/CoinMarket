@@ -143,4 +143,6 @@ public abstract class BaseActivity extends DataBindingActivity {
         // 从系统中kill掉应用程序
         android.os.Process.killProcess(android.os.Process.myPid());
     }
+
+
 }

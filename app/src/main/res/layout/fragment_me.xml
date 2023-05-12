@@ -17,13 +17,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+
+        >
 
         <com.hjq.bar.TitleBar
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp45"
             app:barStyle="transparent"
-            app:rightIcon="@mipmap/ic_more"
             app:leftTitleColor="@color/c_333333"
             app:leftTitle="@string/str_me"
             app:leftTitleStyle="bold"
@@ -33,6 +34,7 @@
             app:leftIconPadding="-15dp"
             app:rightIconGravity="left"
             app:rightIconPadding="@dimen/dp10"
+
             />
 
 
