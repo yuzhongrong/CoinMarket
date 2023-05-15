@@ -118,6 +118,7 @@
     <string name="str_once_normal">一键校准</string>
     <string name="str_weight_sub">校准时请勿将baby放在称重计上</string>
     <string name="str_today_upload">最新上架</string>
+
     <string name="str_today_hot_wallet">热门钱包</string>
     <string name="str_coin_hot">币圈常玩</string>
     <string name="str_me">我的</string>
@@ -127,5 +128,8 @@
     <string name="str_home">主页</string>
     <string name="str_category">分类</string>
     <string name="str_markets">市场</string>
+    <string name="str_wallet">钱包</string>
+    <string name="str_dex">兑换</string>
+    <string name="str_other">其他</string>
 
 </resources>

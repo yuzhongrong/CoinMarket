@@ -14,12 +14,13 @@
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:windowSoftInputMode="adjustPan"
         android:layout_height="match_parent"
-        android:background="@color/c_191a1f"
+        android:background="@drawable/bg_main"
         android:fitsSystemWindows="true"
+        android:orientation="vertical"
 
         >
 
@@ -33,13 +34,13 @@
             />
 
 
-        <com.hjq.shape.layout.ShapeLinearLayout
+        <LinearLayout
             android:id="@+id/nav_root"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/dp16"
-            app:shape_solidColor="@color/c_212026"
+            app:shape_solidColor="@color/c_1f1f1f"
             app:shape_radius="@dimen/dp24"
             android:layout_alignParentBottom="true"
             >
@@ -52,9 +53,9 @@
                 android:layout_marginBottom="@dimen/dp15"
                 />
 
-        </com.hjq.shape.layout.ShapeLinearLayout>
+        </LinearLayout>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
 </layout>

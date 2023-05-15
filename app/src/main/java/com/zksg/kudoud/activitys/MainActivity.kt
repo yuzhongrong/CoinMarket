@@ -14,7 +14,7 @@ import com.zksg.kudoud.BR
 import com.zksg.kudoud.databinding.ActivityMainBinding
 import com.zksg.kudoud.fragments.HomeFragment
 import com.zksg.kudoud.fragments.MeFragment
-import com.zksg.kudoud.fragments.SceneFragment
+import com.zksg.kudoud.fragments.CategoryFragment
 import com.zksg.kudoud.widgets.NavigateTabBar
 
 class MainActivity : BaseActivity() {
@@ -36,6 +36,10 @@ class MainActivity : BaseActivity() {
 
     private fun initView(mainBinding: ActivityMainBinding) {
 
+        //临时debug去掉
+        var group=mainBinding.root as ViewGroup
+        group.getChildAt(group.childCount-1).visibility= View.GONE
+
         val HOME_PAGE = getString(R.string.str_home)
         mainBinding.homeNavigate!!.addTab(HomeFragment::class.java,
             NavigateTabBar.TabParam(
@@ -47,7 +51,7 @@ class MainActivity : BaseActivity() {
         )
 
         val CATEGORY_PAGE = getString(R.string.str_category)
-        mainBinding.homeNavigate!!.addTab(SceneFragment::class.java,
+        mainBinding.homeNavigate!!.addTab(CategoryFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
                 R.mipmap.app_normal,
@@ -57,7 +61,7 @@ class MainActivity : BaseActivity() {
         )
 
         val CJ_PAGE = getString(R.string.str_markets)
-        mainBinding.homeNavigate!!.addTab(SceneFragment::class.java,
+        mainBinding.homeNavigate!!.addTab(CategoryFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
                 R.mipmap.app_normal,

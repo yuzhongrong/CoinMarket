@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.SceneFragmentViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/c_171717"
+
+        >
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/dp5"
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_category"
+                android:textSize="@dimen/sp15"
+                android:textColor="@color/whitesmoke"
+                android:layout_marginLeft="@dimen/dp20"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_more"
+                android:textSize="@dimen/sp15"
+                android:textColor="@color/whitesmoke"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp20"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:shape_solidColor="#232323"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            app:shape_radius="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/dp5"
+
+            >
+               <net.lucode.hackware.magicindicator.MagicIndicator
+                   android:id="@+id/magic_indicator_tab"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:layout_marginRight="@dimen/dp10"
+                    customIndicatorTitle="@{vm.indicatorTitle}"
+
+                            />
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+<!--        <com.hjq.shape.layout.ShapeLinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="vertical"-->
+<!--            app:shape_radius="@dimen/dp25"-->
+<!--            android:background="@mipmap/ic_devicestate_bg"-->
+<!--            >-->
+
+
+<!--            <com.hjq.bar.TitleBar-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/dp45"-->
+<!--                app:barStyle="transparent"-->
+<!--                app:leftIcon="@mipmap/ic_left_back"-->
+<!--                app:titleColor="@color/c_333333"-->
+<!--                app:title="@string/str_heart_rate"-->
+<!--                app:rightTitleColor="@color/c_333333"-->
+<!--                app:titleStyle="bold"-->
+<!--                android:layout_marginLeft="@dimen/dp10"-->
+<!--                />-->
+
+
+<!--        </com.hjq.shape.layout.ShapeLinearLayout>-->
+
+
+
+        <include layout="@layout/search_layout" />
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            viewPagerAdapter="@{vm.adapter}"
+            viewPagerOffsetLimit="@{3}"
+            android:layout_marginTop="@dimen/dp25"
+
+            />
+
+<!--<androidx.core.widget.NestedScrollView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:layout_marginTop="@dimen/dp15"-->
+<!--    android:layout_below="@+id/layout_search"-->
+<!--    >-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:windowSoftInputMode="adjustPan"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+
+<!--            linearAdapter="@{vm.CategoryAdapter}"-->
+<!--            cannotScrollVertically="@{true}"-->
+<!--            itemspace="@{15}"-->
+<!--            orientation="@{1}"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+
+
+<!--            />-->
+
+<!--    </LinearLayout>-->
+<!--</androidx.core.widget.NestedScrollView>-->
+
+</LinearLayout>
+
+</layout>

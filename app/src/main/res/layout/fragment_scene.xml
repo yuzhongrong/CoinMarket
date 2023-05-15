@@ -10,7 +10,7 @@
 
         <variable
             name="click"
-            type="com.zksg.kudoud.fragments.SceneFragment.ClickProxy" />
+            type="com.zksg.kudoud.fragments.CategoryFragment.ClickProxy" />
 
     </data>
 

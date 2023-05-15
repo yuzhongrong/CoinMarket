@@ -152,22 +152,23 @@ public class MagicIndicatorBindingAdapter {
 
                 @Override
                 public IPagerIndicator getIndicator(Context context) {
-//                    WrapPagerIndicator indicator = new WrapPagerIndicator(context);
-//                    indicator.setFillColor(Color.parseColor("#ebe4e3"));
-//                    return indicator;
-
-
-                    LinePagerIndicator indicator = new LinePagerIndicator(context);
-                    float navigatorHeight = context.getResources().getDimension(R.dimen.dp30);
-                    float lineWidth = UIUtil.dip2px(context, 60);
-                    float lineHeight = navigatorHeight;
-                    indicator.setLineHeight(lineHeight);
-                    indicator.setRoundRadius(lineHeight / 2);
-//                    indicator.setYOffset(borderWidth);
-                    indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
-                    indicator.setLineWidth(lineWidth);
-                    indicator.setColors(Color.parseColor("#d7f137"));
+                    WrapPagerIndicator indicator = new WrapPagerIndicator(context);
+                    indicator.setFillColor(Color.parseColor("#f6a50c"));
+                    indicator.setRoundRadius(18);
                     return indicator;
+
+
+//                    LinePagerIndicator indicator = new LinePagerIndicator(context);
+//                    float navigatorHeight = context.getResources().getDimension(R.dimen.dp30);
+//                    float lineWidth = UIUtil.dip2px(context, 60);
+//                    float lineHeight = navigatorHeight;
+//                    indicator.setLineHeight(lineHeight);
+//                    indicator.setRoundRadius(lineHeight / 2);
+////                    indicator.setYOffset(borderWidth);
+//                    indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
+//                    indicator.setLineWidth(lineWidth);
+//                    indicator.setColors(Color.parseColor("#f6a50c"));
+//                    return indicator;
 
                 }
             });

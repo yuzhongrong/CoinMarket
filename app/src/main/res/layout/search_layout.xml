@@ -3,20 +3,21 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/layout_search"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp40"
+        android:layout_height="@dimen/dp50"
         android:background="@drawable/bg_search"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:layout_marginStart="@dimen/dp15"
-        android:layout_marginEnd="@dimen/dp15"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginStart="@dimen/dp20"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_below="@+id/titlebar"
 
     >
 
         <ImageView
             android:id="@+id/iv_search"
-            android:layout_width="@dimen/dp15"
-            android:layout_height="@dimen/dp15"
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
             android:src="@drawable/ic_search"
             android:layout_marginLeft="@dimen/dp5"
           />

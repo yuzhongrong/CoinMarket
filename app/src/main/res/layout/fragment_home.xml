@@ -18,25 +18,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.hjq.bar.TitleBar
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp45"
-            app:barStyle="transparent"
-            app:leftTitleColor="@color/c_333333"
-            app:leftTitle="@string/str_baby"
-            app:leftTitleStyle="bold"
-            app:leftTitleSize="18sp"
-            android:paddingLeft="@dimen/dp10"
-            app:leftIcon="@mipmap/ic_down_bottom"
-            app:leftIconGravity="right"
-            app:rightIcon="@mipmap/ic_msg"
-            app:rightIconGravity="left"
-            app:rightTitleColor="@color/c_333333"
-            android:visibility="gone"
-            />
-
-
-
 
     <androidx.core.widget.NestedScrollView
 
@@ -50,15 +31,62 @@
             android:orientation="vertical"
             android:id="@+id/content"
             >
-            <include layout="@layout/search_layout" />
+<!--            <include layout="@layout/search_layout" />-->
+            <com.hjq.shape.layout.ShapeRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                app:shape_solidColor="@color/c_181818"
+                app:shape_radius="@dimen/sp30"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
+                >
 
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:src="@mipmap/logo"
+                    android:layout_centerVertical="true"
+
+                    app:shape_solidColor="@color/whitesmoke"
+
+                    app:shape_radius="@dimen/dp45"
+                    android:padding="@dimen/dp3"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="MateStore"
+                    android:textColor="#f47b44"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp20"
+                    android:layout_centerVertical="true"
+
+                    />
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:src="@mipmap/ic_notice"
+                    android:layout_centerVertical="true"
+                    app:shape_solidColor="@color/whitesmoke"
+                    app:shape_radius="@dimen/dp45"
+                    android:padding="@dimen/dp3"
+                    />
+
+            </com.hjq.shape.layout.ShapeRelativeLayout>
 
             <com.bigkoo.convenientbanner.ConvenientBanner
                 android:id="@+id/convenientBanner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp150"
                 app:canLoop="true"
-                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp25"
                 bannerPic="@{vm.banner_datas}"
             />
 
@@ -75,19 +103,45 @@
                 android:layout_marginRight="@dimen/dp8"
                 >
 
-
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp4"
                     android:text="@string/str_today_upload"
-                    android:textColor="@color/c_666666"
+                    android:textColor="@color/whitesmoke"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/dp15"
-
-
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
                     />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_more"
+                        android:textColor="@color/whitesmoke"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginRight="@dimen/dp25"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp15"
+                        android:src="@mipmap/ic_into1"
+                        android:layout_marginRight="@dimen/dp15"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerInParent="true"
+                        />
+
+                </RelativeLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     linearAdapter="@{vm.todayHealthAdapter}"
@@ -102,45 +156,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp32"
-                android:orientation="vertical"
-                android:layout_marginLeft="@dimen/dp8"
-                android:layout_marginRight="@dimen/dp8"
-                >
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp4"
-                    android:text="@string/str_today_hot_wallet"
-                    android:textColor="@color/c_666666"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/dp15"
-
-
-                    />
-
-                <androidx.recyclerview.widget.RecyclerView
-
-                    linearAdapter="@{vm.todayhotAdapter}"
-                    cannotScrollVertically="@{false}"
-                    itemspace="@{15}"
-                    orientation="@{0}"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp8"
-
-                    />
-
-
-
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -157,11 +173,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp4"
                     android:text="@string/str_coin_hot"
-                    android:textColor="@color/c_666666"
+                    android:textColor="@color/whitesmoke"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:layout_marginLeft="@dimen/dp15"
-
 
                     />
 
@@ -179,8 +194,6 @@
                     />
 
             </LinearLayout>
-
-
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

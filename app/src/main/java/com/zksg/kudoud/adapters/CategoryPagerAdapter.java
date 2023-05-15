@@ -7,19 +7,24 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.zksg.kudoud.beans.CommonCategoryDataEnum;
 import com.zksg.kudoud.beans.CommonDataEnum;
 import com.zksg.kudoud.fragments.HeartRateDayFragment;
 import com.zksg.kudoud.fragments.HeartRateWeekFragment;
+import com.zksg.kudoud.fragments.WalletFragment;
 
-public class HeartRatePagerAdapter extends FragmentStatePagerAdapter {
+import org.jetbrains.annotations.NotNull;
 
-    private CommonDataEnum[] channels;
+public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
+
+    private CommonCategoryDataEnum[] channels;
 
     @SuppressLint("WrongConstant")
-    public HeartRatePagerAdapter(@NonNull FragmentManager fm, CommonDataEnum[] channels) {
+    public CategoryPagerAdapter(@NonNull FragmentManager fm, CommonCategoryDataEnum[] channels) {
         super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.channels=channels;
     }
+
 
 
 
@@ -28,13 +33,13 @@ public class HeartRatePagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         int type=channels[position].getValue();
         switch (type){
-            case CommonDataEnum.HEARTRATEDAY_ID:
-                return new HeartRateDayFragment();
-            case CommonDataEnum.HEARTRATEWEEK_ID:
+            case CommonCategoryDataEnum.WALLET_ID:
+                return new WalletFragment();
+            case CommonCategoryDataEnum.EXCHANGE_ID:
                 return new HeartRateWeekFragment();
-            case CommonDataEnum.HEARTRATEMONTH_ID:
+            case CommonCategoryDataEnum.DEX_ID:
                 return new HeartRateDayFragment();
-            case CommonDataEnum.HEARTRATEYEAR_ID:
+            case CommonCategoryDataEnum.OTHER_ID:
                 return new HeartRateDayFragment();
             default:
                 break;
