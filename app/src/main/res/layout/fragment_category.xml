@@ -54,7 +54,7 @@
         <com.hjq.shape.layout.ShapeLinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp45"
-            app:shape_solidColor="#232323"
+            app:shape_solidColor="@color/c_232323"
             android:layout_marginLeft="@dimen/dp20"
             android:layout_marginRight="@dimen/dp20"
             app:shape_radius="@dimen/dp10"
@@ -107,10 +107,9 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             viewPagerAdapter="@{vm.adapter}"
             viewPagerOffsetLimit="@{3}"
-            android:layout_marginTop="@dimen/dp25"
+            android:layout_marginTop="@dimen/dp5"
 
             />
 

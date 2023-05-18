@@ -35,6 +35,10 @@
             android:exported="true"
          />
 
+        <activity android:name=".activitys.AppDetailActivity"
+            android:exported="true"
+            />
+
         <activity android:name=".activitys.BabyDetailActivity"
             android:exported="false"
             />

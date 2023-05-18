@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.activitys.AppDetailActivity;
 import com.zksg.kudoud.activitys.HeartRateDatasActivity;
 import com.zksg.kudoud.activitys.WeightDatasActivity;
 import com.zksg.lib_api.beans.HomeItem;
@@ -27,7 +28,7 @@ public class CommonAdapter extends BaseQuickAdapter<HomeItem, BaseViewHolder> {
         setOnItemClickListener((adapter,view,position)->{
             switch (position){
                 case 0:
-                    getContext().startActivity(new Intent(getContext(), HeartRateDatasActivity.class));
+                    getContext().startActivity(new Intent(getContext(), AppDetailActivity.class));
                     break;
                 case 1:
                     break;

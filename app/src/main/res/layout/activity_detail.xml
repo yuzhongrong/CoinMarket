@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.AppDetailActivityViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/c_171717"
+
+        >
+
+        <com.bigkoo.convenientbanner.ConvenientBanner
+            android:id="@+id/convenientBanner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp451"
+            app:canLoop="true"
+            android:layout_marginTop="@dimen/dp25"
+            bannerPic="@{vm.banner_detail_datas}"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_marginRight="@dimen/dp25"
+
+            >
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp20"
+                android:textColor="@color/white"
+                android:text="Binance Exchange"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/ic_safety"
+                android:layout_marginRight="@dimen/dp65"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp15"
+                android:textColor="@color/c_666666"
+                android:text="safety"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp15"
+
+                />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/dp15"
+
+            >
+
+            <ImageView
+                android:id="@+id/ic_star"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@mipmap/ic_star"
+                />
+            <TextView
+                android:id="@+id/review_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp20"
+                android:textColor="@color/white"
+                android:text="4.9k"
+                android:layout_toRightOf="@+id/ic_star"
+                android:layout_marginLeft="@dimen/dp5"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp20"
+                android:textColor="@color/c_666666"
+                android:text="(Reviews)"
+                android:layout_toRightOf="@+id/review_number"
+                android:layout_marginLeft="@dimen/dp5"
+                />
+
+            <ImageView
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@mipmap/ic_leaf"
+
+                android:layout_toLeftOf="@+id/right_title"
+                />
+            <TextView
+                android:id="@+id/right_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/sp15"
+                android:textColor="@color/c_666666"
+                android:text="Map Direction"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp15"
+
+                />
+        </RelativeLayout>
+      </LinearLayout>
+        <com.hjq.shape.layout.ShapeRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp80"
+            android:layout_marginTop="@dimen/dp25"
+            app:shape_solidColor="@color/c_232323"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_marginRight="@dimen/dp25"
+            android:gravity="center_vertical"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp15"
+
+                >
+
+                <ImageView
+                    android:id="@+id/img_time"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:src="@mipmap/ic_time" />
+
+                <TextView
+                    android:id="@+id/tx_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp20"
+                    android:textColor="@color/white"
+                    android:text="5Days"
+                    android:layout_toRightOf="@+id/img_time"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp20"
+                    android:textColor="@color/c_666666"
+                    android:text="Duration"
+                    android:layout_below="@+id/tx_time"
+                    android:layout_toRightOf="@+id/img_time"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp15"
+                android:layout_centerInParent="true"
+                >
+
+                <ImageView
+                    android:id="@+id/img_location"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:src="@mipmap/ic_location" />
+
+                <TextView
+                    android:id="@+id/tx_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp20"
+                    android:textColor="@color/white"
+                    android:text="5Days"
+                    android:layout_toRightOf="@+id/img_location"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp20"
+                    android:textColor="@color/c_666666"
+                    android:text="Duration"
+                    android:layout_below="@+id/tx_location"
+                    android:layout_toRightOf="@+id/img_location"
+
+                    />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp15"
+                android:layout_alignParentRight="true"
+                >
+
+                <ImageView
+                    android:id="@+id/img_cloud"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:src="@mipmap/ic_cloud_sun" />
+
+                <TextView
+                    android:id="@+id/tx_cloud"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp20"
+                    android:textColor="@color/white"
+                    android:text="5Days"
+                    android:layout_toRightOf="@+id/img_cloud"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp20"
+                    android:textColor="@color/c_666666"
+                    android:text="Duration"
+                    android:layout_below="@+id/tx_cloud"
+                    android:layout_toRightOf="@+id/img_cloud"
+
+                    />
+
+
+            </RelativeLayout>
+
+
+
+        </com.hjq.shape.layout.ShapeRelativeLayout>
+        
+
+
+
+<!--<androidx.core.widget.NestedScrollView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:layout_marginTop="@dimen/dp15"-->
+<!--    android:layout_below="@+id/layout_search"-->
+<!--    >-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:windowSoftInputMode="adjustPan"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+
+<!--            linearAdapter="@{vm.CategoryAdapter}"-->
+<!--            cannotScrollVertically="@{true}"-->
+<!--            itemspace="@{15}"-->
+<!--            orientation="@{1}"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+
+
+<!--            />-->
+
+<!--    </LinearLayout>-->
+<!--</androidx.core.widget.NestedScrollView>-->
+
+</LinearLayout>
+
+</layout>
