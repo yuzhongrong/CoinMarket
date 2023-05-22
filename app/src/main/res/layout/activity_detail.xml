@@ -12,21 +12,28 @@
             name="adapter"
             type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
     </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c_171717"
+        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/c_171717"
+
 
         >
 
-        <com.bigkoo.convenientbanner.ConvenientBanner
-            android:id="@+id/convenientBanner"
+        <androidx.recyclerview.widget.RecyclerView
+            linearAdapter="@{vm.appDetailAdapter}"
+            cannotScrollVertically="@{false}"
+            itemspace="@{15}"
+            orientation="@{0}"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp250"
-            app:canLoop="true"
-            android:layout_marginTop="@dimen/dp25"
-            bannerPic="@{vm.banner_detail_datas}"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+
             />
 
         <LinearLayout
@@ -52,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp20"
                 android:textColor="@color/white"
-                android:text="Binance Exchange"
+                android:text="Binance"
                 android:textStyle="bold"
                 />
 
@@ -126,21 +133,34 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp15"
                 android:textColor="@color/c_666666"
-                android:text=" Map Direction"
+                android:text=" Offical "
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp15"
 
                 />
         </RelativeLayout>
       </LinearLayout>
-        <com.hjq.shape.layout.ShapeRelativeLayout
+
+     <com.hjq.shape.layout.ShapeLinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="@dimen/dp250"
+         android:orientation="vertical"
+         android:layout_marginTop="@dimen/dp25"
+         app:shape_solidColor="@color/c_2b2b2b"
+         app:shape_radius="@dimen/dp15"
+         android:layout_marginLeft="@dimen/dp25"
+         android:layout_marginRight="@dimen/dp25"
+         >
+
+   <com.hjq.shape.layout.ShapeRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp25"
+            android:layout_marginTop="@dimen/dp15"
             app:shape_solidColor="@color/c_232323"
             app:shape_radius="@dimen/dp15"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            android:padding="@dimen/dp5"
 
             >
 
@@ -155,9 +175,9 @@
 
                 <ImageView
                     android:id="@+id/img_time"
-                    android:layout_width="@dimen/dp20"
-                    android:layout_height="@dimen/dp20"
-                    android:src="@mipmap/ic_time" />
+                    android:layout_width="@dimen/dp17"
+                    android:layout_height="@dimen/dp17"
+                    android:src="@mipmap/ic_category_detail" />
 
                 <TextView
                     android:id="@+id/tx_time"
@@ -165,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp15"
                     android:textColor="@color/white"
-                    android:text=" 5Days"
+                    android:text="Exchange"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/img_time"
                     android:layout_marginLeft="@dimen/dp5"
@@ -178,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp15"
                     android:textColor="@color/c_666666"
-                    android:text="Duration"
+                    android:text="Category"
                     android:layout_below="@+id/tx_time"
                     android:layout_toRightOf="@+id/img_time"
                     android:layout_marginLeft="@dimen/dp5"
@@ -196,13 +216,15 @@
                 android:gravity="center_vertical"
                 android:layout_centerInParent="true"
                 android:padding="@dimen/dp8"
+
                 >
 
                 <ImageView
                     android:id="@+id/img_location"
-                    android:layout_width="@dimen/dp20"
-                    android:layout_height="@dimen/dp20"
-                    android:src="@mipmap/ic_location" />
+                    android:layout_width="@dimen/dp17"
+                    android:layout_height="@dimen/dp17"
+                    android:layout_marginLeft="@dimen/dp30"
+                    android:src="@mipmap/ic_version" />
 
                 <TextView
                     android:id="@+id/tx_location"
@@ -210,11 +232,9 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp15"
                     android:textColor="@color/white"
-                    android:text=" 530Km"
-
+                    android:text=" 1.0.5v"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/img_location"
-                    android:layout_marginLeft="@dimen/dp5"
 
 
                     />
@@ -224,11 +244,11 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp15"
                     android:textColor="@color/c_666666"
-                    android:text="Distance"
+                    android:text="Version"
                     android:layout_below="@+id/tx_location"
                     android:layout_toRightOf="@+id/img_location"
-                    android:layout_marginLeft="@dimen/dp5"
                     android:layout_marginTop="@dimen/dp3"
+                    android:layout_marginLeft="@dimen/dp5"
 
                     />
 
@@ -249,16 +269,16 @@
                     android:id="@+id/img_cloud"
                     android:layout_width="@dimen/dp20"
                     android:layout_height="@dimen/dp20"
-                    android:src="@mipmap/ic_cloud_sun" />
+                    android:src="@mipmap/ic_size" />
 
                 <TextView
                     android:id="@+id/tx_cloud"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginTop="@dimen/dp3"
+
+
                     android:layout_toRightOf="@+id/img_cloud"
-                    android:text=" 23  c"
+                    android:text=" 25M"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp15"
                     android:textStyle="bold"
@@ -271,7 +291,7 @@
                     android:layout_below="@+id/tx_cloud"
                     android:layout_marginLeft="@dimen/dp5"
                     android:layout_toRightOf="@+id/img_cloud"
-                    android:text="Sunny"
+                    android:text="Size"
                     android:textColor="@color/c_666666"
                     android:textSize="@dimen/sp15"
 
@@ -283,37 +303,83 @@
 
 
         </com.hjq.shape.layout.ShapeRelativeLayout>
-        
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="OverView :"
+             android:textColor="@color/white"
+             android:padding="@dimen/dp5"
+             android:textSize="@dimen/sp20"
+             android:textStyle="bold"
+             android:layout_marginTop="@dimen/dp5"
+             android:layout_marginLeft="@dimen/dp15"
+             />
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="This is a Crepto Digital Exchange in the world Many people register in this system
+This is a Crepto Digital Exchange in the world Many people register in this system
+This is a Crepto Digital Exchange in the world Many people register in this system
+This is a Crepto Digital Exchange in the world Many people register in this system
+This is a Crepto Digital Exchange in the world Many people register in this system"
+         android:textColor="@color/c_999999"
+         android:layout_marginLeft="@dimen/dp25"
+         android:layout_marginRight="@dimen/dp25"
+         android:ellipsize="end"
+         android:maxLines="6"
+         />
 
 
 
-<!--<androidx.core.widget.NestedScrollView-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    android:layout_marginTop="@dimen/dp15"-->
-<!--    android:layout_below="@+id/layout_search"-->
-<!--    >-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:windowSoftInputMode="adjustPan"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical">-->
-
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-
-<!--            linearAdapter="@{vm.CategoryAdapter}"-->
-<!--            cannotScrollVertically="@{true}"-->
-<!--            itemspace="@{15}"-->
-<!--            orientation="@{1}"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
 
 
-<!--            />-->
+     </com.hjq.shape.layout.ShapeLinearLayout>
 
-<!--    </LinearLayout>-->
-<!--</androidx.core.widget.NestedScrollView>-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp25"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_marginRight="@dimen/dp25"
+
+            >
+
+            <com.hjq.shape.view.ShapeButton
+                android:layout_width="@dimen/dp100"
+                android:layout_height="@dimen/dp45"
+                android:text="@string/str_like"
+                android:gravity="center_vertical|center_horizontal|left"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:shape_radius="@dimen/dp10"
+                app:shape_solidColor="@color/c_2e2e2e"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:clickable="true"
+                android:drawableLeft="@mipmap/ic_star"
+                android:paddingLeft="@dimen/dp25"
+                />
+
+
+            <com.hjq.shape.view.ShapeButton
+                android:layout_width="@dimen/dp170"
+                android:layout_height="@dimen/dp45"
+                android:text="Download"
+                app:shape_solidColor="@color/c_f6a50c"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                app:shape_radius="@dimen/dp10"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:clickable="true"
+                />
+
+        </RelativeLayout>
+
+
+
 
 </LinearLayout>
-
+</androidx.core.widget.NestedScrollView>
 </layout>

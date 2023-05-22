@@ -126,7 +126,7 @@
     <string name="str_exchange">交易所</string>
     <string name="str_install">下载</string>
     <string name="str_home">主页</string>
-    <string name="str_category">分类</string>
+    <string name="str_category">Category</string>
     <string name="str_markets">市场</string>
     <string name="str_wallet">钱包</string>
     <string name="str_dex">兑换</string>

@@ -15,22 +15,8 @@ import java.util.List;
  */
 public class AppDetailActivityViewModel extends ViewModel {
     public ObservableField<List<EnvBean>> datas = new ObservableField<>();
-//    public ObservableField<BaseQuickAdapter> CategoryAdapter = new ObservableField<>();
+    public ObservableField<BaseQuickAdapter> appDetailAdapter = new ObservableField<>();
 
-
-    public ObservableField<CategoryPagerAdapter> adapter=new ObservableField();
-
-    public ObservableField<List<String>> banner_detail_datas = new ObservableField<>();
-
-    {
-        banner_detail_datas.set(Arrays.asList("ipfs://QmYHats9k8EqJDQXrimedv7SXGDpyf9HJdLFb1DU3SieTf",
-                "ipfs://Qmabbumer7VxgJvA8cdXgV34wWvsMv1BmHaXUSw2CsfuQf",
-                "ipfs://QmRL21LFcvARFgMDLsqEUp1fUWEsXN7xEpgEsW4D98cckZ",
-                "ipfs://QmQdyV1RNRiwzxCgZA1MKnVSq4XXiPD7o28qWnBe3eeiQd"
-
-
-        ));
-    }
 
 
 }
