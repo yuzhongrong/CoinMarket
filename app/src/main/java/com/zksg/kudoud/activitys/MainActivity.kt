@@ -15,6 +15,7 @@ import com.zksg.kudoud.databinding.ActivityMainBinding
 import com.zksg.kudoud.fragments.HomeFragment
 import com.zksg.kudoud.fragments.MeFragment
 import com.zksg.kudoud.fragments.CategoryFragment
+import com.zksg.kudoud.fragments.RankingFragment
 import com.zksg.kudoud.widgets.NavigateTabBar
 
 class MainActivity : BaseActivity() {
@@ -61,7 +62,7 @@ class MainActivity : BaseActivity() {
         )
 
         val CJ_PAGE = getString(R.string.str_markets)
-        mainBinding.homeNavigate!!.addTab(CategoryFragment::class.java,
+        mainBinding.homeNavigate!!.addTab(RankingFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
                 R.mipmap.app_normal,

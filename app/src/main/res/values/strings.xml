@@ -124,10 +124,12 @@
     <string name="str_me">我的</string>
     <string name="str_breathe">呼吸</string>
     <string name="str_exchange">交易所</string>
-    <string name="str_install">下载</string>
+    <string name="str_install">GET</string>
     <string name="str_home">主页</string>
     <string name="str_category">分类</string>
-    <string name="str_markets">市场</string>
+    <string name="str_ranking">RANKING</string>
+    <string name="str_last_updatetime">Last Update Time 6 Hours Ago!!</string>
+    <string name="str_markets">排行</string>
     <string name="str_wallet">钱包</string>
     <string name="str_dex">兑换</string>
     <string name="str_other">其他</string>
