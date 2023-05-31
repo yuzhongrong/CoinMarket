@@ -4,6 +4,7 @@
         "[{\"title\":\"Lifecycle\",\"summary\":\"主要用于在软件工程的背景下，解决生命周期管理的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/3684721950\"},{\"title\":\"LiveData\",\"summary\":\"主要用于配合 “唯一可信源” 实现消息的读写分离，从而确保消息分发的可靠一致，避免收到不可预期的推送或脏数据\",\"url\":\"https://xiaozhuanlan.com/topic/0168753249\"},{\"title\":\"ViewModel\",\"summary\":\"主要用于托管页面状态、分治视图控制器重建时的状态恢复，从而提升状态恢复的效率和节省不必要的流量、电量开销\",\"url\":\"https://xiaozhuanlan.com/topic/6257931840\"},{\"title\":\"DataBinding\",\"summary\":\"主要用于在软件工程的背景下，解决 “视图实例 null 安全” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/9816742350\"},{\"title\":\"Navigation\",\"summary\":\"通过声明式编程来解决 “应用内路由导航” 和 “初值传参” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/5860149732\"}]"
     </string>
     <string name="str_baby">baby</string>
+    <string name="str_tg">Telegram</string>
     <string name="str_device_online">设备在线</string>
     <string name="str_sound_monitor">哭声检测</string>
     <string name="str_recent_time">最近时间</string>
@@ -18,7 +19,9 @@
     <string name="str_product_buy">购买产品</string>
     <string name="str_wei_tip">喂奶提醒</string>
     <string name="str_health_record">健康记录</string>
-    <string name="str_device">设备</string>
+    <string name="str_tt">Twitter</string>
+    <string name="str_feedback">Feedback</string>
+    <string name="str_upload">Upload</string>
     <string name="str_device_finding">正在设备搜索...</string>
     <string name="str_tip_pair">提示: 产品使用说明中,查看型号,匹配下\n列设备名。</string>
     <string name="str_action_connect">连接</string>
@@ -118,21 +121,23 @@
     <string name="str_once_normal">一键校准</string>
     <string name="str_weight_sub">校准时请勿将baby放在称重计上</string>
     <string name="str_today_upload">最新上架</string>
-
+    <string name="str_device">设备</string>
     <string name="str_today_hot_wallet">热门钱包</string>
     <string name="str_coin_hot">币圈常玩</string>
-    <string name="str_me">我的</string>
+    <string name="str_me">mine</string>
     <string name="str_breathe">呼吸</string>
-    <string name="str_exchange">交易所</string>
+    <string name="str_exchange">EXCHANGE</string>
     <string name="str_install">GET</string>
-    <string name="str_home">主页</string>
-    <string name="str_category">分类</string>
+    <string name="str_home">home</string>
+    <string name="str_category">category</string>
     <string name="str_ranking">RANKING</string>
     <string name="str_last_updatetime">Last Update Time 6 Hours Ago!!</string>
-    <string name="str_markets">排行</string>
-    <string name="str_wallet">钱包</string>
-    <string name="str_dex">兑换</string>
-    <string name="str_other">其他</string>
+    <string name="str_markets">ranking</string>
+    <string name="str_wallet">WALLET</string>
+    <string name="str_dex">DEX</string>
+    <string name="str_other">OTHER</string>
     <string name="str_like">Like</string>
+    <string name="str_acccount">Account</string>
+    <string name="str_dex1">Go Dex</string>
 
 </resources>

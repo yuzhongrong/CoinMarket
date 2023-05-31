@@ -51,7 +51,7 @@ class CategoryFragment:BaseFragment(){
                 getString(R.string.str_wallet),
                 getString(R.string.str_exchange),
                 getString(R.string.str_dex),
-                getString(R.string.str_category)
+                getString(R.string.str_other)
             )
         )
         sceneViewModel?.adapter?.set(

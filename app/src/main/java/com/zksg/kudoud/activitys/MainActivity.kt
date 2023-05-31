@@ -65,8 +65,8 @@ class MainActivity : BaseActivity() {
         mainBinding.homeNavigate!!.addTab(RankingFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
-                R.mipmap.app_normal,
-                R.mipmap.app_select,
+                R.mipmap.app_ranking_normal,
+                R.mipmap.app_ranking_select,
                 CJ_PAGE
             )
         )

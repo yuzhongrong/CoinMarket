@@ -20,7 +20,7 @@ class MeFragment:BaseFragment(){
     }
 
     override fun getDataBindingConfig(): DataBindingConfig {
-       return DataBindingConfig(R.layout.fragment_me,BR.vm,meViewModel!!)
+       return DataBindingConfig(R.layout.fragment_mine,BR.vm,meViewModel!!)
            .addBindingParam(BR.click,  ClickProxy());
     }
 
@@ -30,18 +30,7 @@ class MeFragment:BaseFragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       var view= super.onCreateView(inflater, container, savedInstanceState)
-        initView(binding as FragmentMeBinding)
-        return view
-    }
-
-    private fun initView(mainBinding: FragmentMeBinding) {
-
-        mainBinding.avator.setOnClickListener {
-            var intent= Intent(context, SearchDeviceActivity::class.java)
-            startActivity(intent)
-        }
-
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
 
