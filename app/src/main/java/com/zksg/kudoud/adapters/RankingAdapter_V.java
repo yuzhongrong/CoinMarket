@@ -10,20 +10,19 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.AppDetailActivity;
-import com.zksg.kudoud.activitys.HeartRateDatasActivity;
 import com.zksg.kudoud.activitys.WeightDatasActivity;
 import com.zksg.lib_api.beans.HomeItem;
 
 import java.util.List;
 
-public class CommonAdapter_V extends BaseQuickAdapter<HomeItem, BaseViewHolder> {
+public class RankingAdapter_V extends BaseQuickAdapter<HomeItem, BaseViewHolder> {
 
-    public CommonAdapter_V(int layoutResId) {
+    public RankingAdapter_V(int layoutResId) {
         super(layoutResId);
     }
 
 
-    public CommonAdapter_V(int layoutResId, @Nullable List<HomeItem> data) {
+    public RankingAdapter_V(int layoutResId, @Nullable List<HomeItem> data) {
         super(layoutResId,data);
         setOnItemClickListener((adapter,view,position)->{
             switch (position){

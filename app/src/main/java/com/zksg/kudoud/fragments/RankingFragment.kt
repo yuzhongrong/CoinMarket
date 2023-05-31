@@ -8,6 +8,7 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.CreateEnvActivity
 import com.zksg.kudoud.adapters.CategoryPagerAdapter
 import com.zksg.kudoud.adapters.CommonAdapter_V
+import com.zksg.kudoud.adapters.RankingAdapter_V
 import com.zksg.kudoud.adapters.SceneAdapter
 import com.zksg.kudoud.beans.CommonCategoryDataEnum
 import com.zksg.kudoud.beans.CommonDataEnum
@@ -41,8 +42,8 @@ class RankingFragment:BaseFragment(){
             HomeItem(R.mipmap.item_weight,"29",getString(R.string.str_item_weight)),
         )
         rankingViewModel?.coininstallAdapter?.set(
-            CommonAdapter_V(
-                R.layout.item_today_app_h,
+            RankingAdapter_V(
+                R.layout.item_avatarprocess,
                 homeitems
             )
         )
