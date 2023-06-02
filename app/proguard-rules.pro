@@ -100,3 +100,8 @@
 # 保持自己定义的类不被混淆
 #-keep class MyClass;
 
+# tokenpocket sdk
+-dontwarn com.tokenpocket.opensdk.**
+-keep class com.tokenpocket.opensdk.**{*;}
+-keep interface com.tokenpocket.opensdk.**{*;}
+

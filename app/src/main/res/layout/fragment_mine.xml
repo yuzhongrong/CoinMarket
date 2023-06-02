@@ -31,10 +31,12 @@
             app:shape_radius="@dimen/sp30"
             android:layout_marginLeft="@dimen/dp8"
             android:layout_marginRight="@dimen/dp8"
+            android:visibility="gone"
             >
 
 
             <com.hjq.shape.view.ShapeImageView
+                android:id="@+id/iv_left"
                 android:layout_width="@dimen/dp30"
                 android:layout_height="@dimen/dp30"
                 android:layout_alignParentLeft="true"
@@ -52,24 +54,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="@string/str_acccount"
+                android:layout_marginLeft="@dimen/dp10"
+
+                android:layout_toLeftOf="@+id/iv_right"
+                android:layout_toRightOf="@+id/iv_left"
+                android:ellipsize="middle"
+                android:maxLines="1"
+                android:text="@{vm.account}"
                 android:textColor="@color/c_f47b44"
                 android:textSize="@dimen/sp20"
-
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center"
+                />
 
             <com.hjq.shape.view.ShapeImageView
+                android:id="@+id/iv_right"
                 android:layout_width="@dimen/dp30"
                 android:layout_height="@dimen/dp30"
                 android:layout_alignParentRight="true"
                 android:layout_marginLeft="@dimen/dp15"
                 android:src="@mipmap/ic_wallet"
                 android:layout_centerVertical="true"
-
                 app:shape_solidColor="@color/whitesmoke"
                 android:layout_marginRight="@dimen/sp15"
                 app:shape_radius="@dimen/dp45"
                 android:padding="@dimen/dp3"
+                android:clickable="true"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:onClick="@{()->click.ConnectWallet()}"
+
                 />
 
         </com.hjq.shape.layout.ShapeRelativeLayout>
@@ -79,41 +92,97 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/sp10"
+            android:padding="@dimen/dp10"
             >
 
             <com.hjq.shape.layout.ShapeLinearLayout
+                android:id="@+id/layout_top"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp250"
-                app:shape_radius="@dimen/sp15"
-                android:padding="@dimen/sp20"
-                app:shape_solidColor="@color/c_191919"
+                app:shape_radius="@dimen/sp20"
+                android:padding="@dimen/dp15"
+                app:shape_solidColor="@color/c_181818"
                 android:orientation="vertical"
-
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Your Balance"
-                    android:textColor="@color/white"
+                    android:text="Balance"
+                    android:textColor="@color/c_999999"
                     android:textStyle="bold"
                     android:textSize="@dimen/sp20"
                     />
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="5,841 MST"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp35"
-                    android:layout_marginTop="@dimen/sp15"
-                    />
+                    android:layout_marginTop="@dimen/sp5"
+                    android:layout_gravity="center_vertical"
+                    >
+                    <TextView
+                        android:id="@+id/amount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5,841"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp35"
+                        android:gravity="center"
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="MST"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp24"
+                        android:layout_toRightOf="@+id/amount"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/dp10"
+
+
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="≈ $132,423"
+                        android:textColor="@color/white"
+
+                        android:textSize="@dimen/sp18"
+                        android:layout_below="@+id/amount"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/dp5"
+                        />
+
+
+
+                    <com.hjq.shape.view.ShapeImageView
+                        android:layout_width="@dimen/dp30"
+                        android:layout_height="@dimen/dp30"
+
+                        android:src="@mipmap/logo"
+
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_alignParentRight="true"
+                        app:shape_solidColor="@color/whitesmoke"
+
+                        app:shape_radius="@dimen/dp45"
+                        android:padding="@dimen/dp3"
+                        />
+
+
+                </RelativeLayout>
+
 
                 <com.hjq.shape.layout.ShapeRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/sp15"
+                    android:layout_marginTop="@dimen/dp25"
                     >
                     <com.hjq.shape.view.ShapeButton
                         android:layout_width="@dimen/dp140"
@@ -126,13 +195,15 @@
                         android:padding="@dimen/dp5"
                         app:shape_radius="@dimen/dp10"
                         app:shape_solidColor="@color/c_f6a50c"
+                        android:clickable="true"
+                        app:shape_solidPressedColor="@color/c_a0a0ab"
 
                         />
 
                     <com.hjq.shape.view.ShapeButton
                         android:layout_width="@dimen/dp140"
                         android:layout_height="@dimen/dp45"
-                        android:text="Dex History"
+                        android:text="Wallet"
                         android:gravity="center"
                         android:textColor="@color/white"
                         android:textStyle="bold"
@@ -141,7 +212,9 @@
                         app:shape_radius="@dimen/dp10"
                         app:shape_solidColor="@color/c_f6a50c"
                         android:layout_alignParentRight="true"
-
+                        android:clickable="true"
+                        app:shape_solidPressedColor="@color/c_a0a0ab"
+                        android:onClick="@{()->click.ConnectWallet()}"
                         />
 
 
@@ -156,7 +229,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/layout_top"
             android:padding="@dimen/sp15"
             >
 
@@ -164,11 +237,11 @@
                 android:id="@+id/sb_tg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp53"
-                android:layout_marginTop="@dimen/dp50"
+
                 android:background="@drawable/bg_settingbar"
                 app:bar_leftText="@string/str_tg"
                 app:bar_leftDrawable="@mipmap/ic_tg"
-                app:bar_leftDrawableSize="@dimen/dp26"
+                app:bar_leftDrawableSize="@dimen/dp30"
                 app:bar_leftTextColor="@color/white"
                 app:bar_leftTextSize="@dimen/sp17"
                 app:bar_lineVisible="false"
@@ -206,7 +279,7 @@
                 android:background="@drawable/bg_settingbar"
                 app:bar_leftText="@string/str_upload"
                 app:bar_leftDrawable="@mipmap/ic_upload"
-                app:bar_leftDrawableSize="@dimen/dp35"
+                app:bar_leftDrawableSize="@dimen/dp30"
                 app:bar_leftTextColor="@color/white"
                 app:bar_leftTextSize="@dimen/sp17"
                 app:bar_lineVisible="false"
@@ -223,7 +296,7 @@
                 android:background="@drawable/bg_settingbar"
                 app:bar_leftText="@string/str_feedback"
                 app:bar_leftDrawable="@mipmap/ic_feedback"
-                app:bar_leftDrawableSize="@dimen/dp35"
+                app:bar_leftDrawableSize="@dimen/dp30"
                 app:bar_leftTextColor="@color/white"
                 app:bar_leftTextSize="@dimen/sp17"
                 app:bar_lineVisible="false"
