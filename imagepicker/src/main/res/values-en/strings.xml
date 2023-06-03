@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name_skystore">Skystore</string>
+    <string name="app_name">Skystore</string>
+
+
+    <string name = "all_images"> All images </string>
+        <string name = "folder_image_count"> Total %1$d sheets </string>
+        <string name = "preview_image_count">%1$d/%2$d </string>
+        <string name = "select_limit"> Select up to %1$d images </string>
+        <string name = "complete"> Complete </string>
+        <string name = "select_complete"> Complete (%1$d/%2$d) </string>
+        <string name = "preview_count"> Preview (%1$d) </string>
+        <string name = "origin"> Original image </string>
+        <string name = "origin_size"> Original image (%1$s) </string>
+        <string name = "str_not_permission"> Permission is forbidden to select local image </string>
+        <string name = "str_not_open_camera"> Permission is forbidden to open camera </string>
+        <string name = "str_tip"> Tip </string>
+        <string name = "str_tip_del_img"> Do you want to delete this photo? </string>
+        <string name = "str_cancel"> Cancel </string>
+        <string name = "str_ok"> OK </string>
+</resources>

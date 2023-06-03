@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name_skystore">Skystore</string>
+    <string name="all_images">全部图片</string>
+    <string name="folder_image_count">共%1$d张</string>
+    <string name="preview_image_count">%1$d/%2$d</string>
+    <string name="select_limit">最多选择%1$d张图片</string>
+    <string name="complete">完成</string>
+    <string name="select_complete">完成(%1$d/%2$d)</string>
+    <string name="preview_count">预览(%1$d)</string>
+    <string name="origin">原图</string>
+    <string name="origin_size">原图(%1$s)</string>
+    <string name="str_not_permission">权限被禁止，无法选择本地图片</string>
+    <string name="str_not_open_camera">权限被禁止，无法打开相机</string>
+    <string name="str_tip"> 提示</string>
+    <string name="str_tip_del_img">要删除这张照片吗？</string>
+    <string name="str_cancel">取消</string>
+    <string name="str_ok">确定</string>
+    <string name="str_select" translatable="false">选择</string>
+    <string name="str_selcet_img" translatable="false">选择图片</string>
+
+</resources>

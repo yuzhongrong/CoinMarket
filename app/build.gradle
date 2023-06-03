@@ -134,6 +134,7 @@ dependencies {
 //    implementation project(path: ':lib_video')
     implementation project(path: ':lib_api')
     implementation project(path: ':lib_network')
+    implementation project(path: ':imagepicker')
     implementation project(':architecture')
     implementation project(path: ':MPChartLib')
 

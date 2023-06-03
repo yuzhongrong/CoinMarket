@@ -81,7 +81,7 @@
                 android:padding="@dimen/dp3"
                 android:clickable="true"
                 app:shape_solidPressedColor="@color/c_a0a0ab"
-                android:onClick="@{()->click.ConnectWallet()}"
+                android:onClick="@{()->click.loginTpWallet()}"
 
                 />
 
@@ -197,6 +197,7 @@
                         app:shape_solidColor="@color/c_f6a50c"
                         android:clickable="true"
                         app:shape_solidPressedColor="@color/c_a0a0ab"
+                        android:onClick="@{()->click.GoPancakeSwapDex()}"
 
                         />
 
@@ -214,7 +215,7 @@
                         android:layout_alignParentRight="true"
                         android:clickable="true"
                         app:shape_solidPressedColor="@color/c_a0a0ab"
-                        android:onClick="@{()->click.ConnectWallet()}"
+                        android:onClick="@{()->click.loginTpWallet()}"
                         />
 
 
@@ -284,7 +285,7 @@
                 app:bar_leftTextSize="@dimen/sp17"
                 app:bar_lineVisible="false"
                 app:bar_rightDrawable="@mipmap/ic_right_back"
-                android:onClick="@{()->click.testClick()}"
+                android:onClick="@{()->click.skip2UploadPage()}"
 
                 />
 

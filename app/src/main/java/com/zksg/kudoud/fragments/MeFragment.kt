@@ -2,6 +2,7 @@ package com.zksg.kudoud.fragments
 
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,6 +21,7 @@ import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.beans.TpWalletConnectResult
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.utils.StringUtils
+import com.zksg.kudoud.utils.TpWalletUtils
 import com.zksg.lib_api.login.LoginBean
 
 
@@ -81,44 +83,20 @@ class MeFragment:BaseFragment(){
         fun skip2About(){
             startActivity(Intent(activity, AboutActivity::class.java))
         }
-        fun ConnectWallet(){
 
-            val authorize = Authorize()
-            //已废弃
-            //authorize.setBlockchain(CHAIN);
-            //标识链
-            //已废弃
-            //authorize.setBlockchain(CHAIN);
-            //标识链
-            val blockchains: MutableList<Blockchain> = ArrayList()
-            blockchains.add(Blockchain("ethereum", "56"))
-            authorize.blockchains = blockchains
-
-            authorize.dappName = "MetaStore"
-            authorize.dappIcon = "https://eosknights.io/img/icon.png"
-            authorize.actionId = "11"
-            authorize.memo = "MetaStore"
-            TPManager.getInstance().authorize(activity, authorize, object : TPListener {
-                override fun onSuccess(s: String) {
-                    Log.d("TP-WALLET onSuccess",s)
-
-                   var result= GsonUtil.fromJSON(s,TpWalletConnectResult::class.java)
-                    meViewModel?.account?.set(result.account)
-
-                }
-
-                override fun onError(s: String) {
-                }
-
-                override fun onCancel(s: String) {
-                }
-            })
-
-
+        fun skip2UploadPage(){
+            startActivity(Intent(activity, AppUploadActivity::class.java))
         }
 
+        fun loginTpWallet() {
+            TpWalletUtils.loginWallet(activity,meViewModel)
+        }
 
-
+        fun GoPancakeSwapDex() {
+            val url = "https://pancakeswap.finance/swap?chain=bscTestnet&outputCurrency=0x064C9A1c40CE7575d9Ca49121DAb6E2c6Cc757bB"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(intent)
+        }
 
      }
 

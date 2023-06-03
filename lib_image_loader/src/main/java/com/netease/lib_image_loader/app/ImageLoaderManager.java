@@ -123,6 +123,21 @@ public class ImageLoaderManager {
 	}
 
 
+	public void displayLocalImageForCorner(final ImageView imageView, int resId, int corner) {
+		CornerTransform transformation = new CornerTransform(imageView.getContext(), ImageUtils.dip2px(imageView.getContext(), corner));
+		transformation.setExceptCorner(false, false, false, false);
+		Glide.with(imageView.getContext())
+				.asBitmap()
+				.load(resId)
+				.apply(initCommonRequestOption())
+				.transform(transformation)
+				.into(imageView);
+
+
+	}
+
+
+
 	public void displayImageForCornerIpfs(final ImageView imageView, String url, int corner) {
 		String resultUrl="";
 		if(url!=null&&url.startsWith("ipfs://")){
