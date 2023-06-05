@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.ShowLocalApksActivityViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+    </data>
+<LinearLayout
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c_171717"
+   >
+    <com.hjq.shape.layout.ShapeRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        app:shape_solidColor="@color/c_181818"
+        app:shape_radius="@dimen/sp30"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp8"
+        >
+
+
+        <com.hjq.shape.view.ShapeImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/dp15"
+            android:src="@mipmap/ic_back"
+            android:layout_centerVertical="true"
+
+            app:shape_solidColor="@color/c_2e2e2e"
+
+            app:shape_radius="@dimen/dp45"
+            android:padding="@dimen/dp3"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:clickable="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Local Apks"
+            android:textColor="@color/c_f6a50c"
+            android:textSize="@dimen/sp20"
+            android:textStyle="bold" />
+
+        <com.hjq.shape.view.ShapeImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp15"
+            android:src="@mipmap/ic_history"
+            android:layout_centerVertical="true"
+            app:shape_solidColor="@color/c_2e2e2e"
+            app:shape_radius="@dimen/dp45"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:clickable="true"
+            android:visibility="gone"
+            />
+
+    </com.hjq.shape.layout.ShapeRelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        linearAdapter="@{vm.mApksAdapter}"
+        cannotScrollVertically="@{true}"
+        itemspace="@{15}"
+        orientation="@{1}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp1"
+        />
+
+
+
+</LinearLayout>
+</layout>

@@ -11,6 +11,11 @@
         <variable
             name="adapter"
             type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.AppUploadActivity.ClickProxy" />
+
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -55,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/str_publish_tip"
-                android:textColor="#f47b44"
+                android:textColor="@color/c_f6a50c"
                 android:textSize="@dimen/sp20"
                 android:textStyle="bold" />
 
@@ -191,6 +196,7 @@
                     android:layout_marginLeft="@dimen/dp5"
                     android:src="@mipmap/ic_addphoto"
                     android:padding="@dimen/dp5"
+                    android:onClick="@{()->click.Skip2LocalApksPage()}"
                     />
 
                 <TextView

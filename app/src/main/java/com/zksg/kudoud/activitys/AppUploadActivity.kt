@@ -33,6 +33,7 @@ class AppUploadActivity : BaseActivity() {
 
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_upload, BR.vm, mAppUploadActivityViewModel!!)
+              .addBindingParam(BR.click,  ClickProxy())
     }
 
     private fun initData() {
@@ -68,4 +69,14 @@ class AppUploadActivity : BaseActivity() {
         mAppUploadActivityViewModel?.mNinePicturesAdapter?.set(mNinePicturesAdapter)
 
     }
+
+
+
+    inner class ClickProxy {
+        fun Skip2LocalApksPage(){
+            startActivity(Intent(this@AppUploadActivity,ShowLocalApksActivity::class.java))
+        }
+    }
+
+
 }

@@ -40,7 +40,7 @@ class MeFragment:BaseFragment(){
 
     override fun getDataBindingConfig(): DataBindingConfig {
        return DataBindingConfig(R.layout.fragment_mine,BR.vm,meViewModel!!)
-           .addBindingParam(BR.click,  ClickProxy());
+           .addBindingParam(BR.click,  ClickProxy())
     }
 
 
