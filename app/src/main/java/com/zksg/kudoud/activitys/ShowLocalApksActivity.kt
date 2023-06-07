@@ -30,15 +30,17 @@ class ShowLocalApksActivity : BaseActivity() {
 
     private fun initData() {
 
-//        mShowLocalApksActivityViewModel?.mApksAdapter?.set(
-//            LocalApksAdapter_V(
-//                R.layout.item_apk,
-//                result
-//            )
-//        )
+
 
         mShowLocalApksActivityViewModel?.mloginResult?.observe(this){
             Log.e("---mloginResult->", it.size.toString())
+
+           mShowLocalApksActivityViewModel?.mApksAdapter?.set(
+            LocalApksAdapter_V(
+                R.layout.item_apk,
+                it
+            )
+        )
 
         }
 

@@ -73,7 +73,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         linearAdapter="@{vm.mApksAdapter}"
-        cannotScrollVertically="@{true}"
         itemspace="@{15}"
         orientation="@{1}"
         android:layout_width="match_parent"

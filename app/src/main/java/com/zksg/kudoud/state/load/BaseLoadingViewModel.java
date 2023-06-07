@@ -12,7 +12,7 @@ public class BaseLoadingViewModel extends ViewModel {
     public final ObservableBoolean loadingVisible = new ObservableBoolean();
 
     public final ObservableField<BaseQuickAdapter> adapter = new ObservableField<>();
-    {
-        loadingVisible.set(true);
-    }
+//    {
+//        loadingVisible.set(true);
+//    }
 }

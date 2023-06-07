@@ -3,7 +3,7 @@ ext{   //这些库是任何项目都需要的公共库
     android = [
             compileSdkVersion: 31,
             buildToolsVersion: "30.0.1",
-            minSdkVersion    : 26,
+            minSdkVersion    : 23,
             targetSdkVersion : 31,
             versionCode      : 1,
             versionName      : '1.0',

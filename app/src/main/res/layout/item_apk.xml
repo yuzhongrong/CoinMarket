@@ -27,7 +27,7 @@
         android:layout_toRightOf="@+id/icon"
         android:layout_marginLeft="@dimen/dp10"
         android:textSize="@dimen/dp15"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:layout_marginTop="@dimen/dp12"
         android:singleLine="true"
         android:ellipsize="end"
@@ -43,40 +43,30 @@
         android:layout_below="@+id/title"
         android:layout_marginTop="@dimen/dp5"
         android:textSize="@dimen/dp12"
-        android:textColor="@color/c_666666"
+        android:textColor="@color/c_999999"
 
 
 
         />
 
-    <TextView
-        android:id="@+id/subtitle3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1.4万人下载  3.7分  53.8MB"
-        android:layout_toRightOf="@+id/icon"
-        android:layout_marginLeft="@dimen/dp10"
-        android:layout_below="@+id/subtitle2"
-        android:layout_marginTop="@dimen/dp5"
-        android:textSize="@dimen/dp10"
-        android:visibility="gone"
-    />
 
-
-
-
-
-
-    <Button
+    <com.hjq.shape.view.ShapeButton
         android:id="@+id/btn"
         android:layout_width="@dimen/dp70"
         android:layout_height="@dimen/dp35"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:text="@string/str_upload"
+        android:layout_marginRight="@dimen/dp5"
         android:background="@color/white"
         android:padding="@dimen/dp5"
-        android:layout_marginRight="@dimen/dp5"
+        android:text="@string/str_upload"
+        app:shape_radius="@dimen/dp25"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textColor="@color/c_f6a50c"
+        app:shape_solidColor="@color/color_999999"
+        android:clickable="true"
+        app:shape_solidPressedColor="@color/c_a0a0ab"
         />
 
 

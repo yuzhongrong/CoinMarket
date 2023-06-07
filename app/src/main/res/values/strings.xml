@@ -126,7 +126,7 @@
     <string name="str_coin_hot">币圈常玩</string>
     <string name="str_me">mine</string>
     <string name="str_breathe">呼吸</string>
-    <string name="str_exchange">EXCHANGE</string>
+    <string name="str_exchange">EXC</string>
     <string name="str_install">GET</string>
     <string name="str_home">home</string>
     <string name="str_category">category</string>
@@ -141,5 +141,7 @@
     <string name="str_dex1">Go Dex</string>
     <string name="str_publish">publish</string>
     <string name="str_publish_tip">Publish</string>
+    <string name="str_input_app_name">Input English Name</string>
+    <string name="str_read_permission">Requires read file permission!</string>
 
 </resources>
