@@ -141,7 +141,10 @@
     <string name="str_dex1">Go Dex</string>
     <string name="str_publish">publish</string>
     <string name="str_publish_tip">Publish</string>
-    <string name="str_input_app_name">Input English Name</string>
+    <string name="str_input_app_name">Input App English Name</string>
     <string name="str_read_permission">Requires read file permission!</string>
+    <string name="str_zero_m">0M</string>
+    <string name="str_input_app_subtitle">Input App Subtitle</string>
+    <string name="str_screen_x4">App Screenshot <font color='#f6a50c'> x4 </font></string>
 
 </resources>

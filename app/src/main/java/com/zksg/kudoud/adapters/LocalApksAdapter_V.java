@@ -1,7 +1,9 @@
 package com.zksg.kudoud.adapters;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,30 +26,19 @@ public class LocalApksAdapter_V extends BaseQuickAdapter<FileApkItem, BaseViewHo
     }
 
 
-    public LocalApksAdapter_V(int layoutResId, @Nullable List<FileApkItem> data) {
+    public LocalApksAdapter_V(Activity activity,int layoutResId, @Nullable List<FileApkItem> data) {
         super(layoutResId,data);
-        setOnItemClickListener((adapter,view,position)->{
-            switch (position){
-                case 0:
-                    getContext().startActivity(new Intent(getContext(), AppDetailActivity.class));
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    getContext().startActivity(new Intent(getContext(), WeightDatasActivity.class));
+       addChildClickViewIds(R.id.btn);
+       setOnItemChildClickListener((adapter,view,position)->{
+           if(view.getId()==R.id.btn){
+               Intent i=activity.getIntent().putExtra("PATH", data.get(position).file.getPath());
+               activity.setResult(Activity.RESULT_OK,i);
+               activity.finish();
+           }
 
-                    break;
-
-            }
-        });
+       });
     }
 
-//    public CommonAdapter(@Nullable List<HomeItem> data) {
-//
-//        this(R.layout.item_today_health, data);
-//        Log.d("convert", "convert: "+data.size());
-//
-//    }
 
     @Override
     protected void convert(@NonNull BaseViewHolder baseViewHolder, FileApkItem apk) {

@@ -4,8 +4,9 @@ import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.FileUtils;
 
 import java.io.File;
+import java.io.Serializable;
 
-public class FileApkItem {
+public class FileApkItem  implements Serializable {
     public File file;
     public String size;
 

@@ -89,6 +89,15 @@ public class CommonBindingAdapter {
         view.setImageAlpha(alpha);
     }
 
+
+    @BindingAdapter(value = {"imgdrawable"}, requireAll = false)
+    public static void setImageViewDrawable(ImageView view, Drawable drawable) {
+        view.setImageDrawable(drawable);
+    }
+
+
+
+
     @BindingAdapter(value = {"onClickWithDebouncing"}, requireAll = false)
     public static void onClickWithDebouncing(View view, View.OnClickListener clickListener) {
         ClickUtils.applySingleDebouncing(view, clickListener);
@@ -200,6 +209,8 @@ public class CommonBindingAdapter {
     public static void setOnClickHornizeItemView(HornizeItemView view, View.OnClickListener listener) {
         view.setOnClickListener(listener);
     }
+
+
 
 
 }

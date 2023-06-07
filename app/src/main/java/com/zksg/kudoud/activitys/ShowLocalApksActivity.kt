@@ -36,7 +36,7 @@ class ShowLocalApksActivity : BaseActivity() {
             Log.e("---mloginResult->", it.size.toString())
 
            mShowLocalApksActivityViewModel?.mApksAdapter?.set(
-            LocalApksAdapter_V(
+            LocalApksAdapter_V(this,
                 R.layout.item_apk,
                 it
             )

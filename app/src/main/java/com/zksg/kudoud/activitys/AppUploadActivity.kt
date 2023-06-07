@@ -7,7 +7,11 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.util.Log
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.FileUtils
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lqr.imagepicker.ImagePicker
@@ -16,10 +20,10 @@ import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.state.AppUploadActivityViewModel
 import com.zksg.kudoud.widgets.NinePicturesAdapter
-import pub.devrel.easypermissions.EasyPermissions
 
 class AppUploadActivity : BaseActivity(){
     private var mAppUploadActivityViewModel: AppUploadActivityViewModel? = null
+    private var mGetContentApk : ActivityResultLauncher<Intent>?=null
     override fun initViewModel() {
         mAppUploadActivityViewModel = getActivityScopeViewModel(
             AppUploadActivityViewModel::class.java
@@ -57,7 +61,7 @@ class AppUploadActivity : BaseActivity(){
             }
         }
         //handler result
-          mNinePicturesAdapter= NinePicturesAdapter(this,3,NinePicturesAdapter.OnClickAddListener {
+          mNinePicturesAdapter= NinePicturesAdapter(this,4,NinePicturesAdapter.OnClickAddListener {
               val intent = ImagePicker.picker().showCamera(false).buildPickIntent(this)
 //              val bundle = Bundle()
 //              bundle.putInt("REQUEST_CODE", IMAGE_PICKER)
@@ -65,9 +69,34 @@ class AppUploadActivity : BaseActivity(){
 //              intent.putExtra("REQUEST_CODE", IMAGE_PICKER)
               mGetContent.launch(intent)
         })
+
         mNinePicturesAdapter?.setOnRemoveListener {}
         mAppUploadActivityViewModel?.mNinePicturesAdapter?.set(mNinePicturesAdapter)
 
+         mGetContentApk = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            val intent = result.data
+            if (result.resultCode == Activity.RESULT_OK && intent != null) {
+                // 使用 Bundle 获取请求码
+//                    val requestCode = intent.extras?.getInt("REQUEST_CODE", 0)
+                val filePath = intent.extras?.getString("PATH")
+                // 在回调方法中处理获取的结果及请求码
+                Log.d("---Start2ShowLocalApkActivity---->",filePath.toString())
+                // ...
+                UpdateUi(filePath)
+            }
+        }
+
+        mAppUploadActivityViewModel?.of_icon?.set(getDrawable(R.mipmap.ic_addphoto))
+
+
+    }
+
+
+    private fun UpdateUi(path:String?){
+        var apk=AppUtils.getApkInfo(path)
+        mAppUploadActivityViewModel?.of_icon?.set(apk?.icon)
+        mAppUploadActivityViewModel?.of_version?.set(apk!!.versionName)
+        mAppUploadActivityViewModel?.of_size?.set(FileUtils.getSize(path))
     }
 
 
@@ -76,17 +105,20 @@ class AppUploadActivity : BaseActivity(){
         fun Skip2LocalApksPage(){
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
-//                Toast.makeText(this, "已获得访问所有文件的权限", Toast.LENGTH_SHORT).show()
-                startActivity(Intent(this@AppUploadActivity,ShowLocalApksActivity::class.java))
+                Start2ShowLocalApkActivity()
             } else {
                 val intent: Intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
                  startActivity(intent)
             }
+        }
 
 
-
+        fun Start2ShowLocalApkActivity(){
+           var intent= Intent(this@AppUploadActivity,ShowLocalApksActivity::class.java)
+            mGetContentApk?.launch(intent)
 
         }
+
     }
 
 
