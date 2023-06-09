@@ -61,14 +61,10 @@ class AppUploadActivity : BaseActivity(){
             }
         }
         //handler result
-          mNinePicturesAdapter= NinePicturesAdapter(this,4,NinePicturesAdapter.OnClickAddListener {
+          mNinePicturesAdapter= NinePicturesAdapter(this,4) {
               val intent = ImagePicker.picker().showCamera(false).buildPickIntent(this)
-//              val bundle = Bundle()
-//              bundle.putInt("REQUEST_CODE", IMAGE_PICKER)
-//              intent.putExtras(bundle)
-//              intent.putExtra("REQUEST_CODE", IMAGE_PICKER)
               mGetContent.launch(intent)
-        })
+          }
 
         mNinePicturesAdapter?.setOnRemoveListener {}
         mAppUploadActivityViewModel?.mNinePicturesAdapter?.set(mNinePicturesAdapter)
@@ -88,9 +84,7 @@ class AppUploadActivity : BaseActivity(){
 
         mAppUploadActivityViewModel?.of_icon?.set(getDrawable(R.mipmap.ic_addphoto))
 
-
     }
-
 
     private fun UpdateUi(path:String?){
         var apk=AppUtils.getApkInfo(path)
@@ -111,7 +105,6 @@ class AppUploadActivity : BaseActivity(){
                  startActivity(intent)
             }
         }
-
 
         fun Start2ShowLocalApkActivity(){
            var intent= Intent(this@AppUploadActivity,ShowLocalApksActivity::class.java)

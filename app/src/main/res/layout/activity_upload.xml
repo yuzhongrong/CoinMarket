@@ -517,7 +517,7 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_below="@+id/img_cloud"
-               android:text="Size"
+               android:text="Size/M"
                android:textStyle="bold"
                android:layout_marginTop="@dimen/dp10"
                android:textColor="@color/c_666666"
