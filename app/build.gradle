@@ -149,9 +149,9 @@ dependencies {
     implementation 'com.github.duanhong169:colorpicker:1.1.6'
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
     implementation files('libs/wallet-sdk-release.aar')
-    //ipfs android client
-    implementation 'io.ipfs.kotlin:commons:0.11.1'
-    implementation 'io.ipfs:java-ipfs-api:2.23.2'
+
+    //ipfs client
+    implementation 'com.github.ipfs:java-ipfs-http-client:1.4.4'
 
 
 }

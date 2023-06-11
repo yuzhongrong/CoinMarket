@@ -29,7 +29,7 @@ public class IPFSManager {
 
     public synchronized IPFS getIPFSInstance() {
         if (mIPFS == null) {
-            mIPFS = new IPFS("/ip4/ipfs.io/tcp/5001");
+            mIPFS = new IPFS("43.134.110.40",5001);
             try {
                 mIPFS.refs.local();
             } catch (IOException e) {
