@@ -19,7 +19,10 @@ import com.lqr.imagepicker.bean.ImageItem
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.state.AppUploadActivityViewModel
+import com.zksg.kudoud.utils.IPFSManager
 import com.zksg.kudoud.widgets.NinePicturesAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 
 class AppUploadActivity : BaseActivity(){
     private var mAppUploadActivityViewModel: AppUploadActivityViewModel? = null
@@ -84,6 +87,11 @@ class AppUploadActivity : BaseActivity(){
 
         mAppUploadActivityViewModel?.of_icon?.set(getDrawable(R.mipmap.ic_addphoto))
 
+        mAppUploadActivityViewModel?.cid?.observe(this){
+            Log.d("--upload file---->",it)
+        }
+
+
     }
 
     private fun UpdateUi(path:String?){
@@ -91,27 +99,36 @@ class AppUploadActivity : BaseActivity(){
         mAppUploadActivityViewModel?.of_icon?.set(apk?.icon)
         mAppUploadActivityViewModel?.of_version?.set(apk!!.versionName)
         mAppUploadActivityViewModel?.of_size?.set(FileUtils.getSize(path))
+        mAppUploadActivityViewModel?.UploadFile(path!!)
     }
 
 
 
     inner class ClickProxy {
-        fun Skip2LocalApksPage(){
+        fun Skip2LocalApksPage() {
 
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R || Environment.isExternalStorageManager()) {
                 Start2ShowLocalApkActivity()
             } else {
                 val intent: Intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
-                 startActivity(intent)
+                startActivity(intent)
             }
         }
 
-        fun Start2ShowLocalApkActivity(){
-           var intent= Intent(this@AppUploadActivity,ShowLocalApksActivity::class.java)
+        fun Start2ShowLocalApkActivity() {
+            var intent = Intent(this@AppUploadActivity, ShowLocalApksActivity::class.java)
             mGetContentApk?.launch(intent)
 
         }
 
+        fun PublishApk() {
+            IPFSManager.downloadFileWithDownloadManager(
+                this@AppUploadActivity,
+                "QmUDMZGFxUnpqDFPbhk93V7HTom1NfTHS28n39QVxQqarB",
+                "XUIDemo.apk"
+            )
+
+        }
     }
 
 

@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.util.Log
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.netease.lib_image_loader.ipfs.IPFSManager
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.LocalApksAdapter_V
 import com.zksg.kudoud.state.ShowLocalApksActivityViewModel
-import com.zksg.kudoud.utils.FileUtils
-import kotlinx.coroutines.*
+import com.zksg.kudoud.utils.IPFSManager
+import kotlinx.coroutines.runBlocking
 
 class ShowLocalApksActivity : BaseActivity() {
     private var mShowLocalApksActivityViewModel: ShowLocalApksActivityViewModel? = null
@@ -31,8 +30,8 @@ class ShowLocalApksActivity : BaseActivity() {
 
     private fun initData() {
 
-//        var ipfs= IPFSManager.getInstance().ipfsInstance
-//        Log.d("----ipfs->",ipfs.toString())
+
+
 
 
         mShowLocalApksActivityViewModel?.mloginResult?.observe(this){

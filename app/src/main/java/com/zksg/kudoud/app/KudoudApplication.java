@@ -18,6 +18,7 @@ package com.zksg.kudoud.app;
 
 import com.kunminx.architecture.BaseApplication;
 import com.kunminx.architecture.utils.Utils;
+import com.tencent.mmkv.MMKV;
 //import com.netease.lib_audio.app.AudioHelper;
 //import com.netease.music.service.MusicService;
 
@@ -35,6 +36,8 @@ public class KudoudApplication extends BaseApplication {
 //        AudioHelper.init(this);
 //        MusicService.startMusicService();
         Utils.init(this);
+        String rootDir = MMKV.initialize(this);
+        System.out.println("mmkv root: " + rootDir);
     }
 
 }

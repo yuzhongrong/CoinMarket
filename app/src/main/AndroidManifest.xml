@@ -135,12 +135,40 @@
 
 
 
+<!--    <receiver-->
+<!--        android:name=".broadcast.DownloadBroadcastReceiver"-->
+<!--        android:enabled="true"-->
+<!--        android:exported="false"-->
+<!--        tools:ignore="Instantiatable">-->
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />-->
+<!--        </intent-filter>-->
+<!--    </receiver>-->
+
+
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.zksg.kudoud.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+<!--        <receiver-->
+<!--            android:name=".broadcast.InstallReceiver"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.DOWNLOAD_NOTIFICATION_CLICKED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
 
 
 
 
-
-
-    </application>
+</application>
 
 </manifest>

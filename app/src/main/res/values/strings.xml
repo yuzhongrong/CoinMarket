@@ -146,5 +146,6 @@
     <string name="str_zero_m">0M</string>
     <string name="str_input_app_subtitle">Input App Subtitle</string>
     <string name="str_screen_x4">App Screenshot <font color='#f6a50c'> x4 </font></string>
+    <string name="str_server_error">Unable to connect to server node</string>
 
 </resources>

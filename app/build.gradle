@@ -148,10 +148,13 @@ dependencies {
     implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
     implementation 'com.github.duanhong169:colorpicker:1.1.6'
     implementation 'com.github.zcweng:switch-button:0.0.3@aar'
+    //TP wallet
     implementation files('libs/wallet-sdk-release.aar')
 
     //ipfs client
     implementation 'com.github.ipfs:java-ipfs-http-client:1.4.4'
+    //MMKV
+    implementation 'com.tencent:mmkv:1.2.16'
 
 
 }

@@ -647,6 +647,7 @@
                 android:textColor="@color/white"
                 app:shape_solidPressedColor="@color/c_a0a0ab"
                 android:clickable="true"
+                android:onClick="@{()->click.PublishApk()}"
 
                 />
 

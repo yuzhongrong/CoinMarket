@@ -1,10 +1,8 @@
 package com.zksg.kudoud.fragments
 
 import android.os.Bundle
-import android.util.Log
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.netease.lib_image_loader.ipfs.IPFSManager
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.CommonAdapter
