@@ -16,13 +16,13 @@ import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lqr.imagepicker.ImagePicker
 import com.lqr.imagepicker.bean.ImageItem
+import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
+import com.zksg.kudoud.dialogs.ChangeEmailDialog
+import com.zksg.kudoud.dialogs.LoadingDialog
 import com.zksg.kudoud.state.AppUploadActivityViewModel
-import com.zksg.kudoud.utils.IPFSManager
 import com.zksg.kudoud.widgets.NinePicturesAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
 
 class AppUploadActivity : BaseActivity(){
     private var mAppUploadActivityViewModel: AppUploadActivityViewModel? = null
@@ -122,12 +122,8 @@ class AppUploadActivity : BaseActivity(){
         }
 
         fun PublishApk() {
-            IPFSManager.downloadFileWithDownloadManager(
-                this@AppUploadActivity,
-                "QmUDMZGFxUnpqDFPbhk93V7HTom1NfTHS28n39QVxQqarB",
-                "XUIDemo.apk"
-            )
 
+            XPopup.Builder(this@AppUploadActivity).asCustom(LoadingDialog(this@AppUploadActivity)).show()
         }
     }
 

@@ -46,8 +46,8 @@ class DownloadUtils(private val mContext: Context, url: String, name: String) {
             val request = DownloadManager.Request(Uri.parse(url))
             //设置允许使用的网络类型，这里是移动网络和wifi都可以
             request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE or DownloadManager.Request.NETWORK_WIFI)
-            //在通知栏中显示，默认就是显示的(下载完也显示)
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            //在通知栏中显示，默认就是显示的(下载完也显示)（这个如果让显示下载完成可以点击的话会导致系统的downloadmanager篡改下载的文件后缀,所有不显示下载完成）
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
             //设置下载标题
             request.setTitle(name)
             request.setDescription("downloading...")
@@ -104,9 +104,6 @@ class DownloadUtils(private val mContext: Context, url: String, name: String) {
                 DownloadManager.STATUS_RUNNING -> {}
                 DownloadManager.STATUS_SUCCESSFUL -> {
                     if (TextUtils.isEmpty(pathStr)) return
-                    //修改文件名为apk
-
-
                     //下载完成安装APK
                     if (AppUtils.isAppBackground(mContext)) {
                         Toast.makeText(
@@ -185,4 +182,25 @@ class DownloadUtils(private val mContext: Context, url: String, name: String) {
             }
         }
     }
+
+
+    private fun renamefile(path:String):String{
+
+        val file = File(path)
+
+        //  在这里获取到下载完成的文件，并进行进一步的操作
+        val actualFileName = file.name
+
+//                     对文件进行重命名或其他操作
+//                     例如，如果你期望下载的是图片文件，可以根据实际的文件类型为其添加正确的后缀
+
+//                     这里需要根据你期望的后缀类型进行相应的处理
+        val desiredFileExtension = ".apk"
+        val newFileName =
+            "${actualFileName.substringBeforeLast(".")}$desiredFileExtension"
+        val renamedFile = File(file.parent, newFileName)
+        file.renameTo(renamedFile)
+        return renamedFile.path
+    }
+
 }

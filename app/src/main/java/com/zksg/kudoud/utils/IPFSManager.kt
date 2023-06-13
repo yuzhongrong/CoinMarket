@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import com.blankj.utilcode.util.ToastUtils
+import com.google.gson.Gson
 import com.kunminx.architecture.utils.Utils
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.R
@@ -18,6 +19,7 @@ import io.ipfs.multihash.Multihash
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
+import java.util.*
 
 
 object IPFSManager {
@@ -44,7 +46,20 @@ object IPFSManager {
 //        val file = NamedStreamable.ByteArrayWrapper(filename, data)
          val file = FileWrapper(File(filePath))
          val result = getIPFS()?.add(file)?.get(0)
-       return result?.hash.toString()
+
+         val metadata: MutableMap<String, Any> = HashMap()
+         metadata["name"] = "XUIDemo.apk"
+         metadata["author"] = "John Doe" // 将元数据转换为字节数组
+
+         var data = Gson().toJson(metadata)
+         // 上传包含元数据的数据
+         var node = ipfs?.dag?.put(data.encodeToByteArray())
+         Log.d("--cid---->",node?.hash.toString())
+         Log.d("--cid1---->",result?.hash.toString())
+
+
+
+       return node?.hash.toString()
     }
 
      fun getFile(hash: String): ByteArray {
@@ -66,8 +81,9 @@ object IPFSManager {
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val request = DownloadManager.Request(Uri.parse(downloadUrl))
             .setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
-            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+            .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
             .setTitle(fileName)
+            .setDestinationUri(Uri.fromFile(File(fileName)))
             .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)
 
         val filter = IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)

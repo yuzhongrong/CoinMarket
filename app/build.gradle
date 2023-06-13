@@ -155,6 +155,11 @@ dependencies {
     implementation 'com.github.ipfs:java-ipfs-http-client:1.4.4'
     //MMKV
     implementation 'com.tencent:mmkv:1.2.16'
+    //textmore
+    implementation  'com.borjabravo:readmoretextview:2.1.0'
+
+    //loading
+    implementation 'com.wang.avi:library:2.1.3'
 
 
 }

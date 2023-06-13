@@ -42,8 +42,7 @@ class AppUploadActivityViewModel : ViewModel() {
            var result= withContext(Dispatchers.IO){
                IPFSManager.uploadFile(path!!)
            }
-            cid.value=result;
-
+            cid.value=result
         }
 
 

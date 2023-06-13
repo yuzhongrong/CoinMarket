@@ -185,7 +185,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:shape_solidColor="@color/c_2e2e2e"
-                app:shape_radius="@dimen/dp15"
+                app:shape_radius="@dimen/dp10"
                 android:gravity="center_vertical"
                 >
 
@@ -199,7 +199,7 @@
                     android:gravity="center_vertical"
                     android:hint="@string/str_input_app_name"
                     android:maxLength="12"
-                    android:maxLines="1"
+                    android:maxLines="2"
                     android:padding="@dimen/dp10"
                     android:paddingLeft="@dimen/dp15"
                     android:textColor="@android:color/white"
@@ -215,7 +215,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:shape_solidColor="@color/c_2e2e2e"
-                app:shape_radius="@dimen/dp15"
+                app:shape_radius="@dimen/dp10"
                 android:gravity="center_vertical"
                 android:layout_marginTop="@dimen/dp15"
                 >
@@ -335,9 +335,9 @@
 
             <com.hjq.shape.layout.ShapeRelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/dp45"
                 app:shape_solidColor="@color/c_2e2e2e"
-                app:shape_radius="@dimen/dp15"
+                app:shape_radius="@dimen/dp10"
                 android:layout_marginTop="@dimen/dp15"
                 android:gravity="center_vertical"
                 >
@@ -381,7 +381,7 @@
          android:orientation="vertical"
          android:layout_marginTop="@dimen/dp25"
          app:shape_solidColor="@color/c_2b2b2b"
-         app:shape_radius="@dimen/dp15"
+         app:shape_radius="@dimen/dp10"
          android:layout_marginLeft="@dimen/dp25"
          android:layout_marginRight="@dimen/dp25"
          >
@@ -391,7 +391,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp15"
             app:shape_solidColor="@color/c_232323"
-            app:shape_radius="@dimen/dp15"
+            app:shape_radius="@dimen/dp10"
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginRight="@dimen/dp10"
             android:padding="@dimen/dp5"
@@ -436,7 +436,7 @@
                     app:shape_solidColor="@color/c_f6a50c"
                     android:textSize="@dimen/sp15"
                     android:textColor="@color/white"
-                    app:shape_radius="@dimen/dp15"
+                    app:shape_radius="@dimen/dp10"
                     android:drawableRight="@mipmap/ic_into"
                     android:drawablePadding="@dimen/dp5"
                     android:textStyle="bold"
@@ -577,11 +577,71 @@
      </com.hjq.shape.layout.ShapeLinearLayout>
 
 
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp55"
+            app:shape_solidColor="@color/c_2e2e2e"
+            app:shape_radius="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp25"
+            android:layout_marginRight="@dimen/dp25"
+            android:layout_marginTop="@dimen/dp15"
+            android:orientation="horizontal"
+
+            >
+
+            <EditText
+                android:id="@+id/input_twitter"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp45"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="Twitter"
+                android:maxLines="2"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/dp15"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:drawablePadding="@dimen/dp5"
+                android:drawableLeft="@drawable/ic_drawable_tt"
+                />
+<!--            <View-->
+<!--                android:layout_width="@dimen/dp0.5"-->
+<!--                android:layout_height="@dimen/dp45"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:background="@color/white"-->
+<!--                />-->
+            <EditText
+                android:id="@+id/input_tg"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp45"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="Telegram"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textColorHint="@color/white"
+                android:textSize="@dimen/dp15"
+                android:layout_alignParentRight="true"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_drawable_tg"
+                android:drawablePadding="@dimen/dp5"
+                android:textStyle="bold" />
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
         <com.hjq.shape.layout.ShapeLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:shape_solidColor="@color/c_2e2e2e"
-            app:shape_radius="@dimen/dp15"
+            app:shape_radius="@dimen/dp10"
             android:layout_marginTop="@dimen/dp15"
             android:layout_marginLeft="@dimen/dp25"
             android:layout_marginRight="@dimen/dp25"
@@ -628,7 +688,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp60"
             android:layout_marginTop="@dimen/dp15"
             android:layout_marginLeft="@dimen/dp25"
             android:layout_marginRight="@dimen/dp25"

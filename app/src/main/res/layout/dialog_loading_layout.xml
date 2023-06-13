@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp120"
+    android:layout_height="@dimen/dp120"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    app:shape_solidColor="@color/c_171717"
+    app:shape_radius="@dimen/dp15"
+
+    >
+    <com.wang.avi.AVLoadingIndicatorView
+    android:id="@+id/avi"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    style="@style/AVLoadingIndicatorView"
+    android:visibility="visible"
+    app:indicatorName="LineScalePulseOutRapidIndicator"
+    app:indicatorColor="@color/c_f6a50c"
+    />
+
+
+</com.hjq.shape.layout.ShapeRelativeLayout>

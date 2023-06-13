@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.Utils
 import com.tencent.mmkv.MMKV
 import java.io.File
 
@@ -35,17 +37,21 @@ class DownloadBroadcastReceiver : BroadcastReceiver() {
                     val file = File(localUri.path)
 
                    //  在这里获取到下载完成的文件，并进行进一步的操作
-                    val actualFileName = file.name
+//                    val actualFileName = file.name
+//
+////                     对文件进行重命名或其他操作
+////                     例如，如果你期望下载的是图片文件，可以根据实际的文件类型为其添加正确的后缀
+//
+////                     这里需要根据你期望的后缀类型进行相应的处理
+//                    val desiredFileExtension = ".apk"
+//                    val newFileName =
+//                        "${actualFileName.substringBeforeLast(".")}$desiredFileExtension"
+//                    val renamedFile = File(file.parent, newFileName)
+//                    file.renameTo(renamedFile)
 
-//                     对文件进行重命名或其他操作
-//                     例如，如果你期望下载的是图片文件，可以根据实际的文件类型为其添加正确的后缀
-
-//                     这里需要根据你期望的后缀类型进行相应的处理
-                    val desiredFileExtension = ".apk"
-                    val newFileName =
-                        "${actualFileName.substringBeforeLast(".")}$desiredFileExtension"
-                    val renamedFile = File(file.parent, newFileName)
-                    file.renameTo(renamedFile)
+                    if(status==DownloadManager.STATUS_SUCCESSFUL){
+                        AppUtils.installApp(file)
+                    }
 
                 }
             }

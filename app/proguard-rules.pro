@@ -105,3 +105,6 @@
 -keep class com.tokenpocket.opensdk.**{*;}
 -keep interface com.tokenpocket.opensdk.**{*;}
 
+-keep class com.wang.avi.** { *; }
+-keep class com.wang.avi.indicators.** { *; }
+
