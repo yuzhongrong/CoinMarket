@@ -11,7 +11,7 @@ import com.zksg.kudoud.state.ShowLocalApksActivityViewModel
 import com.zksg.kudoud.utils.IPFSManager
 import kotlinx.coroutines.runBlocking
 
-class ShowLocalApksActivity : BaseActivity() {
+class ShowLocalApksActivity : BaseDialogActivity() {
     private var mShowLocalApksActivityViewModel: ShowLocalApksActivityViewModel? = null
     override fun initViewModel() {
         mShowLocalApksActivityViewModel = getActivityScopeViewModel(
@@ -30,10 +30,6 @@ class ShowLocalApksActivity : BaseActivity() {
 
     private fun initData() {
 
-
-
-
-
         mShowLocalApksActivityViewModel?.mloginResult?.observe(this){
             Log.e("---mloginResult->", it.size.toString())
 
@@ -44,6 +40,11 @@ class ShowLocalApksActivity : BaseActivity() {
             )
         )
 
+        }
+
+
+        mShowLocalApksActivityViewModel?.loadingVisible?.observe(this){
+            if(it){ showDialog() }else{dismissDialog()}
         }
 
         mShowLocalApksActivityViewModel?.loadAllLocalApks(this)

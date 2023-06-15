@@ -14,6 +14,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
+import com.google.gson.Gson
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lqr.imagepicker.ImagePicker
@@ -100,22 +101,28 @@ class AppUploadActivity : BaseDialogActivity(){
 
         mAppUploadActivityViewModel?.of_icon?.set(getDrawable(R.mipmap.ic_addphoto))
 
-        mAppUploadActivityViewModel?.cid?.observe(this){
-            Log.d("--cid upload file---->",it)
-            mAppInfoBean.app_file=it //set app icon
-        }
 
         mAppUploadActivityViewModel?.loadingVisible?.observe(this){
 
             if(it){ showDialog() }else{dismissDialog()}
         }
 
-        mAppUploadActivityViewModel?.cid_app_screen_4?.observe(this){
-            Log.d("--cid_app_screen_4---->",it.size.toString())
+
+        mAppUploadActivityViewModel?.cid?.observe(this){
+            Log.d("--cid upload file---->",it)
+            mAppInfoBean.app_file=it
         }
+
         mAppUploadActivityViewModel?.cid_appicon?.observe(this){
             Log.d("--cid_appicon---->",it)
+            mAppInfoBean.app_file=it
 
+        }
+        mAppUploadActivityViewModel?.cid_app_screen_4?.observe(this){
+            it.forEach {Log.d("--cid_app_screen_4---->",it) }
+
+            Log.d("--cid_app_screen_41---->", Gson().toJson(it))
+            mAppInfoBean.app_screen_4=Gson().toJson(it)
         }
 
 
