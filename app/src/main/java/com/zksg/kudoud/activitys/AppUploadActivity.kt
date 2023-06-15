@@ -25,6 +25,7 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.beans.AppInfoBean
 import com.zksg.kudoud.dialogs.LoadingDialog
 import com.zksg.kudoud.state.AppUploadActivityViewModel
+import com.zksg.kudoud.utils.MyFileUtils
 import com.zksg.kudoud.widgets.NinePicturesAdapter
 
 class AppUploadActivity : BaseDialogActivity(){
@@ -100,7 +101,7 @@ class AppUploadActivity : BaseDialogActivity(){
         mAppUploadActivityViewModel?.of_icon?.set(getDrawable(R.mipmap.ic_addphoto))
 
         mAppUploadActivityViewModel?.cid?.observe(this){
-            Log.d("--upload file---->",it)
+            Log.d("--cid upload file---->",it)
             mAppInfoBean.app_file=it //set app icon
         }
 
@@ -112,6 +113,11 @@ class AppUploadActivity : BaseDialogActivity(){
         mAppUploadActivityViewModel?.cid_app_screen_4?.observe(this){
             Log.d("--cid_app_screen_4---->",it.size.toString())
         }
+        mAppUploadActivityViewModel?.cid_appicon?.observe(this){
+            Log.d("--cid_appicon---->",it)
+
+        }
+
 
 
     }
@@ -122,8 +128,10 @@ class AppUploadActivity : BaseDialogActivity(){
         mAppUploadActivityViewModel?.of_version?.set(apk!!.versionName)
         mAppUploadActivityViewModel?.of_size?.set(FileUtils.getSize(path))
 
+        var iconPath= MyFileUtils.saveDrawableAsImage(this,apk?.icon,apk?.name)
+
         //set app_icon  cid
-        mAppUploadActivityViewModel?.UploadFile(path!!,AppUploadActivityViewModel.Type.APP_ICON)
+        mAppUploadActivityViewModel?.UploadFile(iconPath!!,AppUploadActivityViewModel.Type.APP_ICON)
 
         //set app_file cid
         mAppUploadActivityViewModel?.UploadFile(path!!,AppUploadActivityViewModel.Type.APP_FILE)

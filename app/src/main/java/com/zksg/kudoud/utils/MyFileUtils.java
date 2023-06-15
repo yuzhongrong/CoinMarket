@@ -3,6 +3,10 @@ package com.zksg.kudoud.utils;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -11,13 +15,15 @@ import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.FileApkItem;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class FileUtils {
+public class MyFileUtils {
 
 
     public static final int TYPE_DOC = 0;
@@ -70,8 +76,8 @@ public class FileUtils {
                 String path = c.getString(dataindex);
                 String title=c.getString(titleindex);
 
-                if (FileUtils.getFileType(path) == fileType) {
-                    if (!FileUtils.isExists(path)) {
+                if (MyFileUtils.getFileType(path) == fileType) {
+                    if (!MyFileUtils.isExists(path)) {
                         continue;
                     }
                     long size = c.getLong(sizeindex);
@@ -142,8 +148,8 @@ public class FileUtils {
                 String path = c.getString(dataindex);
                 String title=c.getString(titleindex);
 
-                if (FileUtils.getFileType(path) == fileType) {
-                    if (!FileUtils.isExists(path)) {
+                if (MyFileUtils.getFileType(path) == fileType) {
+                    if (!MyFileUtils.isExists(path)) {
                         continue;
                     }
                     long size = c.getLong(sizeindex);
@@ -204,6 +210,45 @@ public class FileUtils {
             iconId = R.mipmap.type_gz;
         }
         return iconId;
+    }
+
+
+
+    public static String saveDrawableAsImage(Context context, Drawable drawable, String fileName) {
+        Bitmap bitmap = drawableToBitmap(drawable); // 将 Drawable 转换为 Bitmap
+        bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+        // 获取保存文件的目录
+        File directory = new File(context.getExternalFilesDir(null), "images");
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        // 创建保存文件
+        File file = new File(directory, fileName + ".png");
+
+        try (OutputStream outputStream = new FileOutputStream(file)) {
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream); // 将 Bitmap 保存为图像文件
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return file.getAbsolutePath();
+    }
+
+    private static Bitmap drawableToBitmap(Drawable drawable) {
+        if (drawable instanceof BitmapDrawable) {
+            return ((BitmapDrawable) drawable).getBitmap();
+        }
+
+        int width = drawable.getIntrinsicWidth();
+        int height = drawable.getIntrinsicHeight();
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return bitmap;
     }
 
 

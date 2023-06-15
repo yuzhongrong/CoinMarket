@@ -46,11 +46,11 @@ class AppUploadActivityViewModel : BaseLoadingViewModel() {
                IPFSManager.uploadFile(path!!)
            }
             when(type){
-                Type.APP_FILE -> {
+                Type.APP_ICON -> {
                     if(!TextUtils.isEmpty(result))cid_appicon?.value=result
 
                 }
-                Type.APP_ICON -> {if(!TextUtils.isEmpty(result)) cid?.value=result}
+                Type.APP_FILE -> {if(!TextUtils.isEmpty(result)) cid?.value=result}
 
 
             }
