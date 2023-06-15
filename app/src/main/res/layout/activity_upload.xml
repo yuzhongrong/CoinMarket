@@ -24,6 +24,20 @@
             name="subtitleTextWatcher"
             type="android.text.TextWatcher" />
 
+        <variable
+            name="overrviewTextWatcher"
+            type="android.text.TextWatcher" />
+
+
+        <variable
+            name="twitterTextWatcher"
+            type="android.text.TextWatcher" />
+
+
+        <variable
+            name="telegramTextWatcher"
+            type="android.text.TextWatcher" />
+
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -584,6 +598,7 @@
              android:background="@null"
              android:layout_marginLeft="@dimen/dp15"
              android:layout_marginRight="@dimen/dp15"
+             textChangedListener="@{twitterTextWatcher}"
              />
 
 
@@ -624,6 +639,7 @@
                 android:layout_weight="1"
                 android:drawablePadding="@dimen/dp5"
                 android:drawableLeft="@drawable/ic_drawable_tt"
+                textChangedListener="@{twitterTextWatcher}"
                 />
 <!--            <View-->
 <!--                android:layout_width="@dimen/dp0.5"-->
@@ -648,7 +664,9 @@
                 android:layout_weight="1"
                 android:drawableLeft="@drawable/ic_drawable_tg"
                 android:drawablePadding="@dimen/dp5"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                textChangedListener="@{telegramTextWatcher}"
+                />
 
 
         </com.hjq.shape.layout.ShapeLinearLayout>

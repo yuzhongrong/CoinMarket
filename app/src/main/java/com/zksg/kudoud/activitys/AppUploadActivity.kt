@@ -50,6 +50,9 @@ class AppUploadActivity : BaseDialogActivity(){
               .addBindingParam(BR.click,  ClickProxy())
             .addBindingParam(BR.nameTextWatcher, nameTextWatcher)
             .addBindingParam(BR.subtitleTextWatcher, subTitleTextWatcher)
+            .addBindingParam(BR.overrviewTextWatcher, overrviewTextWatcher)
+            .addBindingParam(BR.twitterTextWatcher, twitterTextWatcher)
+            .addBindingParam(BR.telegramTextWatcher, telegramTextWatcher)
     }
 
     private fun initData() {
@@ -133,7 +136,12 @@ class AppUploadActivity : BaseDialogActivity(){
         var apk=AppUtils.getApkInfo(path)
         mAppUploadActivityViewModel?.of_icon?.set(apk?.icon)
         mAppUploadActivityViewModel?.of_version?.set(apk!!.versionName)
-        mAppUploadActivityViewModel?.of_size?.set(FileUtils.getSize(path))
+        var size=FileUtils.getSize(path)
+        mAppUploadActivityViewModel?.of_size?.set(size)
+        //wrapper appinfobean
+        mAppInfoBean.app_size=size
+        mAppInfoBean.app_version=apk!!.versionName
+
 
         var iconPath= MyFileUtils.saveDrawableAsImage(this,apk?.icon,apk?.name)
 
@@ -182,7 +190,9 @@ class AppUploadActivity : BaseDialogActivity(){
         override fun afterTextChanged(s: Editable) {
             //transfor string
             if(!TextUtils.isEmpty(s)){
-                mAppUploadActivityViewModel?.of_name?.set(s.toString().trim())
+                var appname=s.toString().trim()
+                mAppUploadActivityViewModel?.of_name?.set(appname)
+                mAppInfoBean.app_name=appname
             }
         }
     }
@@ -193,7 +203,47 @@ class AppUploadActivity : BaseDialogActivity(){
         override fun afterTextChanged(s: Editable) {
 
             if(!TextUtils.isEmpty(s)){
-                mAppUploadActivityViewModel?.of_subtitle?.set(s.toString().trim())
+                var subtitle=s.toString().trim()
+                mAppUploadActivityViewModel?.of_subtitle?.set(subtitle)
+                mAppInfoBean.app_subtitle=subtitle
+            }
+
+        }
+    }
+
+    private val overrviewTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) {
+
+            if(!TextUtils.isEmpty(s)){
+                var overrview=s.toString().trim()
+                mAppUploadActivityViewModel?.of_overrView?.set(overrview)
+                mAppInfoBean.app_overrview=overrview;
+            }
+
+        }
+    }
+
+    private val twitterTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) {
+
+            if(!TextUtils.isEmpty(s)){
+                mAppUploadActivityViewModel?.of_twitter?.set(s.toString().trim())
+            }
+
+        }
+    }
+
+    private val telegramTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) {
+
+            if(!TextUtils.isEmpty(s)){
+                mAppUploadActivityViewModel?.of_telegram?.set(s.toString().trim())
             }
 
         }
