@@ -29,8 +29,6 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;

@@ -28,14 +28,14 @@ class ShowLocalApksActivityViewModel : BaseLoadingViewModel() {
 
     fun loadAllLocalApks(mContext:Context) {
         viewModelScope.launch {
-            loadingVisible.set(true)
+            loadingVisible.value=true
             val result = withContext(Dispatchers.IO) {
                 // 在后台线程上执行耗时操作，比如网络请求
                 FileUtils.getAllApkFilePaths(mContext,TYPE_APK)
 
             }
             mloginResult.value=result
-            loadingVisible.set(false)
+            loadingVisible.value=false
 
         }
     }

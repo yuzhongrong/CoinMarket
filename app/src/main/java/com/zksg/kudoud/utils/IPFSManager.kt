@@ -48,18 +48,18 @@ object IPFSManager {
          val result = getIPFS()?.add(file)?.get(0)
 
          val metadata: MutableMap<String, Any> = HashMap()
-         metadata["name"] = "XUIDemo.apk"
-         metadata["author"] = "John Doe" // 将元数据转换为字节数组
+//         metadata["name"] = "XUIDemo.apk"
+//         metadata["author"] = "John Doe" // 将元数据转换为字节数组
 
-         var data = Gson().toJson(metadata)
+//         var data = Gson().toJson(metadata)
          // 上传包含元数据的数据
-         var node = ipfs?.dag?.put(data.encodeToByteArray())
-         Log.d("--cid---->",node?.hash.toString())
-         Log.d("--cid1---->",result?.hash.toString())
+//         var node = ipfs?.dag?.put(data.encodeToByteArray())
+//         Log.d("--cid---->",node?.hash.toString())
+//         Log.d("--cid1---->",result?.hash.toString())
 
 
 
-       return node?.hash.toString()
+       return result?.hash.toString()
     }
 
      fun getFile(hash: String): ByteArray {

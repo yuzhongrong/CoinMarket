@@ -1,12 +1,14 @@
 package com.zksg.kudoud.activitys
 
-import android.Manifest.permission.*
 import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
+import android.text.Editable
+import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,16 +19,19 @@ import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lqr.imagepicker.ImagePicker
 import com.lqr.imagepicker.bean.ImageItem
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.core.BasePopupView
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.dialogs.ChangeEmailDialog
+import com.zksg.kudoud.beans.AppInfoBean
 import com.zksg.kudoud.dialogs.LoadingDialog
 import com.zksg.kudoud.state.AppUploadActivityViewModel
 import com.zksg.kudoud.widgets.NinePicturesAdapter
 
-class AppUploadActivity : BaseActivity(){
+class AppUploadActivity : BaseDialogActivity(){
     private var mAppUploadActivityViewModel: AppUploadActivityViewModel? = null
     private var mGetContentApk : ActivityResultLauncher<Intent>?=null
+    private var mAppInfoBean=AppInfoBean()
+    private val picturnNum=4
     override fun initViewModel() {
         mAppUploadActivityViewModel = getActivityScopeViewModel(
             AppUploadActivityViewModel::class.java
@@ -41,6 +46,8 @@ class AppUploadActivity : BaseActivity(){
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_upload, BR.vm, mAppUploadActivityViewModel!!)
               .addBindingParam(BR.click,  ClickProxy())
+            .addBindingParam(BR.nameTextWatcher, nameTextWatcher)
+            .addBindingParam(BR.subtitleTextWatcher, subTitleTextWatcher)
     }
 
     private fun initData() {
@@ -60,16 +67,21 @@ class AppUploadActivity : BaseActivity(){
                     var paths= mutableListOf<String>()
                     images.forEach { paths.add(it.path) }
                     mNinePicturesAdapter?.addAll(paths)
-//                }
+
             }
         }
         //handler result
-          mNinePicturesAdapter= NinePicturesAdapter(this,4) {
+          mNinePicturesAdapter= NinePicturesAdapter(this,picturnNum) {
               val intent = ImagePicker.picker().showCamera(false).buildPickIntent(this)
               mGetContent.launch(intent)
           }
 
-        mNinePicturesAdapter?.setOnRemoveListener {}
+        mNinePicturesAdapter.setOnRemoveListener {
+            var screens=mAppUploadActivityViewModel?.cid_app_screen_4?.value
+            if(screens?.size!! >0){
+                screens.minus(screens.get(it))
+            }
+        }
         mAppUploadActivityViewModel?.mNinePicturesAdapter?.set(mNinePicturesAdapter)
 
          mGetContentApk = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -89,6 +101,16 @@ class AppUploadActivity : BaseActivity(){
 
         mAppUploadActivityViewModel?.cid?.observe(this){
             Log.d("--upload file---->",it)
+            mAppInfoBean.app_file=it //set app icon
+        }
+
+        mAppUploadActivityViewModel?.loadingVisible?.observe(this){
+
+            if(it){ showDialog() }else{dismissDialog()}
+        }
+
+        mAppUploadActivityViewModel?.cid_app_screen_4?.observe(this){
+            Log.d("--cid_app_screen_4---->",it.size.toString())
         }
 
 
@@ -99,7 +121,13 @@ class AppUploadActivity : BaseActivity(){
         mAppUploadActivityViewModel?.of_icon?.set(apk?.icon)
         mAppUploadActivityViewModel?.of_version?.set(apk!!.versionName)
         mAppUploadActivityViewModel?.of_size?.set(FileUtils.getSize(path))
-        mAppUploadActivityViewModel?.UploadFile(path!!)
+
+        //set app_icon  cid
+        mAppUploadActivityViewModel?.UploadFile(path!!,AppUploadActivityViewModel.Type.APP_ICON)
+
+        //set app_file cid
+        mAppUploadActivityViewModel?.UploadFile(path!!,AppUploadActivityViewModel.Type.APP_FILE)
+
     }
 
 
@@ -120,15 +148,41 @@ class AppUploadActivity : BaseActivity(){
             mGetContentApk?.launch(intent)
 
         }
-
         fun PublishApk() {
 
-            XPopup.Builder(this@AppUploadActivity).asCustom(LoadingDialog(this@AppUploadActivity)).show()
+        }
+
+        fun UploadImgs(){
+            mAppUploadActivityViewModel?.let {
+                var datas=it.mNinePicturesAdapter.get()?.data!!
+                if(datas.size==4)it.uploadImagesToIPFS(datas)
+            }
+        }
+
+    }
+
+    private val nameTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) {
+            //transfor string
+            if(!TextUtils.isEmpty(s)){
+                mAppUploadActivityViewModel?.of_name?.set(s.toString().trim())
+            }
         }
     }
 
+    private val subTitleTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) {
 
+            if(!TextUtils.isEmpty(s)){
+                mAppUploadActivityViewModel?.of_subtitle?.set(s.toString().trim())
+            }
 
+        }
+    }
 
 
 }
