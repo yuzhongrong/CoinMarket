@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.hjq.shape.layout.ShapeLinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shape_solidColor="@color/c_191919"
+    >
+<com.hjq.shape.layout.ShapeLinearLayout
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp15"
+    app:shape_solidColor="@color/c_191919"
+    android:gravity="center_vertical"
+    app:shape_strokePressedColor="@color/c_f6a50c"
+    app:shape_strokeWidth="@dimen/dp1"
+    android:clickable="true"
+    app:shape_strokeColor="@color/c_191919"
+    android:layout_marginLeft="@dimen/dp15"
+    android:layout_marginRight="@dimen/dp15"
+    app:shape_radius="@dimen/dp10"
+    >
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/dp35"
+        android:layout_height="@dimen/dp35"
+        android:src="@mipmap/ic_device"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/dp15"
+        >
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/whitesmoke"
+        android:textSize="18sp"
+        android:text="------"
+        android:textStyle="bold"
+
+        />
+
+
+    <TextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/c_666666"
+        android:textSize="12sp"
+        android:text="游戏"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/dp4"
+        android:visibility="gone"
+        />
+
+        <TextView
+            android:id="@+id/desctiption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/c_666666"
+            android:textSize="12sp"
+            android:text="------"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/dp4"
+
+            />
+
+    </LinearLayout>
+    <com.hjq.shape.view.ShapeButton
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp30"
+        android:text="@string/str_install"
+        android:textColor="@color/c_f6a50c"
+        android:gravity="center"
+        app:shape_radius="@dimen/dp25"
+        android:textStyle="bold"
+        app:shape_solidColor="@color/color_999999"
+        android:visibility="gone"
+
+        />
+</com.hjq.shape.layout.ShapeLinearLayout>
+</com.hjq.shape.layout.ShapeLinearLayout>

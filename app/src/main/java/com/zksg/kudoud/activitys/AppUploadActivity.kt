@@ -10,10 +10,14 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
@@ -21,13 +25,18 @@ import com.lqr.imagepicker.ImagePicker
 import com.lqr.imagepicker.bean.ImageItem
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.core.BasePopupView
+import com.suke.widget.SwitchButton
+import com.suke.widget.SwitchButton.OnCheckedChangeListener
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
+import com.zksg.kudoud.adapters.CommonAdapter_V
 import com.zksg.kudoud.beans.AppInfoBean
+import com.zksg.kudoud.dialogs.CategorySelectDialog
 import com.zksg.kudoud.dialogs.LoadingDialog
 import com.zksg.kudoud.state.AppUploadActivityViewModel
 import com.zksg.kudoud.utils.MyFileUtils
 import com.zksg.kudoud.widgets.NinePicturesAdapter
+import com.zksg.lib_api.beans.HomeItem
 
 class AppUploadActivity : BaseDialogActivity(){
     private var mAppUploadActivityViewModel: AppUploadActivityViewModel? = null
@@ -53,6 +62,12 @@ class AppUploadActivity : BaseDialogActivity(){
             .addBindingParam(BR.overrviewTextWatcher, overrviewTextWatcher)
             .addBindingParam(BR.twitterTextWatcher, twitterTextWatcher)
             .addBindingParam(BR.telegramTextWatcher, telegramTextWatcher)
+            .addBindingParam(BR.officialTextWatcher, officialTextWatcher)
+            .addBindingParam(BR.downloadCountTextWatcher, downloadCountTextWatcher)
+            .addBindingParam(BR.checkChange, checkChange)
+
+
+
     }
 
     private fun initData() {
@@ -82,10 +97,12 @@ class AppUploadActivity : BaseDialogActivity(){
           }
 
         mNinePicturesAdapter.setOnRemoveListener {
-            var screens=mAppUploadActivityViewModel?.cid_app_screen_4?.value
+            var screens=mAppUploadActivityViewModel?.cid_app_screen_4?.value//上传过后screens才有值
             if(screens?.size!! >0){
                 screens.minus(screens.get(it))
             }
+
+
         }
         mAppUploadActivityViewModel?.mNinePicturesAdapter?.set(mNinePicturesAdapter)
 
@@ -118,7 +135,7 @@ class AppUploadActivity : BaseDialogActivity(){
 
         mAppUploadActivityViewModel?.cid_appicon?.observe(this){
             Log.d("--cid_appicon---->",it)
-            mAppInfoBean.app_file=it
+            mAppInfoBean.app_icon=it
 
         }
         mAppUploadActivityViewModel?.cid_app_screen_4?.observe(this){
@@ -128,7 +145,22 @@ class AppUploadActivity : BaseDialogActivity(){
             mAppInfoBean.app_screen_4=Gson().toJson(it)
         }
 
+        mAppUploadActivityViewModel?.of_category_req?.observe(this){
+            Log.d("--of_category_req---->",it)
+            mAppInfoBean.app_category=it;
 
+        }
+
+        //subscribe the commit apk api
+        mAppUploadActivityViewModel?.mloginResult?.observe(this){
+            if(it?.responseStatus!!.isSuccess){
+                ToastUtils.showShort(getString(R.string.str_publish_success))
+                this.finish()
+            }else{
+                ToastUtils.showShort(getString(R.string.str_publish_fail))
+            }
+
+        }
 
     }
 
@@ -172,7 +204,8 @@ class AppUploadActivity : BaseDialogActivity(){
 
         }
         fun PublishApk() {
-
+            //请求网络提交上传的app信息:
+            mAppUploadActivityViewModel?.commitPublish(mAppInfoBean)
         }
 
         fun UploadImgs(){
@@ -181,6 +214,19 @@ class AppUploadActivity : BaseDialogActivity(){
                 if(datas.size==4)it.uploadImagesToIPFS(datas)
             }
         }
+
+        fun ShowCategoryDialog(){
+            //解析一个布局
+            XPopup.Builder(this@AppUploadActivity)
+                .asCustom(mAppUploadActivityViewModel?.let {
+                    CategorySelectDialog(this@AppUploadActivity, it)
+                })
+                .show()
+
+
+
+        }
+
 
     }
 
@@ -219,7 +265,7 @@ class AppUploadActivity : BaseDialogActivity(){
             if(!TextUtils.isEmpty(s)){
                 var overrview=s.toString().trim()
                 mAppUploadActivityViewModel?.of_overrView?.set(overrview)
-                mAppInfoBean.app_overrview=overrview;
+                mAppInfoBean.app_overrview=overrview
             }
 
         }
@@ -231,7 +277,9 @@ class AppUploadActivity : BaseDialogActivity(){
         override fun afterTextChanged(s: Editable) {
 
             if(!TextUtils.isEmpty(s)){
-                mAppUploadActivityViewModel?.of_twitter?.set(s.toString().trim())
+                var twitter=s.toString().trim()
+                mAppUploadActivityViewModel?.of_twitter?.set(twitter)
+                mAppInfoBean.app_twitter=twitter
             }
 
         }
@@ -243,11 +291,48 @@ class AppUploadActivity : BaseDialogActivity(){
         override fun afterTextChanged(s: Editable) {
 
             if(!TextUtils.isEmpty(s)){
-                mAppUploadActivityViewModel?.of_telegram?.set(s.toString().trim())
+                var telegram=s.toString().trim()
+                mAppUploadActivityViewModel?.of_telegram?.set(telegram)
+                mAppInfoBean.app_tg=telegram
             }
 
         }
     }
+
+    private val officialTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) {
+            if(!TextUtils.isEmpty(s)){
+                var official=s.toString().trim()
+                mAppUploadActivityViewModel?.of_official?.set(official)
+                mAppInfoBean.app_offical=official
+            }
+
+        }
+    }
+
+
+    private val downloadCountTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable) {
+            if(!TextUtils.isEmpty(s)){
+                var count=s.toString().trim()
+                mAppUploadActivityViewModel?.of_download_count?.set(count)
+                mAppInfoBean.app_download_count=count
+            }
+
+        }
+    }
+
+    private val checkChange:SwitchButton.OnCheckedChangeListener=
+        OnCheckedChangeListener { view, isChecked ->
+            mAppUploadActivityViewModel?.of_show?.set(isChecked)
+            mAppInfoBean.app_show_immediately=if(isChecked)"1" else "0"
+        }
+
+
 
 
 }

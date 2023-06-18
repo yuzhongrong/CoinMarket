@@ -12,7 +12,7 @@ ext{   //这些库是任何项目都需要的公共库
     depsVersion = [
         appcompat      : '1.2.0',
         magicindicator : '1.5.0',
-        okhttp         : '3.3.0',
+        okhttp         : '3.6.0',
         gson           : '2.8.0',
         glide          : '4.11.0',
         glidecompiler  : '4.11.0',

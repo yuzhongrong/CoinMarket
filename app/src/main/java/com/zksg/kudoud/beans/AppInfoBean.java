@@ -7,17 +7,17 @@ public class AppInfoBean {
     private String app_overrview="";
     private String app_version="";
     private String app_size="";
-    private String app_show_immediately="";
+    private String app_show_immediately="0";
     private String app_category="";
     private String app_screen_4="";
     private String app_icon="";
     private String app_tg="";
     private String app_twitter="";
-    private String app_ios;
-    private String app_upload_time;
-    private String app_like;
-    private String app_download_count;
-    private String app_offical;
+    private String app_ios="";
+    private String app_upload_time="";
+    private String app_like="";
+    private String app_download_count="";
+    private String app_offical="";
 
     public String getApp_file() {
         return app_file;

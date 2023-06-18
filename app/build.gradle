@@ -15,6 +15,7 @@ android {
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -160,6 +161,8 @@ dependencies {
 
     //loading
     implementation 'com.wang.avi:library:2.1.3'
+
+
 
 
 }

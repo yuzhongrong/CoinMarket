@@ -16,32 +16,20 @@
 
 package com.zksg.kudoud.repository;
 
-import android.annotation.SuppressLint;
-
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kunminx.architecture.data.response.DataResult;
 import com.kunminx.architecture.data.response.ResponseStatus;
 import com.kunminx.architecture.data.response.ResultSource;
-import com.kunminx.architecture.domain.message.MutableResult;
-import com.kunminx.architecture.utils.Utils;
 import com.netease.lib_network.ApiEngine;
 import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
-import com.netease.lib_network.SimpleObserver;
-import com.zksg.kudoud.R;
-import com.zksg.kudoud.repository.example.LibraryInfo;
+import com.zksg.kudoud.beans.AppInfoBean;
 import com.zksg.kudoud.repository.example.User;
+import com.zksg.lib_api.beans.ResponsPublishApk;
 import com.zksg.lib_api.login.LoginBean;
 
-
-import org.jetbrains.annotations.NotNull;
-
-import java.lang.reflect.Type;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import io.reactivex.disposables.Disposable;
-import retrofit2.Call;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /** TODO:tip 唯一数据源 所有的网络请求在这里实现,在viewmode 调用这些方法 可参考login方法
  * Create by KunMinX at 19/10/29
@@ -109,9 +97,37 @@ public class DataRepository {
                     }
                 });
 
+    }
+
+
+
+ /*
+  *因为参数过多所以要传递对象
+  *发布apk信息接口
+  */
+    public void commitPublishApk(AppInfoBean apkinfo, DataResult.Result<ResponsPublishApk> result){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(apkinfo));
+        ApiEngine.getInstance().getApiService().commitPublish(requestBody)
+                .compose(ApiEngine.getInstance().applySchedulers())
+//                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<ResponsPublishApk>() {
+                    @Override
+                    protected void onSuccessed(ResponsPublishApk bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+
 
 
 
     }
+
 
 }

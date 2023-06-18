@@ -24,7 +24,8 @@ import java.util.*
 
 object IPFSManager {
 
-    private val host="43.134.110.40"
+//    private val host="43.134.110.40"
+    private val host="192.168.3.103"
     private  val port=5001
     private  val getwallport=8080
     private var ipfs: IPFS? = null

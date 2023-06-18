@@ -42,6 +42,7 @@ import com.netease.lib_common_ui.widget.CaptchaView;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
 
 import java.util.List;
@@ -138,6 +139,11 @@ public class CommonBindingAdapter {
     @BindingAdapter(value = {"textChangedListener"})
     public static void addTextChangedListener(EditText editText, TextWatcher listener) {
         editText.addTextChangedListener(listener);
+    }
+
+    @BindingAdapter(value = {"checkChangedListener"})
+    public static void checkChangedListener(SwitchButton checkBox, SwitchButton.OnCheckedChangeListener listener) {
+        checkBox.setOnCheckedChangeListener(listener);
     }
 
 

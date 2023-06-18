@@ -18,16 +18,18 @@
 
 package com.kunminx.architecture;
 
-import android.app.Application;
+import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.multidex.MultiDex;
+import androidx.multidex.MultiDexApplication;
 
 /**
  * Create by KunMinX at 2020/7/4
  */
-public class BaseApplication extends Application implements ViewModelStoreOwner {
+public class BaseApplication extends MultiDexApplication implements ViewModelStoreOwner {
 
     private ViewModelStore mAppViewModelStore;
 
@@ -36,6 +38,12 @@ public class BaseApplication extends Application implements ViewModelStoreOwner 
         super.onCreate();
 
         mAppViewModelStore = new ViewModelStore();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
     }
 
     @NonNull
