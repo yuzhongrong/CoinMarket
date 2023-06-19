@@ -1,4 +1,4 @@
-package com.zksg.kudoud.beans;
+package com.zksg.lib_api.beans;
 
 public class AppInfoBean {
     private String app_file="";

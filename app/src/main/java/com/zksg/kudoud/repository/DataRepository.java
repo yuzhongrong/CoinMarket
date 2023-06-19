@@ -23,10 +23,15 @@ import com.kunminx.architecture.data.response.ResultSource;
 import com.netease.lib_network.ApiEngine;
 import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
-import com.zksg.kudoud.beans.AppInfoBean;
 import com.zksg.kudoud.repository.example.User;
+import com.zksg.lib_api.beans.AppInfoBean;
+import com.zksg.lib_api.beans.CommonResponse;
+import com.zksg.lib_api.beans.DataResponse;
 import com.zksg.lib_api.beans.ResponsPublishApk;
 import com.zksg.lib_api.login.LoginBean;
+
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -81,7 +86,7 @@ public class DataRepository {
 
         ApiEngine.getInstance().getApiService().login(user.getName(), user.getPassword())
                 .compose(ApiEngine.getInstance().applySchedulers())
-//                .delay(3, TimeUnit.SECONDS)
+                .delay(3, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<LoginBean>() {
                     @Override
                     protected void onSuccessed(LoginBean bean) {
@@ -122,11 +127,32 @@ public class DataRepository {
                         ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
                         result.onResult(new DataResult(null, responseStatus));
                     }
+                }
+
+                );
+    }
+
+    //获取数据看前50条数据
+
+
+    public void getAppinfoList(int page,int pageSize, DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
+        ApiEngine.getInstance().getApiService().getAppinfoList(page,pageSize)
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
                 });
-
-
-
-
     }
 
 

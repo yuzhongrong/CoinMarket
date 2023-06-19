@@ -1,12 +1,14 @@
 package com.zksg.kudoud.fragments
 
 import android.os.Bundle
+import android.util.Log
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.CommonAdapter
 import com.zksg.kudoud.adapters.CommonAdapter_V
+import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.lib_api.beans.HomeItem
 
@@ -29,6 +31,21 @@ class HomeFragment:BaseFragment(){
     }
 
     fun  initData(){
+
+//        homeViewModel?.loadingVisible?.observe(this){
+//
+//            if(it){ showDialog() }else{dismissDialog()}
+//        }
+
+        homeViewModel?.mPublishApks?.observe(this){
+            Log.d("----mPublishApks-->",it?.size.toString())
+           var dapter= homeViewModel?.todayHealthAdapter?.get() as HomeRecentAdapter
+            dapter.setList(it)
+        }
+
+
+
+
         var homeitems= mutableListOf(
             HomeItem(R.mipmap.item_heart_rate,"86",getString(R.string.str_item_rate)),
             HomeItem(R.mipmap.item_breathe,"22",getString(R.string.str_item_breathe)),
@@ -38,9 +55,9 @@ class HomeFragment:BaseFragment(){
             HomeItem(R.mipmap.item_weight,"29",getString(R.string.str_item_weight)),
             )
         homeViewModel?.todayHealthAdapter?.set(
-            CommonAdapter(
+            HomeRecentAdapter(
                 R.layout.item_today_health,
-                homeitems
+                null
             )
         )
 
@@ -61,9 +78,10 @@ class HomeFragment:BaseFragment(){
 //       XPopup.Builder(context)
 //            .asLoading("",R.layout.delegate_normal_loading)
 //            .show()
-
+        homeViewModel?.getRecentPublishApp(1,50)
 
     }
+
 
 
 

@@ -87,8 +87,8 @@ public abstract class BaseFragment extends DataBindingFragment {
     private ViewModelProvider.Factory getApplicationFactory(Activity activity) {
         checkActivity(this);
         Application application = checkApplication(activity);
-        return ViewModelProvider.AndroidViewModelFactory.getInstance(application);
-
+        return (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(application);
+//        return ViewModelProvider.AndroidViewModelFactory.getInstance(application);
 
     }
 

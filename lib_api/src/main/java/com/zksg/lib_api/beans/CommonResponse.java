@@ -1,18 +1,10 @@
 package com.zksg.lib_api.beans;
 
-public class ResponsPublishApk {
-
+public class CommonResponse<T extends DataResponse> {
     private String msg;
     private int code;
-    private Object data;
+    private T data;
 
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
     public String getMsg() {
         return msg;
     }
@@ -29,4 +21,11 @@ public class ResponsPublishApk {
         this.code = code;
     }
 
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
 }

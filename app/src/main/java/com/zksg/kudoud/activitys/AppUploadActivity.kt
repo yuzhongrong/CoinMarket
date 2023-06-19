@@ -10,38 +10,30 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
-import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lqr.imagepicker.ImagePicker
 import com.lqr.imagepicker.bean.ImageItem
 import com.lxj.xpopup.XPopup
-import com.lxj.xpopup.core.BasePopupView
 import com.suke.widget.SwitchButton
 import com.suke.widget.SwitchButton.OnCheckedChangeListener
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.adapters.CommonAdapter_V
-import com.zksg.kudoud.beans.AppInfoBean
+import com.zksg.lib_api.beans.AppInfoBean
 import com.zksg.kudoud.dialogs.CategorySelectDialog
-import com.zksg.kudoud.dialogs.LoadingDialog
 import com.zksg.kudoud.state.AppUploadActivityViewModel
 import com.zksg.kudoud.utils.MyFileUtils
 import com.zksg.kudoud.widgets.NinePicturesAdapter
-import com.zksg.lib_api.beans.HomeItem
 
 class AppUploadActivity : BaseDialogActivity(){
     private var mAppUploadActivityViewModel: AppUploadActivityViewModel? = null
     private var mGetContentApk : ActivityResultLauncher<Intent>?=null
-    private var mAppInfoBean=AppInfoBean()
+    private var mAppInfoBean= AppInfoBean()
     private val picturnNum=4
     override fun initViewModel() {
         mAppUploadActivityViewModel = getActivityScopeViewModel(
@@ -152,7 +144,7 @@ class AppUploadActivity : BaseDialogActivity(){
         }
 
         //subscribe the commit apk api
-        mAppUploadActivityViewModel?.mloginResult?.observe(this){
+        mAppUploadActivityViewModel?.mpublishResult?.observe(this){
             if(it?.responseStatus!!.isSuccess){
                 ToastUtils.showShort(getString(R.string.str_publish_success))
                 this.finish()
