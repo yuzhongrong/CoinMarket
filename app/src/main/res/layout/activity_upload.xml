@@ -530,9 +530,9 @@
                android:layout_below="@+id/img_location"
                android:layout_marginTop="@dimen/dp10"
                android:text="Version"
-               android:textStyle="bold"
                android:textColor="@color/c_666666"
                android:textSize="@dimen/sp15"
+               android:textStyle="bold"
 
                />
 
@@ -615,6 +615,7 @@
              android:maxLines="6"
              android:minLines="5"
              android:padding="10dp"
+             android:maxLength="1500"
              android:textColor="@color/c_999999"
              android:textSize="16sp"
              android:background="@null"

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <integer-array name="category" tools:ignore="MissingDefaultResource">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </integer-array>
+
+    <string-array name="category_str" tools:ignore="ExtraTranslation">
+        <item>@string/str_category_wallets</item>
+        <item>@string/str_category_exchanges</item>
+        <item>@string/str_category_swaps</item>
+        <item>@string/str_category_entertrainments</item>
+        <item>@string/str_category_chats</item>
+        <item>@string/str_category_blockchain_browser</item>
+        <item>@string/str_category_at</item>
+        <item>@string/str_category_news</item>
+        <item>@string/str_category_nfts</item>
+        <item>@string/str_category_networks</item>
+
+    </string-array>
+</resources>

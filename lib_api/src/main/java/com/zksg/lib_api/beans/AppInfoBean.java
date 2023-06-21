@@ -1,8 +1,12 @@
 package com.zksg.lib_api.beans;
 
-public class AppInfoBean {
+import java.io.Serializable;
+
+public class AppInfoBean implements Serializable {
     private String app_file="";
     private String app_name="";
+    private String app_package_name="";
+
     private String app_subtitle="";
     private String app_overrview="";
     private String app_version="";
@@ -153,5 +157,13 @@ public class AppInfoBean {
 
     public void setApp_offical(String app_offical) {
         this.app_offical = app_offical;
+    }
+
+    public String getApp_package_name() {
+        return app_package_name;
+    }
+
+    public void setApp_package_name(String app_package_name) {
+        this.app_package_name = app_package_name;
     }
 }

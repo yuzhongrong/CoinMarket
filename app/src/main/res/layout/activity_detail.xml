@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp20"
                 android:textColor="@color/white"
-                android:text="Binance"
+                android:text="@{vm.app_name}"
                 android:textStyle="bold"
                 />
 
@@ -139,10 +139,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp15"
                 android:textColor="@color/c_666666"
-                android:text=" Offical "
+                android:text="@string/str_web"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp15"
-
+                android:drawableRight="@mipmap/ic_into1"
+                android:onClick="@{()->click.GoWebsites()}"
                 />
         </RelativeLayout>
       </LinearLayout>
@@ -177,7 +178,6 @@
                 android:gravity="center_vertical"
                 android:padding="@dimen/dp8"
 
-
                 >
 
                 <ImageView
@@ -192,7 +192,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/sp15"
                     android:textColor="@color/white"
-                    android:text="Exchange"
+                    android:text="@{vm.app_category}"
                     android:textStyle="bold"
                     android:layout_toRightOf="@+id/img_time"
                     android:layout_marginLeft="@dimen/dp5"
@@ -207,9 +207,8 @@
                     android:textColor="@color/c_666666"
                     android:text="Category"
                     android:layout_below="@+id/tx_time"
-                    android:layout_toRightOf="@+id/img_time"
                     android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginTop="@dimen/dp3"
+                    android:layout_marginTop="@dimen/dp10"
 
                     />
 
@@ -217,95 +216,86 @@
             </RelativeLayout>
 
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_centerInParent="true"
-                android:padding="@dimen/dp8"
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+           android:padding="@dimen/dp8">
 
-                >
+           <ImageView
+               android:id="@+id/img_location"
+               android:layout_width="@dimen/dp17"
+               android:layout_height="@dimen/dp17"
+               android:src="@mipmap/ic_version" />
 
-                <ImageView
-                    android:id="@+id/img_location"
-                    android:layout_width="@dimen/dp17"
-                    android:layout_height="@dimen/dp17"
-                    android:layout_marginLeft="@dimen/dp30"
-                    android:src="@mipmap/ic_version" />
-
-                <TextView
-                    android:id="@+id/tx_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp15"
-                    android:textColor="@color/white"
-                    android:text=" 1.0.5v"
-                    android:textStyle="bold"
-                    android:layout_toRightOf="@+id/img_location"
+           <TextView
+               android:id="@+id/tx_location"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_toRightOf="@+id/img_location"
+               android:text="@{vm.app_version}"
+               android:textColor="@color/white"
+               android:textSize="@dimen/sp15"
+               android:textStyle="bold"
 
 
-                    />
+               />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/sp15"
-                    android:textColor="@color/c_666666"
-                    android:text="Version"
-                    android:layout_below="@+id/tx_location"
-                    android:layout_toRightOf="@+id/img_location"
-                    android:layout_marginTop="@dimen/dp3"
-                    android:layout_marginLeft="@dimen/dp5"
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/img_location"
+               android:layout_marginTop="@dimen/dp10"
+               android:text="Version"
+               android:textColor="@color/c_666666"
+               android:textSize="@dimen/sp15"
+               android:textStyle="bold"
 
-                    />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:gravity="center_vertical"
-                android:padding="@dimen/dp8"
-                android:layout_marginRight="@dimen/dp5"
-                >
-
-                <ImageView
-                    android:id="@+id/img_cloud"
-                    android:layout_width="@dimen/dp20"
-                    android:layout_height="@dimen/dp20"
-                    android:src="@mipmap/ic_size" />
-
-                <TextView
-                    android:id="@+id/tx_cloud"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+               />
 
 
-                    android:layout_toRightOf="@+id/img_cloud"
-                    android:text=" 25M"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/sp15"
-                    android:textStyle="bold"
+       </RelativeLayout>
 
-                    />
+       <RelativeLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="@dimen/dp5"
+           android:padding="@dimen/dp8">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/tx_cloud"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_toRightOf="@+id/img_cloud"
-                    android:text="Size"
-                    android:textColor="@color/c_666666"
-                    android:textSize="@dimen/sp15"
+           <ImageView
+               android:id="@+id/img_cloud"
+               android:layout_width="@dimen/dp20"
+               android:layout_height="@dimen/dp20"
+               android:src="@mipmap/ic_size" />
 
-                    />
+           <TextView
+               android:id="@+id/tx_cloud"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_toRightOf="@+id/img_cloud"
+               android:text="@{vm.app_size}"
+               android:textColor="@color/white"
+               android:textSize="@dimen/sp15"
+               android:textStyle="bold"
+               android:maxLength="5"
+
+               />
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/img_cloud"
+               android:text="Size/M"
+               android:textStyle="bold"
+               android:layout_marginTop="@dimen/dp10"
+               android:textColor="@color/c_666666"
+               android:textSize="@dimen/sp15"
+
+               />
 
 
-            </RelativeLayout>
+       </RelativeLayout>
 
 
 
@@ -329,9 +319,10 @@
              android:padding="@dimen/dp5"
              app:trimLines="12"
              app:trimMode="trimModeLine"
+             android:maxLength="1500"
              android:layout_marginLeft="@dimen/dp15"
              android:layout_marginRight="@dimen/dp15"
-             android:text="fasf fsafrewq qtew q fafdasfsaf fasf fsafrewq qtew q fafdasfsaf fasf fsafrewq qtew q fafdasfsaf fasf fsafrewq qtew q fafdasfsaf fasf fsafrewq qtew q fafdasfsaf fasf fsafrewq qtew q fafdasfsaf fasf fsafrewq qtew q fafdasfsaffasfdafasfa fadfsafasf fafas afdsafsadfas fafda afdafaf fafa afasdff fdafa fasfa fafsdafdafasfafasfdsfsafsafsafsf fsafsaf fafsa fafdsa fafas faf fafdq qwr qwr qrwe rqrwer wqrqw rqwr wqr qwr qwrw qrqwr wqrqwr wqr qwr wqr qwrwq rqwrweq rwqrwr wqrwqr wrwqrqw rewqr werqwr werwqr wqrew rwqrewqr wqrqwr wqr qwr wqer we "
+             android:text="@{vm.app_overrview}"
              android:textColor="@color/white"
              />
 
@@ -340,7 +331,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp70"
-            android:layout_marginTop="@dimen/dp15"
+            android:layout_marginTop="@dimen/dp25"
             android:layout_marginLeft="@dimen/dp25"
             android:layout_marginRight="@dimen/dp25"
             >

@@ -164,5 +164,30 @@
     <string name="str_go_metastore">Please go MetaStore Download Telegram</string>
     <string name="str_publish_success">Publish Success!</string>
     <string name="str_publish_fail">Publish Fail!</string>
+    <string name="str_category_wallets">Wallets</string>
+    <string name="str_category_exchanges">Exchanges</string>
+    <string name="str_category_swaps">Swaps</string>
+    <string name="str_category_entertrainments">EnterTrainments</string>
+    <string name="str_category_chats">Chats</string>
+    <string name="str_category_blockchain_browser">Blockchain Browser</string>
+    <string name="str_category_at">Analysis Tools</string>
+    <string name="str_category_news">News</string>
+    <string name="str_category_nfts">Nfts</string>
+    <string name="str_category_networks">Networks</string>
+    <string name="str_web">Website</string>
+
+    <array name="array_category">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+
+
+    </array>
 
 </resources>

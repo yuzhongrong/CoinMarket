@@ -27,6 +27,7 @@ class AppUploadActivityViewModel : BaseLoadingViewModel() {
     @JvmField
     var mNinePicturesAdapter = ObservableField<NinePicturesAdapter>()
     var of_name = ObservableField<String>()
+//    var app_package_name = ObservableField<String>()
     var of_subtitle = ObservableField<String>()
     var of_overrView = ObservableField<String>()
     var of_twitter = ObservableField<String>()

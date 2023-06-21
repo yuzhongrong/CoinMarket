@@ -165,6 +165,7 @@ class AppUploadActivity : BaseDialogActivity(){
         //wrapper appinfobean
         mAppInfoBean.app_size=size
         mAppInfoBean.app_version=apk!!.versionName
+        mAppInfoBean.app_package_name=apk!!.packageName
 
 
         var iconPath= MyFileUtils.saveDrawableAsImage(this,apk?.icon,apk?.name)

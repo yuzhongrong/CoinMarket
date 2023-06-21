@@ -11,7 +11,6 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.netease.lib_image_loader.app.ImageLoaderManager;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.AppDetailActivity;
-import com.zksg.kudoud.activitys.WeightDatasActivity;
 import com.zksg.lib_api.beans.AppInfoBean;
 
 import java.util.List;
@@ -26,18 +25,9 @@ public class HomeRecentAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHol
     public HomeRecentAdapter(int layoutResId, @Nullable List<AppInfoBean> data) {
         super(layoutResId,data);
         setOnItemClickListener((adapter,view,position)->{
-            switch (position){
-                case 0:
-                    getContext().startActivity(new Intent(getContext(), AppDetailActivity.class));
-                    break;
-                case 1:
-                    break;
-                case 2:
-                    getContext().startActivity(new Intent(getContext(), WeightDatasActivity.class));
-
-                    break;
-
-            }
+            Intent i=new Intent(getContext(), AppDetailActivity.class);
+            i.putExtra("appinfo",this.getData().get(position));
+            getContext().startActivity(i);
         });
     }
 

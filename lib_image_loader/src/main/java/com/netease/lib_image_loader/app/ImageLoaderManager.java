@@ -1,5 +1,7 @@
 package com.netease.lib_image_loader.app;
 
+import static com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade;
+
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.content.Context;
@@ -29,8 +31,6 @@ import com.netease.lib_image_loader.R;
 import com.netease.lib_image_loader.image.CornerTransform;
 import com.netease.lib_image_loader.image.CustomRequestListener;
 import com.netease.lib_image_loader.image.ImageUtils;
-import com.netease.lib_image_loader.ipfs.IPFSAppGlideModule;
-import com.netease.lib_image_loader.ipfs.IPFSModelLoader;
 
 import java.io.File;
 import java.util.concurrent.ExecutionException;
@@ -41,8 +41,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade;
 
 
 public class ImageLoaderManager {
@@ -112,6 +110,7 @@ public class ImageLoaderManager {
 	public void displayImageForCorner(final ImageView imageView, String url, int corner) {
 		CornerTransform transformation = new CornerTransform(imageView.getContext(), ImageUtils.dip2px(imageView.getContext(), corner));
 		transformation.setExceptCorner(false, false, false, false);
+
 		Glide.with(imageView.getContext())
 				.asBitmap()
 				.load(url)
@@ -277,7 +276,8 @@ public class ImageLoaderManager {
 		return new RequestOptions()
 				//.placeholder(R.mipmap.ic_album_demo)//loading时显示的图片
 				.error(R.mipmap.ic_album_demo)//load失败时显示的图片
-				.diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)//缓存策略
+				.timeout(30000)
+				.diskCacheStrategy(DiskCacheStrategy.ALL)//缓存策略
 				.skipMemoryCache(false)//使用内存缓存
 				.priority(Priority.NORMAL);
 	}

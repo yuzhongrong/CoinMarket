@@ -86,7 +86,7 @@ public class DataRepository {
 
         ApiEngine.getInstance().getApiService().login(user.getName(), user.getPassword())
                 .compose(ApiEngine.getInstance().applySchedulers())
-                .delay(3, TimeUnit.SECONDS)
+//                .delay(3, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<LoginBean>() {
                     @Override
                     protected void onSuccessed(LoginBean bean) {
@@ -114,7 +114,7 @@ public class DataRepository {
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(apkinfo));
         ApiEngine.getInstance().getApiService().commitPublish(requestBody)
                 .compose(ApiEngine.getInstance().applySchedulers())
-//                .delay(3, TimeUnit.SECONDS)
+                .delay(3, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<ResponsPublishApk>() {
                     @Override
                     protected void onSuccessed(ResponsPublishApk bean) {
@@ -138,7 +138,7 @@ public class DataRepository {
     public void getAppinfoList(int page,int pageSize, DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
         ApiEngine.getInstance().getApiService().getAppinfoList(page,pageSize)
                 .compose(ApiEngine.getInstance().applySchedulers())
-                .delay(3, TimeUnit.SECONDS)
+//                .delay(3, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
                     @Override
                     protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {

@@ -18,18 +18,19 @@ class CategorySelectDialog(context: Context,vm: AppUploadActivityViewModel) : Bo
         super.onCreate()
 
         var mRecycle=findViewById<RecyclerView>(R.id.rv_select)
+        var category=resources.getIntArray(R.array.category)
         var homeitems= mutableListOf(
 
-            HomeItem(0,R.mipmap.ic_metamask_select,"Wallets",context.getString(R.string.str_item_wallet)),
-            HomeItem(1,R.mipmap.ic_binance_select,"Exchanges",context.getString(R.string.str_item_exchange)),
-            HomeItem(2,R.mipmap.ic_uniswap_select1,"Swaps",context.getString(R.string.str_item_swap)),
-            HomeItem(3,R.mipmap.ic_entertainment_select,"EnterTrainments",context.getString(R.string.str_item_entertainment)),
-            HomeItem(4,R.mipmap.ic_telegram,"Chats",context.getString(R.string.str_item_chat)),
-            HomeItem(5,R.mipmap.ic_etherscan,"Blockchain Browser",context.getString(R.string.str_item_scan)),
-            HomeItem(6,R.mipmap.ic_analysis_select,"Analysis Tools",context.getString(R.string.str_item_analysis)),
-            HomeItem(7,R.mipmap.ic_news_select,"News",context.getString(R.string.str_item_news)),
-            HomeItem(8,R.mipmap.ic_nft_select,"Nfts",context.getString(R.string.str_item_nft)),
-            HomeItem(9,R.mipmap.ic_vpn_select,"Networks",context.getString(R.string.str_item_vpn)),
+            HomeItem(category[0],R.mipmap.ic_metamask_select,context.getString(R.string.str_category_wallets),context.getString(R.string.str_item_wallet)),
+            HomeItem(category[1],R.mipmap.ic_binance_select,context.getString(R.string.str_category_exchanges),context.getString(R.string.str_item_exchange)),
+            HomeItem(category[2],R.mipmap.ic_uniswap_select1,context.getString(R.string.str_category_swaps),context.getString(R.string.str_item_swap)),
+            HomeItem(category[3],R.mipmap.ic_entertainment_select,context.getString(R.string.str_category_entertrainments),context.getString(R.string.str_item_entertainment)),
+            HomeItem(category[4],R.mipmap.ic_telegram,context.getString(R.string.str_category_chats),context.getString(R.string.str_item_chat)),
+            HomeItem(category[5],R.mipmap.ic_etherscan,context.getString(R.string.str_category_blockchain_browser),context.getString(R.string.str_item_scan)),
+            HomeItem(category[6],R.mipmap.ic_analysis_select,context.getString(R.string.str_category_at),context.getString(R.string.str_item_analysis)),
+            HomeItem(category[7],R.mipmap.ic_news_select,context.getString(R.string.str_category_news),context.getString(R.string.str_item_news)),
+            HomeItem(category[8],R.mipmap.ic_nft_select,context.getString(R.string.str_category_nfts),context.getString(R.string.str_item_nft)),
+            HomeItem(category[9],R.mipmap.ic_vpn_select,context.getString(R.string.str_category_networks),context.getString(R.string.str_item_vpn)),
 
             )
        var adapter= CategoryAdapter_V(

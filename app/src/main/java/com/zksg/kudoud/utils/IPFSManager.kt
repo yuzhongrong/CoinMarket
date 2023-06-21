@@ -47,7 +47,7 @@ object IPFSManager {
 //        val file = NamedStreamable.ByteArrayWrapper(filename, data)
          val file = FileWrapper(File(filePath))
          val result = getIPFS()?.add(file)?.get(0)
-
+         ipfs?.pin?.add(result?.hash) //只有pin才能固定资源 方便加节点的时候直接copy上一个节点
          val metadata: MutableMap<String, Any> = HashMap()
 //         metadata["name"] = "XUIDemo.apk"
 //         metadata["author"] = "John Doe" // 将元数据转换为字节数组
@@ -57,7 +57,6 @@ object IPFSManager {
 //         var node = ipfs?.dag?.put(data.encodeToByteArray())
 //         Log.d("--cid---->",node?.hash.toString())
 //         Log.d("--cid1---->",result?.hash.toString())
-
 
 
        return result?.hash.toString()
@@ -87,9 +86,9 @@ object IPFSManager {
             .setDestinationUri(Uri.fromFile(File(fileName)))
             .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)
 
-        val filter = IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-        val receiver: BroadcastReceiver = DownloadBroadcastReceiver()
-        context.registerReceiver(receiver, filter)
+//        val filter = IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+//        val receiver: BroadcastReceiver = DownloadBroadcastReceiver()
+//        context.registerReceiver(receiver, filter)
 
          var id=downloadManager.enqueue(request)
         //save the id to local

@@ -10,6 +10,7 @@ import com.zksg.kudoud.adapters.CommonAdapter
 import com.zksg.kudoud.adapters.CommonAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.state.HomeFragmentViewModel
+import com.zksg.lib_api.beans.AppInfoBean
 import com.zksg.lib_api.beans.HomeItem
 
 
@@ -55,18 +56,10 @@ class HomeFragment:BaseFragment(){
             HomeItem(R.mipmap.item_weight,"29",getString(R.string.str_item_weight)),
             )
         homeViewModel?.todayHealthAdapter?.set(
-            HomeRecentAdapter(
-                R.layout.item_today_health,
-                null
-            )
+            HomeRecentAdapter(R.layout.item_today_health,null)
         )
 
-        homeViewModel?.todayhotAdapter?.set(
-            CommonAdapter(
-                R.layout.item_today_health,
-                homeitems
-            )
-        )
+
 
         homeViewModel?.coininstallAdapter?.set(
             CommonAdapter_V(
