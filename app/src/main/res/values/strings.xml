@@ -90,7 +90,7 @@
     <string name="str_only">只响一次</string>
     <string name="str_everyday">每天</string>
     <string name="str_one2five">周一到周五</string>
-    <string name="str_more">更多</string>
+    <string name="str_more">more</string>
     <string name="str_exit_account">退出当前账号</string>
     <string name="str_account_safe">账号安全</string>
     <string name="str_about">关于我们</string>
@@ -120,10 +120,10 @@
     <string name="str_new">最新</string>
     <string name="str_once_normal">一键校准</string>
     <string name="str_weight_sub">校准时请勿将baby放在称重计上</string>
-    <string name="str_today_upload">最新上架</string>
+    <string name="str_today_upload">Recently</string>
     <string name="str_device">设备</string>
     <string name="str_today_hot_wallet">热门钱包</string>
-    <string name="str_coin_hot">币圈常玩</string>
+    <string name="str_coin_hot">Hotapps</string>
     <string name="str_me">mine</string>
     <string name="str_breathe">呼吸</string>
     <string name="str_exchange">EXC</string>
@@ -176,18 +176,6 @@
     <string name="str_category_networks">Networks</string>
     <string name="str_web">Website</string>
 
-    <array name="array_category">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
-        <item>8</item>
-        <item>9</item>
 
-
-    </array>
 
 </resources>

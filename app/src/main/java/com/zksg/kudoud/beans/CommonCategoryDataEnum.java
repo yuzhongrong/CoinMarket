@@ -6,15 +6,15 @@ import com.zksg.kudoud.R;
 
 public enum CommonCategoryDataEnum {
 
-	WALLET(getString(R.string.str_wallet), 0x01),
-	EXCHANGE(getString(R.string.str_exchange), 0x02),
-	DEX(getString(R.string.str_dex), 0x03),
-	OTHER(getString(R.string.str_category), 0x04);
+	WALLET(getString(R.string.str_wallet), 0),
+	EXCHANGE(getString(R.string.str_exchange), 1),
+	DEX(getString(R.string.str_dex), 2),
+	OTHER(getString(R.string.str_category), -1);
 	//所有类型标识
-	public static final int WALLET_ID = 0x01;
-	public static final int EXCHANGE_ID = 0x02;
-	public static final int DEX_ID = 0x03;
-	public static final int OTHER_ID = 0x04;
+	public static final int WALLET_ID = 0;
+	public static final int EXCHANGE_ID = 1;
+	public static final int DEX_ID = 2;
+	public static final int OTHER_ID = -1;
 
 	private final String key;
 	private final int value;

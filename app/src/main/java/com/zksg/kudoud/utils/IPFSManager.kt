@@ -13,6 +13,7 @@ import com.kunminx.architecture.utils.Utils
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.R
 import com.zksg.kudoud.broadcast.DownloadBroadcastReceiver
+import com.zksg.kudoud.constants.config.*
 import io.ipfs.api.IPFS
 import io.ipfs.api.NamedStreamable.FileWrapper
 import io.ipfs.multihash.Multihash
@@ -24,16 +25,12 @@ import java.util.*
 
 object IPFSManager {
 
-//    private val host="43.134.110.40"
-    private val host="192.168.43.65"
-    private  val port=5001
-    private  val getwallport=8080
     private var ipfs: IPFS? = null
 
       fun getIPFS(): IPFS?{
         if (ipfs == null || !isConnected()) {
             try {
-                ipfs = IPFS(host,port)
+                ipfs = IPFS(host,ipfs_port)
             }catch (e:Exception){
                 ipfs=null
                 ToastUtils.showShort(Utils.getApp().getString(R.string.str_server_error))
@@ -76,7 +73,7 @@ object IPFSManager {
 
 
     fun downloadFileWithDownloadManager(context: Context, cid: String, fileName: String):Long {
-        val gatewayUrl = "http://$host:$getwallport/ipfs/"
+        val gatewayUrl = ipfs_base_url
         val downloadUrl = "$gatewayUrl$cid"
         val downloadManager = context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         val request = DownloadManager.Request(Uri.parse(downloadUrl))

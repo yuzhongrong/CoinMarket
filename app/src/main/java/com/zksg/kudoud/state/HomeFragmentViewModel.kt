@@ -27,7 +27,7 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 
     /*----------------------Respons result----------------------------*/
     val mPublishApks = MutableResult<List<AppInfoBean>>()
-
+    val mHotApks = MutableResult<List<AppInfoBean>>()
     init {
         banner_datas.set(
             Arrays.asList(
@@ -42,7 +42,22 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
             loadingVisible.value=true
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getAppinfoList(page,pageSize){
-                    mPublishApks.postValue(it.result.data.list)
+
+                  if(it.result.data!=null) mPublishApks.postValue(it.result.data.list)
+
+                }
+            }
+            loadingVisible.value=false
+
+        }
+    }
+
+    fun getCwApps(page:Int,pageSize:Int,downloadCount:Int){
+        viewModelScope.launch {
+            loadingVisible.value=true
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().getAppinfoList(page,pageSize,downloadCount){
+                    if(it.result.data!=null) mHotApks.postValue(it.result.data.list)
                 }
             }
             loadingVisible.value=false

@@ -1,5 +1,7 @@
 package com.zksg.kudoud.adapters;
 
+import static com.zksg.kudoud.constants.config.ipfs_base_url;
+
 import android.content.Intent;
 import android.util.Log;
 
@@ -41,7 +43,7 @@ public class HomeRecentAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHol
     @Override
     protected void convert(@NonNull BaseViewHolder baseViewHolder, AppInfoBean homeItem) {
         Log.d("convert", "convert: ");
-        String url="http://192.168.43.65:8080/ipfs/"+homeItem.getApp_icon();
+        String url=ipfs_base_url+homeItem.getApp_icon();
         ImageLoaderManager.getInstance().displayImageForView(baseViewHolder.getView(R.id.icon),url);
         baseViewHolder.setText(R.id.title,homeItem.getApp_name());
 

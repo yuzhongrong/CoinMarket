@@ -754,7 +754,7 @@
                 android:layout_marginRight="@dimen/dp15"
                 android:background="@null"
                 android:gravity="center_vertical"
-                android:hint="Init Dowanload Count"
+                android:hint="Init Dowanload Count > 0"
                 android:maxLines="2"
                 android:textColor="@android:color/white"
                 android:textColorHint="@color/white"

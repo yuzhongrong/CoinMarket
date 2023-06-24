@@ -313,7 +313,7 @@ class AppUploadActivity : BaseDialogActivity(){
             if(!TextUtils.isEmpty(s)){
                 var count=s.toString().trim()
                 mAppUploadActivityViewModel?.of_download_count?.set(count)
-                mAppInfoBean.app_download_count=count
+                mAppInfoBean.app_download_count=count.toInt()
             }
 
         }

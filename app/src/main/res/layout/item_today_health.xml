@@ -13,9 +13,10 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="@dimen/dp70"
-        android:layout_height="@dimen/dp70"
+        android:layout_width="@dimen/dp60"
+        android:layout_height="@dimen/dp60"
         android:src="@mipmap/ic_device"
+        android:scaleType="centerCrop"
         />
 
     <TextView

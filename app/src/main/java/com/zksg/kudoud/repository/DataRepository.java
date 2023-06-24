@@ -156,4 +156,49 @@ public class DataRepository {
     }
 
 
+    //get all app by downloadcount limit
+    public void getAppinfoList(int page,int pageSize,int downloadcount,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
+        ApiEngine.getInstance().getApiService().getAppinfoList(page,pageSize,downloadcount)
+                .compose(ApiEngine.getInstance().applySchedulers())
+//                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
+
+    public void getAppinfoList(int page,int pageSize,String catory,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
+        ApiEngine.getInstance().getApiService().getAppinfoList(page,pageSize,catory)
+                .compose(ApiEngine.getInstance().applySchedulers())
+//                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
+
 }

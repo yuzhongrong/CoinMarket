@@ -53,7 +53,7 @@ class AppUploadActivityViewModel : BaseLoadingViewModel() {
     fun UploadFile(path: String, type: Type){
 
         viewModelScope.launch {
-
+            loadingVisible.value=true
            var result= withContext(Dispatchers.IO){
                IPFSManager.uploadFile(path!!)
            }
@@ -62,10 +62,14 @@ class AppUploadActivityViewModel : BaseLoadingViewModel() {
                     if(!TextUtils.isEmpty(result))cid_appicon?.value=result
 
                 }
-                Type.APP_FILE -> {if(!TextUtils.isEmpty(result)) cid?.value=result}
+                Type.APP_FILE -> {
+                    loadingVisible.value=false
+                    if(!TextUtils.isEmpty(result)) cid?.value=result
+                }
 
 
             }
+
 
         }
 
@@ -94,7 +98,7 @@ class AppUploadActivityViewModel : BaseLoadingViewModel() {
         viewModelScope.launch {
              withContext(Dispatchers.IO){
                 DataRepository.getInstance().commitPublishApk(info){
-                    mpublishResult.value=it
+                    mpublishResult.postValue(it)
                 }
             }
         }

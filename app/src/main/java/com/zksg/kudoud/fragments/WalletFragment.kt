@@ -6,10 +6,12 @@ import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.CommonAdapter_V
+import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.state.WalletFragmentViewModel
 import com.zksg.lib_api.beans.HomeItem
 
-class WalletFragment : BaseFragment() {
+class WalletFragment(id: Int) : BaseFragment() {
+    var categoryId=id.toString()
     var mWalletFragmentViewModel: WalletFragmentViewModel? = null
     override fun initViewModel() {
         mWalletFragmentViewModel = getFragmentScopeViewModel(
@@ -23,24 +25,31 @@ class WalletFragment : BaseFragment() {
     }
 
     override fun loadInitData() {
-        val homeitems = mutableListOf(
-            HomeItem(R.mipmap.item_heart_rate, "86", getString(R.string.str_item_rate)),
-            HomeItem(R.mipmap.item_breathe, "22", getString(R.string.str_item_breathe)),
-            HomeItem(R.mipmap.item_weight, "21", getString(R.string.str_item_weight)),
-            HomeItem(R.mipmap.item_weight, "23", getString(R.string.str_item_weight)),
-            HomeItem(R.mipmap.item_weight, "25", getString(R.string.str_item_weight)),
-            HomeItem(
-                R.mipmap.item_weight,
-                "29",
-                getString(R.string.str_item_weight)
-            ),
-        )
         Log.d("---xxx->loadInitData", "loadInitData: ")
-        mWalletFragmentViewModel!!.coininstallAdapter.set(
-            CommonAdapter_V(
-                R.layout.item_today_app_h,
-                homeitems
-            )
+        val categorys = resources.getStringArray(R.array.category_str)
+
+       var adapter= HomeCWAdapter_V(
+            R.layout.item_today_app_h,
+            null
+            ,categorys
         )
+
+        mWalletFragmentViewModel?.coininstallAdapter?.set(adapter)
+
+
+        mWalletFragmentViewModel?.mHotApks?.observe(this){
+            Log.d("----mHotApks-->",it?.size.toString())
+            var dapter= mWalletFragmentViewModel?.coininstallAdapter?.get() as HomeCWAdapter_V
+           if(it.isEmpty()){
+               adapter.setEmptyView(R.layout.recycle_emp_layout)
+           }else{
+               dapter.setList(it)
+           }
+
+
+        }
+        mWalletFragmentViewModel?.getCategoryApps(1,50,categoryId)
+
+
     }
 }

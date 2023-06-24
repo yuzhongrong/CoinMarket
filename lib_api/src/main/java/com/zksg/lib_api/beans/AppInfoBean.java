@@ -19,8 +19,8 @@ public class AppInfoBean implements Serializable {
     private String app_twitter="";
     private String app_ios="";
     private String app_upload_time="";
-    private String app_like="";
-    private String app_download_count="";
+    private int app_like=0;
+    private int app_download_count=0;
     private String app_offical="";
 
     public String getApp_file() {
@@ -135,19 +135,19 @@ public class AppInfoBean implements Serializable {
         this.app_upload_time = app_upload_time;
     }
 
-    public String getApp_like() {
+    public int getApp_like() {
         return app_like;
     }
 
-    public void setApp_like(String app_like) {
+    public void setApp_like(int app_like) {
         this.app_like = app_like;
     }
 
-    public String getApp_download_count() {
+    public int getApp_download_count() {
         return app_download_count;
     }
 
-    public void setApp_download_count(String app_download_count) {
+    public void setApp_download_count(int app_download_count) {
         this.app_download_count = app_download_count;
     }
 

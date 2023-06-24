@@ -22,6 +22,7 @@ class CategoryFragment:BaseFragment(){
     }
 
     override fun getDataBindingConfig(): DataBindingConfig {
+
        return DataBindingConfig(R.layout.fragment_category,BR.vm,sceneViewModel!!)
            .addBindingParam(BR.adapter, SceneAdapter(context))
            .addBindingParam(BR.click,ClickProxy())
