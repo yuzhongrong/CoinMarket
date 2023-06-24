@@ -2,7 +2,7 @@
 <com.hjq.shape.layout.ShapeLinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="@dimen/dp90"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/dp10"
@@ -25,9 +25,11 @@
         android:layout_height="wrap_content"
         android:textColor="@color/whitesmoke"
         android:textSize="@dimen/sp15"
-        android:text="86"
+        android:text="----"
         android:textStyle="bold"
         android:layout_marginTop="@dimen/dp3"
+        android:maxLines="1"
+        android:ellipsize="end"
 
         />
 

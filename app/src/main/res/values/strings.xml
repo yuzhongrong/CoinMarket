@@ -175,7 +175,8 @@
     <string name="str_category_nfts">Nfts</string>
     <string name="str_category_networks">Networks</string>
     <string name="str_web">Website</string>
-
+    <string name="str_input_search_key">Please input your search keywords...</string>
+    <string name="str_overrview">overrview :</string>
 
 
 </resources>

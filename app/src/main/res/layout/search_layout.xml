@@ -27,10 +27,12 @@
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:text="请输入搜索关键字..."
+            android:text="@string/str_input_search_key"
             android:textColor="@color/c_666666"
             android:gravity="center_vertical"
             android:layout_marginLeft="@dimen/dp8"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:textSize="16sp"/>
     </LinearLayout>
 
