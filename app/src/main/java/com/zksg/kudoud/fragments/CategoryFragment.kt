@@ -6,6 +6,7 @@ import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.CreateEnvActivity
+import com.zksg.kudoud.activitys.SeatchActivity
 import com.zksg.kudoud.adapters.CategoryPagerAdapter
 import com.zksg.kudoud.adapters.SceneAdapter
 import com.zksg.kudoud.beans.CommonCategoryDataEnum
@@ -72,6 +73,10 @@ class CategoryFragment:BaseFragment(){
     inner class ClickProxy{
         fun CreateEnv(){
            startActivity(Intent(requireContext(),CreateEnvActivity::class.java))
+        }
+
+        fun Skip2Search(){
+            startActivity(Intent(requireContext(), SeatchActivity::class.java))
         }
    }
 

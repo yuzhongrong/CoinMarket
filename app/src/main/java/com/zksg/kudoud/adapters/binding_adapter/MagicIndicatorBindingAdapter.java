@@ -15,10 +15,6 @@ import com.netease.lib_common_ui.navigator.CommonNavigatorCreater;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.DiscoveryChannelEnum;
 import com.zksg.kudoud.widgets.ScaleTransitionPagerTitleView;
-//import com.netease.lib_common_ui.navigator.CommonNavigatorCreater;
-//import com.netease.music.R;
-//import com.netease.music.data.config.DiscoveryChannelEnum;
-//import com.netease.music.ui.view.ScaleTransitionPagerTitleView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -27,7 +23,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigat
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.WrapPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
@@ -138,6 +133,7 @@ public class MagicIndicatorBindingAdapter {
                     SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
                     simplePagerTitleView.setText(channels[index]);
                     simplePagerTitleView.setTextSize(14f);
+                    simplePagerTitleView.setTypeface(null, Typeface.BOLD);
                     simplePagerTitleView.setNormalColor(Color.parseColor("#666666"));
                     simplePagerTitleView.setSelectedColor(Color.parseColor("#FFFFFF"));
                     simplePagerTitleView.setOnClickListener(new View.OnClickListener() {

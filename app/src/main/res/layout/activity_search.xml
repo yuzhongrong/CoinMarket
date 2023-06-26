@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingDefaultResource">
+    <data>
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.SearchActivityViewModel" />
+    </data>
+
+<LinearLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_171717"
+    android:orientation="vertical"
+    >
+
+<LinearLayout
+    android:id="@+id/layout_search"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp50"
+    android:layout_below="@+id/titlebar"
+    android:layout_marginStart="@dimen/dp20"
+    android:layout_marginEnd="@dimen/dp20"
+    android:layout_marginTop="@dimen/dp8"
+    android:background="@drawable/bg_search"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+
+    >
+
+    <ImageView
+        android:id="@+id/iv_search"
+        android:layout_width="@dimen/dp25"
+        android:layout_height="@dimen/dp25"
+        android:layout_marginLeft="@dimen/dp5"
+        android:src="@drawable/ic_search" />
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@null"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:hint="@string/str_input_search_key"
+        android:maxLines="1"
+        android:textColorHint="@color/c_666666"
+        android:textColor="@color/c_666666"
+        android:textSize="16sp" />
+
+
+
+</LinearLayout>
+
+<androidx.recyclerview.widget.RecyclerView
+
+        linearAdapter="@{vm.searchAdapter}"
+        cannotScrollVertically="@{true}"
+        itemspace="@{15}"
+        orientation="@{1}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp8"
+        android:layout_marginStart="@dimen/dp20"
+        android:layout_marginEnd="@dimen/dp20"
+
+        />
+
+</LinearLayout>
+</layout>

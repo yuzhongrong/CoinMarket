@@ -4,6 +4,7 @@ import static com.zksg.kudoud.constants.config.ipfs_base_url;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,22 +18,22 @@ import com.zksg.lib_api.beans.AppInfoBean;
 
 import java.util.List;
 
-public class HomeCWAdapter_V extends BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
+public class SearchAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
 
 
     private String[] categorys;
-    public HomeCWAdapter_V(int layoutResId) {
+    public SearchAdapter(int layoutResId) {
         super(layoutResId);
     }
 
 
-    public HomeCWAdapter_V(int layoutResId, @Nullable List<AppInfoBean> data) {
+    public SearchAdapter(int layoutResId, @Nullable List<AppInfoBean> data) {
         super(layoutResId,data);
         setOnItemClickListener((adapter,view,position)->{
 
         });
     }
-    public HomeCWAdapter_V(int layoutResId, @Nullable List<AppInfoBean> data,String[] category) {
+    public SearchAdapter(int layoutResId, @Nullable List<AppInfoBean> data, String[] category) {
         super(layoutResId,data);
         this.categorys=category;
         setOnItemClickListener((adapter,view,position)->{
@@ -44,7 +45,14 @@ public class HomeCWAdapter_V extends BaseQuickAdapter<AppInfoBean, BaseViewHolde
 
     }
 
-//    public CommonAdapter(@Nullable List<HomeItem> data) {
+    @NonNull
+    @Override
+    protected BaseViewHolder onCreateDefViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return super.onCreateDefViewHolder(parent, viewType);
+    }
+
+
+    //    public CommonAdapter(@Nullable List<HomeItem> data) {
 //
 //        this(R.layout.item_today_health, data);
 //        Log.d("convert", "convert: "+data.size());

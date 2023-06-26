@@ -126,16 +126,16 @@
     <string name="str_coin_hot">Hotapps</string>
     <string name="str_me">mine</string>
     <string name="str_breathe">呼吸</string>
-    <string name="str_exchange">EXC</string>
+    <string name="str_exchange">Trade</string>
     <string name="str_install">GET</string>
     <string name="str_home">home</string>
     <string name="str_category">category</string>
     <string name="str_ranking">RANKING</string>
     <string name="str_last_updatetime">Last Update Time 6 Hours Ago!!</string>
     <string name="str_markets">ranking</string>
-    <string name="str_wallet">WALLET</string>
-    <string name="str_dex">DEX</string>
-    <string name="str_other">OTHER</string>
+    <string name="str_wallet">Wallet</string>
+    <string name="str_dex">Swap</string>
+    <string name="str_other">Other</string>
     <string name="str_like">Like</string>
     <string name="str_acccount">Account</string>
     <string name="str_dex1">Go Swap</string>
@@ -175,7 +175,7 @@
     <string name="str_category_nfts">Nfts</string>
     <string name="str_category_networks">Networks</string>
     <string name="str_web">Website</string>
-    <string name="str_input_search_key">Please input your search keywords...</string>
+    <string name="str_input_search_key">Please input  search keywords...</string>
     <string name="str_overrview">overrview :</string>
 
 

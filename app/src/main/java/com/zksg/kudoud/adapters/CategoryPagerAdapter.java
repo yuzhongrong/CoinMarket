@@ -8,9 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.zksg.kudoud.beans.CommonCategoryDataEnum;
-import com.zksg.kudoud.fragments.HeartRateDayFragment;
-import com.zksg.kudoud.fragments.HeartRateWeekFragment;
-import com.zksg.kudoud.fragments.WalletFragment;
+import com.zksg.kudoud.fragments.CategoryCommonFragment;
 
 public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -31,13 +29,13 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
         int type=channels[position].getValue();
         switch (type){
             case CommonCategoryDataEnum.WALLET_ID:
-                return new WalletFragment(CommonCategoryDataEnum.WALLET_ID);
+                return new CategoryCommonFragment(CommonCategoryDataEnum.WALLET_ID);
             case CommonCategoryDataEnum.EXCHANGE_ID:
-                return new HeartRateWeekFragment();
+                return new CategoryCommonFragment(CommonCategoryDataEnum.EXCHANGE_ID);
             case CommonCategoryDataEnum.DEX_ID:
-                return new HeartRateDayFragment();
+                return new CategoryCommonFragment(CommonCategoryDataEnum.DEX_ID);
             case CommonCategoryDataEnum.OTHER_ID:
-                return new HeartRateDayFragment();
+                return new CategoryCommonFragment(CommonCategoryDataEnum.DEX_ID);
             default:
                 break;
         }

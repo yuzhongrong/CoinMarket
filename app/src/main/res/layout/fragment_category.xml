@@ -9,6 +9,10 @@
             type="com.zksg.kudoud.state.SceneFragmentViewModel" />
 
         <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.CategoryFragment.ClickProxy" />
+
+        <variable
             name="adapter"
             type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
     </data>
@@ -100,7 +104,43 @@
 
 
 
-        <include layout="@layout/search_layout" />
+        <LinearLayout
+
+            android:id="@+id/layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:background="@drawable/bg_search"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp20"
+            android:layout_below="@+id/titlebar"
+            android:onClick="@{()->click.Skip2Search()}"
+
+            >
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@drawable/ic_search"
+                android:layout_marginLeft="@dimen/dp5"
+                />
+
+            <TextView
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:text="@string/str_input_search_key"
+                android:textColor="@color/c_666666"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/dp8"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textSize="16sp"/>
+        </LinearLayout>
 
 
         <androidx.viewpager.widget.ViewPager
