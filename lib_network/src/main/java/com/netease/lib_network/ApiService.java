@@ -36,5 +36,8 @@ public interface ApiService {
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoList(@Query("page") int page, @Query("pageSize") int pageSize,@Query("app_category") String category);
 
+    @GET("/mst/getAppinfoList")
+    Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListSearch(@Query("page") int page, @Query("pageSize") int pageSize,@Query("app_name") String app_name);
+
 
 }

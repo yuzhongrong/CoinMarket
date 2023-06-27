@@ -23,21 +23,21 @@ class SearchActivityViewModel : BaseLoadingViewModel() {
     var datas = ObservableField<List<ClientAccumulativeRateDTO>>()
     var searchAdapter = ObservableField<BaseQuickAdapter<*, *>>()
     var spot = State(TimeUtils.Interval.HOUR)
-//    val mHotApks = MutableResult<List<AppInfoBean>>()
+    val mSearchApks = MutableResult<List<AppInfoBean>>()
 
     //get apps by category
-//    fun getCategoryApps(page:Int,pageSize:Int,category:String){
-//        viewModelScope.launch {
+    fun getSearchApps(page:Int,pageSize:Int,appanme:String){
+        viewModelScope.launch {
 //            loadingVisible.value=true
-//            withContext(Dispatchers.IO){
-//                DataRepository.getInstance().getAppinfoList(page,pageSize,category){
-//                    if(it.result.data!=null) mHotApks.postValue(it.result.data.list)
-//                }
-//            }
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().getAppinfoListSearch(page,pageSize,appanme){
+                    if(it.result.data!=null) mSearchApks.postValue(it.result.data.list)
+                }
+            }
 //            loadingVisible.value=false
-//
-//        }
-//    }
+
+        }
+    }
 
 
 

@@ -52,12 +52,7 @@ public class SearchAdapter extends BaseQuickAdapter<AppInfoBean, BaseViewHolder>
     }
 
 
-    //    public CommonAdapter(@Nullable List<HomeItem> data) {
-//
-//        this(R.layout.item_today_health, data);
-//        Log.d("convert", "convert: "+data.size());
-//
-//    }
+
 
 
 
