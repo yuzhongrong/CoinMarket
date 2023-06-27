@@ -5,6 +5,10 @@
     tools:ignore="MissingDefaultResource">
     <data>
         <variable
+            name="editWatcher"
+            type="android.text.TextWatcher" />
+
+        <variable
             name="vm"
             type="com.zksg.kudoud.state.SearchActivityViewModel" />
     </data>
@@ -48,9 +52,17 @@
         android:gravity="center_vertical"
         android:hint="@string/str_input_search_key"
         android:maxLines="1"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        android:maxLength="16"
         android:textColorHint="@color/c_666666"
         android:textColor="@color/c_666666"
-        android:textSize="16sp" />
+        android:layout_marginLeft="@dimen/dp8"
+        android:textSize="16sp"
+        textChangedListener="@{editWatcher}"
+        />
+
+
+
 
 
 
