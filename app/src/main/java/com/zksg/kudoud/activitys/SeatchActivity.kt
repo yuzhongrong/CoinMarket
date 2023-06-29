@@ -101,8 +101,9 @@ class SeatchActivity : BaseDialogActivity() {
             //用户体验
             Handler(Looper.getMainLooper()).postDelayed({
                 var key=editText?.text.toString()
-                if(!TextUtils.isEmpty(key))
-                mSearchActivityViewModel?.getSearchAppsForButton(1,250,key)
+                if(!TextUtils.isEmpty(key)){
+                    mSearchActivityViewModel?.getSearchAppsForButton(1,250,key)
+                }
             },500)
         }
 
