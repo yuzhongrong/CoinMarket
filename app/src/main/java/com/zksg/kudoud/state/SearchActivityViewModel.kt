@@ -28,14 +28,26 @@ class SearchActivityViewModel : BaseLoadingViewModel() {
     //get apps by category
     fun getSearchApps(page:Int,pageSize:Int,appanme:String){
         viewModelScope.launch {
-//            loadingVisible.value=true
+
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getAppinfoListSearch(page,pageSize,appanme){
                     if(it.result.data!=null) mSearchApks.postValue(it.result.data.list)
                 }
             }
-//            loadingVisible.value=false
 
+
+
+        }
+    }
+    fun getSearchAppsForButton(page:Int,pageSize:Int,appanme:String){
+        viewModelScope.launch {
+             withContext(Dispatchers.IO){
+                 loadingVisible.postValue(true)
+                DataRepository.getInstance().getAppinfoListSearchDelay(page,pageSize,appanme){
+                    if(it.result.data!=null) mSearchApks.postValue(it.result.data.list)
+                    loadingVisible.postValue(false)
+                }
+            }
         }
     }
 

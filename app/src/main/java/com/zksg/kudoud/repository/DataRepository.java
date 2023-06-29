@@ -203,6 +203,7 @@ public class DataRepository {
     public void getAppinfoListSearch(int page,int pageSize,String app_name,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
         ApiEngine.getInstance().getApiService().getAppinfoListSearch(page,pageSize,app_name)
                 .compose(ApiEngine.getInstance().applySchedulers())
+
 //                .delay(3, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
                     @Override
@@ -220,6 +221,27 @@ public class DataRepository {
                 });
     }
 
+
+
+    public void getAppinfoListSearchDelay(int page,int pageSize,String app_name,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
+        ApiEngine.getInstance().getApiService().getAppinfoListSearch(page,pageSize,app_name)
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
 
 
 }

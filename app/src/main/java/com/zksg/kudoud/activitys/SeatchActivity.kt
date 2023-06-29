@@ -1,13 +1,18 @@
 package com.zksg.kudoud.activitys
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
@@ -18,7 +23,7 @@ import com.zksg.kudoud.adapters.SearchAdapter
 import com.zksg.kudoud.databinding.ActivitySearchBinding
 import com.zksg.kudoud.state.SearchActivityViewModel
 
-class SeatchActivity : BaseActivity() {
+class SeatchActivity : BaseDialogActivity() {
 
     var  clearIcon: Drawable?=null
     var  clearIconWidth=0
@@ -79,11 +84,27 @@ class SeatchActivity : BaseActivity() {
         }
 
 
+        mSearchActivityViewModel?.loadingVisible?.observe(this){
+            if(it) showDialog() else dismissDialog()
+        }
 
     }
 
     inner class ClickProxy{
 
+        fun startSearch(){
+            // 1. 隐藏键盘
+            val inputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(editText?.windowToken, 0)
+
+            editText?.clearFocus()
+            //用户体验
+            Handler(Looper.getMainLooper()).postDelayed({
+                var key=editText?.text.toString()
+                if(!TextUtils.isEmpty(key))
+                mSearchActivityViewModel?.getSearchAppsForButton(1,250,key)
+            },500)
+        }
 
     }
 
@@ -92,7 +113,7 @@ class SeatchActivity : BaseActivity() {
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
             if (s.isNotEmpty()) {
                 editText?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, clearIcon, null)
-                mSearchActivityViewModel?.getSearchApps(1,50,s.toString())
+                mSearchActivityViewModel?.getSearchApps(1,250,s.toString())
 
             } else {
                 editText?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)

@@ -177,6 +177,9 @@
     <string name="str_web">Website</string>
     <string name="str_input_search_key">Please input  search keywords...</string>
     <string name="str_overrview">overrview :</string>
+    <string name="str_clear_all">Clear</string>
+    <string name="str_recent_search">History</string>
+    <string name="str_search">Search</string>
 
 
 </resources>
