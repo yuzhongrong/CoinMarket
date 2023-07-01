@@ -8,7 +8,6 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.CommonAdapter_V
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.state.CategoryCommonFragmentViewModel
-import com.zksg.kudoud.state.WalletFragmentViewModel
 import com.zksg.lib_api.beans.HomeItem
 
 class CategoryCommonFragment(id: Int) : BaseFragment() {

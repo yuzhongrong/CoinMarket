@@ -4,16 +4,21 @@ import static com.zksg.kudoud.constants.config.ipfs_base_url;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.netease.lib_image_loader.app.ImageLoaderManager;
+import com.tencent.mmkv.MMKV;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.AppDetailActivity;
+import com.zksg.kudoud.adapters.decorations.SpacesItemDecoration;
 import com.zksg.kudoud.beans.SearchHistory;
 import com.zksg.lib_api.beans.AppInfoBean;
 
@@ -42,11 +47,16 @@ public class SearchAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
         super(layoutResId,data);
         this.categorys=category;
         setOnItemClickListener((adapter,view,position)->{
-            Intent i=new Intent(getContext(), AppDetailActivity.class);
-            Object o=this.getData().get(position);
-            AppInfoBean bean=(AppInfoBean)o;
-            i.putExtra("appinfo",bean);
-            getContext().startActivity(i);
+           Object bean= this.getData().get(position);
+            if(bean instanceof AppInfoBean){
+                Intent i=new Intent(getContext(), AppDetailActivity.class);
+                 AppInfoBean item=(AppInfoBean)bean;
+                i.putExtra("appinfo",item);
+                getContext().startActivity(i);
+            }else{
+
+            }
+
         });
 
 
@@ -71,6 +81,13 @@ public class SearchAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
     @NonNull
     @Override
     protected BaseViewHolder onCreateDefViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater= LayoutInflater.from(getContext());
+        if(viewType==layout_history){
+            return new BaseViewHolder(inflater.inflate(layout_history,parent,false));
+        }else if(viewType==layout_default){
+            return new BaseViewHolder(inflater.inflate(layout_default,parent,false));
+        }
+
         return super.onCreateDefViewHolder(parent, viewType);
     }
 
@@ -95,8 +112,16 @@ public class SearchAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
             baseViewHolder.setText(R.id.desctiption,apkbean.getApp_subtitle());
         }else if(apk instanceof SearchHistory){//历史记录
             SearchHistory historybean=(SearchHistory) apk;
-
-
+            RecyclerView rv_view= baseViewHolder.getView(R.id.rv_historys);
+            rv_view.addItemDecoration(new SpacesItemDecoration(15));
+            SearchHistoryItemAdapter adapter=new SearchHistoryItemAdapter(R.layout.item_history,historybean.getRecords());
+            rv_view.setAdapter(adapter);
+            TextView clear=baseViewHolder.getView(R.id.clear);
+            clear.setOnClickListener(v->{
+                MMKV.mmkvWithID("SEARCH").clearAll();
+                this.getData().clear();
+                notifyDataSetChanged();
+            });
         }
 
     }

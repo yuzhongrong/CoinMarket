@@ -31,7 +31,7 @@ class SearchActivityViewModel : BaseLoadingViewModel() {
 
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getAppinfoListSearch(page,pageSize,appanme){
-                    if(it.result.data!=null) mSearchApks.postValue(it.result.data.list)
+                    if(it.responseStatus.isSuccess) mSearchApks.postValue(it.result.data.list)
                 }
             }
 
@@ -44,7 +44,7 @@ class SearchActivityViewModel : BaseLoadingViewModel() {
              withContext(Dispatchers.IO){
                  loadingVisible.postValue(true)
                 DataRepository.getInstance().getAppinfoListSearchDelay(page,pageSize,appanme){
-                    if(it.result.data!=null) mSearchApks.postValue(it.result.data.list)
+                    if(it.responseStatus.isSuccess) mSearchApks.postValue(it.result.data.list)
                     loadingVisible.postValue(false)
                 }
             }

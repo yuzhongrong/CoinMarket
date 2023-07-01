@@ -31,7 +31,7 @@ class WalletFragmentViewModel : BaseLoadingViewModel() {
             loadingVisible.value=true
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getAppinfoList(page,pageSize,category){
-                    if(it.result.data!=null) mHotApks.postValue(it.result.data.list)
+                    if(it.responseStatus.isSuccess) mHotApks.postValue(it.result.data.list)
                 }
             }
             loadingVisible.value=false

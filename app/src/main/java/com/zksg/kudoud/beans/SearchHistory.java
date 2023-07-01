@@ -1,13 +1,15 @@
 package com.zksg.kudoud.beans;
 
-public class SearchHistory {
-    private String record;
+import java.util.List;
 
-    public String getRecord() {
-        return record;
+public class SearchHistory {
+    private List<String> records;
+
+    public List<String> getRecords() {
+        return records;
     }
 
-    public void setRecord(String record) {
-        this.record = record;
+    public void setRecords(List<String> record) {
+        this.records = record;
     }
 }

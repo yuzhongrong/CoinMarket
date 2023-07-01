@@ -28,13 +28,15 @@ class CategoryCommonFragmentViewModel : BaseLoadingViewModel() {
     //get apps by category
     fun getCategoryApps(page:Int,pageSize:Int,category:String){
         viewModelScope.launch {
-            loadingVisible.value=true
+
             withContext(Dispatchers.IO){
+                loadingVisible.postValue(true)
                 DataRepository.getInstance().getAppinfoList(page,pageSize,category){
-                    if(it.result.data!=null) mHotApks.postValue(it.result.data.list)
+                    if(it.responseStatus.isSuccess) mHotApks.postValue(it.result.data.list)
                 }
+                loadingVisible.postValue(false)
             }
-            loadingVisible.value=false
+
 
         }
     }

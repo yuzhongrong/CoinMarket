@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp35"
+        android:gravity="center_vertical"
 
         >
         <TextView
@@ -17,9 +18,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_recent_search"
-            android:textColor="@android:color/black"
-            android:layout_marginLeft="@dimen/dp15"
+            android:textColor="@color/c_666666"
             android:textStyle="bold"
+            android:layout_marginLeft="@dimen/dp15"
+
             />
         <TextView
             android:id="@+id/clear"
@@ -28,8 +30,8 @@
             android:text="@string/str_clear_all"
             android:textColor="@color/c_666666"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/dp15"
-
+            android:textStyle="bold"
+            android:layout_marginRight="@dimen/dp10"
             />
     </RelativeLayout>
 
@@ -40,8 +42,6 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp15"
 
         />
 

@@ -67,13 +67,20 @@
         textChangedListener="@{editWatcher}"
         />
 
+    <View
+        android:layout_width="@dimen/dp0.5"
+        android:layout_height="@dimen/dp20"
+        android:background="@color/c_666666"
+        android:layout_marginRight="@dimen/dp15"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/str_search"
         android:textStyle="bold"
         android:textSize="@dimen/sp16"
-        android:textColor="@color/c_666666"
+        android:textColor="@color/c_f6a50c"
         android:onClick="@{()->click.startSearch()}"
 
         />
@@ -94,8 +101,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/dp8"
-        android:layout_marginStart="@dimen/dp20"
-        android:layout_marginEnd="@dimen/dp20"
+        android:padding="@dimen/dp15"
 
         />
 

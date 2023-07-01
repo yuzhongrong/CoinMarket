@@ -13,6 +13,7 @@ import android.os.Environment
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import com.blankj.utilcode.util.ToastUtils
 import com.zksg.kudoud.R
 import java.io.File
 import java.io.IOException
@@ -41,7 +42,7 @@ class DownloadUtils(private val mContext: Context, url: String, name: String) {
         if (file.exists()) {
             installApk()
         } else {
-            Toast.makeText(mContext, "开始下载，请在通知栏中查看进度。。。", Toast.LENGTH_SHORT).show()
+            ToastUtils.showShort(mContext.getString(R.string.str_download_tip))
             //创建下载任务
             val request = DownloadManager.Request(Uri.parse(url))
             //设置允许使用的网络类型，这里是移动网络和wifi都可以

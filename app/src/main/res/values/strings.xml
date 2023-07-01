@@ -180,6 +180,8 @@
     <string name="str_clear_all">Clear</string>
     <string name="str_recent_search">History</string>
     <string name="str_search">Search</string>
+    <string name="str_input_key_tip">Please Input the key!!</string>
+    <string name="str_download_tip">The download starts, please check the details in the notification bar!!</string>
 
 
 </resources>

@@ -43,7 +43,7 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getAppinfoList(page,pageSize){
 
-                  if(it.result.data!=null) mPublishApks.postValue(it.result.data.list)
+                  if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
 
                 }
             }
@@ -57,7 +57,7 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
             loadingVisible.value=true
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getAppinfoList(page,pageSize,downloadCount){
-                    if(it.result.data!=null) mHotApks.postValue(it.result.data.list)
+                    if(it.responseStatus.isSuccess) mHotApks.postValue(it.result.data.list)
                 }
             }
             loadingVisible.value=false

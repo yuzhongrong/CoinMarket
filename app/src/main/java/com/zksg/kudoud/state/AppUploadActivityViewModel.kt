@@ -99,8 +99,8 @@ class AppUploadActivityViewModel : BaseLoadingViewModel() {
              withContext(Dispatchers.IO){
                  loadingVisible.postValue(true)
                 DataRepository.getInstance().commitPublishApk(info){
-                    mpublishResult.postValue(it)
                     loadingVisible.postValue(false)
+                    mpublishResult.postValue(it)
                 }
 
             }

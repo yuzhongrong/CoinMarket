@@ -14,12 +14,15 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.SearchAdapter
+import com.zksg.kudoud.beans.SearchHistory
 import com.zksg.kudoud.databinding.ActivitySearchBinding
 import com.zksg.kudoud.state.SearchActivityViewModel
 
@@ -88,6 +91,21 @@ class SeatchActivity : BaseDialogActivity() {
             if(it) showDialog() else dismissDialog()
         }
 
+
+
+        initHistory(adapter)
+    }
+
+    fun initHistory(adapter:SearchAdapter){
+        //初始化加载历史数据
+        var history= MMKV.mmkvWithID("SEARCH").allKeys()?.toList()
+        history?.let {
+            if(it.isNotEmpty()){
+                var history= SearchHistory().apply { records=it }
+                adapter.setList(mutableListOf(history))
+            }
+
+        }
     }
 
     inner class ClickProxy{
@@ -103,6 +121,11 @@ class SeatchActivity : BaseDialogActivity() {
                 var key=editText?.text.toString()
                 if(!TextUtils.isEmpty(key)){
                     mSearchActivityViewModel?.getSearchAppsForButton(1,250,key)
+                    MMKV.mmkvWithID("SEARCH").encode(key,key)
+
+
+                }else{
+                    ToastUtils.showShort(getString(R.string.str_input_key_tip))
                 }
             },500)
         }
@@ -118,6 +141,9 @@ class SeatchActivity : BaseDialogActivity() {
 
             } else {
                 editText?.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
+                var adapter =  mSearchActivityViewModel?.searchAdapter?.get() as SearchAdapter
+                adapter.data.clear()
+                adapter.notifyDataSetChanged()
             }
 
         }
