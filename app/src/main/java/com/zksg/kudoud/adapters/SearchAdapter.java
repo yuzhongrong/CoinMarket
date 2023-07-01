@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import java.util.List;
 public class SearchAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
     private int layout_default= R.layout.item_today_app_h;
     private int layout_history= R.layout.search_history_layout;
+    private EditText search;
 
     private String[] categorys;
     public SearchAdapter(int layoutResId) {
@@ -43,9 +45,10 @@ public class SearchAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
 
 
 
-    public SearchAdapter(int layoutResId, @Nullable List data, String[] category) {
+    public SearchAdapter(int layoutResId,EditText search, @Nullable List data, String[] category) {
         super(layoutResId,data);
         this.categorys=category;
+        this.search=search;
         setOnItemClickListener((adapter,view,position)->{
            Object bean= this.getData().get(position);
             if(bean instanceof AppInfoBean){
@@ -114,7 +117,7 @@ public class SearchAdapter extends BaseQuickAdapter<Object, BaseViewHolder> {
             SearchHistory historybean=(SearchHistory) apk;
             RecyclerView rv_view= baseViewHolder.getView(R.id.rv_historys);
             rv_view.addItemDecoration(new SpacesItemDecoration(15));
-            SearchHistoryItemAdapter adapter=new SearchHistoryItemAdapter(R.layout.item_history,historybean.getRecords());
+            SearchHistoryItemAdapter adapter=new SearchHistoryItemAdapter(R.layout.item_history,search,historybean.getRecords());
             rv_view.setAdapter(adapter);
             TextView clear=baseViewHolder.getView(R.id.clear);
             clear.setOnClickListener(v->{

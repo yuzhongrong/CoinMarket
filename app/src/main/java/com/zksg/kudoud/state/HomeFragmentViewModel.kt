@@ -1,5 +1,6 @@
 package com.zksg.kudoud.state
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,6 +12,7 @@ import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.lib_api.beans.AppInfoBean
 import com.zksg.lib_api.beans.ResponsPublishApk
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -39,15 +41,17 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 
     fun getRecentPublishApp(page:Int,pageSize:Int){
         viewModelScope.launch {
-            loadingVisible.value=true
+
             withContext(Dispatchers.IO){
+                loadingVisible.postValue(true)
                 DataRepository.getInstance().getAppinfoList(page,pageSize){
 
                   if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
 
                 }
+                loadingVisible.postValue(false)
             }
-            loadingVisible.value=false
+
 
         }
     }
@@ -64,5 +68,28 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 
         }
     }
+
+    fun getHomeDatas(){
+        viewModelScope.launch {
+
+          withContext(Dispatchers.IO){
+              loadingVisible.postValue(true)
+
+              DataRepository.getInstance().getAppinfoList(1,50){
+                  if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
+              }
+
+              DataRepository.getInstance().getAppinfoList(1,50,1000){
+                  if(it.responseStatus.isSuccess){
+                      mHotApks.postValue(it.result.data.list)
+                      loadingVisible.postValue(false) }
+                  }
+
+            }
+
+        }
+
+    }
+
 
 }

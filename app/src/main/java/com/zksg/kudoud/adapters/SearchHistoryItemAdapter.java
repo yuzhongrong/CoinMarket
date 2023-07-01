@@ -1,6 +1,8 @@
 package com.zksg.kudoud.adapters;
 
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +14,7 @@ import com.zksg.kudoud.R;
 import java.util.List;
 
 public class SearchHistoryItemAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+    private EditText search;
 
     public SearchHistoryItemAdapter(int layoutResId) {
         super(layoutResId);
@@ -26,6 +29,15 @@ public class SearchHistoryItemAdapter extends BaseQuickAdapter<String, BaseViewH
 //            getContext().startActivity(i);
         });
     }
+    public SearchHistoryItemAdapter(int layoutResId, EditText search, @Nullable List<String> data) {
+        super(layoutResId,data);
+        this.search=search;
+        setOnItemClickListener((adapter,view,position)->{
+            String search_str=data.get(position);
+            this.search.setText(search_str);
+            this.search.setSelection(search_str.length());
+        });
+    }
 
 //    public CommonAdapter(@Nullable List<HomeItem> data) {
 //
@@ -37,7 +49,8 @@ public class SearchHistoryItemAdapter extends BaseQuickAdapter<String, BaseViewH
     @Override
     protected void convert(@NonNull BaseViewHolder baseViewHolder, String homeItem) {
         Log.d("convert", "convert: ");
-        baseViewHolder.setText(R.id.title,homeItem);
+        TextView title=baseViewHolder.getView(R.id.title);
+        title.setText(homeItem);
 
     }
 }

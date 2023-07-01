@@ -160,7 +160,7 @@ public class DataRepository {
     public void getAppinfoList(int page,int pageSize,int downloadcount,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
         ApiEngine.getInstance().getApiService().getAppinfoList(page,pageSize,downloadcount)
                 .compose(ApiEngine.getInstance().applySchedulers())
-//                .delay(3, TimeUnit.SECONDS)
+//                .delay(1, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
                     @Override
                     protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {

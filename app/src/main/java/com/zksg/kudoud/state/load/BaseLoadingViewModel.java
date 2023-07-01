@@ -15,7 +15,5 @@ public class BaseLoadingViewModel extends ViewModel {
 
 
     public final ObservableField<BaseQuickAdapter> adapter = new ObservableField<>();
-    {
-        loadingVisible.setValue(false);
-    }
+
 }

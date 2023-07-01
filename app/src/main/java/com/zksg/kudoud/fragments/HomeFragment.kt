@@ -12,7 +12,7 @@ import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.lib_api.beans.HomeItem
 
 
-class HomeFragment:BaseFragment(){
+class HomeFragment:BaseDialogFragment(){
     private var  homeViewModel: HomeFragmentViewModel ?=null
 
     override fun initViewModel() {
@@ -31,10 +31,6 @@ class HomeFragment:BaseFragment(){
 
     fun  initData(){
 
-//        homeViewModel?.loadingVisible?.observe(this){
-//
-//            if(it){ showDialog() }else{dismissDialog()}
-//        }
 
         homeViewModel?.mPublishApks?.observe(this){
             Log.d("----mPublishApks-->",it?.size.toString())
@@ -46,6 +42,10 @@ class HomeFragment:BaseFragment(){
             Log.d("----mHotApks-->",it?.size.toString())
             var dapter= homeViewModel?.coininstallAdapter?.get() as HomeCWAdapter_V
             dapter.setList(it)
+        }
+        homeViewModel?.loadingVisible?.observe(this){
+            Log.d("-loadingVisible-->",it.toString())
+            if(it) showDialog() else dismissDialog()
         }
 
 
@@ -69,8 +69,9 @@ class HomeFragment:BaseFragment(){
 //       XPopup.Builder(context)
 //            .asLoading("",R.layout.delegate_normal_loading)
 //            .show()
-        homeViewModel?.getRecentPublishApp(1,50)
-        homeViewModel?.getCwApps(1,50,1000)
+//        homeViewModel?.getRecentPublishApp(1,50)
+//        homeViewModel?.getCwApps(1,50,1000)
+        homeViewModel?.getHomeDatas()
 
     }
 

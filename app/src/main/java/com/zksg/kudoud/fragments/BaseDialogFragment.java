@@ -16,15 +16,19 @@ import com.zksg.kudoud.dialogs.LoadingDialog;
 public abstract class BaseDialogFragment extends BaseFragment {
     private BasePopupView dialog=null;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View root= super.onCreateView(inflater, container, savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         dialog= new XPopup.Builder(getContext())
                 .dismissOnTouchOutside(false)
                 .dismissOnBackPressed(false)
                 .asCustom(new LoadingDialog(getContext()));
-        return root;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     public void showDialog(){

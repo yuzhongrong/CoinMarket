@@ -72,6 +72,7 @@ class SeatchActivity : BaseDialogActivity() {
 
         var adapter= SearchAdapter(
             R.layout.item_today_app_h,
+            editText,
             null
             ,categorys
         )
