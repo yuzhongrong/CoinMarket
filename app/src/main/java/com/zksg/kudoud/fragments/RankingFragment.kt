@@ -50,6 +50,7 @@ class RankingFragment:BaseDialogFragment(){
                 val i = Intent(context, AppDetailActivity::class.java)
                 i.putExtra("appinfo", appInfoBean)
                 context!!.startActivity(i)
+
             }
 
         }
