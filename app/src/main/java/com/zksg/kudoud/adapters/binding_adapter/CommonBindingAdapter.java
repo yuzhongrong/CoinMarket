@@ -16,8 +16,12 @@
 
 package com.zksg.kudoud.adapters.binding_adapter;
 
+import static com.blankj.utilcode.util.StringUtils.getStringArray;
+import static com.netease.lib_network.constants.config.ipfs_base_url;
+
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +43,7 @@ import com.netease.lib_common_ui.HornizeItemView;
 import com.netease.lib_common_ui.bannder.HolderCreator;
 import com.netease.lib_common_ui.widget.ArtistSortView;
 import com.netease.lib_common_ui.widget.CaptchaView;
+import com.netease.lib_image_loader.app.ImageLoaderManager;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
@@ -57,6 +62,32 @@ public class CommonBindingAdapter {
     public static void visible(View view, boolean visible) {
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
+
+    @BindingAdapter(value = {"loadimage"}, requireAll = false)
+    public static void loadImage(ImageView view,String ipfsurl) {
+        Log.d("---loadimagexxx---->","xxx");
+        if(view==null|| TextUtils.isEmpty(ipfsurl))return;
+        String murl=ipfs_base_url+ipfsurl;
+        ImageLoaderManager.getInstance().displayImageForView(view,murl);
+    }
+
+
+    @BindingAdapter(value = {"loadtext"}, requireAll = false)
+    public static void loadtext(TextView view,String str) {
+        if(view==null|| TextUtils.isEmpty(str))return;
+        view.setText(str);
+    }
+
+    @BindingAdapter(value = {"loadtextforcategory"}, requireAll = false)
+    public static void loadtextforcategory(TextView view,String category) {
+        if(view==null|| TextUtils.isEmpty(category))return;
+        String[] categorys = getStringArray(R.array.category_str);
+        int index=Integer.parseInt(category);
+        String result=categorys[index];
+        view.setText(result);
+    }
+
+
 
     @BindingAdapter(value = {"textColor"}, requireAll = false)
     public static void setTextColor(TextView textView, int textColorRes) {

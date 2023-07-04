@@ -5,6 +5,10 @@
     <data>
 
         <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.RankingFragment.ClickProxy" />
+
+        <variable
             name="vm"
             type="com.zksg.kudoud.state.RankingFragmentViewModel" />
 
@@ -41,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/str_ranking"
                 android:textSize="@dimen/sp20"
-                android:textColor="@color/c_ffff00"
+                android:textColor="@color/c_f6a50c"
                 android:textStyle="bold"
                 />
 
@@ -61,11 +65,11 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp250"
+            android:layout_height="@dimen/dp280"
             >
 
             <com.hjq.shape.layout.ShapeLinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp110"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/dp20"
@@ -73,34 +77,36 @@
                 app:shape_solidColor="@color/c_191919"
                 android:gravity="center"
                 android:layout_alignParentBottom="true"
+                android:onClick="@{()->click.start2Detail(vm.MRankingApks.get(1))}"
                 >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NO2"
+                <ImageView
+                    android:layout_width="@dimen/dp65"
+                    android:layout_height="@dimen/dp40"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp18"
+                    android:src="@mipmap/ic_silver_medal"
                     />
 
                 <ImageView
-                    android:id="@+id/icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_device"
-                    android:layout_marginTop="@dimen/dp20"
+                    loadimage="@{vm.MRankingApks.get(1).app_icon}"
+                    android:layout_width="@dimen/dp75"
+                    android:layout_height="@dimen/dp75"
+                    android:layout_marginTop="@dimen/dp10"
                     />
 
                 <TextView
+                    loadtext="@{vm.MRankingApks.get(1).app_name}"
                     android:id="@+id/title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/sp15"
-                    android:text="BitGet"
+                    android:text="----"
                     android:textStyle="bold"
                     android:layout_marginTop="@dimen/dp10"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:maxLength="8"
                     />
 
                 <TextView
@@ -111,6 +117,7 @@
                     android:textSize="@dimen/sp15"
                     android:text="exchange"
                     android:textStyle="bold"
+                    android:visibility="gone"
 
                     />
 
@@ -132,7 +139,7 @@
             </com.hjq.shape.layout.ShapeLinearLayout>
 
             <com.hjq.shape.layout.ShapeLinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp110"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerInParent="true"
@@ -141,42 +148,47 @@
                 android:orientation="vertical"
                 android:padding="@dimen/dp20"
                 app:shape_radius="@dimen/dp10"
+                app:shape_solidColor="@color/c_191919"
+                android:onClick="@{()->click.start2Detail(vm.MRankingApks.get(0))}"
+                >
 
-                app:shape_solidColor="@color/c_191919">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NO1"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp18"
-                   />
+                <ImageView
+                    android:layout_width="@dimen/dp65"
+                    android:layout_height="@dimen/dp40"
+                    android:src="@mipmap/ic_king"
+                    android:textColor="@color/white" />
 
                 <ImageView
 
+                    loadimage="@{vm.MRankingApks.get(0).app_icon}"
                     android:layout_width="@dimen/dp75"
                     android:layout_height="@dimen/dp75"
-                    android:layout_marginTop="@dimen/dp15"
-                    android:src="@mipmap/ic_device" />
+                    android:layout_marginTop="@dimen/dp10"
+
+                    />
 
                 <TextView
+                    loadtext="@{vm.MRankingApks.get(0).app_name}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp10"
-                    android:text="Binance"
+                    android:ellipsize="end"
+                    android:maxLength="8"
+                    android:maxLines="1"
+                    android:text="----"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/sp15"
                     android:textStyle="bold" />
 
                 <TextView
 
+                    loadtextforcategory="@{vm.MRankingApks.get(0).app_category}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="exchange"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/sp15"
                     android:textStyle="bold"
+                    android:visibility="gone"
 
                     />
 
@@ -188,7 +200,7 @@
                     android:gravity="center"
                     android:text="@string/str_install"
                     android:textColor="@color/c_f6a50c"
-                    android:textSize="12sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:shape_radius="@dimen/dp25"
                     app:shape_solidColor="@color/color_999999" />
@@ -196,7 +208,7 @@
             </com.hjq.shape.layout.ShapeLinearLayout>
 
             <com.hjq.shape.layout.ShapeLinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp110"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="@dimen/dp20"
@@ -205,34 +217,35 @@
                 android:gravity="center"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
+                android:onClick="@{()->click.start2Detail(vm.MRankingApks.get(2))}"
                 >
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="NO3"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp18"
-                    />
+                <ImageView
+                    android:layout_width="@dimen/dp65"
+                    android:layout_height="40dp"
+                    android:src="@mipmap/ic_bronze_medal"
+                    android:textColor="@color/white" />
 
                 <ImageView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_device"
-                    android:layout_marginTop="@dimen/dp20"
+                    loadimage="@{vm.MRankingApks.get(2).app_icon}"
+                    android:layout_width="@dimen/dp75"
+                    android:layout_height="@dimen/dp75"
+                    android:layout_marginTop="@dimen/dp10"
                     />
 
                 <TextView
-
+                    loadtext="@{vm.MRankingApks.get(2).app_name}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/sp15"
-                    android:text="gate.io"
+                    android:text="TokenPocket"
                     android:textStyle="bold"
                     android:layout_marginTop="@dimen/dp10"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+
+
                     />
 
                 <TextView
@@ -243,6 +256,7 @@
                     android:textSize="@dimen/sp15"
                     android:text="exchange"
                     android:textStyle="bold"
+                    android:visibility="gone"
                     />
 
 
