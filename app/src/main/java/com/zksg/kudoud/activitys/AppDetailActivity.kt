@@ -9,15 +9,11 @@ import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.AppDetailHeaderAdapter
-import com.zksg.kudoud.adapters.CommonAdapter
-import com.zksg.kudoud.constants.config.host
-import com.zksg.kudoud.constants.config.port
+import com.netease.lib_network.constants.config.host
+import com.netease.lib_network.constants.config.port
 import com.zksg.kudoud.state.AppDetailActivityViewModel
 import com.zksg.kudoud.utils.DownloadUtils
-import com.zksg.kudoud.utils.IPFSManager
-import com.zksg.lib_api.beans.AppDetailItem
 import com.zksg.lib_api.beans.AppInfoBean
-import com.zksg.lib_api.beans.HomeItem
 
 class AppDetailActivity : BaseActivity() {
     private var mAppDetailActivityViewModel: AppDetailActivityViewModel? = null

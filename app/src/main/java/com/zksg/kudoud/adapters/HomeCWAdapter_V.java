@@ -1,6 +1,6 @@
 package com.zksg.kudoud.adapters;
 
-import static com.zksg.kudoud.constants.config.ipfs_base_url;
+import static com.netease.lib_network.constants.config.ipfs_base_url;
 
 import android.content.Intent;
 import android.util.Log;
@@ -32,9 +32,9 @@ public class HomeCWAdapter_V extends BaseQuickAdapter<AppInfoBean, BaseViewHolde
 
         });
     }
-    public HomeCWAdapter_V(int layoutResId, @Nullable List<AppInfoBean> data,String[] category) {
+    public HomeCWAdapter_V(int layoutResId, @Nullable List<AppInfoBean> data,String[] categorys) {
         super(layoutResId,data);
-        this.categorys=category;
+        this.categorys=categorys;
         setOnItemClickListener((adapter,view,position)->{
             Intent i=new Intent(getContext(), AppDetailActivity.class);
             i.putExtra("appinfo",this.getData().get(position));

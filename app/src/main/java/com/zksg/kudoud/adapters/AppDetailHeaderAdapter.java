@@ -1,7 +1,7 @@
 package com.zksg.kudoud.adapters;
 
-import static com.zksg.kudoud.constants.config.host;
-import static com.zksg.kudoud.constants.config.port;
+import static com.netease.lib_network.constants.config.host;
+import static com.netease.lib_network.constants.config.port;
 
 import android.util.Log;
 

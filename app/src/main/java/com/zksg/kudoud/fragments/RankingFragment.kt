@@ -20,6 +20,8 @@ import com.zksg.lib_api.beans.HomeItem
 class RankingFragment:BaseFragment(){
     private var  rankingViewModel: RankingFragmentViewModel ?=null
     private var mSharedViewModel:SharedViewModel?=null
+    private var mRankingAdapter_V:RankingAdapter_V?=null
+
     override fun initViewModel() {
         rankingViewModel=getFragmentScopeViewModel(RankingFragmentViewModel::class.java)
         mSharedViewModel=getApplicationScopeViewModel(SharedViewModel::class.java)
@@ -33,21 +35,15 @@ class RankingFragment:BaseFragment(){
     }
 
     override fun loadInitData() {
-        var homeitems= mutableListOf(
-            HomeItem(R.mipmap.item_heart_rate,"86",getString(R.string.str_item_rate)),
-            HomeItem(R.mipmap.item_breathe,"22",getString(R.string.str_item_breathe)),
-            HomeItem(R.mipmap.item_weight,"21",getString(R.string.str_item_weight)),
-            HomeItem(R.mipmap.item_weight,"23",getString(R.string.str_item_weight)),
-            HomeItem(R.mipmap.item_weight,"25",getString(R.string.str_item_weight)),
-            HomeItem(R.mipmap.item_weight,"29",getString(R.string.str_item_weight)),
-        )
-        rankingViewModel?.coininstallAdapter?.set(
-            RankingAdapter_V(
-                R.layout.item_avatarprocess,
-                homeitems
-            )
-        )
+        val categorys = resources.getStringArray(R.array.category_str)
+        mRankingAdapter_V=RankingAdapter_V(
+            R.layout.item_today_app_h,categorys)
+        rankingViewModel?.coininstallAdapter?.set(mRankingAdapter_V)
 
+        rankingViewModel?.mRankingApks?.observe(this){
+            mRankingAdapter_V?.setList(it)
+        }
+        rankingViewModel?.getRankFragment(1,50,"app_download_count","descending")
 
     }
 

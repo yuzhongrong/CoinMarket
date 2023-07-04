@@ -1,6 +1,6 @@
 package com.zksg.kudoud.adapters;
 
-import static com.zksg.kudoud.constants.config.ipfs_base_url;
+import static com.netease.lib_network.constants.config.ipfs_base_url;
 
 import android.content.Intent;
 import android.util.Log;

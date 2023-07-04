@@ -1,6 +1,9 @@
 package com.netease.lib_network;
 
 
+import static com.netease.lib_network.constants.config.host;
+import static com.netease.lib_network.constants.config.server_port;
+
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.CommonResponse;
 import com.zksg.lib_api.beans.DataResponse;
@@ -17,9 +20,9 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    public static String server_port="8889";
-    public static String host="43.134.110.40"; //release
-     String BASE_URL = "http://"+host+":"+server_port;
+
+
+    String BASE_URL = "http://"+host+":"+server_port;
 
     @GET("login/cellphone")
     Single<LoginBean>  login(@Query("phone") String phone, @Query("password") String password);
@@ -38,6 +41,10 @@ public interface ApiService {
 
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListSearch(@Query("page") int page, @Query("pageSize") int pageSize,@Query("app_name") String app_name);
+
+
+    @GET("/mst/getAppinfoList")
+    Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListRanking(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
 
 
 }
