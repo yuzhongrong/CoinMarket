@@ -1,6 +1,7 @@
 package com.netease.lib_image_loader.app;
 
 import static com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions.withCrossFade;
+import static com.netease.lib_network.constants.config.ipfs_base_url;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;
@@ -140,7 +141,7 @@ public class ImageLoaderManager {
 	public void displayImageForCornerIpfs(final ImageView imageView, String url, int corner) {
 		String resultUrl="";
 		if(url!=null&&url.startsWith("ipfs://")){
-			resultUrl="https://ipfs.io/ipfs/"+url.substring(7);
+			resultUrl=ipfs_base_url+url.substring(7);
 		}else{
 			resultUrl=url;
 		}

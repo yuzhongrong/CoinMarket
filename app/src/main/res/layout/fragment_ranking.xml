@@ -80,18 +80,21 @@
                 android:onClick="@{()->click.start2Detail(vm.MRankingApks.get(1))}"
                 >
 
-                <ImageView
-                    android:layout_width="@dimen/dp65"
-                    android:layout_height="@dimen/dp40"
-                    android:textColor="@color/white"
-                    android:src="@mipmap/ic_silver_medal"
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp55"
+                    android:layout_height="@dimen/dp45"
+                    android:src="@mipmap/ic_king_2"
+
                     />
+
+
+
 
                 <ImageView
                     loadimage="@{vm.MRankingApks.get(1).app_icon}"
-                    android:layout_width="@dimen/dp75"
-                    android:layout_height="@dimen/dp75"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_width="@dimen/dp65"
+                    android:layout_height="@dimen/dp65"
+                    android:layout_marginTop="@dimen/dp5"
                     />
 
                 <TextView
@@ -151,19 +154,23 @@
                 app:shape_solidColor="@color/c_191919"
                 android:onClick="@{()->click.start2Detail(vm.MRankingApks.get(0))}"
                 >
-
-                <ImageView
-                    android:layout_width="@dimen/dp65"
-                    android:layout_height="@dimen/dp40"
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp55"
+                    android:layout_height="@dimen/dp45"
                     android:src="@mipmap/ic_king"
-                    android:textColor="@color/white" />
+
+                    />
+
+
+
+
 
                 <ImageView
 
                     loadimage="@{vm.MRankingApks.get(0).app_icon}"
-                    android:layout_width="@dimen/dp75"
-                    android:layout_height="@dimen/dp75"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_width="@dimen/dp65"
+                    android:layout_height="@dimen/dp65"
+                    android:layout_marginTop="@dimen/dp5"
 
                     />
 
@@ -220,17 +227,17 @@
                 android:onClick="@{()->click.start2Detail(vm.MRankingApks.get(2))}"
                 >
 
-                <ImageView
-                    android:layout_width="@dimen/dp65"
-                    android:layout_height="40dp"
-                    android:src="@mipmap/ic_bronze_medal"
-                    android:textColor="@color/white" />
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp55"
+                    android:layout_height="@dimen/dp45"
+                    android:src="@mipmap/ic_king_3"
+
+                    />
 
                 <ImageView
                     loadimage="@{vm.MRankingApks.get(2).app_icon}"
-                    android:layout_width="@dimen/dp75"
-                    android:layout_height="@dimen/dp75"
-                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_width="@dimen/dp65"
+                    android:layout_height="@dimen/dp65"
                     />
 
                 <TextView
@@ -239,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/c_999999"
                     android:textSize="@dimen/sp15"
-                    android:text="TokenPocket"
+                    android:text="----"
                     android:textStyle="bold"
                     android:layout_marginTop="@dimen/dp10"
                     android:maxLines="1"

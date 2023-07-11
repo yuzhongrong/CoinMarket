@@ -33,8 +33,8 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
     init {
         banner_datas.set(
             Arrays.asList(
-                "ipfs://QmP6UJ6cNYEh8BYbcdGKecZB1uKK3uKp5JWxnSkDQJZqQf",
-                "ipfs://QmP6UJ6cNYEh8BYbcdGKecZB1uKK3uKp5JWxnSkDQJZqQf"
+                "ipfs://QmWbWstc8WaGTwBzzGh2McZ9aFQCJVBRYuVY64kY219yYm",
+                "ipfs://QmNQw9c78T9gSodZm8JkwD5qAq6Sksr3ZK6M9SNpbGqBvb"
             )
         )
     }
@@ -75,7 +75,7 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
           withContext(Dispatchers.IO){
               loadingVisible.postValue(true)
 
-              DataRepository.getInstance().getAppinfoList(1,50){
+              DataRepository.getInstance().getAppinfoListForOrder(1,50,"created_at","descending"){
                   if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
               }
 
@@ -90,6 +90,9 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
         }
 
     }
+
+
+
 
 
 }

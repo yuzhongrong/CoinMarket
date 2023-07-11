@@ -27,7 +27,7 @@ class RankingFragmentViewModel : BaseLoadingViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO){
                 loadingVisible.postValue(true)
-                DataRepository.getInstance().getAppinfoListRanking(page,pageSize,sort,order){
+                DataRepository.getInstance().getAppinfoListForOrder(page,pageSize,sort,order){
                     if(it.responseStatus.isSuccess) mRankingApks.postValue(it.result.data.list)
                     loadingVisible.postValue(false)
                 }

@@ -245,7 +245,7 @@ public class DataRepository {
 
 
 
-    public void getAppinfoListRanking(int page,int pageSize,String sort,String order,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
+    public void getAppinfoListForOrder(int page,int pageSize,String sort,String order,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
         ApiEngine.getInstance().getApiService().getAppinfoListRanking(page,pageSize,sort,order)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
