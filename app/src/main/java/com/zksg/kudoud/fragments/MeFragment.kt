@@ -1,6 +1,9 @@
 package com.zksg.kudoud.fragments
 
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
@@ -9,13 +12,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.state.MeFragmentViewModel
+import com.zksg.kudoud.utils.StringUtils
 import com.zksg.kudoud.utils.TpWalletUtils
 
 
@@ -34,6 +41,12 @@ class MeFragment : BaseFragment() {
             .addBindingParam(BR.click, ClickProxy())
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initData()
+
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +56,23 @@ class MeFragment : BaseFragment() {
 
 
         return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+
+    fun initData(){
+
+
+
+        var account=MMKV.mmkvWithID("accounts").decodeString("wallet_account")
+        account?.let {
+            meViewModel?.account?.set(StringUtils.hideMiddleOfString(it,30))
+            meViewModel?.account_value?.set(it)
+            meViewModel?.account_show?.set(View.VISIBLE)
+
+        }
+
+        if(isDebug)meViewModel?.upload_show?.set(View.VISIBLE)
+
     }
 
 
@@ -119,6 +149,14 @@ class MeFragment : BaseFragment() {
             intent.setPackage("com.twitter.android") // 使用 Twitter 应用的包名
 
             startActivity(intent)
+        }
+
+        fun CopyAccount(content:String){
+            val clipboard = activity?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager?
+            val clip = ClipData.newPlainText("label", content)
+            clipboard!!.setPrimaryClip(clip)
+            ToastUtils.showShort(getString(R.string.str_copy_tip))
+
         }
 
     }

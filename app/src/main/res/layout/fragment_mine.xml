@@ -98,7 +98,7 @@
             <com.hjq.shape.layout.ShapeLinearLayout
                 android:id="@+id/layout_top"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp250"
+                android:layout_height="wrap_content"
                 app:shape_radius="@dimen/sp20"
                 android:padding="@dimen/dp15"
                 app:shape_solidColor="@color/c_181818"
@@ -221,7 +221,43 @@
 
                 </com.hjq.shape.layout.ShapeRelativeLayout>
 
+                <com.hjq.shape.layout.ShapeLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_marginTop="@dimen/dp25"
+                    app:shape_solidColor="@color/c_191919"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:visibility="@{vm.account_show}"
+                    android:gravity="center_vertical"
+                    app:shape_strokeColor="@color/c_f6a50c"
+                    app:shape_strokeWidth="@dimen/dp0.5"
+                    android:padding="@dimen/dp10"
+                    app:shape_radius="@dimen/dp15"
+                    >
 
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.account}"
+                        android:textColor="@color/white"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:layout_weight="1"
+                        android:textStyle="bold"
+                        android:layout_marginRight="@dimen/dp10"
+                        android:gravity="center"
+
+                        />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_copy"
+                        android:onClick="@{()->click.CopyAccount(vm.account_value)}"
+
+                        />
+
+                </com.hjq.shape.layout.ShapeLinearLayout>
 
             </com.hjq.shape.layout.ShapeLinearLayout>
 
@@ -287,6 +323,7 @@
                 app:bar_lineVisible="false"
                 app:bar_rightDrawable="@mipmap/ic_right_back"
                 android:onClick="@{()->click.skip2UploadPage()}"
+                android:visibility="@{vm.upload_show}"
 
                 />
 
