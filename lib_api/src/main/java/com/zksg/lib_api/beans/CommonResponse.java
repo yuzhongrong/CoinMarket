@@ -1,6 +1,6 @@
 package com.zksg.lib_api.beans;
 
-public class CommonResponse<T extends DataResponse> {
+public class CommonResponse<T> {
     private String msg;
     private int code;
     private T data;

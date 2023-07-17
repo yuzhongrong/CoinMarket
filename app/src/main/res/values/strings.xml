@@ -174,7 +174,7 @@
     <string name="str_category_news">News</string>
     <string name="str_category_nfts">Nfts</string>
     <string name="str_category_networks">Networks</string>
-    <string name="str_web">Website</string>
+    <string name="str_web">Web</string>
     <string name="str_input_search_key">Please input  search keywords...</string>
     <string name="str_overrview">overrview :</string>
     <string name="str_clear_all">Clear</string>
@@ -183,6 +183,9 @@
     <string name="str_input_key_tip">Please Input the key!!</string>
     <string name="str_download_tip">The download starts, please check the details in the notification bar!!</string>
     <string name="str_copy_tip">" Copied!"</string>
+    <string name="str_share">Share</string>
+    <string name="str_detail">Detail</string>
+    <string name="str_download_request_fail">Download Request Fail!!</string>
 
 
 </resources>

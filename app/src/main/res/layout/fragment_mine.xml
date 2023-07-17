@@ -124,7 +124,7 @@
                         android:id="@+id/amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="5,841"
+                        android:text="@{vm.balance}"
                         android:textColor="@color/white"
                         android:textStyle="bold"
                         android:textSize="@dimen/sp35"
@@ -148,15 +148,28 @@
                         />
 
                     <TextView
+                        android:id="@+id/dao_money"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="≈ $132,423"
+                        android:text="≈ $"
                         android:textColor="@color/white"
 
                         android:textSize="@dimen/sp18"
                         android:layout_below="@+id/amount"
                         android:gravity="center"
                         android:layout_marginTop="@dimen/dp5"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.balance_dao}"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp18"
+                        android:layout_below="@+id/amount"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:layout_toRightOf="@+id/dao_money"
                         />
 
 
@@ -327,6 +340,25 @@
 
                 />
 
+
+            <com.zksg.kudoud.widgets.SettingBar
+                android:id="@+id/sb_share"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp53"
+                android:layout_marginTop="@dimen/dp20"
+                android:background="@drawable/bg_settingbar"
+                app:bar_leftText="@string/str_share"
+                app:bar_leftDrawable="@mipmap/ic_share"
+                app:bar_leftDrawableSize="@dimen/dp30"
+                app:bar_leftTextColor="@color/white"
+                app:bar_leftTextSize="@dimen/sp17"
+                app:bar_lineVisible="false"
+                app:bar_rightDrawable="@mipmap/ic_right_back"
+                android:onClick="@{()->click.share()}"
+
+
+                />
+
             <com.zksg.kudoud.widgets.SettingBar
                 android:id="@+id/sb_feedback"
                 android:layout_width="match_parent"
@@ -341,6 +373,7 @@
                 app:bar_lineVisible="false"
                 app:bar_rightDrawable="@mipmap/ic_right_back"
                 android:onClick="@{()->click.testClick()}"
+                android:visibility="gone"
 
                 />
 

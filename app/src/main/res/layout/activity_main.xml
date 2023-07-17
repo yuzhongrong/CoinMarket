@@ -24,12 +24,12 @@
 
         >
 
-        <FrameLayout
+        <LinearLayout
             android:id="@+id/main_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_above="@+id/nav_root"
+            android:orientation="vertical"
 
             />
 

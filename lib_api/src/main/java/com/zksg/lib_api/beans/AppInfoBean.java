@@ -3,6 +3,7 @@ package com.zksg.lib_api.beans;
 import java.io.Serializable;
 
 public class AppInfoBean implements Serializable {
+    private int ID;
     private String app_file="";
     private String app_name="";
     private String app_package_name="";
@@ -22,6 +23,14 @@ public class AppInfoBean implements Serializable {
     private int app_like=0;
     private int app_download_count=0;
     private String app_offical="";
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getApp_file() {
         return app_file;

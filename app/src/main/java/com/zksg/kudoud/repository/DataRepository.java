@@ -266,4 +266,29 @@ public class DataRepository {
                 });
     }
 
+
+    public void updateAppinfo(AppInfoBean apkinfo, DataResult.Result<CommonResponse> result){
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(apkinfo));
+        ApiEngine.getInstance().getApiService().updateAppinfo(requestBody)
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse>() {
+                               @Override
+                               protected void onSuccessed(CommonResponse bean) {
+                                   ResponseStatus responseStatus = new ResponseStatus(
+                                           String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                                   result.onResult(new DataResult(bean, responseStatus));
+                               }
+                               @Override
+                               protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                                   ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                                   result.onResult(new DataResult(null, responseStatus));
+                               }
+                           }
+
+                );
+    }
+
+
+
 }

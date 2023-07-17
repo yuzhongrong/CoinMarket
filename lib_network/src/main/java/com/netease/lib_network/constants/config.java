@@ -20,6 +20,7 @@ public class config {
     public static String ipfs_base_url="http://"+ host +":"+port+"/ipfs/";
 
     //remote server port
+//    public  static String share_url="http://"+ host +":"+"8888"+"/";
 
 
 

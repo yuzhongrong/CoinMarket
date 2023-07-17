@@ -31,6 +31,58 @@
 
         >
 
+        <com.hjq.shape.layout.ShapeRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:shape_solidColor="@color/c_181818"
+            app:shape_radius="@dimen/sp30"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            >
+
+
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="@dimen/dp15"
+                android:src="@mipmap/ic_back"
+                android:layout_centerVertical="true"
+
+                app:shape_solidColor="@color/c_2e2e2e"
+
+                app:shape_radius="@dimen/dp45"
+                android:padding="@dimen/dp3"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:clickable="true"
+                android:onClick="@{()->click.finishself()}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/str_detail"
+                android:textColor="@color/c_f6a50c"
+                android:textSize="@dimen/sp20"
+                android:textStyle="bold" />
+
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp15"
+                android:src="@mipmap/ic_history"
+                android:layout_centerVertical="true"
+                app:shape_solidColor="@color/c_2e2e2e"
+                app:shape_radius="@dimen/dp45"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:clickable="true"
+                android:visibility="gone"
+                />
+
+        </com.hjq.shape.layout.ShapeRelativeLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             linearAdapter="@{vm.appDetailAdapter}"
             cannotScrollVertically="@{false}"
@@ -75,16 +127,18 @@
                 android:layout_alignParentRight="true"
                 android:src="@mipmap/ic_safety"
 
-                android:layout_marginRight="@dimen/dp65"
+                android:layout_marginRight="@dimen/dp64"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/sp15"
-                android:textColor="@color/c_666666"
-                android:text="Safety"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp15"
+                android:text="Safety"
+                android:textColor="@color/c_666666"
+                android:textSize="@dimen/sp15"
+                android:textStyle="bold"
 
                 />
         </RelativeLayout>
@@ -99,9 +153,10 @@
 
             <ImageView
                 android:id="@+id/ic_star"
-                android:layout_width="@dimen/dp20"
-                android:layout_height="@dimen/dp20"
-                android:src="@mipmap/ic_star"
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:src="@mipmap/ic_download"
+                android:layout_marginLeft="@dimen/dp2"
                 />
             <TextView
                 android:id="@+id/review_number"
@@ -109,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp15"
                 android:textColor="@color/white"
-                android:text="4.9k"
+                android:text="@{vm.app_download_count}"
                 android:textStyle="bold"
                 android:layout_toRightOf="@+id/ic_star"
                 android:layout_marginLeft="@dimen/dp5"
@@ -121,27 +176,30 @@
                 android:textSize="@dimen/sp15"
                 android:textStyle="bold"
                 android:textColor="@color/c_666666"
-                android:text="(Reviews)"
+                android:text="@{vm.app_download_count}"
                 android:layout_toRightOf="@+id/review_number"
                 android:layout_marginLeft="@dimen/dp5"
+                android:visibility="gone"
                 />
 
             <ImageView
-                android:layout_width="@dimen/dp20"
-                android:layout_height="@dimen/dp20"
-                android:src="@mipmap/ic_leaf"
+                android:layout_width="@dimen/dp18"
+                android:layout_height="@dimen/dp18"
+                android:src="@mipmap/ic_websites"
 
                 android:layout_toLeftOf="@+id/right_title"
+                android:layout_marginRight="@dimen/dp5"
                 />
             <TextView
                 android:id="@+id/right_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/sp15"
+                android:textStyle="bold"
                 android:textColor="@color/c_666666"
                 android:text="@string/str_web"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp18"
                 android:drawableRight="@mipmap/ic_into1"
                 android:onClick="@{()->click.GoWebsites()}"
                 />
@@ -270,11 +328,12 @@
                 android:clickable="true"
                 android:drawableLeft="@mipmap/ic_star"
                 android:paddingLeft="@dimen/dp25"
+                android:visibility="gone"
                 />
 
 
             <com.hjq.shape.view.ShapeButton
-                android:layout_width="@dimen/dp170"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/dp45"
                 android:text="Download"
                 app:shape_solidColor="@color/c_f6a50c"
@@ -285,7 +344,7 @@
                 android:textColor="@color/white"
                 app:shape_solidPressedColor="@color/c_a0a0ab"
                 android:clickable="true"
-                android:onClick="@{()->click.DownloadApk()}"
+                android:onClick="@{()->click.RequestDownload()}"
                 android:layout_marginBottom="@dimen/dp15"
                 />
 

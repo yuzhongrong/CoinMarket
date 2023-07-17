@@ -17,6 +17,7 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Query;
 
 public interface ApiService {
@@ -48,5 +49,9 @@ public interface ApiService {
 
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListRecentPublish(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
+
+
+    @PUT("/mst/updateAppinfo")
+    Single<CommonResponse> updateAppinfo(@Body RequestBody requestBody);
 
 }

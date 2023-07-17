@@ -12,8 +12,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
@@ -24,6 +22,8 @@ import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.utils.StringUtils
 import com.zksg.kudoud.utils.TpWalletUtils
+import gdut.bsx.share2.Share2
+import gdut.bsx.share2.ShareContentType
 
 
 class MeFragment : BaseFragment() {
@@ -107,6 +107,16 @@ class MeFragment : BaseFragment() {
 
         fun skip2UploadPage() {
             startActivity(Intent(activity, AppUploadActivity::class.java))
+        }
+
+        fun share() {
+            var file_url="http://43.134.110.40:8888/down/EvlCiNccxaSc.apk"
+            Share2.Builder(activity)
+                .setContentType(ShareContentType.TEXT) // 设置要分享的文本内容
+                .setTextContent(file_url)
+                .setTitle("MetaStore Share")
+                .build()
+                .shareBySystem()
         }
 
         fun loginTpWallet() {
