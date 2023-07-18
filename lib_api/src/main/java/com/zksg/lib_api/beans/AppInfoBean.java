@@ -3,6 +3,10 @@ package com.zksg.lib_api.beans;
 import java.io.Serializable;
 
 public class AppInfoBean implements Serializable {
+    private String CreatedAt;
+
+
+
     private int ID;
     private String app_file="";
     private String app_name="";
@@ -174,5 +178,12 @@ public class AppInfoBean implements Serializable {
 
     public void setApp_package_name(String app_package_name) {
         this.app_package_name = app_package_name;
+    }
+    public String getCreatedAt() {
+        return CreatedAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        CreatedAt = createdAt;
     }
 }

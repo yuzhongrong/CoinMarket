@@ -161,7 +161,8 @@
 
     <string name="str_item_entertainment">games and other..</string>
     <string name="str_item_vpn">vpn and other..</string>
-    <string name="str_go_metastore">Please go MetaStore Download Telegram</string>
+    <string name="str_go_metastore">Please  Download Telegram!!</string>
+    <string name="str_go_twitter">Please  Download Twitter!!</string>
     <string name="str_publish_success">Publish Success!</string>
     <string name="str_publish_fail">Publish Fail!</string>
     <string name="str_category_wallets">Wallets</string>

@@ -2,6 +2,8 @@ package com.zksg.kudoud.activitys
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ResolveInfo
 import android.net.Uri
 import android.os.Bundle
 import com.blankj.utilcode.util.ActivityUtils
@@ -82,6 +84,9 @@ class AppDetailActivity : BaseDialogActivity() {
         mAppDetailActivityViewModel?.app_offcail?.set(appinfo?.app_offical)
         var number=StringUtils.num2thousand(appinfo?.app_download_count!!.toString())
         mAppDetailActivityViewModel?.app_download_count?.set(number)
+        mAppDetailActivityViewModel?.app_telegram?.set(appinfo?.app_tg)
+        mAppDetailActivityViewModel?.app_twitter?.set(appinfo?.app_twitter)
+
     }
 
 
@@ -127,6 +132,42 @@ class AppDetailActivity : BaseDialogActivity() {
 
         fun finishself(){
             ActivityUtils.finishActivity(this@AppDetailActivity,true)
+        }
+
+
+        fun GoTwitter(){
+
+            val twitterChannelLink = appinfo?.app_twitter// 将 ChannelName 替换为实际的 Twitter 频道名称或链接
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(twitterChannelLink))
+            intent.setPackage("com.twitter.android") // 使用 Twitter 应用的包名
+            // 检查设备是否安装了Telegram应用程序
+            val packageManager: PackageManager = this@AppDetailActivity?.packageManager!!
+            val activities: List<ResolveInfo> = packageManager.queryIntentActivities(intent, 0)
+            val isInstalled = !activities.isEmpty()
+            if(isInstalled){
+                startActivity(intent)
+            }else{
+                ToastUtils.showShort(getString(R.string.str_go_twitter))
+            }
+
+        }
+
+        fun GoTelegram(){
+
+            val groupLink = appinfo?.app_tg // 将MetaStore1替换为实际的群链接
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(groupLink))
+//            intent.setPackage("org.telegram.messenger") // 使用Telegram的包名
+            intent.setPackage("org.telegram.messenger.web")//新包名
+            // 检查设备是否安装了Telegram应用程序
+            val packageManager: PackageManager = this@AppDetailActivity?.packageManager!!
+            val activities: List<ResolveInfo> = packageManager.queryIntentActivities(intent, 0)
+            val isTelegramInstalled = !activities.isEmpty()
+            if (isTelegramInstalled) {
+                startActivity(intent)
+            } else {
+                // 在这里可以添加处理设备未安装Telegram的逻辑，例如提示用户下载Telegram应用程序
+                ToastUtils.showShort(getString(R.string.str_go_metastore))
+            }
         }
 
     }

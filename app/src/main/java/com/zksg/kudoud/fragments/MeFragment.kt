@@ -158,7 +158,17 @@ class MeFragment : BaseFragment() {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(twitterChannelLink))
             intent.setPackage("com.twitter.android") // 使用 Twitter 应用的包名
 
-            startActivity(intent)
+            // 检查设备是否安装了Telegram应用程序
+            val packageManager: PackageManager = context?.packageManager!!
+            val activities: List<ResolveInfo> = packageManager.queryIntentActivities(intent, 0)
+            val isInstalled = !activities.isEmpty()
+            if(isInstalled){
+                startActivity(intent)
+            }else{
+                ToastUtils.showShort(getString(R.string.str_go_twitter))
+            }
+
+
         }
 
         fun CopyAccount(content:String){

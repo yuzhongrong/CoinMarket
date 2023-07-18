@@ -63,6 +63,19 @@ public class CommonBindingAdapter {
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
+    @BindingAdapter(value = {"visibleforstr"}, requireAll = false)
+    public static void visible(View view, String str) {
+        if(TextUtils.isEmpty(str)){
+
+            view.setVisibility(View.GONE);
+        }else{
+            view.setVisibility(View.VISIBLE);
+        }
+
+
+    }
+
+
     @BindingAdapter(value = {"loadimage"}, requireAll = false)
     public static void loadImage(ImageView view,String ipfsurl) {
         Log.d("---loadimagexxx---->","xxx");

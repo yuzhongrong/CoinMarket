@@ -279,18 +279,47 @@
 
 
         </com.hjq.shape.layout.ShapeRelativeLayout>
-
-         <TextView
-             android:layout_width="wrap_content"
+         <LinearLayout
+             android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="@string/str_overrview"
-             android:textColor="@color/white"
-             android:padding="@dimen/dp5"
-             android:textSize="@dimen/sp20"
-             android:textStyle="bold"
+             android:orientation="horizontal"
+             android:gravity="center_vertical"
              android:layout_marginTop="@dimen/dp5"
-             android:layout_marginLeft="@dimen/dp15"
-             />
+             >
+
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/str_overrview"
+                 android:textColor="@color/white"
+                 android:padding="@dimen/dp5"
+                 android:textSize="@dimen/sp20"
+                 android:textStyle="bold"
+                 android:layout_marginLeft="@dimen/dp15"
+                 />
+
+             <com.hjq.shape.view.ShapeImageView
+                 android:layout_width="@dimen/dp25"
+                 android:layout_height="@dimen/dp25"
+                 android:src="@mipmap/ic_telegram"
+                 android:layout_marginLeft="@dimen/dp45"
+                 android:onClick="@{()->click.GoTelegram()}"
+                 visibleforstr="@{vm.app_telegram}"
+                 />
+
+             <com.hjq.shape.view.ShapeImageView
+                 android:layout_width="@dimen/dp25"
+                 android:layout_height="@dimen/dp25"
+                 android:src="@mipmap/ic_tt"
+                 android:layout_marginLeft="@dimen/dp45"
+                 android:onClick="@{()->click.GoTwitter()}"
+                 visibleforstr="@{vm.app_twitter}"
+                 />
+
+
+
+         </LinearLayout>
+
          <com.borjabravo.readmoretextview.ReadMoreTextView
              android:id="@+id/readMoreTextView"
              android:layout_width="match_parent"
