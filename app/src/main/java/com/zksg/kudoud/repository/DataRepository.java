@@ -27,6 +27,7 @@ import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.CommonResponse;
 import com.zksg.lib_api.beans.DataResponse;
+import com.zksg.lib_api.beans.NotifyBean;
 import com.zksg.lib_api.beans.ResponsPublishApk;
 import com.zksg.lib_api.login.LoginBean;
 
@@ -287,6 +288,29 @@ public class DataRepository {
                            }
 
                 );
+    }
+
+
+
+    //get all  notify list
+    public void getNotifyList(int page,int pageSize,DataResult.Result<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> result){
+        ApiEngine.getInstance().getApiService().getNotifyList(page,pageSize)
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<NotifyBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<NotifyBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
     }
 
 

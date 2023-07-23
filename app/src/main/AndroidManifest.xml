@@ -106,6 +106,13 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".activitys.NotifyActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+
+
         <activity android:name=".activitys.SearchDeviceIngActivity"
             android:screenOrientation="portrait" />
 

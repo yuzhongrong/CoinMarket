@@ -8,9 +8,9 @@
             name="vm"
             type="com.zksg.kudoud.state.HomeFragmentViewModel" />
 
-        <!--        <variable-->
-        <!--            name="click"-->
-        <!--            type="" />-->
+        <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.HomeFragment.ClickProxy" />
 
     </data>
     <LinearLayout
@@ -76,6 +76,7 @@
                     app:shape_solidColor="@color/whitesmoke"
                     app:shape_radius="@dimen/dp45"
                     android:padding="@dimen/dp3"
+                    android:onClick="@{()->click.startNotify()}"
                     />
 
             </com.hjq.shape.layout.ShapeRelativeLayout>

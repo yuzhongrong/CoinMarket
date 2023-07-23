@@ -7,6 +7,7 @@ import static com.netease.lib_network.constants.config.server_port;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.CommonResponse;
 import com.zksg.lib_api.beans.DataResponse;
+import com.zksg.lib_api.beans.NotifyBean;
 import com.zksg.lib_api.beans.ResponsPublishApk;
 import com.zksg.lib_api.login.LoginBean;
 
@@ -53,5 +54,9 @@ public interface ApiService {
 
     @PUT("/mst/updateAppinfo")
     Single<CommonResponse> updateAppinfo(@Body RequestBody requestBody);
+
+    @GET("/mstnotify/getMstnotifyList")
+    Single<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> getNotifyList(@Query("page") int page, @Query("pageSize") int pageSize);
+
 
 }

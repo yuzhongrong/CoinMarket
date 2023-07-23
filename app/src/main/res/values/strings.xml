@@ -186,6 +186,7 @@
     <string name="str_copy_tip">" Copied!"</string>
     <string name="str_share">Share</string>
     <string name="str_detail">Detail</string>
+    <string name="str_notify">Notify</string>
     <string name="str_download_request_fail">Download Request Fail!!</string>
 
 

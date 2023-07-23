@@ -5,8 +5,6 @@ import java.io.Serializable;
 public class AppInfoBean implements Serializable {
     private String CreatedAt;
 
-
-
     private int ID;
     private String app_file="";
     private String app_name="";

@@ -1,11 +1,13 @@
 package com.zksg.kudoud.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
+import com.zksg.kudoud.activitys.NotifyActivity
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.state.HomeFragmentViewModel
@@ -21,6 +23,7 @@ class HomeFragment:BaseDialogFragment(){
 
     override fun getDataBindingConfig(): DataBindingConfig {
        return DataBindingConfig(R.layout.fragment_home,BR.vm,homeViewModel!!)
+           .addBindingParam(BR.click,ClickProxy()!!)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,8 +80,17 @@ class HomeFragment:BaseDialogFragment(){
 
 
 
+    inner class ClickProxy {
+
+        fun startNotify(){
+            startActivity(Intent(activity,NotifyActivity::class.java))
+        }
 
 
     }
+
+
+
+}
 
 
