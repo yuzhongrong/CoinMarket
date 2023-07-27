@@ -89,6 +89,43 @@
                 bannerPic="@{vm.banner_datas}"
             />
 
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/sp15"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp15"
+                    android:src="@mipmap/ic_notify"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <com.zksg.kudoud.widgets.MarqueeTextView
+                    android:id="@+id/tv_marquee"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:ellipsize="marquee"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:scrollHorizontally="true"
+                    android:singleLine="true"
+
+                    android:text="我们的产品发布了，欢迎来到metastore,这里有你想下载的一切"
+                    android:textColor="@color/white"
+
+
+                    />
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -10,6 +10,7 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.NotifyActivity
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
+import com.zksg.kudoud.databinding.FragmentHomeBinding
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.lib_api.beans.HomeItem
 
@@ -28,13 +29,12 @@ class HomeFragment:BaseDialogFragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-         initData()
-
+        initData()
     }
 
+
+
     fun  initData(){
-
-
         homeViewModel?.mPublishApks?.observe(this){
             Log.d("----mPublishApks-->",it?.size.toString())
            var dapter= homeViewModel?.todayHealthAdapter?.get() as HomeRecentAdapter

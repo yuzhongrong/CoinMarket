@@ -46,8 +46,8 @@
             >
 
             <com.hjq.shape.view.ShapeImageView
-                android:layout_width="@dimen/dp10"
-                android:layout_height="@dimen/dp10"
+                android:layout_width="@dimen/dp6"
+                android:layout_height="@dimen/dp6"
                 app:shape_solidColor="@color/c_f6a50c"
                 app:shape_radius="@dimen/dp45"
                 android:layout_gravity="center_vertical"

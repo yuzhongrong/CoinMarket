@@ -55,7 +55,7 @@ public interface ApiService {
     @PUT("/mst/updateAppinfo")
     Single<CommonResponse> updateAppinfo(@Body RequestBody requestBody);
 
-    @GET("/mstnotify/getMstnotifyList")
+    @GET("/notify/getNotifyList")
     Single<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> getNotifyList(@Query("page") int page, @Query("pageSize") int pageSize);
 
 

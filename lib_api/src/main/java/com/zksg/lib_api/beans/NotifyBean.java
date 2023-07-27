@@ -6,6 +6,24 @@ public class NotifyBean {
 //    private String time="";
     private String CreatedAt;
 
+    private String content;
+
+    public String getCreatedAt() {
+        return CreatedAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        CreatedAt = createdAt;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public NotifyBean(String title, String subtitle) {
         this.title = title;
         this.subtitle = subtitle;

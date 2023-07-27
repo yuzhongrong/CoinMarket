@@ -83,7 +83,12 @@ class NotifyActivity : BaseDialogActivity() {
         }
         mNotifyActivityViewModel?.notifResults?.observe(this){
             if(it!=null&& it.size>0){
-                adapter?.addData(it)
+                if(notifyBinding.mSmartRefreshLayout.isRefreshing){
+                    adapter?.setList(it)
+                }else{
+                    adapter?.addData(it)
+                }
+
             }
 
 

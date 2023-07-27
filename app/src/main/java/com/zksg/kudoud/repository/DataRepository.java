@@ -296,7 +296,7 @@ public class DataRepository {
     public void getNotifyList(int page,int pageSize,DataResult.Result<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> result){
         ApiEngine.getInstance().getApiService().getNotifyList(page,pageSize)
                 .compose(ApiEngine.getInstance().applySchedulers())
-                .delay(3, TimeUnit.SECONDS)
+//                .delay(2, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<NotifyBean>>>>() {
                     @Override
                     protected void onSuccessed(CommonResponse<DataResponse<ArrayList<NotifyBean>>> bean) {
