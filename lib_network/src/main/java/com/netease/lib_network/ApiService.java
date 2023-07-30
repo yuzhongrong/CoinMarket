@@ -48,6 +48,10 @@ public interface ApiService {
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListRanking(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
 
+    @GET("/notify/getNotifyList")
+    Single<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> getLastNotify(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
+
+
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListRecentPublish(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
 
@@ -56,7 +60,7 @@ public interface ApiService {
     Single<CommonResponse> updateAppinfo(@Body RequestBody requestBody);
 
     @GET("/notify/getNotifyList")
-    Single<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> getNotifyList(@Query("page") int page, @Query("pageSize") int pageSize);
+    Single<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> getNotifyList(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
 
 
 }

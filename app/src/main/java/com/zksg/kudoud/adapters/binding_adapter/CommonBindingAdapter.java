@@ -26,6 +26,8 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -76,6 +78,22 @@ public class CommonBindingAdapter {
             view.setVisibility(View.VISIBLE);
         }
 
+
+    }
+
+
+    @BindingAdapter(value = {"webviewload"}, requireAll = false)
+    public static void webload(WebView webView, String url) {
+        if(webView==null||TextUtils.isEmpty(url))return;
+        webView.getSettings().setJavaScriptEnabled(true);// Enable JavaScript in WebView (optional)
+        // Set a WebViewClient to handle the webpage navigation within the WebView
+
+        // Set a WebViewClient to handle the webpage navigation within the WebView
+        webView.setWebViewClient(new WebViewClient());
+        // Load the webpage
+
+        // Load the webpage
+        webView.loadUrl(url);
 
     }
 

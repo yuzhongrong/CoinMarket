@@ -10,6 +10,7 @@ import com.kunminx.architecture.domain.message.MutableResult
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.lib_api.beans.AppInfoBean
+import com.zksg.lib_api.beans.NotifyBean
 import com.zksg.lib_api.beans.ResponsPublishApk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -29,6 +30,7 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 
     /*----------------------Respons result----------------------------*/
     val mPublishApks = MutableResult<List<AppInfoBean>>()
+    val mLastNotify = MutableResult<List<NotifyBean>>()
     val mHotApks = MutableResult<List<AppInfoBean>>()
     init {
         banner_datas.set(
@@ -79,6 +81,10 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
                   if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
               }
 
+              DataRepository.getInstance().getLastNoticeForOrder(1,1,"created_at","descending"){
+                  if(it.responseStatus.isSuccess) mLastNotify.postValue(it.result.data.list)
+              }
+
               DataRepository.getInstance().getAppinfoList(1,50,1000){
                   if(it.responseStatus.isSuccess){
                       mHotApks.postValue(it.result.data.list)
@@ -90,6 +96,8 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
         }
 
     }
+
+
 
 
 

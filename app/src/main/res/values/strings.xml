@@ -188,6 +188,8 @@
     <string name="str_detail">Detail</string>
     <string name="str_notify">Notify</string>
     <string name="str_download_request_fail">Download Request Fail!!</string>
+    <string name="str_notice">MetaStore New Notice</string>
+    <string name="str_mst_tm">MetaStore Team</string>
 
 
 </resources>

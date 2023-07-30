@@ -268,6 +268,28 @@ public class DataRepository {
     }
 
 
+
+    public void getLastNoticeForOrder(int page,int pageSize,String sort,String order,DataResult.Result<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> result){
+        ApiEngine.getInstance().getApiService().getLastNotify(page,pageSize,sort,order)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<NotifyBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<NotifyBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
     public void updateAppinfo(AppInfoBean apkinfo, DataResult.Result<CommonResponse> result){
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"), new Gson().toJson(apkinfo));
         ApiEngine.getInstance().getApiService().updateAppinfo(requestBody)
@@ -293,8 +315,8 @@ public class DataRepository {
 
 
     //get all  notify list
-    public void getNotifyList(int page,int pageSize,DataResult.Result<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> result){
-        ApiEngine.getInstance().getApiService().getNotifyList(page,pageSize)
+    public void getNotifyList(int page,int pageSize,String sort,String order,DataResult.Result<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> result){
+        ApiEngine.getInstance().getApiService().getNotifyList(page,pageSize, sort, order)
                 .compose(ApiEngine.getInstance().applySchedulers())
 //                .delay(2, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<NotifyBean>>>>() {

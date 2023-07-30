@@ -118,7 +118,7 @@
                     android:scrollHorizontally="true"
                     android:singleLine="true"
 
-                    android:text="我们的产品发布了，欢迎来到metastore,这里有你想下载的一切"
+                    android:text="@{vm.MLastNotify.get(0).title}"
                     android:textColor="@color/white"
 
 

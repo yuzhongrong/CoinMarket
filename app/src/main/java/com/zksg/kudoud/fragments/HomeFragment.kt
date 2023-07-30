@@ -55,6 +55,7 @@ class HomeFragment:BaseDialogFragment(){
 
 
 
+
         homeViewModel?.todayHealthAdapter?.set(
             HomeRecentAdapter(R.layout.item_today_health,null)
         )

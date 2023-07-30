@@ -24,34 +24,10 @@ import kotlinx.coroutines.withContext
 /**
  * //TODO tip 5：此处我们使用 "去除防抖特性" 的 ObservableField 子类 State，用以代替 MutableLiveData，
  */
-class NotifyActivityViewModel : BaseLoadingViewModel() {
+class WebViewActivityModel : BaseLoadingViewModel() {
 
-    @JvmField
-    var coininstallAdapter = ObservableField<BaseQuickAdapter<*, *>>()
-    var notifResults= MutableResult<List<NotifyBean>>()
-    var refreshOrload=MutableResult<Boolean>()
-
-    fun getNotifyList(page:Int){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-//                loadingVisible.postValue(true)
-                DataRepository.getInstance().getNotifyList(page,50,"created_at","descending"){
-//                    loadingVisible.postValue(false)
-                    if(it.responseStatus.isSuccess){
-                        notifResults.postValue(it.result.data.list)
-                    }
-                    refreshOrload.postValue(false)
-
-                }
-
-            }
-        }
-
-
-
-    }
-
-
-
+    var content=ObservableField<String>()
+    var title=ObservableField<String>()
+    var time=ObservableField<String>()
 
 }

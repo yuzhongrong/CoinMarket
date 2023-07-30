@@ -89,6 +89,12 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".activitys.WebviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+
         <activity android:name=".activitys.SeatchActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -131,10 +137,10 @@
             android:exported="false"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".activitys.TestMetamaskActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            />
+<!--        <activity android:name=".activitys.TestMetamaskActivity"-->
+<!--            android:exported="false"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            />-->
 
         <activity android:name=".activitys.AppUploadActivity"
             android:exported="false"
