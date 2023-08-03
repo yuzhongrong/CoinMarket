@@ -40,10 +40,8 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp246"
+        android:layout_height="@dimen/dp300"
         >
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
