@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
+import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.Utils
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lxj.xpopup.XPopup
@@ -20,6 +21,7 @@ import com.zksg.kudoud.dialogs.CategorySelectDialog
 import com.zksg.kudoud.dialogs.UpgradeVersionDialog
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.lib_api.beans.BannerBean
+import com.zksg.lib_api.beans.UpgradeBean
 
 
 class HomeFragment:BaseDialogFragment(){
@@ -91,6 +93,17 @@ class HomeFragment:BaseDialogFragment(){
             if(it) showDialog() else dismissDialog()
         }
 
+        homeViewModel?.mUpgradeBean?.observe(this){
+            if(it!=null){
+               var versionName= AppUtils.getAppVersionCode()
+                var remoteVersionName=it.versioncode
+                if(remoteVersionName> versionName){
+                    showUpgradeTip(it)
+                }
+
+            }
+        }
+
 
 
 
@@ -117,17 +130,17 @@ class HomeFragment:BaseDialogFragment(){
 //        homeViewModel?.getCwApps(1,50,1000)
         homeViewModel?.getHomeDatas()
 
-        showUpgradeTip()
+
 
     }
 
 
-    fun showUpgradeTip(){
+    fun showUpgradeTip(info:UpgradeBean?){
 
         XPopup.Builder(requireActivity())
             .dismissOnTouchOutside(false)
             .dismissOnBackPressed(false)
-            .asCustom(UpgradeVersionDialog(requireActivity()))
+            .asCustom(UpgradeVersionDialog(requireActivity(),info!!))
             .show()
 
     }
@@ -139,6 +152,7 @@ class HomeFragment:BaseDialogFragment(){
         fun startNotify(){
             startActivity(Intent(activity,NotifyActivity::class.java))
         }
+
 
 
     }

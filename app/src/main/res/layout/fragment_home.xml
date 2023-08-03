@@ -120,6 +120,7 @@
 
                     android:text="@{vm.MLastNotify.get(0).title}"
                     android:textColor="@color/white"
+                    android:onClick="@{()->click.startNotify()}"
 
 
                     />

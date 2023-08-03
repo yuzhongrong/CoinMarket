@@ -15,21 +15,26 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.CategoryAdapter_V
 import com.zksg.kudoud.state.AppUploadActivityViewModel
 import com.zksg.lib_api.beans.HomeItem
+import com.zksg.lib_api.beans.UpgradeBean
 
-class UpgradeVersionDialog(context: Activity) : CenterPopupView(context) {
+class UpgradeVersionDialog(context: Activity,info:UpgradeBean) : CenterPopupView(context) {
 
     private var mcontext=context
+    private var minfo=info;
 
     override fun onCreate() {
         super.onCreate()
+
+        var tv_content=findViewById<TextView>(R.id.tv_content)
+       var versionName=findViewById<TextView>(R.id.versionName)
         var bt_iknow=findViewById<TextView>(R.id.bt_iknow)
         var bt_upgrade=findViewById<TextView>(R.id.bt_upgrade)
         bt_iknow.setOnClickListener { this.delayDismiss(500) }
         bt_upgrade.setOnClickListener {
 
             val manager = DownloadManager.Builder(mcontext).run {
-                apkUrl("http://43.134.110.40:8888/down/EvlCiNccxaSc.apk")
-                apkName("MetaStore.apk")
+                apkUrl(minfo.downloadurl)
+                apkName(mcontext.getString(R.string.app_name)+".apk")
                 smallIcon(R.mipmap.app_logo)
                 //省略一些非必须参数...
                 build()
@@ -37,6 +42,8 @@ class UpgradeVersionDialog(context: Activity) : CenterPopupView(context) {
             manager?.download()
             this.delayDismiss(500)
         }
+        versionName.text="V"+minfo.versionname
+        tv_content.text=minfo.content
 
     }
 

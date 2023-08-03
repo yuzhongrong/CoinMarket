@@ -10,6 +10,7 @@ import com.zksg.lib_api.beans.CommonResponse;
 import com.zksg.lib_api.beans.DataResponse;
 import com.zksg.lib_api.beans.NotifyBean;
 import com.zksg.lib_api.beans.ResponsPublishApk;
+import com.zksg.lib_api.beans.UpgradeBean;
 import com.zksg.lib_api.login.LoginBean;
 
 import java.util.ArrayList;
@@ -69,5 +70,6 @@ public interface ApiService {
     @GET("/banner/getBannerList")
     Single<CommonResponse<DataResponse<ArrayList<BannerBean>>>> getBannerList();
 
-
+    @GET("/upgrade/findUpgrade")
+    Single<CommonResponse<UpgradeBean>> getUpgradeInfo();
 }

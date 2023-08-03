@@ -40,7 +40,7 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp346"
+        android:layout_height="@dimen/dp246"
         >
 
 
@@ -50,21 +50,21 @@
             android:orientation="vertical"
             >
             <TextView
+                android:id="@+id/versionName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="V2.1.0"
+                android:text="----"
                 android:textColor="@color/c_f6a50c"
                 android:textSize="@dimen/sp24"
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 />
     <TextView
-        android:id="@+id/tv_iknow"
+        android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="@dimen/dp15"
-        android:text="1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug  1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug"
         android:padding="@dimen/dp15"
         android:textColor="@color/white"
 

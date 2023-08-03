@@ -9,6 +9,7 @@ import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.lib_api.beans.AppInfoBean
 import com.zksg.lib_api.beans.BannerBean
 import com.zksg.lib_api.beans.NotifyBean
+import com.zksg.lib_api.beans.UpgradeBean
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -26,6 +27,8 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
     val mPublishApks = MutableResult<List<AppInfoBean>>()
     val mBannerClickAppinfo=MutableResult<List<AppInfoBean>>()
     val mLastNotify = MutableResult<List<NotifyBean>>()
+
+    val mUpgradeBean = MutableResult<UpgradeBean>()
     val mHotApks = MutableResult<List<AppInfoBean>>()
 //    init {
 //        banner_datas.set(
@@ -88,6 +91,11 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
                       mHotApks.postValue(it.result.data.list)
                       loadingVisible.postValue(false) }
                   }
+
+
+              DataRepository.getInstance().getUpgradeInfo{
+                  if(it.responseStatus.isSuccess) mUpgradeBean.postValue(it.result.data)
+              }
 
             }
 

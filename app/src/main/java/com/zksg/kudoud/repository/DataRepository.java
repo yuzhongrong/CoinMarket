@@ -30,6 +30,7 @@ import com.zksg.lib_api.beans.CommonResponse;
 import com.zksg.lib_api.beans.DataResponse;
 import com.zksg.lib_api.beans.NotifyBean;
 import com.zksg.lib_api.beans.ResponsPublishApk;
+import com.zksg.lib_api.beans.UpgradeBean;
 import com.zksg.lib_api.login.LoginBean;
 
 import java.util.ArrayList;
@@ -378,6 +379,27 @@ public class DataRepository {
                 });
     }
 
+
+
+    public void getUpgradeInfo(DataResult.Result<CommonResponse<UpgradeBean>> result){
+        ApiEngine.getInstance().getApiService().getUpgradeInfo()
+                .compose(ApiEngine.getInstance().applySchedulers())
+//                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<UpgradeBean>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<UpgradeBean> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
 
 
 }
