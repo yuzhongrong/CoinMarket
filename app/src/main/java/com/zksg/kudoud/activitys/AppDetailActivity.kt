@@ -44,9 +44,8 @@ class AppDetailActivity : BaseDialogActivity() {
     }
 
     private fun initData() {
+
         appinfo=intent.getSerializableExtra("appinfo") as AppInfoBean
-
-
         //star init ui
         val array = Gson().fromJson(appinfo?.app_screen_4, Array<String>::class.java)
         var screenList= array.toList()

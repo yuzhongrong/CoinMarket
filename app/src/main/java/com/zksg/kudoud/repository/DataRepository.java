@@ -25,6 +25,7 @@ import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
+import com.zksg.lib_api.beans.BannerBean;
 import com.zksg.lib_api.beans.CommonResponse;
 import com.zksg.lib_api.beans.DataResponse;
 import com.zksg.lib_api.beans.NotifyBean;
@@ -223,6 +224,27 @@ public class DataRepository {
     }
 
 
+    public void getAppinfoOneSearch(int page,int pageSize,String app_file,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
+        ApiEngine.getInstance().getApiService().getAppinfoOneSearch(page,pageSize,app_file)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
 
     public void getAppinfoListSearchDelay(int page,int pageSize,String app_name,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
         ApiEngine.getInstance().getApiService().getAppinfoListSearch(page,pageSize,app_name)
@@ -322,6 +344,27 @@ public class DataRepository {
                 .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<NotifyBean>>>>() {
                     @Override
                     protected void onSuccessed(CommonResponse<DataResponse<ArrayList<NotifyBean>>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
+    public void getBannerList(DataResult.Result<CommonResponse<DataResponse<ArrayList<BannerBean>>>> result){
+        ApiEngine.getInstance().getApiService().getBannerList()
+                .compose(ApiEngine.getInstance().applySchedulers())
+//                .delay(3, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<BannerBean>>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<BannerBean>>> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));

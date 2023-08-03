@@ -5,6 +5,7 @@ import static com.netease.lib_network.constants.config.host;
 import static com.netease.lib_network.constants.config.server_port;
 
 import com.zksg.lib_api.beans.AppInfoBean;
+import com.zksg.lib_api.beans.BannerBean;
 import com.zksg.lib_api.beans.CommonResponse;
 import com.zksg.lib_api.beans.DataResponse;
 import com.zksg.lib_api.beans.NotifyBean;
@@ -44,6 +45,9 @@ public interface ApiService {
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListSearch(@Query("page") int page, @Query("pageSize") int pageSize,@Query("app_name") String app_name);
 
+    @GET("/mst/getAppinfoList")
+    Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoOneSearch(@Query("page") int page, @Query("pageSize") int pageSize,@Query("app_file") String app_file);
+
 
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListRanking(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
@@ -61,6 +65,9 @@ public interface ApiService {
 
     @GET("/notify/getNotifyList")
     Single<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> getNotifyList(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
+
+    @GET("/banner/getBannerList")
+    Single<CommonResponse<DataResponse<ArrayList<BannerBean>>>> getBannerList();
 
 
 }

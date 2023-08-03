@@ -1,23 +1,17 @@
 package com.zksg.kudoud.state
 
-import android.util.Log
 import androidx.databinding.ObservableField
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.kunminx.architecture.data.response.DataResult
 import com.kunminx.architecture.domain.message.MutableResult
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.lib_api.beans.AppInfoBean
+import com.zksg.lib_api.beans.BannerBean
 import com.zksg.lib_api.beans.NotifyBean
-import com.zksg.lib_api.beans.ResponsPublishApk
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.*
-import kotlin.collections.ArrayList
 
 class HomeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
@@ -26,29 +20,29 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
     var coininstallAdapter = ObservableField<BaseQuickAdapter<*, *>>()
     @JvmField
-    var banner_datas = ObservableField<List<String>>()
+    var banner_datas = MutableResult<List<BannerBean>>()
 
     /*----------------------Respons result----------------------------*/
     val mPublishApks = MutableResult<List<AppInfoBean>>()
+    val mBannerClickAppinfo=MutableResult<List<AppInfoBean>>()
     val mLastNotify = MutableResult<List<NotifyBean>>()
     val mHotApks = MutableResult<List<AppInfoBean>>()
-    init {
-        banner_datas.set(
-            Arrays.asList(
-                "ipfs://QmWbWstc8WaGTwBzzGh2McZ9aFQCJVBRYuVY64kY219yYm",
-                "ipfs://QmNQw9c78T9gSodZm8JkwD5qAq6Sksr3ZK6M9SNpbGqBvb"
-            )
-        )
-    }
+//    init {
+//        banner_datas.set(
+//            Arrays.asList(
+//                "ipfs://QmWbWstc8WaGTwBzzGh2McZ9aFQCJVBRYuVY64kY219yYm",
+//                "ipfs://QmNQw9c78T9gSodZm8JkwD5qAq6Sksr3ZK6M9SNpbGqBvb"
+//            )
+//        )
+//    }
 
-    fun getRecentPublishApp(page:Int,pageSize:Int){
+    fun getOnePublishApp(app_file:String){
         viewModelScope.launch {
-
             withContext(Dispatchers.IO){
                 loadingVisible.postValue(true)
-                DataRepository.getInstance().getAppinfoList(page,pageSize){
+                DataRepository.getInstance().getAppinfoOneSearch(1,1,app_file){
 
-                  if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
+                  if(it.responseStatus.isSuccess) mBannerClickAppinfo.postValue(it.result.data.list)
 
                 }
                 loadingVisible.postValue(false)
@@ -76,6 +70,10 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 
           withContext(Dispatchers.IO){
               loadingVisible.postValue(true)
+
+              DataRepository.getInstance().getBannerList(){
+                  if(it.responseStatus.isSuccess) banner_datas.postValue(it.result.data.list)
+              }
 
               DataRepository.getInstance().getAppinfoListForOrder(1,50,"created_at","descending"){
                   if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)

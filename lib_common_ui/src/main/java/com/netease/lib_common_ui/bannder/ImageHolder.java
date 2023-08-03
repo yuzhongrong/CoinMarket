@@ -10,8 +10,9 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.netease.lib_image_loader.app.ImageLoaderManager;
+import com.zksg.lib_api.beans.BannerBean;
 
-public class ImageHolder implements Holder<String> {
+public class ImageHolder implements Holder<BannerBean> {
 
     private AppCompatImageView mImageView;
 
@@ -30,8 +31,12 @@ public class ImageHolder implements Holder<String> {
     }
 
     @Override
-    public void UpdateUI(Context context, int position, String data) {
-        Log.d("ImageHolder","----->start UpdateUI "+position+" data "+data);
-        ImageLoaderManager.getInstance().displayImageForCorner1(mImageView, data,20);
+    public void UpdateUI(Context context, int position, BannerBean data) {
+        if(data!=null&&  data.getBannerContent()!=null){
+            Log.d("ImageHolder","----->start UpdateUI "+position+" data "+data);
+            ImageLoaderManager.getInstance().displayImageForCorner1(mImageView, data.getBannerContent().getImgurl(),20);
+
+        }
+
     }
 }

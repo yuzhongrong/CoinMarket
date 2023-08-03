@@ -51,6 +51,7 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
+import com.zksg.lib_api.beans.BannerBean;
 
 import java.util.List;
 
@@ -247,16 +248,18 @@ public class CommonBindingAdapter {
     }
 
     @BindingAdapter(value = {"bannerPic", "bannerListener"}, requireAll = false)
-    public static void setDefault(ConvenientBanner<String> convenientBanner,
-                                  List<String> banners,
+    public static void setDefault(ConvenientBanner<BannerBean> convenientBanner,
+                                  List<BannerBean> banners,
                                   OnItemClickListener listener) {
-        Log.d("CommonBindingAdapter"," setDefault banners size is "+banners.size());
-        convenientBanner.setPages(new HolderCreator(), banners)
-                .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
-                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
-                .setPageTransformer(new DefaultTransformer())
-                .setOnItemClickListener(listener)
-                .setCanLoop(true);
+        if(convenientBanner!=null&&banners!=null){
+            Log.d("CommonBindingAdapter"," setDefault banners size is "+banners.size());
+            convenientBanner.setPages(new HolderCreator(), banners)
+                    .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
+                    .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
+                    .setPageTransformer(new DefaultTransformer())
+                    .setCanLoop(true);
+        }
+
     }
 
     @BindingAdapter(value = "onChooseAreaListener")
