@@ -108,4 +108,6 @@
 -keep class com.wang.avi.** { *; }
 -keep class com.wang.avi.indicators.** { *; }
 -keep class okhttp3.** { *; }
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Service
 

@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.View
 import com.blankj.utilcode.util.Utils
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.AppDetailActivity
@@ -15,6 +16,8 @@ import com.zksg.kudoud.activitys.NotifyActivity
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.databinding.FragmentHomeBinding
+import com.zksg.kudoud.dialogs.CategorySelectDialog
+import com.zksg.kudoud.dialogs.UpgradeVersionDialog
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.lib_api.beans.BannerBean
 
@@ -113,6 +116,19 @@ class HomeFragment:BaseDialogFragment(){
 //        homeViewModel?.getRecentPublishApp(1,50)
 //        homeViewModel?.getCwApps(1,50,1000)
         homeViewModel?.getHomeDatas()
+
+        showUpgradeTip()
+
+    }
+
+
+    fun showUpgradeTip(){
+
+        XPopup.Builder(requireActivity())
+            .dismissOnTouchOutside(false)
+            .dismissOnBackPressed(false)
+            .asCustom(UpgradeVersionDialog(requireActivity()))
+            .show()
 
     }
 

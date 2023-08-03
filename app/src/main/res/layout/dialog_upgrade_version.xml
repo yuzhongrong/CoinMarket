@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:shape_solidColor="@color/c_191919"
+    app:shape_radius="@dimen/dp15"
+
+    >
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:shape_topLeftRadius="@dimen/dp15"
+        app:shape_topRightRadius="@dimen/dp15"
+        app:shape_solidColor="@color/c_191919"
+        android:padding="@dimen/dp15"
+
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_common_dialog_tip"
+            android:layout_gravity="center"
+            />
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/c_2e2e2e"
+        android:layout_above="@+id/rv_select"
+
+        />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp346"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="V2.1.0"
+                android:textColor="@color/c_f6a50c"
+                android:textSize="@dimen/sp24"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                />
+    <TextView
+        android:id="@+id/tv_iknow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/dp15"
+        android:text="1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug  1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug1.升级otc功能，全面安全币面延迟提升系统安全 \n\n2.移除部分交易兑，因为他们无作为\n\n3.添加私募页面增加私募入口\n\n4.修复已知bug"
+        android:padding="@dimen/dp15"
+        android:textColor="@color/white"
+
+        />
+</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollview"
+        android:orientation="vertical"
+        >
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/bt_upgrade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:text="@string/str_upgrade"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp16"
+        android:padding="@dimen/dp5"
+        app:shape_radius="@dimen/dp10"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp25"
+        app:shape_solidColor="@color/c_f6a50c"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        app:shape_solidPressedColor="@color/c_a0a0ab"
+        />
+
+
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/bt_iknow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:text="@string/str_i_know"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp16"
+        android:padding="@dimen/dp5"
+        app:shape_radius="@dimen/dp10"
+        app:shape_solidColor="@color/c_a0a0ab"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        app:shape_solidPressedColor="@color/c_f6a50c"
+        android:layout_marginBottom="@dimen/dp25"
+        />
+
+    </LinearLayout>
+
+
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>

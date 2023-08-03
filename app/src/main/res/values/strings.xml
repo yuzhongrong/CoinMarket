@@ -57,7 +57,7 @@
     <string name="str_device_name">设备名称</string>
     <string name="str_setting_device">设置设备</string>
     <string name="str_unbind">解绑</string>
-    <string name="str_upgrade">设备更新</string>
+    <string name="str_upgrade">Upgrade Now</string>
     <string name="str_langauage_switch">设备语言切换</string>
     <string name="str_sel_baby">选择baby</string>
     <string name="str_chinese">中文</string>
@@ -190,6 +190,8 @@
     <string name="str_download_request_fail">Download Request Fail!!</string>
     <string name="str_notice">MetaStore New Notice</string>
     <string name="str_mst_tm">MetaStore Team</string>
+    <string name="str_i_know">I Know</string>
+    <string name="app_update_background_downloading">Downloading new version in background…</string>
 
 
 </resources>
