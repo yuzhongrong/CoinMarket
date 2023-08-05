@@ -262,6 +262,8 @@ public class CommonBindingAdapter {
 
     }
 
+
+
     @BindingAdapter(value = "onChooseAreaListener")
     public static void setOnChooseListener(ArtistSortView sortView, ArtistSortView.OnChooseArtistSortListener listener) {
         sortView.setOnChooseArtistSortListener(listener);

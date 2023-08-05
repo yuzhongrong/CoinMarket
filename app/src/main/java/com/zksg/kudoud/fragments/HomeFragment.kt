@@ -22,6 +22,7 @@ import com.zksg.kudoud.dialogs.UpgradeVersionDialog
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.lib_api.beans.BannerBean
 import com.zksg.lib_api.beans.UpgradeBean
+import java.util.stream.Collectors
 
 
 class HomeFragment:BaseDialogFragment(){
@@ -80,13 +81,13 @@ class HomeFragment:BaseDialogFragment(){
         homeViewModel?.mPublishApks?.observe(this){
             Log.d("----mPublishApks-->",it?.size.toString())
            var dapter= homeViewModel?.todayHealthAdapter?.get() as HomeRecentAdapter
-            dapter.setList(it)
+            dapter.setList(it.stream().filter { !it.app_category.equals("2") }.collect(Collectors.toList()))
         }
 
         homeViewModel?.mHotApks?.observe(this){
             Log.d("----mHotApks-->",it?.size.toString())
             var dapter= homeViewModel?.coininstallAdapter?.get() as HomeCWAdapter_V
-            dapter.setList(it)
+            dapter.setList(it.stream().filter { !it.app_category.equals("2") }.collect(Collectors.toList()))
         }
         homeViewModel?.loadingVisible?.observe(this){
             Log.d("-loadingVisible-->",it.toString())

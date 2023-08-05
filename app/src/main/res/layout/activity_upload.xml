@@ -33,6 +33,12 @@
             type="com.suke.widget.SwitchButton.OnCheckedChangeListener" />
 
         <variable
+            name="checkChangePlatform"
+            type="com.suke.widget.SwitchButton.OnCheckedChangeListener" />
+
+
+
+        <variable
             name="subtitleTextWatcher"
             type="android.text.TextWatcher" />
 
@@ -407,6 +413,7 @@
 
                 <com.suke.widget.SwitchButton
                     android:id="@+id/switch_button"
+                    checkChangedListener="@{checkChange}"
                     android:layout_width="@dimen/dp40"
                     android:layout_height="@dimen/dp27"
                     android:layout_alignParentRight="true"
@@ -415,9 +422,7 @@
                     android:checked="true"
                     app:sb_button_color="@color/c_f6a50c"
                     app:sb_checked_color="@color/c_f6a50c"
-                    app:sb_show_indicator="false"
-                    checkChangedListener="@{checkChange}"
-                    />
+                    app:sb_show_indicator="false" />
 
 
 
@@ -788,6 +793,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/screen_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/str_screen_x4"
@@ -798,6 +804,23 @@
 
                     android:layout_marginLeft="@dimen/dp15"
                     />
+
+                <com.suke.widget.SwitchButton
+
+                    checkChangedListener="@{checkChangePlatform}"
+                    android:layout_width="@dimen/dp40"
+                    android:layout_height="@dimen/dp27"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_toRightOf="@+id/screen_4"
+                    android:checked="@{vm.open}"
+                    android:text="平台"
+                    app:sb_button_color="@color/c_f6a50c"
+                    app:sb_checked_color="@color/c_f6a50c"
+                    app:sb_show_indicator="false"
+                    android:layout_marginTop="@dimen/dp15"
+                    />
+
 
                 <com.hjq.shape.view.ShapeButton
                     android:layout_width="@dimen/dp60"
@@ -813,10 +836,9 @@
                     android:textSize="@dimen/sp10"
                     android:textStyle="bold"
                     app:shape_radius="@dimen/dp5"
-                    app:shape_solidColor="@color/c_f6a50c"
-                    app:shape_solidPressedColor="@color/c_a0a0ab"
 
-                    />
+                    app:shape_solidColor="@color/c_f6a50c"
+                    app:shape_solidPressedColor="@color/c_a0a0ab" />
 
             </RelativeLayout>
 

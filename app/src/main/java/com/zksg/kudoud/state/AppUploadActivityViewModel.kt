@@ -23,6 +23,9 @@ import java.util.Objects
  * //TODO tip 5：此处我们使用 "去除防抖特性" 的 ObservableField 子类 State，用以代替 MutableLiveData，
  */
 class AppUploadActivityViewModel : BaseLoadingViewModel() {
+
+    var open=State<Boolean>(false)
+
     var datas = ObservableField<List<EnvBean>>()
     @JvmField
     var mNinePicturesAdapter = ObservableField<NinePicturesAdapter>()

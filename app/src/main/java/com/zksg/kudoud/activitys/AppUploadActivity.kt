@@ -29,6 +29,8 @@ import com.zksg.kudoud.dialogs.CategorySelectDialog
 import com.zksg.kudoud.state.AppUploadActivityViewModel
 import com.zksg.kudoud.utils.MyFileUtils
 import com.zksg.kudoud.widgets.NinePicturesAdapter
+import java.util.Collections
+import java.util.stream.Collectors
 
 class AppUploadActivity : BaseDialogActivity(){
     private var mAppUploadActivityViewModel: AppUploadActivityViewModel? = null
@@ -57,6 +59,8 @@ class AppUploadActivity : BaseDialogActivity(){
             .addBindingParam(BR.officialTextWatcher, officialTextWatcher)
             .addBindingParam(BR.downloadCountTextWatcher, downloadCountTextWatcher)
             .addBindingParam(BR.checkChange, checkChange)
+            .addBindingParam(BR.checkChangePlatform, checkChangePlatform)
+
 
 
 
@@ -203,8 +207,15 @@ class AppUploadActivity : BaseDialogActivity(){
 
         fun UploadImgs(){
             mAppUploadActivityViewModel?.let {
-                var datas=it.mNinePicturesAdapter.get()?.data!!
-                if(datas.size==4)it.uploadImagesToIPFS(datas)
+                var datas=it.mNinePicturesAdapter.get()?.data!!.stream().filter {
+                    !TextUtils.isEmpty(it)
+                }.collect(Collectors.toList());
+                if(mAppUploadActivityViewModel?.open?.get() == true){//上架平台,平台的logo从这第一张图拿
+                    it.uploadImagesToIPFS(datas)
+                }else{
+                    if(datas.size==4)it.uploadImagesToIPFS(datas) //上架app
+                }
+
             }
         }
 
@@ -323,6 +334,11 @@ class AppUploadActivity : BaseDialogActivity(){
         OnCheckedChangeListener { view, isChecked ->
             mAppUploadActivityViewModel?.of_show?.set(isChecked)
             mAppInfoBean.app_show_immediately=if(isChecked)"1" else "0"
+        }
+
+    private val checkChangePlatform:SwitchButton.OnCheckedChangeListener=
+        OnCheckedChangeListener { view, isChecked ->
+            mAppUploadActivityViewModel?.open?.set(isChecked)
         }
 
 
