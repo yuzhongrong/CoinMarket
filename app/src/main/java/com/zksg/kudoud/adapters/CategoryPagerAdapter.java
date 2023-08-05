@@ -35,7 +35,7 @@ public class CategoryPagerAdapter extends FragmentStatePagerAdapter {
             case CommonCategoryDataEnum.DEX_ID:
                 return new CategoryCommonFragment(CommonCategoryDataEnum.DEX_ID);
             case CommonCategoryDataEnum.OTHER_ID:
-                return new CategoryCommonFragment(CommonCategoryDataEnum.DEX_ID);
+                return new CategoryCommonFragment(CommonCategoryDataEnum.OTHER_ID);
             default:
                 break;
         }
