@@ -10,6 +10,7 @@ import com.zksg.kudoud.adapters.SceneAdapter
 import com.zksg.kudoud.state.RankingFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.lib_api.beans.AppInfoBean
+import java.util.stream.Collectors
 
 class RankingFragment:BaseDialogFragment(){
     private var  rankingViewModel: RankingFragmentViewModel ?=null
@@ -35,7 +36,7 @@ class RankingFragment:BaseDialogFragment(){
         rankingViewModel?.coininstallAdapter?.set(mRankingAdapter_V)
 
         rankingViewModel?.mRankingApks?.observe(this){
-            mRankingAdapter_V?.setList(it)
+            mRankingAdapter_V?.setList(it.stream().filter { !it.app_category.equals("2") }.collect(Collectors.toList()))
         }
         rankingViewModel?.loadingVisible?.observe(this){
             if(it)showDialog()else dismissDialog()

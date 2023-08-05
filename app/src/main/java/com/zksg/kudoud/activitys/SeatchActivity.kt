@@ -25,6 +25,7 @@ import com.zksg.kudoud.adapters.SearchAdapter
 import com.zksg.kudoud.beans.SearchHistory
 import com.zksg.kudoud.databinding.ActivitySearchBinding
 import com.zksg.kudoud.state.SearchActivityViewModel
+import java.util.stream.Collectors
 
 class SeatchActivity : BaseDialogActivity() {
 
@@ -79,7 +80,7 @@ class SeatchActivity : BaseDialogActivity() {
         mSearchActivityViewModel?.searchAdapter?.set(adapter)
         mSearchActivityViewModel?.mSearchApks?.observe(this){
             Log.d("----mSearchApks-->",it.size.toString())
-            adapter.setList(it)
+            adapter.setList(it.stream().filter { !it.app_category.equals("2") }.collect(Collectors.toList()))
 //            if(it.isEmpty()){
 //                adapter.setEmptyView(R.layout.recycle_emp_layout)
 //            }else{
