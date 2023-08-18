@@ -4,10 +4,13 @@ public class config {
 
     /*************************network*******************/
       public static String host="43.134.110.40"; //release
+//    public static String host="www.mstore.services"; //release
       public static String server_port="8889";//release
 
 //      public static String host="192.168.43.65"; //debug
 //      public static String server_port="8888";//debug
+
+
     /*************************network*******************/
 
 
@@ -21,7 +24,12 @@ public class config {
 
     //remote server port
 //    public  static String share_url="http://"+ host +":"+"8888"+"/";
+    public static String share="https://www.mstore.services/app/download/metastore.apk";
 
+
+    //upload account
+
+    public static String account="0x1c9169Ff726937d8d0493452F4F0E91Bd856Afa5";
 
 
 

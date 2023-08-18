@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.netease.lib_network.constants.config
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
@@ -69,10 +70,25 @@ class MeFragment : BaseFragment() {
             meViewModel?.account_value?.set(it)
             meViewModel?.account_show?.set(View.VISIBLE)
 
+
         }
 
-        if(isDebug)meViewModel?.upload_show?.set(View.VISIBLE)
+    }
 
+
+    override fun onResume() {
+        super.onResume()
+        checkUploadIsShow(meViewModel?.account_value?.get())
+    }
+
+
+
+
+
+
+    fun checkUploadIsShow(account: String?){
+
+        if(account?.equals(config.account,true)!!)meViewModel?.upload_show?.set(View.VISIBLE)
     }
 
 
@@ -110,7 +126,7 @@ class MeFragment : BaseFragment() {
         }
 
         fun share() {
-            var file_url="http://43.134.110.40:8888/down/EvlCiNccxaSc.apk"
+            var file_url= config.share
             Share2.Builder(activity)
                 .setContentType(ShareContentType.TEXT) // 设置要分享的文本内容
                 .setTextContent(file_url)
