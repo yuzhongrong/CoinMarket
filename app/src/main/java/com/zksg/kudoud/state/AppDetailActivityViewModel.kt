@@ -32,6 +32,7 @@ class AppDetailActivityViewModel : BaseLoadingViewModel() {
     var app_size = ObservableField<String>()
     @JvmField
     var app_category = ObservableField<String>()
+    var showdownload_or_open=ObservableField<String>()
     @JvmField
     var app_version = ObservableField<String>()
     @JvmField

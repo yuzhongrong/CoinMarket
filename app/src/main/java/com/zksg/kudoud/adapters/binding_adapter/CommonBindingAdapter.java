@@ -26,10 +26,12 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -83,14 +85,27 @@ public class CommonBindingAdapter {
     }
 
 
-    @BindingAdapter(value = {"webviewload"}, requireAll = false)
-    public static void webload(WebView webView, String url) {
-        if(webView==null||TextUtils.isEmpty(url))return;
+    @BindingAdapter(value = {"webviewload","progressBar"}, requireAll = false)
+    public static void webload(WebView webView, String url, ProgressBar progressBar) {
+        if(webView==null||TextUtils.isEmpty(url)||progressBar==null)return;
         webView.getSettings().setJavaScriptEnabled(true);// Enable JavaScript in WebView (optional)
         // Set a WebViewClient to handle the webpage navigation within the WebView
 
         // Set a WebViewClient to handle the webpage navigation within the WebView
         webView.setWebViewClient(new WebViewClient());
+
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                progressBar.setProgress(newProgress);
+                if (newProgress == 100) {
+                    progressBar.setVisibility(android.view.View.GONE);
+                } else {
+                    progressBar.setVisibility(android.view.View.VISIBLE);
+                }
+            }
+        });
         // Load the webpage
 
         // Load the webpage
@@ -258,6 +273,7 @@ public class CommonBindingAdapter {
                     .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.CENTER_HORIZONTAL)
                     .setPageTransformer(new DefaultTransformer())
                     .setCanLoop(true);
+            
         }
 
     }

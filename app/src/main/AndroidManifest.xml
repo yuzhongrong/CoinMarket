@@ -89,6 +89,13 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".activitys.CusWebviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+
+
         <activity android:name=".activitys.WebviewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -146,7 +153,10 @@
             android:exported="false"
             android:screenOrientation="portrait"
             />
-
+        <activity android:name=".activitys.AppUploadDappActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
         <activity android:name=".activitys.AppDetailActivity"
             android:exported="false"
             android:screenOrientation="portrait"

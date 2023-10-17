@@ -11,6 +11,7 @@
         <item>7</item>
         <item>8</item>
         <item>9</item>
+        <item>10</item>
     </integer-array>
 
     <string-array name="category_str" tools:ignore="ExtraTranslation">
@@ -24,6 +25,8 @@
         <item>@string/str_category_news</item>
         <item>@string/str_category_nfts</item>
         <item>@string/str_category_networks</item>
+        <item>@string/str_category_dapps</item>
+
 
     </string-array>
 </resources>

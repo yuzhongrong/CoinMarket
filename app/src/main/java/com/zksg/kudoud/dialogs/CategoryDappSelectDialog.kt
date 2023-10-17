@@ -10,9 +10,10 @@ import com.lxj.xpopup.core.BottomPopupView
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.CategoryAdapter_V
 import com.zksg.kudoud.state.AppUploadActivityViewModel
+import com.zksg.kudoud.state.AppUploadDappActivityViewModel
 import com.zksg.lib_api.beans.HomeItem
 
-class CategorySelectDialog(context: Context,vm: AppUploadActivityViewModel) : BottomPopupView(context) {
+class CategoryDappSelectDialog(context: Context, vm: AppUploadDappActivityViewModel) : BottomPopupView(context) {
     private var mViewmodel=vm
     override fun onCreate() {
         super.onCreate()

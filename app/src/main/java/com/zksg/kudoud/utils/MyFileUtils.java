@@ -13,6 +13,7 @@ import android.util.Log;
 
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.FileApkItem;
+import com.zksg.kudoud.beans.MediaItem;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,6 +34,8 @@ public class MyFileUtils {
     public static final int TYPE_ZIP = 2;
 
     public static final int TYPE_GZ = 3;
+
+    public static final int TYPE_MEDIA = 4;
 
 
     public static List<FileApkItem> getFilesByType(Context context) {
@@ -167,6 +170,41 @@ public class MyFileUtils {
         return files;
     }
 
+
+    public static List<MediaItem> getAllMediaFilePaths(Context context,int fileType) {
+        List<MediaItem> files = new ArrayList<>();
+        // 扫描files文件库
+        Cursor c = null;
+        try {
+            c = context.getContentResolver().query(MediaStore.Files.getContentUri("external"), new String[]{"_id", "_data", "_size","_display_name","title"}, null, null, null);
+            int dataindex = c.getColumnIndex(MediaStore.Files.FileColumns.DATA);
+            int sizeindex = c.getColumnIndex(MediaStore.Files.FileColumns.SIZE);
+            int titleindex = c.getColumnIndex(MediaStore.Files.FileColumns.TITLE);
+
+
+            while (c.moveToNext()) {
+                String path = c.getString(dataindex);
+                String title=c.getString(titleindex);
+
+                if (MyFileUtils.getFileType(path) == fileType) {
+                    if (!MyFileUtils.isExists(path)) {
+                        continue;
+                    }
+                    long size = c.getLong(sizeindex);
+                    MediaItem fileBean = new MediaItem(path);
+                    files.add(fileBean);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+        return files;
+    }
+
     private static int getFileType(String path) {
         path = path.toLowerCase();
         if (path.endsWith(".doc") || path.endsWith(".docx") || path.endsWith(".xls") || path.endsWith(".xlsx")
@@ -178,6 +216,8 @@ public class MyFileUtils {
             return TYPE_ZIP;
         }else if( path.endsWith(".gz")){
             return TYPE_GZ;
+        }else if(path.endsWith(".png")||path.endsWith(".jpeg")){
+            return TYPE_MEDIA;
         }
         else{
             return -1;

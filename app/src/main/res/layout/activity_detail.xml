@@ -364,7 +364,7 @@
             <com.hjq.shape.view.ShapeButton
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp45"
-                android:text="Download"
+                android:text="@{vm.showdownload_or_open}"
                 app:shape_solidColor="@color/c_f6a50c"
                 android:layout_alignParentRight="true"
                 android:gravity="center"

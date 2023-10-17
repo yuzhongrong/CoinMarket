@@ -30,15 +30,11 @@ class HomeCWAdapter_V : BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
         this.categorys = categorys
         setOnItemClickListener { adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int ->
             var info=this.data[position]
-            if( info.app_category.equals("2")){//dapp
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(info.app_offical))
-                context.startActivity(intent)
 
-            }else{
                 val i = Intent(context, AppDetailActivity::class.java)
                 i.putExtra("appinfo", this.data[position])
                 context.startActivity(i)
-            }
+
 
         }
     }

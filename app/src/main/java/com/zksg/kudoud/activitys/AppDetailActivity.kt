@@ -79,6 +79,11 @@ class AppDetailActivity : BaseDialogActivity() {
         mAppDetailActivityViewModel?.app_size?.set(appinfo?.app_size)
         mAppDetailActivityViewModel?.app_version?.set(appinfo?.app_version)
         mAppDetailActivityViewModel?.app_category?.set(category)
+        if(index==10){
+            mAppDetailActivityViewModel?.showdownload_or_open?.set(getString(R.string.str_open_url))
+        }else{
+            mAppDetailActivityViewModel?.showdownload_or_open?.set(getString(R.string.str_download))
+        }
         mAppDetailActivityViewModel?.app_overrview?.set(appinfo?.app_overrview)
         mAppDetailActivityViewModel?.app_offcail?.set(appinfo?.app_offical)
         var number=StringUtils.num2thousand(appinfo?.app_download_count!!.toString())
@@ -95,6 +100,16 @@ class AppDetailActivity : BaseDialogActivity() {
 
         fun RequestDownload(){
 
+            val category = appinfo?.app_category
+            if(category.equals("10")){
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(appinfo?.app_offical))
+                startActivity(intent)
+                return
+
+            }
+
+
+
             appinfo?.let {
                 it.app_download_count+=1
                 mAppDetailActivityViewModel?.updateAppinfo(it)
@@ -102,6 +117,8 @@ class AppDetailActivity : BaseDialogActivity() {
         }
 
         fun DownloadApk(){
+
+
 
 //            appinfo?.app_file?.let {
 //                val fileName = appinfo?.app_name+".apk"

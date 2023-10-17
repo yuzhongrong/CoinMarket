@@ -13,6 +13,7 @@ import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.AppDetailActivity
+import com.zksg.kudoud.activitys.CusWebviewActivity
 import com.zksg.kudoud.activitys.NotifyActivity
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
@@ -51,7 +52,7 @@ class HomeFragment:BaseDialogFragment(){
     fun  initData(bind:FragmentHomeBinding){
         bind.convenientBanner.setOnItemClickListener {
             val mBannerBean =homeViewModel?.banner_datas?.value?.get(it)
-            if (mBannerBean?.type == "0") { //跳转到网页
+            if (mBannerBean?.type == "2") { //利用浏览器来跳转
                 if(!TextUtils.isEmpty(mBannerBean.bannerContent.targeturl)){
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mBannerBean.bannerContent.targeturl))
                     startActivity(intent)
@@ -63,6 +64,13 @@ class HomeFragment:BaseDialogFragment(){
                     homeViewModel?.getOnePublishApp(appcid)
                 }
 
+            }else if(mBannerBean?.type=="0"){ //使用webview加载url 不支持download等操作，适合展示一般的页面
+                if(!TextUtils.isEmpty(mBannerBean.bannerContent.targeturl)){
+                    val intent = Intent(activity, CusWebviewActivity::class.java)
+                        .putExtra("url",mBannerBean.bannerContent.targeturl)
+                        .putExtra("title",mBannerBean.bannerContent.title)
+                    startActivity(intent)
+                }
             }
         }
 
@@ -75,19 +83,18 @@ class HomeFragment:BaseDialogFragment(){
         }
         homeViewModel?.banner_datas?.observe(this){
 
-
         }
 
         homeViewModel?.mPublishApks?.observe(this){
             Log.d("----mPublishApks-->",it?.size.toString())
            var dapter= homeViewModel?.todayHealthAdapter?.get() as HomeRecentAdapter
-            dapter.setList(it.stream().filter { !it.app_category.equals("2") }.collect(Collectors.toList()))
+            dapter.setList(it)
         }
 
         homeViewModel?.mHotApks?.observe(this){
             Log.d("----mHotApks-->",it?.size.toString())
             var dapter= homeViewModel?.coininstallAdapter?.get() as HomeCWAdapter_V
-            dapter.setList(it.stream().filter { !it.app_category.equals("2") }.collect(Collectors.toList()))
+            dapter.setList(it)
         }
         homeViewModel?.loadingVisible?.observe(this){
             Log.d("-loadingVisible-->",it.toString())
@@ -96,9 +103,9 @@ class HomeFragment:BaseDialogFragment(){
 
         homeViewModel?.mUpgradeBean?.observe(this){
             if(it!=null){
-               var versionName= AppUtils.getAppVersionCode()
-                var remoteVersionName=it.versioncode
-                if(remoteVersionName> versionName){
+               var versionCode= AppUtils.getAppVersionCode()
+                var remoteVersionCode=it.versioncode
+                if(remoteVersionCode> versionCode){
                     showUpgradeTip(it)
                 }
 

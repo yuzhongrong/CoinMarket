@@ -24,7 +24,7 @@ public class config {
 
     //remote server port
 //    public  static String share_url="http://"+ host +":"+"8888"+"/";
-    public static String share="https://www.mstore.services/app/download/metastore.apk";
+
 
 
     //upload account

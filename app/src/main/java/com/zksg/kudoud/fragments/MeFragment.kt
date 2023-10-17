@@ -20,6 +20,7 @@ import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
+import com.zksg.kudoud.contants.AppConfig
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.utils.StringUtils
 import com.zksg.kudoud.utils.TpWalletUtils
@@ -87,8 +88,13 @@ class MeFragment : BaseFragment() {
 
 
     fun checkUploadIsShow(account: String?){
+        if(account==null)return
 
-        if(account?.equals(config.account,true)!!)meViewModel?.upload_show?.set(View.VISIBLE)
+        if(account.equals(config.account,true)) {
+            meViewModel?.upload_show?.set(View.VISIBLE)}
+        else{
+            meViewModel?.upload_show?.set(View.GONE)
+        }
     }
 
 
@@ -126,7 +132,7 @@ class MeFragment : BaseFragment() {
         }
 
         fun share() {
-            var file_url= config.share
+            var file_url= AppConfig.share
             Share2.Builder(activity)
                 .setContentType(ShareContentType.TEXT) // 设置要分享的文本内容
                 .setTextContent(file_url)

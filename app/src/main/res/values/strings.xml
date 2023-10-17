@@ -30,6 +30,9 @@
     <string name="string_devoce_coming">设备正在连接中</string>
     <string name="string_devoce_bottom_tip">提示：\n 1. 请同意设备的蓝牙配对请求;\n 2. 请同意设备的接收消息通知请求。\n (手机上可能会有确认弹窗)</string>
     <string name="str_open">开关</string>
+    <string name="str_open_url">Open</string>
+    <string name="str_download">Download</string>
+
     <string name="str_shake">摇摆</string>
     <string name="str_music">音乐</string>
     <string name="str_light">小夜灯</string>
@@ -142,9 +145,14 @@
     <string name="str_publish">publish</string>
     <string name="str_publish_tip">Publish</string>
     <string name="str_input_app_name">Input App English Name</string>
+    <string name="str_input_app_subtitle">Input App Subtitle</string>
+    <string name="str_input_dapp_name">Input DApp English Name</string>
+    <string name="str_input_dapp_subtitle">Input DApp Subtitle</string>
+    <string name="str_input_dapp_url">Input DApp Url</string>
+
     <string name="str_read_permission">Requires read file permission!</string>
     <string name="str_zero_m">0M</string>
-    <string name="str_input_app_subtitle">Input App Subtitle</string>
+
     <string name="str_screen_x4">App Screenshot <font color='#f6a50c'> x4 </font></string>
     <string name="str_server_error">Unable to connect to server node</string>
     <string name="str_item_wallet">metamask,tp and trust.. </string>
@@ -161,6 +169,7 @@
 
     <string name="str_item_entertainment">games and other..</string>
     <string name="str_item_vpn">vpn and other..</string>
+    <string name="str_item_dapp">dapp and other..</string>
     <string name="str_go_metastore">Please  Download Telegram!!</string>
     <string name="str_go_twitter">Please  Download Twitter!!</string>
     <string name="str_publish_success">Publish Success!</string>
@@ -175,6 +184,7 @@
     <string name="str_category_news">News</string>
     <string name="str_category_nfts">Nfts</string>
     <string name="str_category_networks">Networks</string>
+    <string name="str_category_dapps">Dapp</string>
     <string name="str_web">Web</string>
     <string name="str_input_search_key">Please input  search keywords...</string>
     <string name="str_overrview">overrview :</string>

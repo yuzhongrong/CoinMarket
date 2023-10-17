@@ -78,11 +78,11 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
                   if(it.responseStatus.isSuccess) banner_datas.postValue(it.result.data.list)
               }
 
-              DataRepository.getInstance().getAppinfoListForOrder(1,50,"created_at","descending"){
+              DataRepository.getInstance().getAppinfoListForOrder(1,20,"created_at","descending"){
                   if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
               }
 
-              DataRepository.getInstance().getLastNoticeForOrder(1,1,"created_at","descending"){
+              DataRepository.getInstance().getLastNoticeForOrder(1,50,"created_at","descending"){
                   if(it.responseStatus.isSuccess) mLastNotify.postValue(it.result.data.list)
               }
 
