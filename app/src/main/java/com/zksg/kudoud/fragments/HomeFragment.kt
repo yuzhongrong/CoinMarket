@@ -10,6 +10,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.Utils
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.interfaces.OnConfirmListener
+import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.AppDetailActivity
@@ -19,6 +21,7 @@ import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.databinding.FragmentHomeBinding
 import com.zksg.kudoud.dialogs.CategorySelectDialog
+import com.zksg.kudoud.dialogs.TipVpnDialog
 import com.zksg.kudoud.dialogs.UpgradeVersionDialog
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.lib_api.beans.BannerBean
@@ -107,6 +110,9 @@ class HomeFragment:BaseDialogFragment(){
                 var remoteVersionCode=it.versioncode
                 if(remoteVersionCode> versionCode){
                     showUpgradeTip(it)
+                }else{
+
+
                 }
 
             }
@@ -136,8 +142,12 @@ class HomeFragment:BaseDialogFragment(){
 //            .show()
 //        homeViewModel?.getRecentPublishApp(1,50)
 //        homeViewModel?.getCwApps(1,50,1000)
-        homeViewModel?.getHomeDatas()
 
+
+        var vpn_tip_open= MMKV.mmkvWithID("switchs").decodeBool("tip_vpn",false)
+        if(!vpn_tip_open){ showTipVpn(homeViewModel!!) }else{
+            homeViewModel?.getHomeDatas()
+        }
 
 
     }
@@ -149,6 +159,16 @@ class HomeFragment:BaseDialogFragment(){
             .dismissOnTouchOutside(false)
             .dismissOnBackPressed(false)
             .asCustom(UpgradeVersionDialog(requireActivity(),info!!))
+            .show()
+
+    }
+
+    fun showTipVpn(homeViewModel: HomeFragmentViewModel){
+
+        XPopup.Builder(requireActivity())
+            .dismissOnTouchOutside(false)
+            .dismissOnBackPressed(false)
+            .asCustom(TipVpnDialog(requireActivity(),homeViewModel))
             .show()
 
     }

@@ -202,6 +202,8 @@
     <string name="str_mst_tm">MetaStore Team</string>
     <string name="str_i_know">I Know</string>
     <string name="app_update_background_downloading">Downloading new version in background…</string>
+    <string name="str_not_tip">not tip(不再提示)</string>
+    <string name="str_gui">Please open the VPN  翻译:使用该软件前请打开VPN翻墙软件.</string>
 
 
 </resources>
