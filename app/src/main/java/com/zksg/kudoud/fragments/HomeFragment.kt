@@ -17,6 +17,7 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.AppDetailActivity
 import com.zksg.kudoud.activitys.CusWebviewActivity
 import com.zksg.kudoud.activitys.NotifyActivity
+import com.zksg.kudoud.activitys.SearchActivity
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.databinding.FragmentHomeBinding
@@ -177,8 +178,8 @@ class HomeFragment:BaseDialogFragment(){
 
     inner class ClickProxy {
 
-        fun startNotify(){
-            startActivity(Intent(activity,NotifyActivity::class.java))
+        fun startSearch(){
+            startActivity(Intent(activity, SearchActivity::class.java))
         }
 
 

@@ -4,6 +4,7 @@ public class config {
 
     /*************************network*******************/
       public static String host="43.134.110.40"; //release
+//    public static String host="43.134.173.253"; //release
 //    public static String host="www.mstore.services"; //release
       public static String server_port="8889";//release
 

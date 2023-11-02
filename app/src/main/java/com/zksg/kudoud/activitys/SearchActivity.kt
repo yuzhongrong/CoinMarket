@@ -15,19 +15,17 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import com.blankj.utilcode.util.ToastUtils
-import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.SearchAdapter
 import com.zksg.kudoud.beans.SearchHistory
 import com.zksg.kudoud.databinding.ActivitySearchBinding
 import com.zksg.kudoud.state.SearchActivityViewModel
 import java.util.stream.Collectors
 
-class SeatchActivity : BaseDialogActivity() {
+class SearchActivity : BaseDialogActivity() {
 
     var  clearIcon: Drawable?=null
     var  clearIconWidth=0

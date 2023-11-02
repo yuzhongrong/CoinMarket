@@ -7,7 +7,7 @@
 
         <variable
             name="click"
-            type="com.zksg.kudoud.activitys.SeatchActivity.ClickProxy" />
+            type="com.zksg.kudoud.activitys.SearchActivity.ClickProxy" />
 
         <variable
             name="editWatcher"

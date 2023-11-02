@@ -5,8 +5,8 @@ ext{   //这些库是任何项目都需要的公共库
             buildToolsVersion: "30.0.1",
             minSdkVersion    : 23,
             targetSdkVersion : 31,
-            versionCode      : 4,
-            versionName      : '1.0.4',
+            versionCode      : 5,
+            versionName      : '1.0.5',
             multiDexEnabled  : true ]
 
     depsVersion = [

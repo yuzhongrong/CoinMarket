@@ -6,11 +6,10 @@ import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.CreateEnvActivity
-import com.zksg.kudoud.activitys.SeatchActivity
+import com.zksg.kudoud.activitys.SearchActivity
 import com.zksg.kudoud.adapters.CategoryPagerAdapter
 import com.zksg.kudoud.adapters.SceneAdapter
 import com.zksg.kudoud.beans.CommonCategoryDataEnum
-import com.zksg.kudoud.beans.CommonDataEnum
 import com.zksg.kudoud.state.SceneFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 
@@ -52,7 +51,7 @@ class CategoryFragment:BaseFragment(){
             arrayOf(
                 getString(R.string.str_wallet),
                 getString(R.string.str_exchange),
-                getString(R.string.str_dex),
+                getString(R.string.str_chat),
                 getString(R.string.str_other)
             )
         )
@@ -62,7 +61,7 @@ class CategoryFragment:BaseFragment(){
                 arrayOf(
                     CommonCategoryDataEnum.WALLET,
                     CommonCategoryDataEnum.EXCHANGE,
-                    CommonCategoryDataEnum.DEX,
+                    CommonCategoryDataEnum.CHAT,
                     CommonCategoryDataEnum.OTHER
                 )
             )
@@ -76,7 +75,7 @@ class CategoryFragment:BaseFragment(){
         }
 
         fun Skip2Search(){
-            startActivity(Intent(requireContext(), SeatchActivity::class.java))
+            startActivity(Intent(requireContext(), SearchActivity::class.java))
         }
    }
 

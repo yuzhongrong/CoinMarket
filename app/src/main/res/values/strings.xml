@@ -138,6 +138,7 @@
     <string name="str_markets">ranking</string>
     <string name="str_wallet">Wallet</string>
     <string name="str_dex">Swap</string>
+    <string name="str_chat">Chat</string>
     <string name="str_other">Other</string>
     <string name="str_like">Like</string>
     <string name="str_acccount">Account</string>
