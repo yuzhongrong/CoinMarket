@@ -182,6 +182,10 @@ class HomeFragment:BaseDialogFragment(){
             startActivity(Intent(activity, SearchActivity::class.java))
         }
 
+        fun startNotify(){
+            startActivity(Intent(activity, NotifyActivity::class.java))
+        }
+
 
 
     }
