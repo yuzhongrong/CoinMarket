@@ -53,34 +53,42 @@
             />
         <activity android:name=".activitys.AboutActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
 
 
         <activity android:name=".activitys.MoreActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
         <activity android:name=".activitys.AccountSecurityActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
 
         <activity android:name=".activitys.SmallLightctivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
         <activity android:name=".activitys.StarLightctivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
 
         <activity android:name=".activitys.AtmosphereLightctivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
 
         <activity android:name=".activitys.FeedTippctivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
 
 
         <activity android:name=".activitys.NewFeedActivity"
             android:exported="false"
+            android:screenOrientation="portrait"
             />
 
 
@@ -88,6 +96,12 @@
             android:exported="false"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".activitys.PreSaleMstActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+
 
         <activity android:name=".activitys.CusWebviewActivity"
             android:exported="false"

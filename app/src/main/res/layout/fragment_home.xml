@@ -54,6 +54,7 @@
 
                     app:shape_radius="@dimen/dp45"
                     android:padding="@dimen/dp3"
+                    android:onClick="@{()->click.startPreSale()}"
                     />
 
                 <TextView

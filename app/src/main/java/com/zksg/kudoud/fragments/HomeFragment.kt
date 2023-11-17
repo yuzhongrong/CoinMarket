@@ -14,10 +14,7 @@ import com.lxj.xpopup.interfaces.OnConfirmListener
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.activitys.AppDetailActivity
-import com.zksg.kudoud.activitys.CusWebviewActivity
-import com.zksg.kudoud.activitys.NotifyActivity
-import com.zksg.kudoud.activitys.SearchActivity
+import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.databinding.FragmentHomeBinding
@@ -184,6 +181,10 @@ class HomeFragment:BaseDialogFragment(){
 
         fun startNotify(){
             startActivity(Intent(activity, NotifyActivity::class.java))
+        }
+
+        fun startPreSale(){
+            startActivity(Intent(activity, PreSaleMstActivity::class.java))
         }
 
 

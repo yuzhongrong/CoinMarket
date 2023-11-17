@@ -198,6 +198,7 @@
     <string name="str_share">Share</string>
     <string name="str_detail">Detail</string>
     <string name="str_notify">Notify</string>
+    <string name="str_sale">PRESALE(私募)</string>
     <string name="str_download_request_fail">Download Request Fail!!</string>
     <string name="str_notice">MetaStore New Notice</string>
     <string name="str_mst_tm">MetaStore Team</string>
@@ -205,6 +206,14 @@
     <string name="app_update_background_downloading">Downloading new version in background…</string>
     <string name="str_not_tip">not tip(不再提示)</string>
     <string name="str_gui">Please open the VPN  翻译:使用该软件前请打开VPN翻墙软件.</string>
-
+    <string name="str_bep_20"><u>BEP-20</u></string>
+    <string name="str_token"><u>MST</u></string>
+    <string name="str_min">单地址最低买入</string>
+    <string name="str_max">单地址最高买入</string>
+    <string name="str_presale_warning">注意:如果转账金额不在这个范围则后台不统计，且一个地址只能购买一次！！</string>
+    <string name="str_pay">支付</string>
+    <string name="str_address">地址</string>
+    <string name="str_get_mst">获得代币</string>
+    <string name="str_presale_list">参与列表:</string>
 
 </resources>
