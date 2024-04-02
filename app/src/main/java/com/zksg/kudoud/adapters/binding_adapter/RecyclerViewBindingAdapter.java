@@ -86,6 +86,7 @@ public class RecyclerViewBindingAdapter {
                 return !can;
             }
         });
+        recyclerView.setNestedScrollingEnabled(false);
     }
 
     @BindingAdapter(value = {"gridAdapter", "spanCount","columnspace"}, requireAll = false)

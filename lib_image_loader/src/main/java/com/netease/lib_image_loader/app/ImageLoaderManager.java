@@ -277,7 +277,7 @@ public class ImageLoaderManager {
 
 		return new RequestOptions()
 				//.placeholder(R.mipmap.ic_album_demo)//loading时显示的图片
-				.error(R.mipmap.ic_album_demo)//load失败时显示的图片
+				.error(R.mipmap.ic_loading_default)//load失败时显示的图片
 				.timeout(30000)
 				.diskCacheStrategy(DiskCacheStrategy.ALL)//缓存策略
 				.skipMemoryCache(false)//使用内存缓存

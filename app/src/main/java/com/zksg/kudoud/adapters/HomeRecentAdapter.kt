@@ -19,9 +19,9 @@ class HomeRecentAdapter : BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
         data as MutableList<AppInfoBean>?
     ) {
         setOnItemClickListener { adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int ->
-            val i = Intent(context, AppDetailActivity::class.java)
-            i.putExtra("appinfo", this.data[position])
-            context.startActivity(i)
+//            val i = Intent(context, AppDetailActivity::class.java)
+//            i.putExtra("appinfo", this.data[position])
+//            context.startActivity(i)
         }
     }
 
@@ -37,8 +37,8 @@ class HomeRecentAdapter : BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
     }
     override fun convert(baseViewHolder: BaseViewHolder, homeItem: AppInfoBean) {
         Log.d("convert", "convert: ")
-        var  url = config.ipfs_base_url + homeItem.app_icon
-        ImageLoaderManager.getInstance().displayImageForView(baseViewHolder.getView(R.id.icon), url)
-        baseViewHolder.setText(R.id.title, homeItem.app_name)
+//        var  url = config.ipfs_base_url + homeItem.app_icon
+//        ImageLoaderManager.getInstance().displayImageForView(baseViewHolder.getView(R.id.icon), url)
+//        baseViewHolder.setText(R.id.title, homeItem.app_name)
     }
 }

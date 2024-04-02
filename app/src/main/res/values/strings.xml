@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MetaStore</string>
+    <string name="app_name">模因交易所</string>
     <string name="library_json">
         "[{\"title\":\"Lifecycle\",\"summary\":\"主要用于在软件工程的背景下，解决生命周期管理的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/3684721950\"},{\"title\":\"LiveData\",\"summary\":\"主要用于配合 “唯一可信源” 实现消息的读写分离，从而确保消息分发的可靠一致，避免收到不可预期的推送或脏数据\",\"url\":\"https://xiaozhuanlan.com/topic/0168753249\"},{\"title\":\"ViewModel\",\"summary\":\"主要用于托管页面状态、分治视图控制器重建时的状态恢复，从而提升状态恢复的效率和节省不必要的流量、电量开销\",\"url\":\"https://xiaozhuanlan.com/topic/6257931840\"},{\"title\":\"DataBinding\",\"summary\":\"主要用于在软件工程的背景下，解决 “视图实例 null 安全” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/9816742350\"},{\"title\":\"Navigation\",\"summary\":\"通过声明式编程来解决 “应用内路由导航” 和 “初值传参” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/5860149732\"}]"
     </string>
@@ -123,22 +123,29 @@
     <string name="str_new">最新</string>
     <string name="str_once_normal">一键校准</string>
     <string name="str_weight_sub">校准时请勿将baby放在称重计上</string>
-    <string name="str_today_upload">Recently</string>
+    <string name="str_meme_trending">🔥热门模因代币</string>
+    <string name="str_meme_last">#实时排行榜</string>
     <string name="str_device">设备</string>
     <string name="str_today_hot_wallet">热门钱包</string>
     <string name="str_coin_hot">Hotapps</string>
-    <string name="str_me">mine</string>
+    <string name="str_me">我的</string>
+    <string name="str_asset">资产</string>
     <string name="str_breathe">呼吸</string>
     <string name="str_exchange">Trade</string>
     <string name="str_install">GET</string>
-    <string name="str_home">home</string>
-    <string name="str_category">category</string>
-    <string name="str_ranking">RANKING</string>
+    <string name="str_home">首页</string>
+    <string name="str_category">市场</string>
+    <string name="str_ranking">交易</string>
     <string name="str_last_updatetime">Last Update Time 6 Hours Ago!!</string>
-    <string name="str_markets">ranking</string>
-    <string name="str_wallet">Wallet</string>
+    <string name="str_markets">交易</string>
+    <string name="str_wallet">钱包</string>
+    <string name="str_chance">机会</string>
     <string name="str_dex">Swap</string>
     <string name="str_chat">Chat</string>
+    <string name="str_zx">自选</string>
+    <string name="str_24ex">成交榜</string>
+    <string name="str_24up">涨幅榜</string>
+    <string name="str_24down">跌幅榜</string>
     <string name="str_other">Other</string>
     <string name="str_like">Like</string>
     <string name="str_acccount">Account</string>
@@ -215,5 +222,9 @@
     <string name="str_address">地址</string>
     <string name="str_get_mst">获得代币</string>
     <string name="str_presale_list">参与列表:</string>
+    <string name="str_10_meme">2 BTC 挖矿奖励</string>
+    <string name="str_meme_tip">模因文化起源与发展快速购买模因\n<font color="#f7a600">$meme</font>代币走进模因世界！！</string>
+    <string name="str_lean">马上了解</string>
+    <string name="str_lc">Bybit 理财</string>
 
 </resources>

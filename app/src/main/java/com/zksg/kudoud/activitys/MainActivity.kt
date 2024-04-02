@@ -3,6 +3,7 @@ package com.zksg.kudoud.activitys
 //import com.kunminx.architecture.ui.page.StateHolder
 //import com.kunminx.architecture.ui.state.State
 //import com.kunminx.architecture.utils.BarUtils
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -37,6 +38,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         initView(binding as ActivityMainBinding)
     }
 
@@ -75,7 +77,7 @@ class MainActivity : BaseActivity() {
                 CJ_PAGE
             )
         )
-        val ME_PAGE = getString(R.string.str_me)
+        val ME_PAGE = getString(R.string.str_chance)
         mainBinding.homeNavigate!!.addTab(MeFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
@@ -85,19 +87,24 @@ class MainActivity : BaseActivity() {
             )
         )
 
+        val ME_ASSET = getString(R.string.str_wallet)
+        mainBinding.homeNavigate!!.addTab(MeFragment::class.java,
+            NavigateTabBar.TabParam(
+                resources.getColor(R.color.white),
+                R.mipmap.me_normal,
+                R.mipmap.me_select,
+                ME_ASSET
+            )
+        )
+
 
         mainBinding.homeNavigate!!.setTabSelectListener(object : NavigateTabBar.OnTabSelectedListener {
             override fun onTabSelected(holder: NavigateTabBar.ViewHolder) {
-                when(holder.tag.toString()){
-                    HOME_PAGE ->   mainBinding.homeNavigate!!.showFragment(holder)
-                    CATEGORY_PAGE -> mainBinding.homeNavigate!!.showFragment(holder)
-                    CJ_PAGE->  mainBinding.homeNavigate!!.showFragment(holder)
-                    ME_PAGE->  mainBinding.homeNavigate!!.showFragment(holder)
-                }
+                mainBinding.homeNavigate!!.showFragment(holder)
             }
         })
 
-        mainBinding.homeNavigate!!.setSelectedTabTextColor(getColor(R.color.c_f6a50c))
+        mainBinding.homeNavigate!!.setSelectedTabTextColor(getColor(R.color.colorAccent))
         mainBinding.homeNavigate!!.setTabTextColor(getColor(R.color.c_a0a0ab))
 
 

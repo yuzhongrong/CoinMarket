@@ -15,7 +15,7 @@
  */
 
 package com.kunminx.architecture.ui.page;
-
+import android.os.Build;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
@@ -30,7 +30,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-
+import android.view.View;
 import com.kunminx.architecture.BaseApplication;
 import com.kunminx.architecture.data.response.manager.NetworkStateManager;
 import com.kunminx.architecture.utils.AdaptScreenUtils;
@@ -53,6 +53,11 @@ public abstract class BaseActivity extends DataBindingActivity {
         BarUtils.setStatusBarLightMode(this, true);
 
         super.onCreate(savedInstanceState);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+            getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+        }
 
         getLifecycle().addObserver(NetworkStateManager.getInstance());
 

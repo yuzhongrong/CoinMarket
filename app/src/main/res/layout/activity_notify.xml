@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/str_notify"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/sp20"
                 android:textStyle="bold" />
 

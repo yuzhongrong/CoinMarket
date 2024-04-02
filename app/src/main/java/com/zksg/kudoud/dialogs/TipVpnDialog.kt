@@ -37,7 +37,7 @@ class TipVpnDialog(context: Activity,homeViewModel: HomeFragmentViewModel) : Cen
                  MMKV.mmkvWithID("switchs").encode("tip_vpn",true)
              }
             this.delayDismiss(500)
-            homeViewModel?.getHomeDatas()
+//            homeViewModel?.getHomeDatas()
 
         }
 

@@ -15,7 +15,7 @@
     style="@style/AVLoadingIndicatorView"
     android:visibility="visible"
     app:indicatorName="LineScalePulseOutRapidIndicator"
-    app:indicatorColor="@color/c_f6a50c"
+    app:indicatorColor="@color/colorAccent"
     />
 
 

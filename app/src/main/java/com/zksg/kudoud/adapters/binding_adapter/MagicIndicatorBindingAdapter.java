@@ -23,7 +23,9 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigat
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.WrapPagerIndicator;
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
 public class MagicIndicatorBindingAdapter {
@@ -119,7 +121,7 @@ public class MagicIndicatorBindingAdapter {
 //            magicIndicator.setBackgroundColor(Color.TRANSPARENT);
             CommonNavigator commonNavigator = new CommonNavigator(magicIndicator.getContext());
 //            commonNavigator.setScrollPivotX(0.35f);
-            commonNavigator.setAdjustMode(true);
+//            commonNavigator.setAdjustMode(true);
             ViewPager mViewPager = magicIndicator.getRootView().findViewById(R.id.view_pager);
 
             commonNavigator.setAdapter(new CommonNavigatorAdapter() {
@@ -132,9 +134,9 @@ public class MagicIndicatorBindingAdapter {
                 public IPagerTitleView getTitleView(Context context, final int index) {
                     SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
                     simplePagerTitleView.setText(channels[index]);
-                    simplePagerTitleView.setTextSize(14f);
+                    simplePagerTitleView.setTextSize(16f);
                     simplePagerTitleView.setTypeface(null, Typeface.BOLD);
-                    simplePagerTitleView.setNormalColor(Color.parseColor("#666666"));
+                    simplePagerTitleView.setNormalColor(Color.parseColor("#aeaeb0"));
                     simplePagerTitleView.setSelectedColor(Color.parseColor("#FFFFFF"));
                     simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -149,7 +151,7 @@ public class MagicIndicatorBindingAdapter {
                 @Override
                 public IPagerIndicator getIndicator(Context context) {
                     WrapPagerIndicator indicator = new WrapPagerIndicator(context);
-                    indicator.setFillColor(Color.parseColor("#f6a50c"));
+                    indicator.setFillColor(Color.parseColor("#00FFFFFF"));
                     indicator.setRoundRadius(18);
                     return indicator;
 
@@ -175,6 +177,53 @@ public class MagicIndicatorBindingAdapter {
 
         }
     }
+
+
+
+    @BindingAdapter(value = {"memecustomIndicatorTitle"}, requireAll = false)
+    public static void memebindCusCommonMagicIndocator(MagicIndicator magicIndicator, String[] channels) {
+        if (channels != null) {
+
+            CommonNavigator commonNavigator = new CommonNavigator(magicIndicator.getContext());
+            ViewPager mViewPager = magicIndicator.getRootView().findViewById(R.id.view_pager);
+            commonNavigator.setAdapter(new CommonNavigatorAdapter() {
+                @Override
+                public int getCount() {
+                    return channels.length;
+                }
+
+                @Override
+                public IPagerTitleView getTitleView(Context context, int index) {
+                    SimplePagerTitleView simplePagerTitleView = new ColorTransitionPagerTitleView(context);
+                    simplePagerTitleView.setText(channels[index]);
+                    simplePagerTitleView.setNormalColor(Color.GRAY);
+                    simplePagerTitleView.setSelectedColor(Color.BLACK);
+                    simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mViewPager.setCurrentItem(index);
+                        }
+                    });
+                    return simplePagerTitleView;
+                }
+
+
+
+                @Override
+                public IPagerIndicator getIndicator(Context context) {
+                    LinePagerIndicator indicator = new LinePagerIndicator(context);
+                    indicator.setColors(Color.RED);
+                    return indicator;
+                }
+            });
+
+            magicIndicator.setNavigator(commonNavigator);
+            ViewPagerHelper.bind(magicIndicator, mViewPager);
+
+
+        }
+    }
+
 
 
 }

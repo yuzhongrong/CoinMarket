@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">@color/bg_layout_common</color>
+    <color name="colorAccent">@color/c_f7a600</color>
+    <color name="colorTextNormal">#999999</color>
+    <color name="colorPrimaryLight">#2C303B</color>
+
+
+
+    <color name="primaryBackLight">#1F2833</color>
+    <color name="primaryBackNormal">#1A212A</color>
+    <color name="primaryBackDark">#13161d</color>
+    <color name="primaryText">#e5e5e5</color>
+    <color name="primaryTextGray">#aeaeb0</color>
+    <color name="transparent">#00000000</color>
+    <color name="text_c5c5c5">#c5c5c5</color>
+
+    <color name="bg_layout_common">#101014</color>
+    <color name="bg_root_common">#100f14</color>
+    <color name="c_101014">#100f14</color>
+    <color name="c_16171a">#16171a</color>
+    <color name="c_25282c">#25282c</color>
+    <color name="c_1bc89e">#1bc89e</color>
+
+
+
+
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -16,7 +44,7 @@
     <color name="c_00000000">#00000000</color>
 
     <color name="c_f71816">#F71816</color>
-    <color name="c_f6a50c">#F6A50C</color>
+    <color name="c_f7a600">#f7a600</color>
     <color name="c_392E19">#392E19</color>
     <color name="c_ffff00">#FFFF00</color>
     <color name="c_7fff00">#7FFF00</color>
@@ -67,6 +95,8 @@
     <color name="c_2b2b2b">#2b2b2b</color>
     <color name="c_999999">#999999</color>
     <color name="c_f47b44">#f47b44</color>
+    <color name="c_292a30">#292a30</color>
+    <color name="c_808495">#808495</color>
+    <color name="c_f6a50c">#f6a50c</color>
 
-    <color name="transparent" tools:ignore="MissingDefaultResource">#0000</color>
 </resources>

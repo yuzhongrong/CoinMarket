@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/str_detail"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/sp20"
                 android:textStyle="bold" />
 
@@ -363,7 +363,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp45"
                 android:text="@{vm.showdownload_or_open}"
-                app:shape_solidColor="@color/c_f6a50c"
+                app:shape_solidColor="@color/colorAccent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 app:shape_radius="@dimen/dp10"

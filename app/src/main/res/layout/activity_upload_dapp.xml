@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="@string/str_publish_tip"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
                 android:textSize="@dimen/sp20"
                 android:textStyle="bold" />
 
@@ -185,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:text="x1"
                     android:textSize="@dimen/sp15"
-                    android:textColor="@color/c_f6a50c"
+                    android:textColor="@color/colorAccent"
                     android:layout_toRightOf="@+id/icon"
                     android:layout_marginLeft="@dimen/dp15"
                     android:layout_below="@+id/title"
@@ -211,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:progress="0"
                         app:indicatorSize="@dimen/dp45"
-                        app:indicatorColor="@color/c_f6a50c"
+                        app:indicatorColor="@color/colorAccent"
                         app:trackColor="@color/c_191919"
                         android:layout_centerInParent="true"
                         />
@@ -349,7 +349,7 @@
                     android:layout_height="wrap_content"
                     android:text="x1"
                     android:textSize="@dimen/sp15"
-                    android:textColor="@color/c_f6a50c"
+                    android:textColor="@color/colorAccent"
                     android:layout_toRightOf="@+id/app_file"
                     android:layout_marginLeft="@dimen/dp15"
                     android:layout_below="@+id/app_name"
@@ -375,7 +375,7 @@
                         android:layout_height="wrap_content"
                         android:progress="0"
                         app:indicatorSize="@dimen/dp45"
-                        app:indicatorColor="@color/c_f6a50c"
+                        app:indicatorColor="@color/colorAccent"
                         app:trackColor="@color/c_191919"
                         android:layout_centerInParent="true"
                         />
@@ -429,8 +429,8 @@
                     android:layout_centerInParent="true"
                     android:layout_marginRight="@dimen/dp10"
                     android:checked="true"
-                    app:sb_button_color="@color/c_f6a50c"
-                    app:sb_checked_color="@color/c_f6a50c"
+                    app:sb_button_color="@color/colorAccent"
+                    app:sb_checked_color="@color/colorAccent"
                     app:sb_show_indicator="false" />
 
 
@@ -498,7 +498,7 @@
                     android:text="Category"
                     android:layout_below="@+id/img_time"
                     android:layout_marginTop="@dimen/dp10"
-                    app:shape_solidColor="@color/c_f6a50c"
+                    app:shape_solidColor="@color/colorAccent"
                     android:textSize="@dimen/sp15"
                     android:textColor="@color/white"
                     app:shape_radius="@dimen/dp10"
@@ -824,8 +824,8 @@
                     android:layout_toRightOf="@+id/screen_4"
                     android:checked="@{vm.open}"
                     android:text="平台"
-                    app:sb_button_color="@color/c_f6a50c"
-                    app:sb_checked_color="@color/c_f6a50c"
+                    app:sb_button_color="@color/colorAccent"
+                    app:sb_checked_color="@color/colorAccent"
                     app:sb_show_indicator="false"
                     android:layout_marginTop="@dimen/dp15"
                     />
@@ -846,7 +846,7 @@
                     android:textStyle="bold"
                     app:shape_radius="@dimen/dp5"
 
-                    app:shape_solidColor="@color/c_f6a50c"
+                    app:shape_solidColor="@color/colorAccent"
                     app:shape_solidPressedColor="@color/c_a0a0ab" />
 
             </RelativeLayout>
@@ -893,7 +893,7 @@
                 android:layout_height="@dimen/dp45"
                 android:text="@string/str_publish"
                 android:textSize="@dimen/sp20"
-                app:shape_solidColor="@color/c_f6a50c"
+                app:shape_solidColor="@color/colorAccent"
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 app:shape_radius="@dimen/dp10"

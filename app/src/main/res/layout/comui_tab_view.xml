@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical">
 
     <ImageView
         android:id="@+id/tab_icon"
-        android:layout_width="@dimen/dp25"
-        android:layout_height="@dimen/dp25"
+        android:layout_width="@dimen/dp26"
+        android:layout_height="@dimen/dp24"
         />
 
     <TextView
@@ -17,7 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/c_a0a0ab"
-        android:textSize="@dimen/dp10"
+
+        android:textSize="@dimen/sp11"
 
 
         />

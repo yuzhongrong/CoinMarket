@@ -4,6 +4,8 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.kunminx.architecture.domain.message.MutableResult
+import com.zksg.kudoud.adapters.CategoryPagerAdapter
+import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.lib_api.beans.AppInfoBean
@@ -15,6 +17,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class HomeFragmentViewModel : BaseLoadingViewModel() {
+
+
+    var indicatorTitle = ObservableField<Array<String>>()
+    var memecategoryadapter = ObservableField<MemeCategoryPagerAdapter?>()
+
     @JvmField
     var todayHealthAdapter = ObservableField<BaseQuickAdapter<*, *>>()
     var todayhotAdapter = ObservableField<BaseQuickAdapter<*, *>>()

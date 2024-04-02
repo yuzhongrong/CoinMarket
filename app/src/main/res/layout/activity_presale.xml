@@ -156,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp5"
                 android:progress="50"
-                android:progressTint="@color/c_f6a50c"
+                android:progressTint="@color/colorAccent"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
                 android:layout_marginTop="@dimen/dp5"
@@ -211,7 +211,7 @@
                 android:text="@string/str_token"
                 android:layout_marginRight="@dimen/dp15"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
                 />
 
 
@@ -256,7 +256,7 @@
                 android:layout_marginLeft="@dimen/dp15"
                 android:text="100,0000"
 
-                android:textColor="@color/c_f6a50c" />
+                android:textColor="@color/colorAccent" />
 
 
             <TextView
@@ -309,7 +309,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0.001"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
                 android:layout_marginLeft="@dimen/dp15"
                 />
 
@@ -373,7 +373,7 @@
                 android:text="待定"
                 android:layout_marginRight="@dimen/dp15"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
                 />
 
 
@@ -430,7 +430,7 @@
                 android:text="@string/str_bep_20"
                 android:layout_marginRight="@dimen/dp15"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
 
                 />
 
@@ -463,7 +463,7 @@
                 android:layout_marginTop="@dimen/dp30"
                 android:layout_marginRight="@dimen/dp15"
                 app:shape_radius="@dimen/dp10"
-                app:shape_solidColor="@color/c_f6a50c"
+                app:shape_solidColor="@color/colorAccent"
                 android:text="复制地址"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -482,7 +482,7 @@
                 android:layout_marginTop="@dimen/dp45"
                 android:layout_marginRight="@dimen/dp15"
                 app:shape_radius="@dimen/dp10"
-                app:shape_solidColor="@color/c_f6a50c"
+                app:shape_solidColor="@color/colorAccent"
                 android:text="扫码下载"
                 android:textColor="@color/white"
                 android:gravity="center"
@@ -544,7 +544,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_presale_warning"
-                android:textColor="@color/c_f6a50c"
+                android:textColor="@color/colorAccent"
                 android:layout_marginTop="@dimen/dp20"
                 android:layout_marginLeft="@dimen/dp15"
 

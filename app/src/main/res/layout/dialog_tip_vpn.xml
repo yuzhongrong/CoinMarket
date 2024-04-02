@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Gui(使用指南)"
-            android:textColor="@color/c_f6a50c"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/sp20"
             android:textStyle="bold"
             android:layout_gravity="center_horizontal"
@@ -106,8 +106,8 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/dp18"
                     android:checked="true"
-                    app:sb_button_color="@color/c_f6a50c"
-                    app:sb_checked_color="@color/c_f6a50c"
+                    app:sb_button_color="@color/colorAccent"
+                    app:sb_checked_color="@color/colorAccent"
                     app:sb_show_indicator="false"
 
                     />
@@ -136,7 +136,7 @@
         app:shape_radius="@dimen/dp10"
         android:layout_marginLeft="@dimen/dp15"
         android:layout_marginRight="@dimen/dp15"
-        app:shape_solidColor="@color/c_f6a50c"
+        app:shape_solidColor="@color/colorAccent"
         android:layout_marginTop="@dimen/dp8"
         android:layout_gravity="center_horizontal"
         android:clickable="true"
