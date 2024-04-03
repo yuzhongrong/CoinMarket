@@ -22,7 +22,7 @@ import kotlinx.coroutines.withContext
 
 class MemeCategoryCommonFragmentViewModel : BaseLoadingViewModel() {
     var datas = ObservableField<List<ClientAccumulativeRateDTO>>()
-    var memeTypeCategoryAdapter = ObservableField<BaseQuickAdapter<*, *>>()
+//    var memeTypeCategoryAdapter = ObservableField<BaseQuickAdapter<*, *>>()
     var spot = State(TimeUtils.Interval.HOUR)
     val mHotMeme = MutableResult<List<MemeBaseEntry>>()
 

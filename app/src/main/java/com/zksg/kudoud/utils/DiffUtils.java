@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import com.zksg.lib_api.baby.BabyInfo;
 import com.zksg.lib_api.baby.FeedTip;
 import com.zksg.lib_api.beans.EnvBean;
+import com.zksg.lib_api.beans.MemeBaseEntry;
 import com.zksg.lib_api.playlist.BasicMusicInfo;
 
 //import com.netease.lib_api.model.album.AlbumOrSongBean;
@@ -35,6 +36,8 @@ public class DiffUtils {
     private DiffUtil.ItemCallback<EnvBean> mEnvItemCallback;
     private DiffUtil.ItemCallback<FeedTip> mFeedTipItemCallback;
     private DiffUtil.ItemCallback<BabyInfo> mBabyItemCallback;
+
+    private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
 
 //    private DiffUtil.ItemCallback<MainRecommendPlayListBean.RecommendBean> mRecommendPlaylistItemCallback;
 //
@@ -81,6 +84,24 @@ public class DiffUtils {
             };
         }
         return mEnvItemCallback;
+    }
+
+
+    public DiffUtil.ItemCallback<MemeBaseEntry> getMemeBaseItemCallback() {
+        if (mMemeBaseCallback == null) {
+            mMemeBaseCallback = new DiffUtil.ItemCallback<MemeBaseEntry>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull MemeBaseEntry oldItem, @NonNull MemeBaseEntry newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull MemeBaseEntry oldItem, @NonNull MemeBaseEntry newItem) {
+                    return oldItem.getSymbol().equals(newItem.getSymbol());
+                }
+            };
+        }
+        return mMemeBaseCallback;
     }
 
 

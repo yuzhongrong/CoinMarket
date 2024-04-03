@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="meme"
+            type="com.zksg.lib_api.beans.MemeBaseEntry" />
+
+    </data>
 <com.hjq.shape.layout.ShapeRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
@@ -11,44 +19,47 @@
 
     >
 
-    <ImageView
+
+    <com.hjq.shape.view.ShapeImageView
         android:id="@+id/icon"
         android:layout_width="@dimen/dp45"
         android:layout_height="@dimen/dp45"
-        android:layout_alignParentLeft="true"
-        android:layout_centerInParent="true"
-        android:src="@mipmap/ic_solana" />
+        meme_imv="@{meme.logoURI}"
+        app:shape_radius="@dimen/dp45"
+        android:src="@mipmap/ic_solana"
+        android:scaleType="fitXY"
+        />
+
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_toRightOf="@+id/icon"
-        android:layout_marginLeft="@dimen/dp12"
         android:layout_centerInParent="true"
-        >
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/whitesmoke"
-        android:textSize="@dimen/sp12"
-        android:text="SOL"
-        android:textStyle="bold"
+        android:layout_marginLeft="@dimen/dp12"
+        android:layout_toRightOf="@+id/icon"
+        android:orientation="vertical">
 
-        />
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{meme.symbol}"
+            android:textColor="@color/whitesmoke"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold"
+
+            />
 
 
-    <TextView
-        android:id="@+id/vol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/primaryTextGray"
-        android:textSize="@dimen/sp12"
-        android:text="Vol $708.65k"
-        android:layout_marginTop="@dimen/dp4"
-        />
-
+        <TextView
+            android:id="@+id/vol"
+            meme_vol_tv="@{meme.v24hUSD}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4"
+            android:text="@string/str_f_default"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12" />
 
 
     </LinearLayout>
@@ -67,18 +78,25 @@
 
         android:textStyle="bold" />
 
+
     <com.hjq.shape.view.ShapeButton
         android:id="@+id/change"
-        android:layout_width="@dimen/dp90"
+        meme_percent_tv="@{meme.v24hChangePercent}"
+        android:layout_width="@dimen/dp80"
         android:layout_height="@dimen/dp30"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:gravity="center"
-        android:text="+0.02%"
+        android:text="@string/str_precent_1"
         android:textColor="@color/white"
         android:textSize="@dimen/sp12"
         android:textStyle="bold"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:shape_radius="@dimen/dp5" />
 
-        app:shape_radius="@dimen/dp5"
-        app:shape_solidColor="@color/c_1bc89e" />
+
+
 </com.hjq.shape.layout.ShapeRelativeLayout>
+</layout>

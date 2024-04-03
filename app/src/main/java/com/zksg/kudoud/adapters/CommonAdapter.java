@@ -22,7 +22,6 @@ public class CommonAdapter extends BaseQuickAdapter<HomeItem, BaseViewHolder> {
         super(layoutResId);
     }
 
-
     public CommonAdapter(int layoutResId, @Nullable List<HomeItem> data) {
         super(layoutResId,data);
         setOnItemClickListener((adapter,view,position)->{

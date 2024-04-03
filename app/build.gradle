@@ -166,6 +166,8 @@ dependencies {
     implementation 'gdut.bsx:share2:0.9.3'
     //upgrade
     implementation 'io.github.azhon:appupdate:4.3.0'
+    //fastjson
+    implementation 'com.alibaba:fastjson:1.2.76'
 
 
 

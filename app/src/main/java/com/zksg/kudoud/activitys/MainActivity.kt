@@ -3,12 +3,9 @@ package com.zksg.kudoud.activitys
 //import com.kunminx.architecture.ui.page.StateHolder
 //import com.kunminx.architecture.ui.state.State
 //import com.kunminx.architecture.utils.BarUtils
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowInsetsController
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
@@ -52,8 +49,8 @@ class MainActivity : BaseActivity() {
         mainBinding.homeNavigate!!.addTab(HomeFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
-                R.mipmap.home_normal,
                 R.mipmap.home_select,
+                R.mipmap.home_normal,
                 HOME_PAGE
             )
         )

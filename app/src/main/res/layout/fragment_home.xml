@@ -79,9 +79,9 @@
 
                     <ImageView
                         android:id="@+id/iv_search"
-                        android:layout_width="@dimen/dp20"
-                        android:layout_height="@dimen/dp18"
-                        android:src="@mipmap/ic_search"
+                        android:layout_width="@dimen/dp25"
+                        android:layout_height="@dimen/dp25"
+                        android:src="@mipmap/ic_search1"
                         android:layout_marginLeft="@dimen/dp10"
                         android:padding="@dimen/dp1"
 

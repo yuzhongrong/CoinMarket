@@ -1,12 +1,18 @@
 package com.zksg.kudoud.adapters
 
 import android.content.Intent
+import android.graphics.Color
+import android.util.Log
 import android.view.View
+import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.hjq.shape.view.ShapeButton
 import com.netease.lib_image_loader.app.ImageLoaderManager
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.AppDetailActivity
+import com.zksg.kudoud.utils.ColorUtils
+import com.zksg.kudoud.utils.DigitUtils
 import com.zksg.lib_api.beans.MemeBaseEntry
 
 class HomeMemeCWAdapter_V : BaseQuickAdapter<MemeBaseEntry, BaseViewHolder> {
@@ -56,11 +62,39 @@ class HomeMemeCWAdapter_V : BaseQuickAdapter<MemeBaseEntry, BaseViewHolder> {
 //        }
 //
 //
-        ImageLoaderManager.getInstance().displayImageForCircle(baseViewHolder.getView(R.id.icon), meme.logoURI)
 
+        if(meme.symbol==null)return
+        ImageLoaderManager.getInstance().displayImageForCircle(baseViewHolder.getView(R.id.icon), meme.logoURI)
         baseViewHolder.setText(R.id.name, meme.symbol)
-//        baseViewHolder.setText(R.id.vol, meme.v24hUSD)
-        baseViewHolder.setText(R.id.price, "$179.23")
-//        baseViewHolder.setText(R.id.change, meme.v24hChangePercent)
+        if(meme.v24hUSD!=null){
+            baseViewHolder.getView<TextView>(R.id.vol).text="Vol $"+DigitUtils.formatAmount(meme.v24hUSD)
+        }else{
+            baseViewHolder.getView<TextView>(R.id.vol).text=context.getText(R.string.str_vol_default)
+        }
+
+        if(meme.v24hChangePercent!=null){
+           var change= baseViewHolder.getView<ShapeButton>(R.id.change)
+            var percent=meme.v24hChangePercent as Double
+            if(meme.symbol.equals("boden")){
+                var ok=DigitUtils.isNegative(percent)
+                Log.d("-----boden--->",ok.toString())
+            }
+            if(DigitUtils.isNegative(percent)){
+
+
+            }
+            change.text=DigitUtils.formatAmount(percent)+context.getString(R.string.str_precent)
+        }else{
+            baseViewHolder.getView<TextView>(R.id.change).text="--.--%"
+        }
+
+        if(meme.price!=null){
+            baseViewHolder.getView<TextView>(R.id.price).text="$"+DigitUtils.formatAmount(meme.price)
+        }else{
+            baseViewHolder.getView<TextView>(R.id.price).text=context.getString(R.string.str_f_default)
+        }
+
+
+//        baseViewHolder.setText(R.id.change,meme.v24hChangePercent)
     }
 }

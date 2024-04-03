@@ -1,0 +1,33 @@
+package com.zksg.kudoud.adapters;
+
+import android.content.Context;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
+import com.lxj.xpopup.XPopup;
+import com.zksg.kudoud.R;
+import com.zksg.kudoud.databinding.ItemFeedTipBinding;
+import com.zksg.kudoud.databinding.ItemMemeListBinding;
+import com.zksg.kudoud.dialogs.DelBabyDialog;
+import com.zksg.kudoud.utils.DiffUtils;
+import com.zksg.lib_api.baby.FeedTip;
+import com.zksg.lib_api.beans.MemeBaseEntry;
+
+public class MemeCommonListdapter extends SimpleDataBindingAdapter<MemeBaseEntry, ItemMemeListBinding> {
+
+    private Context mContex;
+    public MemeCommonListdapter(Context context) {
+        super(context, R.layout.item_meme_list, DiffUtils.getInstance().getMemeBaseItemCallback());
+        this.mContex=context;
+        setOnItemLongClickListener((item, position) -> {
+            new XPopup.Builder(context).asCustom(new DelBabyDialog(context)).show();
+        });
+    }
+
+
+    @Override
+    protected void onBindItem(ItemMemeListBinding binding, MemeBaseEntry item, RecyclerView.ViewHolder holder) {
+        binding.setMeme(item);
+    }
+}

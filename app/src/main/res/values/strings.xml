@@ -226,5 +226,10 @@
     <string name="str_meme_tip">模因文化起源与发展快速购买模因\n<font color="#f7a600">$meme</font>代币走进模因世界！！</string>
     <string name="str_lean">马上了解</string>
     <string name="str_lc">Bybit 理财</string>
+    <string name="str_vol_default">Vol $--.--</string>
+    <string name="str_vol_daller">Vol $</string>
+    <string name="str_precent">%</string>
+    <string name="str_precent_1">--.--%</string>
+    <string name="str_f_default">$--.--</string>
 
 </resources>

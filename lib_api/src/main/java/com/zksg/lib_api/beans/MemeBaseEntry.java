@@ -27,6 +27,11 @@ public class MemeBaseEntry implements Serializable {
     @SerializedName("v24hUSD")
     private double v24hUSD;
 
+
+    private double price;
+
+
+
     public String getAddress() {
         return address;
     }
@@ -106,4 +111,13 @@ public class MemeBaseEntry implements Serializable {
     public void setV24hUSD(double v24hUSD) {
         this.v24hUSD = v24hUSD;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
 }

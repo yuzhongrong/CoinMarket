@@ -8,6 +8,11 @@
         <variable
             name="vm"
             type="com.zksg.kudoud.state.MemeCategoryCommonFragmentViewModel" />
+
+
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.MemeCommonListdapter" />
     </data>
 
     <LinearLayout
@@ -17,13 +22,14 @@
 
         <androidx.recyclerview.widget.RecyclerView
 
-            linearAdapter="@{vm.memeTypeCategoryAdapter}"
+            linearAdapter="@{adapter}"
             cannotScrollVertically="@{false}"
             itemspace="@{1}"
             orientation="@{1}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp8"
+            submitList="@{vm.mHotMeme}"
 
 
             />
