@@ -25,6 +25,7 @@ public enum CommonCategoryDataEnum {
 	public static final int CHAT_DOWN_24 = 7;
 
 	public static final int CHAT_EX_24 = 8;
+
 	public static final int OTHER_ID = -1;
 
 

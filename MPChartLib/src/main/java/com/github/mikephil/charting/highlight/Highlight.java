@@ -60,12 +60,14 @@ public class Highlight {
      */
     private float mDrawY;
 
+    //用这个会造成同一条
     public Highlight(float x, float y, int dataSetIndex) {
         this.mX = x;
         this.mY = y;
         this.mDataSetIndex = dataSetIndex;
     }
 
+    //用这个
     public Highlight(float x, int dataSetIndex, int stackIndex) {
         this(x, Float.NaN, dataSetIndex);
         this.mStackIndex = stackIndex;
@@ -216,14 +218,11 @@ public class Highlight {
      */
     public boolean equalTo(Highlight h) {
 
-        if (h == null)
+        if (h == null) {
             return false;
-        else {
-            if (this.mDataSetIndex == h.mDataSetIndex && this.mX == h.mX
-                    && this.mStackIndex == h.mStackIndex && this.mDataIndex == h.mDataIndex)
-                return true;
-            else
-                return false;
+        } else {
+            return this.mDataSetIndex == h.mDataSetIndex && this.mX == h.mX
+                    && this.mStackIndex == h.mStackIndex && this.mDataIndex == h.mDataIndex;
         }
     }
 

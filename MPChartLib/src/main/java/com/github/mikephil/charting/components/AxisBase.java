@@ -1,3 +1,4 @@
+
 package com.github.mikephil.charting.components;
 
 import android.graphics.Color;
@@ -473,8 +474,9 @@ public abstract class AxisBase extends ComponentBase {
         for (int i = 0; i < mEntries.length; i++) {
             String text = getFormattedLabel(i);
 
-            if (text != null && longest.length() < text.length())
+            if (text != null && longest.length() < text.length()) {
                 longest = text;
+            }
         }
 
         return longest;
@@ -499,10 +501,11 @@ public abstract class AxisBase extends ComponentBase {
      */
     public void setValueFormatter(ValueFormatter f) {
 
-        if (f == null)
+        if (f == null) {
             mAxisValueFormatter = new DefaultAxisValueFormatter(mDecimals);
-        else
+        } else {
             mAxisValueFormatter = f;
+        }
     }
 
     /**
@@ -514,8 +517,9 @@ public abstract class AxisBase extends ComponentBase {
 
         if (mAxisValueFormatter == null ||
                 (mAxisValueFormatter instanceof DefaultAxisValueFormatter &&
-                        ((DefaultAxisValueFormatter)mAxisValueFormatter).getDecimalDigits() != mDecimals))
+                        ((DefaultAxisValueFormatter)mAxisValueFormatter).getDecimalDigits() != mDecimals)) {
             mAxisValueFormatter = new DefaultAxisValueFormatter(mDecimals);
+        }
 
         return mAxisValueFormatter;
     }

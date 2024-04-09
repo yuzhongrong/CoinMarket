@@ -20,6 +20,12 @@ public class DigitUtils {
     }
 
 
+
+    public static String formatAmountPercentChange(double amount) {
+        return String.format("%.2f", amount);
+    }
+
+
     //判断double 是否小于0
     public static boolean isNegative(double value) {
         // 使用阈值避免精度问题

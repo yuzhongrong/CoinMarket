@@ -18,12 +18,13 @@ public class MemeBaseEntry implements Serializable {
     private String logoURI;
     @SerializedName("mc")
     private double mc;
+    @SerializedName("v24hChangePercent")
+    private Object v24hChangePercent;
     @SerializedName("name")
     private String name;
     @SerializedName("symbol")
     private String symbol;
-    @SerializedName("v24hChangePercent")
-    private Object v24hChangePercent;
+
     @SerializedName("v24hUSD")
     private double v24hUSD;
 

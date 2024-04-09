@@ -41,7 +41,7 @@ public abstract class ComponentBase {
     /**
      * the text color to use for the labels
      */
-    protected int mTextColor = Color.BLACK;
+    protected int mTextColor = Color.GRAY;
 
 
     public ComponentBase() {
@@ -114,10 +114,12 @@ public abstract class ComponentBase {
      */
     public void setTextSize(float size) {
 
-        if (size > 24f)
+        if (size > 24f) {
             size = 24f;
-        if (size < 6f)
+        }
+        if (size < 6f) {
             size = 6f;
+        }
 
         mTextSize = Utils.convertDpToPixel(size);
     }

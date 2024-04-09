@@ -72,8 +72,7 @@
     android:layout_marginTop="@dimen/dp20"
     android:layout_marginLeft="@dimen/dp12"
     android:layout_marginRight="@dimen/dp12"
-    showCurveLineChart="@{vm.datas}"
-    mSlot="@{vm.spot}"
+
 
     />
         <com.hjq.shape.layout.ShapeLinearLayout

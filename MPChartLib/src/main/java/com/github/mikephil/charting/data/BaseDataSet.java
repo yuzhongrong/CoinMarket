@@ -92,6 +92,10 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * flag that indicates if the DataSet is visible or not
      */
     protected boolean mVisible = true;
+    //数值的精确度位数
+    protected int precision = 2;
+    //分时图类型，区分当日分时和多日分时
+    protected int timeDayType = 1;
 
     /**
      * Default constructor.
@@ -101,7 +105,7 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         mValueColors = new ArrayList<Integer>();
 
         // default color
-        mColors.add(Color.rgb(140, 234, 255));
+        mColors.add(Color.parseColor("#696969"));
         mValueColors.add(Color.BLACK);
     }
 
@@ -220,8 +224,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
      * @param color
      */
     public void addColor(int color) {
-        if (mColors == null)
+        if (mColors == null) {
             mColors = new ArrayList<Integer>();
+        }
         mColors.add(color);
     }
 
@@ -315,16 +320,18 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     @Override
     public void setValueFormatter(ValueFormatter f) {
 
-        if (f == null)
+        if (f == null) {
             return;
-        else
+        } else {
             mValueFormatter = f;
+        }
     }
 
     @Override
     public ValueFormatter getValueFormatter() {
-        if (needsFormatter())
+        if (needsFormatter()) {
             return Utils.getDefaultValueFormatter();
+        }
         return mValueFormatter;
     }
 
@@ -462,6 +469,24 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
         mAxisDependency = dependency;
     }
 
+    //设置数据的精确度位数
+    public void setPrecision(int precision) {
+        this.precision = precision;
+    }
+
+    @Override
+    public int getPrecision() {
+        return precision;
+    }
+
+    public void setTimeDayType(int timeDayType) {
+        this.timeDayType = timeDayType;
+    }
+
+    @Override
+    public int getTimeDayType() {
+        return timeDayType;
+    }
 
     /**
      * ###### ###### DATA RELATED METHODS ###### ######
@@ -471,8 +496,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     public int getIndexInEntries(int xIndex) {
 
         for (int i = 0; i < getEntryCount(); i++) {
-            if (xIndex == getEntryForIndex(i).getX())
+            if (xIndex == getEntryForIndex(i).getX()) {
                 return i;
+            }
         }
 
         return -1;
@@ -485,8 +511,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
 
             T entry = getEntryForIndex(0);
             return removeEntry(entry);
-        } else
+        } else {
             return false;
+        }
     }
 
     @Override
@@ -496,8 +523,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
 
             T e = getEntryForIndex(getEntryCount() - 1);
             return removeEntry(e);
-        } else
+        } else {
             return false;
+        }
     }
 
     @Override
@@ -518,8 +546,9 @@ public abstract class BaseDataSet<T extends Entry> implements IDataSet<T> {
     public boolean contains(T e) {
 
         for (int i = 0; i < getEntryCount(); i++) {
-            if (getEntryForIndex(i).equals(e))
+            if (getEntryForIndex(i).equals(e)) {
                 return true;
+            }
         }
 
         return false;

@@ -1,12 +1,14 @@
 package com.zksg.kudoud.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.lxj.xpopup.XPopup;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.activitys.MemeChartDetailActivity;
 import com.zksg.kudoud.databinding.ItemFeedTipBinding;
 import com.zksg.kudoud.databinding.ItemMemeListBinding;
 import com.zksg.kudoud.dialogs.DelBabyDialog;
@@ -20,8 +22,9 @@ public class MemeCommonListdapter extends SimpleDataBindingAdapter<MemeBaseEntry
     public MemeCommonListdapter(Context context) {
         super(context, R.layout.item_meme_list, DiffUtils.getInstance().getMemeBaseItemCallback());
         this.mContex=context;
-        setOnItemLongClickListener((item, position) -> {
-            new XPopup.Builder(context).asCustom(new DelBabyDialog(context)).show();
+        setOnItemClickListener((item, position) -> {
+            context.startActivity(new Intent(context, MemeChartDetailActivity.class));
+
         });
     }
 

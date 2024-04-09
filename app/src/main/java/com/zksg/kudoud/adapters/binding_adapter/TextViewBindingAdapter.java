@@ -29,11 +29,11 @@ public class TextViewBindingAdapter {
         String flat=bt.getContext().getString(R.string.str_precent);
 
         if(result){
-            bt.setText(DigitUtils.formatAmount(d_result)+flat);
+            bt.setText(DigitUtils.formatAmountPercentChange(d_result)+flat);
             bt.getShapeDrawableBuilder().setSolidColor(bt.getContext().getColor(R.color.c_f71816)).intoBackground();
         }else{
             bt.getShapeDrawableBuilder().setSolidColor(bt.getContext().getColor(R.color.c_1bc89e)).intoBackground();
-            bt.setText("+"+DigitUtils.formatAmount(d_result)+flat);
+            bt.setText("+"+DigitUtils.formatAmountPercentChange(d_result)+flat);
         }
 
 
@@ -42,6 +42,13 @@ public class TextViewBindingAdapter {
     @BindingAdapter(value = {"bindSettingBar_right"},requireAll = false)
     public static void bindSettingBar_Right(SettingBar bar,String right_txt_id) {
         bar.setRightText(right_txt_id);
+    }
+
+
+    @BindingAdapter(value = {"bindTextViewContent"},requireAll = false)
+    public static void bindTextViewContent(TextView tv,String content) {
+        if(tv==null)return;
+        tv.setText(content);
     }
 
 }

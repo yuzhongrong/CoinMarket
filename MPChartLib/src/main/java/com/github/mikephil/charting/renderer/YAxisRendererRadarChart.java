@@ -45,8 +45,9 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
 
         // If granularity is enabled, then do not allow the interval to go below specified granularity.
         // This is used to avoid repeated values when rounding values for display.
-        if (mAxis.isGranularityEnabled())
+        if (mAxis.isGranularityEnabled()) {
             interval = interval < mAxis.getGranularity() ? mAxis.getGranularity() : interval;
+        }
 
         // Normalize interval
         double intervalMagnitude = Utils.roundToNextSignificant(Math.pow(10, (int) Math.log10(interval)));
@@ -111,7 +112,9 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
             for (f = first, i = 0; i < n; f += interval, ++i) {
 
                 if (f == 0.0) // Fix for negative zero case (Where value == -0.0, and 0.0 == -0.0)
+                {
                     f = 0.0;
+                }
 
                 mAxis.mEntries[i] = (float) f;
             }
@@ -138,22 +141,23 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
         }
 
         mAxis.mAxisMinimum = mAxis.mEntries[0];
-        mAxis.mAxisMaximum = mAxis.mEntries[n-1];
+        mAxis.mAxisMaximum = mAxis.mEntries[n - 1];
         mAxis.mAxisRange = Math.abs(mAxis.mAxisMaximum - mAxis.mAxisMinimum);
     }
 
     @Override
     public void renderAxisLabels(Canvas c) {
 
-        if (!mYAxis.isEnabled() || !mYAxis.isDrawLabelsEnabled())
+        if (!mYAxis.isEnabled() || !mYAxis.isDrawLabelsEnabled()) {
             return;
+        }
 
         mAxisLabelPaint.setTypeface(mYAxis.getTypeface());
         mAxisLabelPaint.setTextSize(mYAxis.getTextSize());
         mAxisLabelPaint.setColor(mYAxis.getTextColor());
 
         MPPointF center = mChart.getCenterOffsets();
-        MPPointF pOut = MPPointF.getInstance(0,0);
+        MPPointF pOut = MPPointF.getInstance(0, 0);
         float factor = mChart.getFactor();
 
         final int from = mYAxis.isDrawBottomYLabelEntryEnabled() ? 0 : 1;
@@ -176,13 +180,15 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
     }
 
     private Path mRenderLimitLinesPathBuffer = new Path();
+
     @Override
     public void renderLimitLines(Canvas c) {
 
         List<LimitLine> limitLines = mYAxis.getLimitLines();
 
-        if (limitLines == null)
+        if (limitLines == null) {
             return;
+        }
 
         float sliceangle = mChart.getSliceAngle();
 
@@ -191,13 +197,14 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
         float factor = mChart.getFactor();
 
         MPPointF center = mChart.getCenterOffsets();
-        MPPointF pOut = MPPointF.getInstance(0,0);
+        MPPointF pOut = MPPointF.getInstance(0, 0);
         for (int i = 0; i < limitLines.size(); i++) {
 
             LimitLine l = limitLines.get(i);
 
-            if (!l.isEnabled())
+            if (!l.isEnabled()) {
                 continue;
+            }
 
             mLimitLinePaint.setColor(l.getLineColor());
             mLimitLinePaint.setPathEffect(l.getDashPathEffect());
@@ -213,10 +220,11 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
 
                 Utils.getPosition(center, r, sliceangle * j + mChart.getRotationAngle(), pOut);
 
-                if (j == 0)
+                if (j == 0) {
                     limitPath.moveTo(pOut.x, pOut.y);
-                else
+                } else {
                     limitPath.lineTo(pOut.x, pOut.y);
+                }
             }
             limitPath.close();
 

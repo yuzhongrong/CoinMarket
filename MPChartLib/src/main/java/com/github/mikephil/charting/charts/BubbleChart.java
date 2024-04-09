@@ -37,6 +37,7 @@ public class BubbleChart extends BarLineChartBase<BubbleData> implements BubbleD
         mRenderer = new BubbleChartRenderer(this, mAnimator, mViewPortHandler);
     }
 
+    @Override
     public BubbleData getBubbleData() {
         return mData;
     }

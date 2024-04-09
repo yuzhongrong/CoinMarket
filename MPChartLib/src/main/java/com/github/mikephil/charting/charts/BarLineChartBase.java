@@ -161,7 +161,8 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         mAxisRendererLeft = new YAxisRenderer(mViewPortHandler, mAxisLeft, mLeftAxisTransformer);
         mAxisRendererRight = new YAxisRenderer(mViewPortHandler, mAxisRight, mRightAxisTransformer);
 
-        mXAxisRenderer = new XAxisRenderer(mViewPortHandler, mXAxis, mLeftAxisTransformer);
+        initXAxisRenderer();
+//        mXAxisRenderer = new XAxisRenderer(mViewPortHandler, mXAxis, mLeftAxisTransformer);
 
         setHighlighter(new ChartHighlighter(this));
 
@@ -179,6 +180,10 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         mBorderPaint.setStrokeWidth(Utils.convertDpToPixel(1f));
     }
 
+    protected void initXAxisRenderer() {
+        mXAxisRenderer = new XAxisRenderer(mViewPortHandler, mXAxis, mLeftAxisTransformer);
+    }
+
     // for performance tracking
     private long totalTime = 0;
     private long drawCycles = 0;
@@ -187,8 +192,9 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        if (mData == null)
+        if (mData == null) {
             return;
+        }
 
         long starttime = System.currentTimeMillis();
 
@@ -199,74 +205,93 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
             autoScale();
         }
 
-        if (mAxisLeft.isEnabled())
+        if (mAxisLeft.isEnabled()) {
             mAxisRendererLeft.computeAxis(mAxisLeft.mAxisMinimum, mAxisLeft.mAxisMaximum, mAxisLeft.isInverted());
+        }
 
-        if (mAxisRight.isEnabled())
+        if (mAxisRight.isEnabled()) {
             mAxisRendererRight.computeAxis(mAxisRight.mAxisMinimum, mAxisRight.mAxisMaximum, mAxisRight.isInverted());
+        }
 
-        if (mXAxis.isEnabled())
+        if (mXAxis.isEnabled()) {
             mXAxisRenderer.computeAxis(mXAxis.mAxisMinimum, mXAxis.mAxisMaximum, false);
+        }
 
         mXAxisRenderer.renderAxisLine(canvas);
         mAxisRendererLeft.renderAxisLine(canvas);
         mAxisRendererRight.renderAxisLine(canvas);
 
-        if (mXAxis.isDrawGridLinesBehindDataEnabled())
+        if (mXAxis.isDrawGridLinesBehindDataEnabled()) {
             mXAxisRenderer.renderGridLines(canvas);
+        }
 
-        if (mAxisLeft.isDrawGridLinesBehindDataEnabled())
+        if (mAxisLeft.isDrawGridLinesBehindDataEnabled()) {
             mAxisRendererLeft.renderGridLines(canvas);
+        }
 
-        if (mAxisRight.isDrawGridLinesBehindDataEnabled())
+        if (mAxisRight.isDrawGridLinesBehindDataEnabled()) {
             mAxisRendererRight.renderGridLines(canvas);
+        }
 
-        if (mXAxis.isEnabled() && mXAxis.isDrawLimitLinesBehindDataEnabled())
+        if (mXAxis.isEnabled() && mXAxis.isDrawLimitLinesBehindDataEnabled()) {
             mXAxisRenderer.renderLimitLines(canvas);
+        }
 
-        if (mAxisLeft.isEnabled() && mAxisLeft.isDrawLimitLinesBehindDataEnabled())
+        if (mAxisLeft.isEnabled() && mAxisLeft.isDrawLimitLinesBehindDataEnabled()) {
             mAxisRendererLeft.renderLimitLines(canvas);
+        }
 
-        if (mAxisRight.isEnabled() && mAxisRight.isDrawLimitLinesBehindDataEnabled())
+        if (mAxisRight.isEnabled() && mAxisRight.isDrawLimitLinesBehindDataEnabled()) {
             mAxisRendererRight.renderLimitLines(canvas);
+        }
 
         // make sure the data cannot be drawn outside the content-rect
         int clipRestoreCount = canvas.save();
         canvas.clipRect(mViewPortHandler.getContentRect());
 
+        //通过渲染器的子类用线条等绘制实际的数据
         mRenderer.drawData(canvas);
 
-        if (!mXAxis.isDrawGridLinesBehindDataEnabled())
+        if (!mXAxis.isDrawGridLinesBehindDataEnabled()) {
             mXAxisRenderer.renderGridLines(canvas);
+        }
 
-        if (!mAxisLeft.isDrawGridLinesBehindDataEnabled())
+        if (!mAxisLeft.isDrawGridLinesBehindDataEnabled()) {
             mAxisRendererLeft.renderGridLines(canvas);
+        }
 
-        if (!mAxisRight.isDrawGridLinesBehindDataEnabled())
+        if (!mAxisRight.isDrawGridLinesBehindDataEnabled()) {
             mAxisRendererRight.renderGridLines(canvas);
+        }
 
         // if highlighting is enabled
-        if (valuesToHighlight())
+        if (valuesToHighlight()) {
             mRenderer.drawHighlighted(canvas, mIndicesToHighlight);
+        }
 
         // Removes clipping rectangle
         canvas.restoreToCount(clipRestoreCount);
 
+        //绘制任何额外的信息(例如行 圈)
         mRenderer.drawExtras(canvas);
 
-        if (mXAxis.isEnabled() && !mXAxis.isDrawLimitLinesBehindDataEnabled())
+        if (mXAxis.isEnabled() && !mXAxis.isDrawLimitLinesBehindDataEnabled()) {
             mXAxisRenderer.renderLimitLines(canvas);
+        }
 
-        if (mAxisLeft.isEnabled() && !mAxisLeft.isDrawLimitLinesBehindDataEnabled())
+        if (mAxisLeft.isEnabled() && !mAxisLeft.isDrawLimitLinesBehindDataEnabled()) {
             mAxisRendererLeft.renderLimitLines(canvas);
+        }
 
-        if (mAxisRight.isEnabled() && !mAxisRight.isDrawLimitLinesBehindDataEnabled())
+        if (mAxisRight.isEnabled() && !mAxisRight.isDrawLimitLinesBehindDataEnabled()) {
             mAxisRendererRight.renderLimitLines(canvas);
+        }
 
         mXAxisRenderer.renderAxisLabels(canvas);
         mAxisRendererLeft.renderAxisLabels(canvas);
         mAxisRendererRight.renderAxisLabels(canvas);
 
+        // Removes clipping rectangle
         if (isClipValuesToContentEnabled()) {
             clipRestoreCount = canvas.save();
             canvas.clipRect(mViewPortHandler.getContentRect());
@@ -275,6 +300,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
             canvas.restoreToCount(clipRestoreCount);
         } else {
+            //循环遍历所有Entrys并绘制它们的值
             mRenderer.drawValues(canvas);
         }
 
@@ -304,9 +330,10 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
     protected void prepareValuePxMatrix() {
 
-        if (mLogEnabled)
+        if (mLogEnabled) {
             Log.i(LOG_TAG, "Preparing Value-Px Matrix, xmin: " + mXAxis.mAxisMinimum + ", xmax: "
                     + mXAxis.mAxisMaximum + ", xdelta: " + mXAxis.mAxisRange);
+        }
 
         mRightAxisTransformer.prepareMatrixValuePx(mXAxis.mAxisMinimum,
                 mXAxis.mAxisRange,
@@ -328,16 +355,19 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     public void notifyDataSetChanged() {
 
         if (mData == null) {
-            if (mLogEnabled)
+            if (mLogEnabled) {
                 Log.i(LOG_TAG, "Preparing... DATA NOT SET.");
+            }
             return;
         } else {
-            if (mLogEnabled)
+            if (mLogEnabled) {
                 Log.i(LOG_TAG, "Preparing...");
+            }
         }
 
-        if (mRenderer != null)
+        if (mRenderer != null) {
             mRenderer.initBuffers();
+        }
 
         calcMinMax();
 
@@ -345,8 +375,9 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
         mAxisRendererRight.computeAxis(mAxisRight.mAxisMinimum, mAxisRight.mAxisMaximum, mAxisRight.isInverted());
         mXAxisRenderer.computeAxis(mXAxis.mAxisMinimum, mXAxis.mAxisMaximum, false);
 
-        if (mLegend != null)
+        if (mLegend != null) {
             mLegendRenderer.computeLegend(mData);
+        }
 
         calculateOffsets();
     }
@@ -365,13 +396,15 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
 
         // calculate axis range (min / max) according to provided data
 
-        if (mAxisLeft.isEnabled())
+        if (mAxisLeft.isEnabled()) {
             mAxisLeft.calculate(mData.getYMin(AxisDependency.LEFT),
                     mData.getYMax(AxisDependency.LEFT));
+        }
 
-        if (mAxisRight.isEnabled())
+        if (mAxisRight.isEnabled()) {
             mAxisRight.calculate(mData.getYMin(AxisDependency.RIGHT),
                     mData.getYMax(AxisDependency.RIGHT));
+        }
 
         calculateOffsets();
     }
@@ -441,17 +474,27 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
                             offsets.top += Math.min(mLegend.mNeededHeight,
                                     mViewPortHandler.getChartHeight() * mLegend.getMaxSizePercent())
                                     + mLegend.getYOffset();
+
+                            if (getXAxis().isEnabled() && getXAxis().isDrawLabelsEnabled()) {
+                                offsets.top += getXAxis().mLabelRotatedHeight;
+                            }
                             break;
 
                         case BOTTOM:
                             offsets.bottom += Math.min(mLegend.mNeededHeight,
                                     mViewPortHandler.getChartHeight() * mLegend.getMaxSizePercent())
                                     + mLegend.getYOffset();
+
+                            if (getXAxis().isEnabled() && getXAxis().isDrawLabelsEnabled()) {
+                                offsets.bottom += getXAxis().mLabelRotatedHeight;
+                            }
                             break;
 
                         default:
                             break;
                     }
+                    break;
+                default:
                     break;
             }
         }
@@ -551,32 +594,37 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      *
      * @return
      */
+    @Override
     public Transformer getTransformer(AxisDependency which) {
-        if (which == AxisDependency.LEFT)
+        if (which == AxisDependency.LEFT) {
             return mLeftAxisTransformer;
-        else
+        } else {
             return mRightAxisTransformer;
+        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);
 
-        if (mChartTouchListener == null || mData == null)
+        if (mChartTouchListener == null || mData == null) {
             return false;
+        }
 
         // check if touch gestures are enabled
-        if (!mTouchEnabled)
+        if (!mTouchEnabled) {
             return false;
-        else
+        } else {
             return mChartTouchListener.onTouch(this, event);
+        }
     }
 
     @Override
     public void computeScroll() {
 
-        if (mChartTouchListener instanceof BarLineChartTouchListener)
+        if (mChartTouchListener instanceof BarLineChartTouchListener) {
             ((BarLineChartTouchListener) mChartTouchListener).computeScroll();
+        }
     }
 
     /**
@@ -998,10 +1046,11 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * @return
      */
     protected float getAxisRange(AxisDependency axis) {
-        if (axis == AxisDependency.LEFT)
+        if (axis == AxisDependency.LEFT) {
             return mAxisLeft.mAxisRange;
-        else
+        } else {
             return mAxisRight.mAxisRange;
+        }
     }
 
     /**
@@ -1034,8 +1083,9 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      */
     public MPPointF getPosition(Entry e, AxisDependency axis) {
 
-        if (e == null)
+        if (e == null) {
             return null;
+        }
 
         mGetPositionBuffer[0] = e.getX();
         mGetPositionBuffer[1] = e.getY();
@@ -1394,21 +1444,25 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     /**
      * returns the current x-scale factor
      */
+    @Override
     public float getScaleX() {
-        if (mViewPortHandler == null)
+        if (mViewPortHandler == null) {
             return 1f;
-        else
+        } else {
             return mViewPortHandler.getScaleX();
+        }
     }
 
     /**
      * returns the current y-scale factor
      */
+    @Override
     public float getScaleY() {
-        if (mViewPortHandler == null)
+        if (mViewPortHandler == null) {
             return 1f;
-        else
+        } else {
             return mViewPortHandler.getScaleY();
+        }
     }
 
     /**
@@ -1448,10 +1502,11 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * @return
      */
     public YAxis getAxis(AxisDependency axis) {
-        if (axis == AxisDependency.LEFT)
+        if (axis == AxisDependency.LEFT) {
             return mAxisLeft;
-        else
+        } else {
             return mAxisRight;
+        }
     }
 
     @Override
@@ -1562,11 +1617,10 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
      * @return
      */
     public boolean isAnyAxisInverted() {
-        if (mAxisLeft.isInverted())
+        if (mAxisLeft.isInverted()) {
             return true;
-        if (mAxisRight.isInverted())
-            return true;
-        return false;
+        }
+        return mAxisRight.isInverted();
     }
 
     /**
@@ -1603,8 +1657,9 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
     @Override
     public Paint getPaint(int which) {
         Paint p = super.getPaint(which);
-        if (p != null)
+        if (p != null) {
             return p;
+        }
 
         switch (which) {
             case PAINT_GRID_BACKGROUND:

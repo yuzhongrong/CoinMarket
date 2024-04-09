@@ -9,7 +9,7 @@ public class DataFilterUtils {
 
     public static List<MemeBaseEntry> filterNonNullName(List<MemeBaseEntry> dataList) {
         return dataList.stream()
-                .filter(entry -> (entry.getSymbol() != null))
+                .filter(entry -> (entry.getSymbol() != null&&entry.getLiquidity()!=0))
                 .collect(Collectors.toList());
     }
 

@@ -66,8 +66,9 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
     @Override
     public void renderAxisLabels(Canvas c) {
 
-        if (!mYAxis.isEnabled() || !mYAxis.isDrawLabelsEnabled())
+        if (!mYAxis.isEnabled() || !mYAxis.isDrawLabelsEnabled()) {
             return;
+        }
 
         float[] positions = getTransformedPositions();
 
@@ -107,8 +108,9 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
     @Override
     public void renderAxisLine(Canvas c) {
 
-        if (!mYAxis.isEnabled() || !mYAxis.isDrawAxisLineEnabled())
+        if (!mYAxis.isEnabled() || !mYAxis.isDrawAxisLineEnabled()) {
             return;
+        }
 
         mAxisLinePaint.setColor(mYAxis.getAxisLineColor());
         mAxisLinePaint.setStrokeWidth(mYAxis.getAxisLineWidth());
@@ -153,7 +155,7 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
     @Override
     protected float[] getTransformedPositions() {
 
-        if(mGetTransformedPositionsBuffer.length != mYAxis.mEntryCount * 2) {
+        if (mGetTransformedPositionsBuffer.length != mYAxis.mEntryCount * 2) {
             mGetTransformedPositionsBuffer = new float[mYAxis.mEntryCount * 2];
         }
         float[] positions = mGetTransformedPositionsBuffer;
@@ -213,6 +215,7 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
 
     protected Path mRenderLimitLinesPathBuffer = new Path();
     protected float[] mRenderLimitLinesBuffer = new float[4];
+
     /**
      * Draws the LimitLines associated with this axis to the screen.
      * This is the standard XAxis renderer using the YAxis limit lines.
@@ -224,8 +227,9 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
 
         List<LimitLine> limitLines = mYAxis.getLimitLines();
 
-        if (limitLines == null || limitLines.size() <= 0)
+        if (limitLines == null || limitLines.size() <= 0) {
             return;
+        }
 
         float[] pts = mRenderLimitLinesBuffer;
         pts[0] = 0;
@@ -239,8 +243,9 @@ public class YAxisRendererHorizontalBarChart extends YAxisRenderer {
 
             LimitLine l = limitLines.get(i);
 
-            if (!l.isEnabled())
+            if (!l.isEnabled()) {
                 continue;
+            }
 
             int clipRestoreCount = c.save();
             mLimitLineClippingRect.set(mViewPortHandler.getContentRect());

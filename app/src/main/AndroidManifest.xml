@@ -57,6 +57,12 @@
             />
 
 
+        <activity android:name=".activitys.MemeChartDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+
         <activity android:name=".activitys.MoreActivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -175,6 +181,12 @@
             android:exported="false"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".activitys.KlineDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+
 
 
         <activity android:name=".activitys.ControlDeviceActivity"

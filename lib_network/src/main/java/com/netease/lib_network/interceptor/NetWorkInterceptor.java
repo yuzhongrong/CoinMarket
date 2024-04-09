@@ -24,6 +24,7 @@ public class NetWorkInterceptor implements Interceptor {
         }else{
             request = request.newBuilder()
                     .header("x-token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVVUlEIjoiZGY2MjczN2QtOTY3NS00MTE1LTg1MmYtZjRmNWI2YjIwNDY4IiwiSUQiOjMsIlVzZXJuYW1lIjoic2FuZ2UiLCJOaWNrTmFtZSI6IuS9meW_oOiNoyIsIkF1dGhvcml0eUlkIjo0LCJCdWZmZXJUaW1lIjo4NjQwMCwiZXhwIjo0ODQwNjY5NjQ4LCJpc3MiOiJxbVBsdXMiLCJuYmYiOjE2ODcwNjg2NDh9.kLgyP-HchoHWlJ4alNFO1nP5yf1WYH2Gdhs-v6-Zcr4")
+                    .header("X-API-KEY","3c36688845de46b0beea3890c269c97f")
                     .build();
         }
 

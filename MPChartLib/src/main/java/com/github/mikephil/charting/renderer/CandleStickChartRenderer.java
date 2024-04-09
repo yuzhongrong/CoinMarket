@@ -48,8 +48,9 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
         for (ICandleDataSet set : candleData.getDataSets()) {
 
-            if (set.isVisible())
+            if (set.isVisible()) {
                 drawDataSet(c, set);
+            }
         }
     }
 
@@ -70,10 +71,16 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
         for (int j = mXBounds.min; j <= mXBounds.range + mXBounds.min; j++) {
 
             // get the entry
-            CandleEntry e = dataSet.getEntryForIndex(j);
+            CandleEntry e = null;
+            try {
+                e = dataSet.getEntryForIndex(j);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
 
-            if (e == null)
+            if (e == null) {
                 continue;
+            }
 
             final float xPos = e.getX();
 
@@ -113,26 +120,25 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
                 if (dataSet.getShadowColorSameAsCandle()) {
 
-                    if (open > close)
+                    if (open > close) {
                         mRenderPaint.setColor(
                                 dataSet.getDecreasingColor() == ColorTemplate.COLOR_NONE ?
                                         dataSet.getColor(j) :
                                         dataSet.getDecreasingColor()
                         );
-
-                    else if (open < close)
+                    } else if (open < close) {
                         mRenderPaint.setColor(
                                 dataSet.getIncreasingColor() == ColorTemplate.COLOR_NONE ?
                                         dataSet.getColor(j) :
                                         dataSet.getIncreasingColor()
                         );
-
-                    else
+                    } else {
                         mRenderPaint.setColor(
                                 dataSet.getNeutralColor() == ColorTemplate.COLOR_NONE ?
                                         dataSet.getColor(j) :
                                         dataSet.getNeutralColor()
                         );
+                    }
 
                 } else {
                     mRenderPaint.setColor(
@@ -222,18 +228,19 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
                 // draw the ranges
                 int barColor;
 
-                if (open > close)
+                if (open > close) {
                     barColor = dataSet.getDecreasingColor() == ColorTemplate.COLOR_NONE
                             ? dataSet.getColor(j)
                             : dataSet.getDecreasingColor();
-                else if (open < close)
+                } else if (open < close) {
                     barColor = dataSet.getIncreasingColor() == ColorTemplate.COLOR_NONE
                             ? dataSet.getColor(j)
                             : dataSet.getIncreasingColor();
-                else
+                } else {
                     barColor = dataSet.getNeutralColor() == ColorTemplate.COLOR_NONE
                             ? dataSet.getColor(j)
                             : dataSet.getNeutralColor();
+                }
 
                 mRenderPaint.setColor(barColor);
                 c.drawLine(
@@ -252,6 +259,7 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
         }
     }
 
+
     @Override
     public void drawValues(Canvas c) {
 
@@ -264,8 +272,9 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
                 ICandleDataSet dataSet = dataSets.get(i);
 
-                if (!shouldDrawValues(dataSet) || dataSet.getEntryCount() < 1)
+                if (!shouldDrawValues(dataSet) || dataSet.getEntryCount() < 1) {
                     continue;
+                }
 
                 // apply the text-styling defined by the DataSet
                 applyValueTextStyle(dataSet);
@@ -290,11 +299,13 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
                     float x = positions[j];
                     float y = positions[j + 1];
 
-                    if (!mViewPortHandler.isInBoundsRight(x))
+                    if (!mViewPortHandler.isInBoundsRight(x)) {
                         break;
+                    }
 
-                    if (!mViewPortHandler.isInBoundsLeft(x) || !mViewPortHandler.isInBoundsY(y))
+                    if (!mViewPortHandler.isInBoundsLeft(x) || !mViewPortHandler.isInBoundsY(y)) {
                         continue;
+                    }
 
                     CandleEntry entry = dataSet.getEntryForIndex(j / 2 + mXBounds.min);
 
@@ -327,6 +338,8 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
         c.drawText(valueText, x, y, mValuePaint);
     }
 
+
+
     @Override
     public void drawExtras(Canvas c) {
     }
@@ -340,13 +353,15 @@ public class CandleStickChartRenderer extends LineScatterCandleRadarRenderer {
 
             ICandleDataSet set = candleData.getDataSetByIndex(high.getDataSetIndex());
 
-            if (set == null || !set.isHighlightEnabled())
+            if (set == null || !set.isHighlightEnabled()) {
                 continue;
+            }
 
             CandleEntry e = set.getEntryForXValue(high.getX(), high.getY());
 
-            if (!isInBoundsX(e, set))
+            if (!isInBoundsX(e, set)) {
                 continue;
+            }
 
             float lowValue = e.getLow() * mAnimator.getPhaseY();
             float highValue = e.getHigh() * mAnimator.getPhaseY();

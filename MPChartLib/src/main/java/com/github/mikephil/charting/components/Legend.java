@@ -1,3 +1,4 @@
+
 package com.github.mikephil.charting.components;
 
 import android.graphics.DashPathEffect;
@@ -98,7 +99,7 @@ public class Legend extends ComponentBase {
     /**
      * the shape/form the legend colors are drawn in
      */
-    private LegendForm mShape = LegendForm.SQUARE;
+    private LegendForm mShape = LegendForm.CIRCLE;
 
     /**
      * the size of the legend forms/shapes
@@ -196,17 +197,21 @@ public class Legend extends ComponentBase {
         for (LegendEntry entry : mEntries) {
             final float formSize = Utils.convertDpToPixel(
                     Float.isNaN(entry.formSize)
-                    ? mFormSize : entry.formSize);
-            if (formSize > maxFormSize)
+                            ? mFormSize : entry.formSize);
+            if (formSize > maxFormSize) {
                 maxFormSize = formSize;
+            }
 
             String label = entry.label;
-            if (label == null) continue;
+            if (label == null) {
+                continue;
+            }
 
             float length = (float) Utils.calcTextWidth(p, label);
 
-            if (length > max)
+            if (length > max) {
                 max = length;
+            }
         }
 
         return max + maxFormSize + formToTextSpace;
@@ -224,12 +229,15 @@ public class Legend extends ComponentBase {
 
         for (LegendEntry entry : mEntries) {
             String label = entry.label;
-            if (label == null) continue;
+            if (label == null) {
+                continue;
+            }
 
             float length = (float) Utils.calcTextHeight(p, label);
 
-            if (length > max)
+            if (length > max) {
                 max = length;
+            }
         }
 
         return max;
@@ -245,16 +253,17 @@ public class Legend extends ComponentBase {
     }
 
     public void setExtra(LegendEntry[] entries) {
-        if (entries == null)
+        if (entries == null) {
             entries = new LegendEntry[]{};
+        }
         mExtraEntries = entries;
     }
 
     /**
      * Entries that will be appended to the end of the auto calculated
-     *   entries after calculating the legend.
+     * entries after calculating the legend.
      * (if the legend has already been calculated, you will need to call notifyDataSetChanged()
-     *   to let the changes take effect)
+     * to let the changes take effect)
      */
     public void setExtra(int[] colors, String[] labels) {
 
@@ -266,10 +275,11 @@ public class Legend extends ComponentBase {
             entry.label = labels[i];
 
             if (entry.formColor == ColorTemplate.COLOR_SKIP ||
-                    entry.formColor == 0)
+                    entry.formColor == 0) {
                 entry.form = LegendForm.NONE;
-            else if (entry.formColor == ColorTemplate.COLOR_NONE)
+            } else if (entry.formColor == ColorTemplate.COLOR_NONE) {
                 entry.form = LegendForm.EMPTY;
+            }
 
             entries.add(entry);
         }
@@ -281,9 +291,9 @@ public class Legend extends ComponentBase {
      * Sets a custom legend's entries array.
      * * A null label will start a group.
      * This will disable the feature that automatically calculates the legend
-     *   entries from the datasets.
+     * entries from the datasets.
      * Call resetCustom() to re-enable automatic calculation (and then
-     *   notifyDataSetChanged() is needed to auto-calculate the legend again)
+     * notifyDataSetChanged() is needed to auto-calculate the legend again)
      */
     public void setCustom(LegendEntry[] entries) {
 
@@ -295,9 +305,9 @@ public class Legend extends ComponentBase {
      * Sets a custom legend's entries array.
      * * A null label will start a group.
      * This will disable the feature that automatically calculates the legend
-     *   entries from the datasets.
+     * entries from the datasets.
      * Call resetCustom() to re-enable automatic calculation (and then
-     *   notifyDataSetChanged() is needed to auto-calculate the legend again)
+     * notifyDataSetChanged() is needed to auto-calculate the legend again)
      */
     public void setCustom(List<LegendEntry> entries) {
 
@@ -679,12 +689,14 @@ public class Legend extends ComponentBase {
                             : Utils.convertDpToPixel(e.formSize);
                     String label = e.label;
 
-                    if (!wasStacked)
+                    if (!wasStacked) {
                         width = 0.f;
+                    }
 
                     if (drawingForm) {
-                        if (wasStacked)
+                        if (wasStacked) {
                             width += stackSpace;
+                        }
                         width += formSize;
                     }
 
@@ -692,9 +704,9 @@ public class Legend extends ComponentBase {
                     if (label != null) {
 
                         // make a step to the left
-                        if (drawingForm && !wasStacked)
+                        if (drawingForm && !wasStacked) {
                             width += formToTextSpace;
-                        else if (wasStacked) {
+                        } else if (wasStacked) {
                             maxWidth = Math.max(maxWidth, width);
                             maxHeight += labelLineHeight + yEntrySpace;
                             width = 0.f;
@@ -703,13 +715,15 @@ public class Legend extends ComponentBase {
 
                         width += Utils.calcTextWidth(labelpaint, label);
 
-                        if (i < entryCount - 1)
+                        if (i < entryCount - 1) {
                             maxHeight += labelLineHeight + yEntrySpace;
+                        }
                     } else {
                         wasStacked = true;
                         width += formSize;
-                        if (i < entryCount - 1)
+                        if (i < entryCount - 1) {
                             width += stackSpace;
+                        }
                     }
 
                     maxWidth = Math.max(maxWidth, width);
@@ -818,6 +832,8 @@ public class Legend extends ComponentBase {
 
                 break;
             }
+            default:
+                break;
         }
 
         mNeededHeight += mYOffset;

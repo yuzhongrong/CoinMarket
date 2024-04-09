@@ -78,13 +78,11 @@ public interface IDataSet<T extends Entry> {
      * INFORMATION: This method does calculations at runtime. Do
      * not over-use in performance critical situations.
      *
-     * @param xValue the x-value
+     * @param xValue     the x-value
      * @param closestToY If there are multiple y-values for the specified x-value,
-     * @param rounding determine whether to round up/down/closest
-     *                 if there is no Entry matching the provided x-value
+     * @param rounding   determine whether to round up/down/closest
+     *                   if there is no Entry matching the provided x-value
      * @return
-     *
-     *
      */
     T getEntryForXValue(float xValue, float closestToY, DataSet.Rounding rounding);
 
@@ -96,8 +94,7 @@ public interface IDataSet<T extends Entry> {
      * INFORMATION: This method does calculations at runtime. Do
      * not over-use in performance critical situations.
      *
-     *
-     * @param xValue the x-value
+     * @param xValue     the x-value
      * @param closestToY If there are multiple y-values for the specified x-value,
      * @return
      */
@@ -130,10 +127,10 @@ public interface IDataSet<T extends Entry> {
      * INFORMATION: This method does calculations at runtime. Do
      * not over-use in performance critical situations.
      *
-     * @param xValue the x-value
+     * @param xValue     the x-value
      * @param closestToY If there are multiple y-values for the specified x-value,
-     * @param rounding determine whether to round up/down/closest
-     *                 if there is no Entry matching the provided x-value
+     * @param rounding   determine whether to round up/down/closest
+     *                   if there is no Entry matching the provided x-value
      * @return
      */
     int getEntryIndex(float xValue, float closestToY, DataSet.Rounding rounding);
@@ -505,4 +502,8 @@ public interface IDataSet<T extends Entry> {
      * @return
      */
     boolean isVisible();
+
+    int getPrecision();
+
+    int getTimeDayType();
 }

@@ -16,6 +16,8 @@
 
 package com.zksg.kudoud.app;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.kunminx.architecture.BaseApplication;
 import com.kunminx.architecture.utils.Utils;
 import com.tencent.mmkv.MMKV;

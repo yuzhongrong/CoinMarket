@@ -21,7 +21,7 @@ import java.util.ArrayList;
  */
 public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChartBase<?>> {
 
-    private MPPointF mTouchStartPoint = MPPointF.getInstance(0,0);
+    private MPPointF mTouchStartPoint = MPPointF.getInstance(0, 0);
 
     /**
      * the angle where the dragging started
@@ -41,11 +41,11 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
     @Override
     public boolean onTouch(View v, MotionEvent event) {
 
-        if (mGestureDetector.onTouchEvent(event))
+        if (mGestureDetector.onTouchEvent(event)) {
             return true;
+        }
 
         // if rotation by touch is enabled
-        // TODO: Also check if the pie itself is being touched, rather than the entire chart area
         if (mChart.isRotationEnabled()) {
 
             float x = event.getX();
@@ -61,8 +61,9 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
 
                     resetVelocity();
 
-                    if (mChart.isDragDecelerationEnabled())
+                    if (mChart.isDragDecelerationEnabled()) {
                         sampleVelocity(x, y);
+                    }
 
                     setGestureStartAngle(x, y);
                     mTouchStartPoint.x = x;
@@ -71,8 +72,9 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
                     break;
                 case MotionEvent.ACTION_MOVE:
 
-                    if (mChart.isDragDecelerationEnabled())
+                    if (mChart.isDragDecelerationEnabled()) {
                         sampleVelocity(x, y);
+                    }
 
                     if (mTouchMode == NONE
                             && distance(x, mTouchStartPoint.x, y, mTouchStartPoint.y)
@@ -145,7 +147,7 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
             l.onChartSingleTapped(e);
         }
 
-        if(!mChart.isHighlightPerTapEnabled()) {
+        if (!mChart.isHighlightPerTapEnabled()) {
             return false;
         }
 
@@ -179,8 +181,9 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
 
     private float calculateVelocity() {
 
-        if (_velocitySamples.isEmpty())
+        if (_velocitySamples.isEmpty()) {
             return 0.f;
+        }
 
         AngularVelocitySample firstSample = _velocitySamples.get(0);
         AngularVelocitySample lastSample = _velocitySamples.get(_velocitySamples.size() - 1);
@@ -256,8 +259,9 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
 
     public void computeScroll() {
 
-        if (mDecelerationAngularVelocity == 0.f)
+        if (mDecelerationAngularVelocity == 0.f) {
             return; // There's no deceleration in progress
+        }
 
         final long currentTime = AnimationUtils.currentAnimationTimeMillis();
 
@@ -269,10 +273,11 @@ public class PieRadarChartTouchListener extends ChartTouchListener<PieRadarChart
 
         mDecelerationLastTime = currentTime;
 
-        if (Math.abs(mDecelerationAngularVelocity) >= 0.001)
+        if (Math.abs(mDecelerationAngularVelocity) >= 0.001) {
             Utils.postInvalidateOnAnimation(mChart); // This causes computeScroll to fire, recommended for this by Google
-        else
+        } else {
             stopDeceleration();
+        }
     }
 
     private class AngularVelocitySample {

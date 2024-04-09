@@ -2,8 +2,10 @@
 package com.github.mikephil.charting.data;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,32 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
      * the overall entry count, including counting each stack-value individually
      */
     private int mEntryCountStacks = 0;
+    /**
+     * paint style when open < close
+     * increasing candlesticks are traditionally hollow
+     */
+    private Paint.Style mIncreasingPaintStyle = Paint.Style.STROKE;
 
+    /**
+     * paint style when open > close
+     * descreasing candlesticks are traditionally filled
+     */
+    private Paint.Style mDecreasingPaintStyle = Paint.Style.FILL;
+
+    /**
+     * color for open == close
+     */
+    private int mNeutralColor = ColorTemplate.COLOR_NONE;
+
+    /**
+     * color for open < close
+     */
+    private int mIncreasingColor = ColorTemplate.COLOR_NONE;
+
+    /**
+     * color for open > close
+     */
+    private int mDecreasingColor = ColorTemplate.COLOR_NONE;
     /**
      * array of labels used to describe the different values of the stacked bars
      */
@@ -53,22 +80,28 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
 
     @Override
     public DataSet<BarEntry> copy() {
-        List<BarEntry> entries = new ArrayList<BarEntry>();
-        for (int i = 0; i < mValues.size(); i++) {
-            entries.add(mValues.get(i).copy());
-        }
-        BarDataSet copied = new BarDataSet(entries, getLabel());
-        copy(copied);
-        return copied;
-    }
 
-    protected void copy(BarDataSet barDataSet) {
-        super.copy(barDataSet);
-        barDataSet.mStackSize = mStackSize;
-        barDataSet.mBarShadowColor = mBarShadowColor;
-        barDataSet.mBarBorderWidth = mBarBorderWidth;
-        barDataSet.mStackLabels = mStackLabels;
-        barDataSet.mHighLightAlpha = mHighLightAlpha;
+        List<BarEntry> yVals = new ArrayList<BarEntry>();
+        yVals.clear();
+
+        for (int i = 0; i < mValues.size(); i++) {
+            yVals.add(mValues.get(i).copy());
+        }
+
+        BarDataSet copied = new BarDataSet(yVals, getLabel());
+        copied.mColors = mColors;
+        copied.mStackSize = mStackSize;
+        copied.mBarShadowColor = mBarShadowColor;
+        copied.mStackLabels = mStackLabels;
+        copied.mHighLightColor = mHighLightColor;
+        copied.mHighLightAlpha = mHighLightAlpha;
+        copied.mNeutralColor = mNeutralColor;
+        copied.mIncreasingColor = mIncreasingColor;
+        copied.mDecreasingColor = mDecreasingColor;
+        copied.mIncreasingPaintStyle = mIncreasingPaintStyle;
+        copied.mDecreasingPaintStyle = mDecreasingPaintStyle;
+
+        return copied;
     }
 
     /**
@@ -83,10 +116,11 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
 
             float[] vals = yVals.get(i).getYVals();
 
-            if (vals == null)
+            if (vals == null) {
                 mEntryCountStacks++;
-            else
+            } else {
                 mEntryCountStacks += vals.length;
+            }
         }
     }
 
@@ -100,8 +134,9 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
 
             float[] vals = yVals.get(i).getYVals();
 
-            if (vals != null && vals.length > mStackSize)
+            if (vals != null && vals.length > mStackSize) {
                 mStackSize = vals.length;
+            }
         }
     }
 
@@ -112,18 +147,22 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
 
             if (e.getYVals() == null) {
 
-                if (e.getY() < mYMin)
+                if (e.getY() < mYMin) {
                     mYMin = e.getY();
+                }
 
-                if (e.getY() > mYMax)
+                if (e.getY() > mYMax) {
                     mYMax = e.getY();
+                }
             } else {
 
-                if (-e.getNegativeSum() < mYMin)
+                if (-e.getNegativeSum() < mYMin) {
                     mYMin = -e.getNegativeSum();
+                }
 
-                if (e.getPositiveSum() > mYMax)
+                if (e.getPositiveSum() > mYMax) {
                     mYMax = e.getPositiveSum();
+                }
             }
 
             calcMinMaxX(e);
@@ -233,5 +272,78 @@ public class BarDataSet extends BarLineScatterCandleBubbleDataSet<BarEntry> impl
     @Override
     public String[] getStackLabels() {
         return mStackLabels;
+    }
+
+    /**
+     * Sets the one and ONLY color that should be used for this DataSet when
+     * open == close.
+     *
+     * @param color
+     */
+    public void setNeutralColor(int color) {
+        mNeutralColor = color;
+    }
+
+    @Override
+    public int getNeutralColor() {
+        return mNeutralColor;
+    }
+
+    /**
+     * Sets the one and ONLY color that should be used for this DataSet when
+     * open <= close.
+     *
+     * @param color
+     */
+    public void setIncreasingColor(int color) {
+        mIncreasingColor = color;
+    }
+
+    @Override
+    public int getIncreasingColor() {
+        return mIncreasingColor;
+    }
+
+    /**
+     * Sets the one and ONLY color that should be used for this DataSet when
+     * open > close.
+     *
+     * @param color
+     */
+    public void setDecreasingColor(int color) {
+        mDecreasingColor = color;
+    }
+
+    @Override
+    public int getDecreasingColor() {
+        return mDecreasingColor;
+    }
+
+    @Override
+    public Paint.Style getIncreasingPaintStyle() {
+        return mIncreasingPaintStyle;
+    }
+
+    /**
+     * Sets paint style when open < close
+     *
+     * @param paintStyle
+     */
+    public void setIncreasingPaintStyle(Paint.Style paintStyle) {
+        this.mIncreasingPaintStyle = paintStyle;
+    }
+
+    @Override
+    public Paint.Style getDecreasingPaintStyle() {
+        return mDecreasingPaintStyle;
+    }
+
+    /**
+     * Sets paint style when open > close
+     *
+     * @param decreasingPaintStyle
+     */
+    public void setDecreasingPaintStyle(Paint.Style decreasingPaintStyle) {
+        this.mDecreasingPaintStyle = decreasingPaintStyle;
     }
 }

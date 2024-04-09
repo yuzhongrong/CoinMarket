@@ -232,4 +232,13 @@
     <string name="str_precent_1">--.--%</string>
     <string name="str_f_default">$--.--</string>
 
+    <string name="str_text_it_fu">幅</string>
+    <string name="str_text_it_liang">量</string>
+    <string name="str_text_it_gao">高</string>
+    <string name="str_text_it_di">低</string>
+    <string name="str_text_it_kai">开</string>
+    <string name="str_text_it_shou">收</string>
+    <string name="str_text_it_zhangfu">涨幅</string>
+    <string name="str_text_volume">成交量</string>
+
 </resources>

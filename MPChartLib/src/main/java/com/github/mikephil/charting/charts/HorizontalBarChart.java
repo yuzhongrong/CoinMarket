@@ -177,8 +177,9 @@ public class HorizontalBarChart extends BarChart {
     @Override
     public MPPointF getPosition(Entry e, AxisDependency axis) {
 
-        if (e == null)
+        if (e == null) {
             return null;
+        }
 
         float[] vals = mGetPositionBuffer;
         vals[0] = e.getY();
@@ -201,11 +202,13 @@ public class HorizontalBarChart extends BarChart {
     public Highlight getHighlightByTouchPoint(float x, float y) {
 
         if (mData == null) {
-            if (mLogEnabled)
+            if (mLogEnabled) {
                 Log.e(LOG_TAG, "Can't select by touch. No data set.");
+            }
             return null;
-        } else
+        } else {
             return getHighlighter().getHighlight(y, x); // switch x and y
+        }
     }
 
     @Override

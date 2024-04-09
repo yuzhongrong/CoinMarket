@@ -5,15 +5,15 @@ import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.adapters.HomeMemeCWAdapter_V
 import com.zksg.kudoud.adapters.MemeCommonListdapter
+import com.zksg.kudoud.beans.CommonCategoryDataEnum
 import com.zksg.kudoud.state.MemeCategoryCommonFragmentViewModel
 import com.zksg.kudoud.utils.DataFilterUtils
 import com.zksg.kudoud.utils.LocalJsonResolutionUtils
 import com.zksg.lib_api.beans.MemeCommonEntry
 
 class MemeCategoryCommonFragment(type: Int) : BaseFragment() {
-    var mType=type.toString()
+    var mType=type
     var mCategoryCommonFragmentViewModel: MemeCategoryCommonFragmentViewModel? = null
     override fun initViewModel() {
         mCategoryCommonFragmentViewModel = getFragmentScopeViewModel(
@@ -28,12 +28,29 @@ class MemeCategoryCommonFragment(type: Int) : BaseFragment() {
     }
 
     override fun loadInitData() {
+        var json=LocalJsonResolutionUtils.getJson(context,"memevolsimulator.json")
+        var simulators= LocalJsonResolutionUtils.JsonToObject(json, MemeCommonEntry::class.java)
+        var results=DataFilterUtils.filterNonNullName(simulators.tokens)
+        when(mType){
+            CommonCategoryDataEnum.CHAT_ZX ->{
 
+            }
+            CommonCategoryDataEnum.CHAT_UP_24 -> {
 
-       var json= LocalJsonResolutionUtils.getJson(context,"memesimulator.json")
+            }
+            CommonCategoryDataEnum.CHAT_DOWN_24 -> {
+
+            }
+            CommonCategoryDataEnum.CHAT_EX_24 -> {
+
+            }
+        }
+
 //        Log.d("---xxx-loadmemejson", json)
-       var simulators= LocalJsonResolutionUtils.JsonToObject(json, MemeCommonEntry::class.java)
-        mCategoryCommonFragmentViewModel?.mHotMeme?.value=DataFilterUtils.filterNonNullName(simulators.tokens)
+
+        //这里在交易量降序的数据集合中最好是请求前150个数据  对期进行涨跌幅排序,市值排序 这样才有意义
+
+        mCategoryCommonFragmentViewModel?.mHotMeme?.value=results
 
 
 

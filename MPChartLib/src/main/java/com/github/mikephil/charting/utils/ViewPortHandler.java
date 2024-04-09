@@ -104,10 +104,7 @@ public class ViewPortHandler {
     }
 
     public boolean hasChartDimens() {
-        if (mChartHeight > 0 && mChartWidth > 0)
-            return true;
-        else
-            return false;
+        return mChartHeight > 0 && mChartWidth > 0;
     }
 
     public void restrainViewPort(float offsetLeft, float offsetTop, float offsetRight,
@@ -225,6 +222,7 @@ public class ViewPortHandler {
 
     /**
      * Zooms out to original size.
+     *
      * @param outputMatrix
      */
     public void resetZoom(Matrix outputMatrix) {
@@ -424,8 +422,9 @@ public class ViewPortHandler {
         // make sure scale and translation are within their bounds
         limitTransAndScale(mMatrixTouch, mContentRect);
 
-        if (invalidate)
+        if (invalidate) {
             chart.invalidate();
+        }
 
         newMatrix.set(mMatrixTouch);
         return newMatrix;
@@ -482,8 +481,9 @@ public class ViewPortHandler {
      */
     public void setMinimumScaleX(float xScale) {
 
-        if (xScale < 1f)
+        if (xScale < 1f) {
             xScale = 1f;
+        }
 
         mMinScaleX = xScale;
 
@@ -497,8 +497,9 @@ public class ViewPortHandler {
      */
     public void setMaximumScaleX(float xScale) {
 
-        if (xScale == 0.f)
+        if (xScale == 0.f) {
             xScale = Float.MAX_VALUE;
+        }
 
         mMaxScaleX = xScale;
 
@@ -513,11 +514,13 @@ public class ViewPortHandler {
      */
     public void setMinMaxScaleX(float minScaleX, float maxScaleX) {
 
-        if (minScaleX < 1f)
+        if (minScaleX < 1f) {
             minScaleX = 1f;
+        }
 
-        if (maxScaleX == 0.f)
+        if (maxScaleX == 0.f) {
             maxScaleX = Float.MAX_VALUE;
+        }
 
         mMinScaleX = minScaleX;
         mMaxScaleX = maxScaleX;
@@ -532,8 +535,9 @@ public class ViewPortHandler {
      */
     public void setMinimumScaleY(float yScale) {
 
-        if (yScale < 1f)
+        if (yScale < 1f) {
             yScale = 1f;
+        }
 
         mMinScaleY = yScale;
 
@@ -547,8 +551,9 @@ public class ViewPortHandler {
      */
     public void setMaximumScaleY(float yScale) {
 
-        if (yScale == 0.f)
+        if (yScale == 0.f) {
             yScale = Float.MAX_VALUE;
+        }
 
         mMaxScaleY = yScale;
 
@@ -557,11 +562,13 @@ public class ViewPortHandler {
 
     public void setMinMaxScaleY(float minScaleY, float maxScaleY) {
 
-        if (minScaleY < 1f)
+        if (minScaleY < 1f) {
             minScaleY = 1f;
+        }
 
-        if (maxScaleY == 0.f)
+        if (maxScaleY == 0.f) {
             maxScaleY = Float.MAX_VALUE;
+        }
 
         mMinScaleY = minScaleY;
         mMaxScaleY = maxScaleY;

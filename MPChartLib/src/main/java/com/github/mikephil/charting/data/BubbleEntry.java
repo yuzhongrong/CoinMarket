@@ -14,14 +14,16 @@ import android.graphics.drawable.Drawable;
 @SuppressLint("ParcelCreator")
 public class BubbleEntry extends Entry {
 
-    /** size value */
+    /**
+     * size value
+     */
     private float mSize = 0f;
 
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      */
     public BubbleEntry(float x, float y, float size) {
@@ -32,8 +34,8 @@ public class BubbleEntry extends Entry {
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      * @param data Spot for additional data this Entry represents.
      */
@@ -45,8 +47,8 @@ public class BubbleEntry extends Entry {
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      * @param icon Icon image
      */
@@ -58,8 +60,8 @@ public class BubbleEntry extends Entry {
     /**
      * Constructor.
      *
-     * @param x The value on the x-axis.
-     * @param y The value on the y-axis.
+     * @param x    The value on the x-axis.
+     * @param y    The value on the y-axis.
      * @param size The size of the bubble.
      * @param icon Icon image
      * @param data Spot for additional data this Entry represents.
@@ -69,6 +71,7 @@ public class BubbleEntry extends Entry {
         this.mSize = size;
     }
 
+    @Override
     public BubbleEntry copy() {
 
         BubbleEntry c = new BubbleEntry(getX(), getY(), mSize, getData());

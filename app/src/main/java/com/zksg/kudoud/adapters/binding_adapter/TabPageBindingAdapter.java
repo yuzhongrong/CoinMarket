@@ -9,6 +9,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.kunminx.architecture.ui.adapter.CommonViewPagerAdapter;
 import com.netease.lib_common_ui.navigator.CommonNavigatorCreater;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.customviews.NoTouchScrollViewpager;
+import com.zksg.kudoud.customviews.WonderfulViewPager;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -43,5 +45,13 @@ public class TabPageBindingAdapter {
     public static void tabSelectedListener(TabLayout tabLayout, TabLayout.OnTabSelectedListener listener) {
         tabLayout.addOnTabSelectedListener(listener);
     }
+    @BindingAdapter(value = {"setupTab"}, requireAll = false)
+    public static void setupTab(TabLayout tabLayout, NoTouchScrollViewpager viewPager) {
+        if(viewPager==null)return;
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+
+
 
 }

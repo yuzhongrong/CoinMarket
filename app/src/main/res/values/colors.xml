@@ -98,5 +98,12 @@
     <color name="c_292a30">#292a30</color>
     <color name="c_808495">#808495</color>
     <color name="c_f6a50c">#f6a50c</color>
+    <color name="c_4462a5">#4462a5</color>
+
+    <color name="textColor">#20232C</color>
+    <color name="color">#66A7ADBC</color>
+    <color name="typeGreen">#00b275</color>
+    <color name="typeRed">#f15057</color>
+    <color name="typeGray">#c5c8ce</color>
 
 </resources>

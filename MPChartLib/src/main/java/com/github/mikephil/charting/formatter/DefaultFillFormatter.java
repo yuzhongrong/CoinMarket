@@ -10,8 +10,7 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
  *
  * @author Philipp Jahoda
  */
-public class DefaultFillFormatter implements IFillFormatter
-{
+public class DefaultFillFormatter implements IFillFormatter {
 
     @Override
     public float getFillLinePosition(ILineDataSet dataSet, LineDataProvider dataProvider) {
@@ -28,14 +27,16 @@ public class DefaultFillFormatter implements IFillFormatter
 
             float max, min;
 
-            if (data.getYMax() > 0)
+            if (data.getYMax() > 0) {
                 max = 0f;
-            else
+            } else {
                 max = chartMaxY;
-            if (data.getYMin() < 0)
+            }
+            if (data.getYMin() < 0) {
                 min = 0f;
-            else
+            } else {
                 min = chartMinY;
+            }
 
             fillMin = dataSet.getYMin() >= 0 ? min : max;
         }

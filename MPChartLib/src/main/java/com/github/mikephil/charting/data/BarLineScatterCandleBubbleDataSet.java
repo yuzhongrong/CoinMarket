@@ -4,6 +4,7 @@ package com.github.mikephil.charting.data;
 import android.graphics.Color;
 
 import com.github.mikephil.charting.interfaces.datasets.IBarLineScatterCandleBubbleDataSet;
+import com.github.mikephil.charting.utils.Utils;
 
 import java.util.List;
 
@@ -12,14 +13,16 @@ import java.util.List;
  *
  * @author Philipp Jahoda
  */
-public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry>
-        extends DataSet<T>
-        implements IBarLineScatterCandleBubbleDataSet<T> {
+public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry> extends DataSet<T> implements IBarLineScatterCandleBubbleDataSet<T> {
 
     /**
      * default highlight color
      */
     protected int mHighLightColor = Color.rgb(255, 187, 115);
+    /**
+     * the width of the highlight indicator lines
+     */
+    protected float mHighlightLineWidth = 0.5f;
 
     public BarLineScatterCandleBubbleDataSet(List<T> yVals, String label) {
         super(yVals, label);
@@ -41,8 +44,17 @@ public abstract class BarLineScatterCandleBubbleDataSet<T extends Entry>
         return mHighLightColor;
     }
 
-    protected void copy(BarLineScatterCandleBubbleDataSet barLineScatterCandleBubbleDataSet) {
-        super.copy(barLineScatterCandleBubbleDataSet);
-        barLineScatterCandleBubbleDataSet.mHighLightColor = mHighLightColor;
+    /**
+     * Sets the width of the highlight line in dp.
+     *
+     * @param width
+     */
+    public void setHighlightLineWidth(float width) {
+        mHighlightLineWidth = width;
+    }
+
+    @Override
+    public float getHighlightLineWidth() {
+        return mHighlightLineWidth;
     }
 }

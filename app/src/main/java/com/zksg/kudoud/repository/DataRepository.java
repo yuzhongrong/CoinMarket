@@ -23,6 +23,7 @@ import com.kunminx.architecture.data.response.ResultSource;
 import com.netease.lib_network.ApiEngine;
 import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
+import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -36,6 +37,8 @@ import com.zksg.lib_api.login.LoginBean;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -270,13 +273,34 @@ public class DataRepository {
 
 
     public void getAppinfoListForOrder(int page,int pageSize,String sort,String order,DataResult.Result<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> result){
-        ApiEngine.getInstance().getApiService().getAppinfoListRanking(page,pageSize,sort,order)
+//        ApiEngine.getInstance().getApiService().getAppinfoListRanking(page,pageSize,sort,order)
+//                .compose(ApiEngine.getInstance().applySchedulers())
+//
+////                .delay(3, TimeUnit.SECONDS)
+//                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
+//                    @Override
+//                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
+//                        ResponseStatus responseStatus = new ResponseStatus(
+//                                String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+//                        result.onResult(new DataResult(bean, responseStatus));
+//                    }
+//
+//                    @Override
+//                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+//                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+//                        result.onResult(new DataResult(null, responseStatus));
+//                    }
+//                });
+    }
+
+    public void getKlineData(String address,String address_type,String type,long time_from,long time_to,DataResult.Result<CommonResponse<KlineOriginDataEntity>> result){
+        ApiEngine.getInstance().getApiService().getKlineOriginData(address,address_type,type,time_from,time_to)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
 //                .delay(3, TimeUnit.SECONDS)
-                .subscribe(new MySimpleObserver<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>>() {
+                .subscribe(new MySimpleObserver<CommonResponse<KlineOriginDataEntity>>() {
                     @Override
-                    protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
+                    protected void onSuccessed(CommonResponse<KlineOriginDataEntity> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));
@@ -288,9 +312,12 @@ public class DataRepository {
                         result.onResult(new DataResult(null, responseStatus));
                     }
                 });
+
+
+
+
+
     }
-
-
 
     public void getLastNoticeForOrder(int page,int pageSize,String sort,String order,DataResult.Result<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> result){
         ApiEngine.getInstance().getApiService().getLastNotify(page,pageSize,sort,order)

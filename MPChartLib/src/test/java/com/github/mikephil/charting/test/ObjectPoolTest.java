@@ -2,7 +2,7 @@ package com.github.mikephil.charting.test;
 
 import com.github.mikephil.charting.utils.ObjectPool;
 
-import org.junit.Assert;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -25,6 +25,7 @@ public class ObjectPoolTest {
         public int foo = 0;
         public int bar = 0;
 
+        @Override
         protected ObjectPool.Poolable instantiate(){
             return new TestPoolable(0,0);
         }

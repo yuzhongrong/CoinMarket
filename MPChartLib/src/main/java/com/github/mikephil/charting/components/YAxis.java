@@ -104,6 +104,33 @@ public class YAxis extends AxisBase {
      *
      * @author Philipp Jahoda
      */
+
+    /**
+     * set the label value is in the border inside
+     */
+    protected boolean isValueLineInside = false;
+
+    /**
+     * set is draw the top and bottom grid line
+     */
+    protected boolean isDrawTopBottomGridLine = true;
+
+    public boolean isDrawTopBottomGridLine() {
+        return isDrawTopBottomGridLine;
+    }
+
+    public void setDrawTopBottomGridLine(boolean drawTopBottomGridLine) {
+        isDrawTopBottomGridLine = drawTopBottomGridLine;
+    }
+
+    public boolean isValueLineInside() {
+        return isValueLineInside;
+    }
+
+    public void setValueLineInside(boolean lineInside) {
+        isValueLineInside = lineInside;
+    }
+
     public enum AxisDependency {
         LEFT, RIGHT
     }
@@ -231,10 +258,11 @@ public class YAxis extends AxisBase {
      */
     @Deprecated
     public void setStartAtZero(boolean startAtZero) {
-        if (startAtZero)
+        if (startAtZero) {
             setAxisMinimum(0f);
-        else
+        } else {
             resetAxisMinimum();
+        }
     }
 
     /**
@@ -329,11 +357,13 @@ public class YAxis extends AxisBase {
         float minWidth = getMinWidth();
         float maxWidth = getMaxWidth();
 
-        if (minWidth > 0.f)
+        if (minWidth > 0.f) {
             minWidth = Utils.convertDpToPixel(minWidth);
+        }
 
-        if (maxWidth > 0.f && maxWidth != Float.POSITIVE_INFINITY)
+        if (maxWidth > 0.f && maxWidth != Float.POSITIVE_INFINITY) {
             maxWidth = Utils.convertDpToPixel(maxWidth);
+        }
 
         width = Math.max(minWidth, Math.min(width, maxWidth > 0.0 ? maxWidth : width));
 
@@ -360,11 +390,8 @@ public class YAxis extends AxisBase {
      * @return
      */
     public boolean needsOffset() {
-        if (isEnabled() && isDrawLabelsEnabled() && getLabelPosition() == YAxisLabelPosition
-                .OUTSIDE_CHART)
-            return true;
-        else
-            return false;
+        return isEnabled() && isDrawLabelsEnabled() && getLabelPosition() == YAxisLabelPosition
+                .OUTSIDE_CHART;
     }
 
     /**

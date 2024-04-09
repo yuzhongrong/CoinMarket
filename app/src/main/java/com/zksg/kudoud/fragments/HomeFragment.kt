@@ -218,7 +218,7 @@ class HomeFragment:BaseDialogFragment(){
         }
 
         fun startPreSale(){
-            startActivity(Intent(activity, PreSaleMstActivity::class.java))
+            startActivity(Intent(activity, KlineDetailActivity::class.java))
         }
 
 

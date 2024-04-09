@@ -4,6 +4,7 @@ package com.netease.lib_network;
 import static com.netease.lib_network.constants.config.host;
 import static com.netease.lib_network.constants.config.server_port;
 
+import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
 import com.zksg.lib_api.beans.CommonResponse;
@@ -19,6 +20,7 @@ import io.reactivex.Single;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
@@ -26,7 +28,7 @@ import retrofit2.http.Query;
 public interface ApiService {
 
 
-    String BASE_URL = "http://"+host+":"+server_port;
+    String BASE_URL = "https://public-api.birdeye.so";
 
     @GET("login/cellphone")
     Single<LoginBean>  login(@Query("phone") String phone, @Query("password") String password);
@@ -50,8 +52,13 @@ public interface ApiService {
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoOneSearch(@Query("page") int page, @Query("pageSize") int pageSize,@Query("app_file") String app_file);
 
 
+    @GET("/defi/history_price")
+    Single<CommonResponse<KlineOriginDataEntity>> getKlineOriginData(@Query("address") String address, @Query("address_type") String address_type, @Query("type") String type, @Query("time_from") long time_from, @Query("time_to") long time_to );
+
+
     @GET("/mst/getAppinfoList")
-    Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoListRanking(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
+    Single<CommonResponse<DataResponse<ArrayList<KlineOriginDataEntity>>>> getAppinfoListRanking(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);
+
 
     @GET("/notify/getNotifyList")
     Single<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> getLastNotify(@Query("page") int page, @Query("pageSize") int pageSize,@Query("sort") String sort,@Query("order") String order);

@@ -52,10 +52,10 @@ public class ResponseInterceptor implements Interceptor {
             }
 
             if (contentLength != 0) {
-                String result = buffer.clone().readString(charset);
-                Log.d(TAG, " response.url: [" + response.request().url() + "]");
-                Log.d(TAG, " response.body: [" + result + "]");
-                Log.d(TAG, " 响应时间: " + (t2 - t1) / 1e6d + "ms");
+//                String result = readResponseBody(source,StandardCharsets.UTF_8);
+//                Log.d(TAG, " response.url: [" + response.request().url() + "]");
+//                Log.d(TAG, " response.body: [" + result + "]");
+//                Log.d(TAG, " 响应时间: " + (t2 - t1) / 1e6d + "ms");
             }
         }
 
@@ -65,6 +65,12 @@ public class ResponseInterceptor implements Interceptor {
     private boolean bodyEncoded(Headers headers) {
         String contentEncoding = headers.get("Content-Encoding");
         return contentEncoding != null && !contentEncoding.equalsIgnoreCase("identity");
+    }
+
+    public static String readResponseBody(BufferedSource source, Charset charset) throws IOException {
+        Buffer buffer = new Buffer();
+        source.readAll(buffer);
+        return buffer.readString(charset);
     }
 
 }
