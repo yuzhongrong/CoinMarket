@@ -44,23 +44,22 @@
                 >
 
 
+
+
                 <com.hjq.shape.view.ShapeImageView
                     android:id="@+id/logo"
-                    android:layout_width="@dimen/dp28"
-                    android:layout_height="@dimen/dp28"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:src="@mipmap/ic_solana"
-                    android:layout_centerVertical="true"
-
-                    app:shape_solidColor="@color/white"
-
-                    app:shape_radius="@dimen/dp45"
+                    android:layout_width="@dimen/dp40"
+                    android:layout_height="@dimen/dp40"
+                    android:src="@mipmap/ic_home_icon"
                     android:padding="@dimen/dp3"
                     android:onClick="@{()->click.startPreSale()}"
                     app:shape_strokeWidth="@dimen/dp1"
-                    app:shape_strokeColor="@color/white"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/dp5"
+
                     />
+
 
                 <com.hjq.shape.layout.ShapeLinearLayout
                     android:id="@+id/layout_search"
@@ -70,8 +69,8 @@
                     android:gravity="center_vertical"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@+id/logo"
-                    android:layout_marginLeft="@dimen/dp12"
-                    app:shape_solidColor="@color/c_25282c"
+
+                    app:shape_solidColor="@color/c_29313d"
                     app:shape_radius="@dimen/dp45"
 
 
@@ -147,7 +146,7 @@
                     <com.hjq.shape.layout.ShapeLinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:shape_solidColor="@color/c_16171a"
+                        app:shape_solidColor="@color/bg_layout_common"
                         android:layout_marginLeft="@dimen/dp15"
                         android:layout_marginRight="@dimen/dp15"
                         app:shape_radius="@dimen/dp10"
@@ -504,7 +503,7 @@
                         android:orientation="vertical"
                         android:layout_marginLeft="@dimen/dp8"
                         android:layout_marginRight="@dimen/dp8"
-                        android:background="@color/c_101014"
+                        android:background="@color/bg_layout_common"
                         >
 
                         <RelativeLayout
@@ -519,7 +518,6 @@
                                 android:layout_alignParentLeft="true"
 
                                 android:layout_centerInParent="true"
-
                                 android:text="@string/str_meme_trending"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/sp18"

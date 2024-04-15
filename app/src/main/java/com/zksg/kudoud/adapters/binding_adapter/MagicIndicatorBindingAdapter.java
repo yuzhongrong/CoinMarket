@@ -78,7 +78,7 @@ public class MagicIndicatorBindingAdapter {
     public static void bindCommonMagicIndocatorWithDivider(MagicIndicator magicIndicator, String[] channels) {
         if (channels != null) {
             ViewPager viewPager = magicIndicator.getRootView().findViewById(R.id.view_pager);
-            magicIndicator.setBackgroundColor(Color.WHITE);
+            magicIndicator.setBackgroundColor(magicIndicator.getContext().getColor(R.color.c_29313d));
             CommonNavigator commonNavigator = CommonNavigatorCreater.setDefaultNavigator(magicIndicator.getContext(), channels, viewPager);
             magicIndicator.setNavigator(commonNavigator);
 
@@ -98,7 +98,8 @@ public class MagicIndicatorBindingAdapter {
     public static void bindCommonMagicIndocator(MagicIndicator magicIndicator, String[] channels) {
         if (channels != null) {
             ViewPager viewPager = magicIndicator.getRootView().findViewById(R.id.view_pager);
-            magicIndicator.setBackgroundColor(Color.WHITE);
+//            magicIndicator.setBackgroundColor(Color.WHITE);
+
             CommonNavigator commonNavigator = CommonNavigatorCreater.setDefaultNavigator(magicIndicator.getContext(), channels, viewPager);
             // 自适应模式
             commonNavigator.setAdjustMode(true);
@@ -196,8 +197,8 @@ public class MagicIndicatorBindingAdapter {
                 public IPagerTitleView getTitleView(Context context, int index) {
                     SimplePagerTitleView simplePagerTitleView = new ColorTransitionPagerTitleView(context);
                     simplePagerTitleView.setText(channels[index]);
-                    simplePagerTitleView.setNormalColor(Color.GRAY);
-                    simplePagerTitleView.setSelectedColor(Color.BLACK);
+                    simplePagerTitleView.setNormalColor(magicIndicator.getContext().getColor(R.color.colorTextNormal));
+                    simplePagerTitleView.setSelectedColor(Color.WHITE);
                     simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -212,7 +213,7 @@ public class MagicIndicatorBindingAdapter {
                 @Override
                 public IPagerIndicator getIndicator(Context context) {
                     LinePagerIndicator indicator = new LinePagerIndicator(context);
-                    indicator.setColors(Color.RED);
+                    indicator.setColors(Color.WHITE);
                     return indicator;
                 }
             });

@@ -53,6 +53,7 @@ public class KlineDetailActivity extends BaseActivity {
         SimpleFragmentPagerAdapter adapter=new SimpleFragmentPagerAdapter(getSupportFragmentManager(), fragments, titles);
         mMKlineDetailViewModel.tabAdapter.set(adapter);
         mMKlineDetailViewModel.viewpager.set(binding.viewPager);
+        //由于无法拿到k线数据 所以先展示基本数据 等有办法拿到k线数据了 再加上去 更新版本
 
     }
 }

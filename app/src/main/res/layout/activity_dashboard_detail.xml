@@ -1,0 +1,542 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.KlineDetailViewModel" />
+
+
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_root_common"
+    >
+
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:shape_solidColor="@color/c_17171c"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+
+        >
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:shape_radius="@dimen/dp5"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:shape_strokeColor="@color/colorPrimaryLight"
+            app:shape_strokeWidth="@dimen/dp0.5"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextGray"
+                android:text="PRICE USD"
+                android:textSize="@dimen/sp15"
+                android:layout_weight="1"
+                android:gravity="center"
+
+
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="$0.04146"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp15"
+
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            app:shape_radius="@dimen/dp5"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_weight="1"
+            app:shape_strokeColor="@color/colorPrimaryLight"
+            app:shape_strokeWidth="@dimen/dp0.5"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextGray"
+                android:text="PRICE SOL"
+                android:textSize="@dimen/sp15"
+                android:gravity="center"
+
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="0.0002415"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp15"
+
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp5"
+        app:shape_solidColor="@color/c_17171c"
+        >
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:shape_radius="@dimen/dp5"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_weight="1"
+            app:shape_strokeColor="@color/colorPrimaryLight"
+            app:shape_strokeWidth="@dimen/dp0.5"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextGray"
+                android:text="LIQUIDITY"
+                android:textSize="@dimen/sp15"
+
+                android:gravity="center"
+                android:maxLines="1"
+
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="$1.6M"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp15"
+
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:shape_radius="@dimen/dp5"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_weight="1"
+            android:gravity="center"
+            app:shape_strokeColor="@color/colorPrimaryLight"
+            app:shape_strokeWidth="@dimen/dp0.5"
+            android:layout_marginLeft="@dimen/dp3"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextGray"
+                android:text="FDV"
+                android:textSize="@dimen/sp15"
+                android:gravity="center"
+
+
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="$39.4M"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp15"
+
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:shape_radius="@dimen/dp5"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_weight="1"
+            app:shape_strokeColor="@color/colorPrimaryLight"
+            app:shape_strokeWidth="@dimen/dp0.5"
+            android:layout_marginLeft="@dimen/dp3"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextGray"
+                android:text="MC"
+                android:textSize="@dimen/sp15"
+                android:gravity="center"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="$39.4M"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp15"
+
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        app:shape_strokeColor="@color/colorPrimaryLight"
+        app:shape_strokeWidth="@dimen/dp0.5"
+        android:layout_marginTop="@dimen/dp15"
+        app:shape_radius="@dimen/dp5"
+        app:shape_solidColor="@color/c_17171c"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+
+            >
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                android:layout_weight="1"
+                app:shape_strokeColor="@color/colorPrimaryLight"
+                app:shape_strokeWidth="@dimen/dp0.5"
+                app:shape_topLeftRadius="@dimen/dp5"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextGray"
+                    android:text="5M"
+                    android:textSize="@dimen/sp15"
+
+                    android:gravity="center"
+                    android:maxLines="1"
+
+
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:text="-9.29%"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp15"
+
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                android:layout_weight="1"
+                android:gravity="center"
+                app:shape_strokeColor="@color/colorPrimaryLight"
+                app:shape_strokeWidth="@dimen/dp0.5"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextGray"
+                    android:text="1H"
+                    android:textSize="@dimen/sp15"
+                    android:gravity="center"
+
+
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:text="-12.28%"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp15"
+
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                android:layout_weight="1"
+                app:shape_strokeColor="@color/colorPrimaryLight"
+                app:shape_strokeWidth="@dimen/dp0.5"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextGray"
+                    android:text="6H"
+                    android:textSize="@dimen/sp15"
+                    android:gravity="center"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:text="-12.26%"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp15"
+
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                android:layout_weight="1"
+                app:shape_topRightRadius="@dimen/dp5"
+                app:shape_strokeColor="@color/colorPrimaryLight"
+                app:shape_strokeWidth="@dimen/dp0.5"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextGray"
+                    android:text="24H"
+                    android:textSize="@dimen/sp15"
+                    android:gravity="center"
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red"
+                    android:text="-15.26%"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp15"
+
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp5"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextGray"
+                    android:text="TXNS"
+                    android:textSize="@dimen/sp15"
+                    android:paddingLeft="@dimen/dp5"
+                    android:maxLines="1"
+
+
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="11531"
+                    android:paddingLeft="@dimen/dp5"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp15"
+
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp12"
+
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextGray"
+                    android:text="VOLUME"
+                    android:textSize="@dimen/sp15"
+                    android:paddingLeft="@dimen/dp5"
+
+
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="$8.6M"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp15"
+                    android:paddingLeft="@dimen/dp5"
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="@dimen/dp90"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp5"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp12"
+                app:shape_bottomLeftRadius="@dimen/dp5"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primaryTextGray"
+                    android:text="MAKERS"
+                    android:textSize="@dimen/sp15"
+                    android:paddingLeft="@dimen/dp5"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="3165"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp15"
+                    android:paddingLeft="@dimen/dp5"
+
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+        </LinearLayout>
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+
+
+</LinearLayout>
+</layout>

@@ -48,6 +48,7 @@ public class TabPageBindingAdapter {
     @BindingAdapter(value = {"setupTab"}, requireAll = false)
     public static void setupTab(TabLayout tabLayout, NoTouchScrollViewpager viewPager) {
         if(viewPager==null)return;
+
         tabLayout.setupWithViewPager(viewPager);
     }
 

@@ -124,6 +124,7 @@
     <string name="str_once_normal">一键校准</string>
     <string name="str_weight_sub">校准时请勿将baby放在称重计上</string>
     <string name="str_meme_trending">🔥热门模因代币</string>
+    <string name="str_meme_base_data">基础数据</string>
     <string name="str_meme_last">#实时排行榜</string>
     <string name="str_device">设备</string>
     <string name="str_today_hot_wallet">热门钱包</string>

@@ -18,12 +18,15 @@
     <color name="transparent">#00000000</color>
     <color name="text_c5c5c5">#c5c5c5</color>
 
-    <color name="bg_layout_common">#101014</color>
-    <color name="bg_root_common">#100f14</color>
-    <color name="c_101014">#100f14</color>
-    <color name="c_16171a">#16171a</color>
+    <color name="bg_layout_common">#202630</color>
+    <color name="bg_root_common">#202630</color>
+    <color name="c_29313d">#29313d</color>
+    <color name="c_151517">#151517</color>
+
+    <color name="c_1f2023">#1f2023</color>
     <color name="c_25282c">#25282c</color>
     <color name="c_1bc89e">#1bc89e</color>
+
 
 
 
@@ -86,6 +89,7 @@
 
     <color name="c_1c1a1b">#1c1a1b</color>
     <color name="c_171717">#171717</color>
+    <color name="c_17171c">#17171c</color>
     <color name="c_181818">#181818</color>
     <color name="c_191919">#191919</color>
     <color name="c_1b1b1b">#1b1b1b</color>

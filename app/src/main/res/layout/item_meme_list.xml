@@ -15,7 +15,7 @@
     android:orientation="horizontal"
     android:padding="@dimen/dp15"
     android:gravity="center_vertical"
-    app:shape_solidColor="@color/c_101014"
+    app:shape_solidColor="@color/bg_layout_common"
 
     >
 
