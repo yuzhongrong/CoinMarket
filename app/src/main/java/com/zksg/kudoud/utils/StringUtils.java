@@ -68,5 +68,35 @@ public class StringUtils {
         return numStr;
     }
 
+    //获取twitter用户名
+    public static String extractUsernameFromUrl(String url) {
+        // 如果链接以 "https://twitter.com/" 开头
+        if (url.startsWith("https://twitter.com/")) {
+            // 获取链接中最后一个 "/" 后面的部分作为用户名
+            int index = url.lastIndexOf("/") + 1;
+            if (index != -1 && index < url.length()) {
+                return url.substring(index);
+            }
+        }
+
+        // 如果链接不符合格式，返回空字符串
+        return "";
+    }
+
+
+    public static String extractUsernameFromUrlTG(String url) {
+        // 如果链接以 "https://t.me/" 开头
+        if (url.startsWith("https://t.me/")) {
+            // 获取链接中最后一个 "/" 后面的部分作为用户名
+            int index = url.lastIndexOf("/") + 1;
+            if (index != -1 && index < url.length()) {
+                return url.substring(index);
+            }
+        }
+
+        // 如果链接不符合格式，返回空字符串
+        return "";
+    }
+
 
 }

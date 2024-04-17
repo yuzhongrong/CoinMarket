@@ -23,6 +23,7 @@ import com.kunminx.architecture.data.response.ResultSource;
 import com.netease.lib_network.ApiEngine;
 import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
+import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
@@ -37,8 +38,6 @@ import com.zksg.lib_api.login.LoginBean;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.SingleObserver;
-import io.reactivex.disposables.Disposable;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
@@ -313,10 +312,6 @@ public class DataRepository {
                     }
                 });
 
-
-
-
-
     }
 
     public void getLastNoticeForOrder(int page,int pageSize,String sort,String order,DataResult.Result<CommonResponse<DataResponse<ArrayList<NotifyBean>>>> result){
@@ -417,6 +412,30 @@ public class DataRepository {
                     protected void onSuccessed(CommonResponse<UpgradeBean> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
+
+
+    public void getTokenInfoForDexScreen(String address,DataResult.Result<DexScreenTokenInfo> result){
+        ApiEngine.getInstance().getApiService().getTokenInfoForDexscreen(address)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(2, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<DexScreenTokenInfo>() {
+                    @Override
+                    protected void onSuccessed(DexScreenTokenInfo bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));
                     }
 

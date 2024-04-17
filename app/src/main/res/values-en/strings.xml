@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MetaStore</string>
+    <string name="app_name">PPDEX</string>
     <string name="library_json">
         "[{\"title\":\"Lifecycle\",\"summary\":\"主要用于在软件工程的背景下，解决生命周期管理的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/3684721950\"},{\"title\":\"LiveData\",\"summary\":\"主要用于配合 “唯一可信源” 实现消息的读写分离，从而确保消息分发的可靠一致，避免收到不可预期的推送或脏数据\",\"url\":\"https://xiaozhuanlan.com/topic/0168753249\"},{\"title\":\"ViewModel\",\"summary\":\"主要用于托管页面状态、分治视图控制器重建时的状态恢复，从而提升状态恢复的效率和节省不必要的流量、电量开销\",\"url\":\"https://xiaozhuanlan.com/topic/6257931840\"},{\"title\":\"DataBinding\",\"summary\":\"主要用于在软件工程的背景下，解决 “视图实例 null 安全” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/9816742350\"},{\"title\":\"Navigation\",\"summary\":\"通过声明式编程来解决 “应用内路由导航” 和 “初值传参” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/5860149732\"}]"
     </string>
@@ -132,5 +132,16 @@
     <string name="str_dex">兑换</string>
     <string name="str_other">其他</string>
     <string name="str_like">Like</string>
-
+    <string name="str_Invalid_twitter">Invalid twitter!!</string>
+    <string name="str_Invalid_telegram">Invalid telegram!!</string>
+    <string name="str_twitter">Twitter</string>
+    <string name="str_telegram">Tg</string>
+    <string name="str_website">Web</string>
+    <string name="str_Invalid_website">Invalid website!!</string>
+    <string name="str_base_number">Base Coin</string>
+    <string name="str_quo_number">Quo Coin</string>
+    <string name="str_coin_collect_rate">Coin Collect</string>
+    <string name="str_ex_data">Exchange Data</string>
+    <string name="str_apply_number">Apply Number :</string>
+    <string name="str_contract">Contract :</string>
 </resources>

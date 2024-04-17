@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.lxj.xpopup.XPopup;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.activitys.CoinsDetailActivity;
 import com.zksg.kudoud.activitys.MemeChartDetailActivity;
 import com.zksg.kudoud.databinding.ItemFeedTipBinding;
 import com.zksg.kudoud.databinding.ItemMemeListBinding;
@@ -23,7 +24,9 @@ public class MemeCommonListdapter extends SimpleDataBindingAdapter<MemeBaseEntry
         super(context, R.layout.item_meme_list, DiffUtils.getInstance().getMemeBaseItemCallback());
         this.mContex=context;
         setOnItemClickListener((item, position) -> {
-            context.startActivity(new Intent(context, MemeChartDetailActivity.class));
+            Intent intent=new Intent(context, CoinsDetailActivity.class);
+            intent.putExtra("contract",item.getAddress());
+            context.startActivity(intent);
 
         });
     }

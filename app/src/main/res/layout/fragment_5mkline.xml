@@ -1,0 +1,324 @@
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.Chart5KLineFragmentViewModel" />
+
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/c_29313d"
+        >
+<com.hjq.shape.layout.ShapeLinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryLight"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_coins_buy_number"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/colorTextNormal" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.7万 SOL"
+
+            android:layout_marginTop="@dimen/dp5"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp15"
+            android:textColor="@color/white" />
+
+
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp8"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_coins_buy_number"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/colorTextNormal" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11.7万 SOL"
+            android:layout_marginTop="@dimen/dp5"
+            android:textStyle="bold"
+            android:textSize="@dimen/sp15"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+    <com.zksg.kudoud.widgets.TwoColorProgressBar
+        android:id="@+id/progress_coin_pool_rate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp5"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/dp10"
+        android:progress="76"
+        android:max="100"
+        app:firstColor="@color/c_f71816"
+        app:secondColor="@color/c_1bc89e"
+        app:gapWidth="@dimen/dp3"
+        app:cornerRadius="@dimen/dp15"
+        />
+
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_buy_vol_m5"
+                        android:textSize="@dimen/sp11"
+                        android:textColor="@color/colorTextNormal" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$1.58 m"
+
+                        android:layout_marginTop="@dimen/dp5"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp15"
+                        android:textColor="@color/white" />
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_sell_vol_m5"
+                        android:textSize="@dimen/sp11"
+                        android:textColor="@color/colorTextNormal" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$2.45 m"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp15"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+            <com.zksg.kudoud.widgets.TwoColorProgressBar
+
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp10"
+                android:progress="35"
+                android:max="100"
+                app:firstColor="@color/c_f71816"
+                app:secondColor="@color/c_1bc89e"
+                app:gapWidth="@dimen/dp3"
+                app:cornerRadius="@dimen/dp15"
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/colorPrimaryLight"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_buy_people_m5"
+                        android:textSize="@dimen/sp11"
+                        android:textColor="@color/colorTextNormal" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5833"
+
+                        android:layout_marginTop="@dimen/dp5"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp15"
+                        android:textColor="@color/white" />
+
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true"
+
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_sell_people_m5"
+                        android:textSize="@dimen/sp11"
+                        android:textColor="@color/colorTextNormal" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3323"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp15"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <com.zksg.kudoud.widgets.TwoColorProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp10"
+                android:progress="52"
+                android:max="100"
+                app:firstColor="@color/c_f71816"
+                app:secondColor="@color/c_1bc89e"
+                app:gapWidth="@dimen/dp3"
+                app:cornerRadius="@dimen/dp15"
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp25"
+            >
+           <TextView
+               android:id="@+id/pricechangetitle"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:textColor="@color/white"
+               android:textStyle="bold"
+               android:text="@string/str_price_change_time" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@+id/pricechangetitle"
+                android:text="@string/str_5m"
+                android:layout_marginLeft="@dimen/dp5"
+                />
+
+
+            <TextView
+                android:id="@+id/pricechange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/c_1bc89e"
+                android:text="+142%"
+                android:textStyle="bold"
+                android:textSize="@dimen/sp12"
+                />
+
+
+        </RelativeLayout>
+
+</LinearLayout>
+</layout>

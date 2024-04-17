@@ -8,6 +8,9 @@
         <variable
             name="vm"
             type="com.zksg.kudoud.state.CoinsDetailViewModel" />
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.CoinsDetailActivity.ClickProxy" />
 
 
     </data>
@@ -113,6 +116,7 @@
                         app:shape_radius="@dimen/dp45"
                         android:src="@mipmap/ic_solana"
                         android:scaleType="fitXY"
+                        meme_imv="@{vm.mPairsDTO.info.imageUrl}"
                         />
 
 
@@ -129,10 +133,11 @@
                             android:id="@+id/name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="BTC"
+                            android:text="@{vm.mPairsDTO.baseToken.getSymbol}"
                             android:textColor="@color/whitesmoke"
                             android:textSize="@dimen/sp13"
                             android:textStyle="bold"
+
 
                             />
 
@@ -142,7 +147,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp4"
-                            android:text="$67364.25"
+                            android:text="@{'$'+vm.mPairsDTO.priceUsd}"
                             android:textColor="@color/white"
                             android:textSize="@dimen/sp12" />
 
@@ -154,12 +159,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/dp15"
-                        android:layout_marginTop="@dimen/dp23"
+                        android:layout_marginTop="@dimen/dp24"
                         android:layout_toRightOf="@+id/left_root"
-                        android:text="+4.86"
+                        android:text="@string/str_f_default2"
                         android:textColor="@color/c_1bc89e"
                         android:textSize="@dimen/sp12"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        meme_24hprice_change_tv="@{vm.mPairsDTO}"
+                        />
 
 
                         <com.hjq.shape.view.ShapeButton
@@ -172,7 +179,7 @@
                             android:gravity="center"
                             android:maxLength="15"
                             android:maxLines="1"
-                            android:text="去交易"
+                            android:text="@string/str_2_exchange"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp12"
                             android:textStyle="bold"
@@ -203,14 +210,13 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/dp12"
                             android:layout_toRightOf="@+id/icon"
                             android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="市值"
+                                android:text="@string/str_mc"
                                 android:textColor="@color/colorTextNormal"
                                 android:textSize="@dimen/sp12"
                                 android:textStyle="bold"
@@ -222,10 +228,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp4"
-                                android:text="$1.1M"
                                 android:textColor="@color/white"
                                 android:textStyle="bold"
-                                android:textSize="@dimen/sp13" />
+                                android:textSize="@dimen/sp13"
+                                meme_mc_tv="@{vm.mPairsDTO}"
+                                />
 
 
                         </LinearLayout>
@@ -243,7 +250,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="流动性"
+                                android:text="@string/str_liq"
                                 android:textColor="@color/colorTextNormal"
                                 android:textSize="@dimen/sp12"
                                 android:textStyle="bold"
@@ -255,10 +262,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp4"
-                                android:text="$105.1K"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/sp13"
                                 android:textStyle="bold"
+                                meme_liq_tv="@{vm.mPairsDTO}"
                                 />
 
 
@@ -276,7 +283,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="池子创建时间"
+                                android:text="@string/str_pool_createat"
                                 android:textColor="@color/colorTextNormal"
                                 android:textSize="@dimen/sp12"
                                 android:textStyle="bold"
@@ -288,10 +295,11 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp4"
-                                android:text="1mo 6d ago"
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
-                                android:textSize="@dimen/sp13" />
+                                android:textSize="@dimen/sp13"
+                                meme_create_tv="@{vm.mPairsDTO}"
+                                />
 
 
                         </LinearLayout>
@@ -319,7 +327,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="合约地址 :"
+                        android:text="@string/str_contract"
                         android:textStyle="bold"
                         android:textSize="@dimen/sp13"
                         android:textColor="@color/white" />
@@ -331,7 +339,7 @@
                         <TextView
                             android:layout_width="@dimen/dp140"
                             android:layout_height="wrap_content"
-                            android:text="A3eME5CetyZPBoWbRUwY3tSe25S6tb18ba9ZPbWk9eFJ"
+                            android:text="@{vm.mPairsDTO.baseToken.address}"
                             android:textSize="@dimen/sp11"
                             android:singleLine="true"
                             android:gravity="center_horizontal"
@@ -364,7 +372,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="发行代币总数 :"
+                        android:text="@string/str_apply_number"
                         android:textStyle="bold"
                         android:textSize="@dimen/sp13"
                         android:textColor="@color/white" />
@@ -377,27 +385,29 @@
                             android:id="@+id/number"
                             android:layout_width="@dimen/dp90"
                             android:layout_height="wrap_content"
-                            android:text="1,000,000,000"
-                            android:textSize="@dimen/sp11"
+                            android:text="@string/str_f_default2"
+                            android:textSize="@dimen/sp13"
                             android:singleLine="true"
                             android:ellipsize="end"
-                            android:textColor="@color/colorTextNormal" />
+                            android:textColor="@color/colorTextNormal"
+                            meme_suplly_tv="@{vm.mPairsDTO}"
+                            />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="(10亿)"
-                            android:textColor="@color/colorTextNormal"
+                            android:text="@string/str_not_add"
                             android:textSize="@dimen/sp11"
                             android:layout_toRightOf="@+id/number"
-                            android:layout_marginLeft="@dimen/dp5"
-                          />
-
+                            android:textColor="@color/white"
+                            android:visibility="gone"
+                            />
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="不可增发"
+                            android:text="@string/str_not_add"
                             android:textSize="@dimen/sp11"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="@dimen/dp15"
@@ -431,17 +441,27 @@
                         >
 
                         <TextView
+                            android:id="@+id/coin_basenumber"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="基础币数量"
+                            android:text="@string/str_base_number"
                             android:textColor="@color/colorTextNormal"
-
                             android:textSize="@dimen/sp11" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="上一次减半时间"
+                            android:textColor="@color/colorTextNormal"
+                            android:textSize="@dimen/sp11"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_toRightOf="@+id/coin_basenumber"
+                            meme_base_tag_tv="@{vm.mPairsDTO}"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{String.valueOf(vm.mPairsDTO.liquidity.base)}"
                             android:textSize="@dimen/sp11"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="@dimen/dp15"
@@ -454,16 +474,28 @@
                         android:layout_marginTop="@dimen/dp8"
                         >
                         <TextView
+                            android:id="@+id/coin_coin"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="sol数量"
+                            android:text="@string/str_quo_number"
                             android:textSize="@dimen/sp11"
                             android:textColor="@color/colorTextNormal" />
+
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="上一次减半时间"
+                            android:textColor="@color/colorTextNormal"
+                            android:textSize="@dimen/sp11"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:layout_toRightOf="@+id/coin_coin"
+                            meme_quo_tag_tv="@{vm.mPairsDTO}"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{String.valueOf(vm.mPairsDTO.liquidity.quote)}"
                             android:textSize="@dimen/sp11"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="@dimen/dp15"
@@ -474,23 +506,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp8"
+
                         >
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="上一次减半时间"
+                            android:text="@string/str_coin_collect_rate"
                             android:textSize="@dimen/sp11"
                             android:textColor="@color/colorTextNormal" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="上一次减半时间"
-                            android:textSize="@dimen/sp11"
+                        <ProgressBar
+                            android:id="@+id/progress_coin_pool_rate"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            meme_collect_tv="@{vm.mPairsDTO}"
+                            android:layout_width="@dimen/dp100"
+                            android:layout_height="@dimen/dp5"
                             android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
                             android:layout_marginRight="@dimen/dp15"
+                            android:progress="0"
+                            android:progressDrawable="@drawable/bg_drawable_progress_coin" />
 
-                            android:textColor="@color/white" />
                     </RelativeLayout>
 
 
@@ -517,7 +553,7 @@
                     android:layout_alignParentLeft="true"
 
                     android:layout_centerInParent="true"
-                    android:text="交易数据"
+                    android:text="@string/str_ex_data"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp18"
                     android:textStyle="bold" />
@@ -574,7 +610,7 @@
                 <com.zksg.kudoud.customviews.NoTouchScrollViewpager
                     android:id="@+id/view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp280"
+                    android:layout_height="@dimen/dp250"
                     android:background="@color/white"
                     android:adapter="@{vm.tabAdapter}"
                     viewPagerOffsetLimit="3"
@@ -656,9 +692,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="推特"
+                        android:text="@string/str_twitter"
                         android:layout_marginLeft="@dimen/dp5"
                         android:textColor="@color/white"
+                        android:onClick="@{()->click.startTwitter()}"
                         />
                 </com.hjq.shape.layout.ShapeLinearLayout>
 
@@ -682,9 +719,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="电报"
+                        android:text="@string/str_telegram"
                         android:layout_marginLeft="@dimen/dp5"
                         android:textColor="@color/white"
+                        android:onClick="@{()->click.startTelegram()}"
                         />
                 </com.hjq.shape.layout.ShapeLinearLayout>
                 <com.hjq.shape.layout.ShapeLinearLayout
@@ -707,9 +745,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="官网"
+                        android:text="@string/str_website"
                         android:layout_marginLeft="@dimen/dp5"
                         android:textColor="@color/white"
+                        android:onClick="@{()->click.startWeb()}"
                         />
 
                 </com.hjq.shape.layout.ShapeLinearLayout>

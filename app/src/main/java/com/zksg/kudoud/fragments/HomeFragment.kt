@@ -73,6 +73,8 @@ class HomeFragment:BaseDialogFragment(){
 //            }
 //        }
 
+
+
         homeViewModel?.mBannerClickAppinfo?.observe(this){
             if(it!=null&&it.size==1){
                 var intent=Intent(activity,AppDetailActivity::class.java).putExtra("appinfo",it.get(0))
@@ -124,14 +126,14 @@ class HomeFragment:BaseDialogFragment(){
         )
 
 
-        val categorys = resources.getStringArray(R.array.category_str)
-        homeViewModel?.coininstallAdapter?.set(
-            HomeCWAdapter_V(
-                R.layout.item_today_app_h,
-                null
-            ,categorys
-            )
-        )
+//        val categorys = resources.getStringArray(R.array.category_str)
+//        homeViewModel?.coininstallAdapter?.set(
+//            HomeCWAdapter_V(
+//                R.layout.item_today_app_h,
+//                null
+//            ,categorys
+//            )
+//        )
 
 //       XPopup.Builder(context)
 //            .asLoading("",R.layout.delegate_normal_loading)
@@ -182,6 +184,7 @@ class HomeFragment:BaseDialogFragment(){
 
 
 
+
     }
 
 
@@ -218,7 +221,7 @@ class HomeFragment:BaseDialogFragment(){
         }
 
         fun startPreSale(){
-            startActivity(Intent(activity, CoinsDetailActivity::class.java))
+//            startActivity(Intent(activity, CoinsDetailActivity::class.java))
         }
 
 

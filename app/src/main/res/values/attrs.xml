@@ -272,7 +272,13 @@
         <attr name="bar_lineSize" format="dimension" />
         <attr name="bar_lineMargin" format="dimension" />
     </declare-styleable>
+    <declare-styleable name="TwoColorProgressBar">
+        <attr name="firstColor" format="color" />
+        <attr name="secondColor" format="color" />
+        <attr name="gapWidth" format="dimension" />
+        <attr name="cornerRadius" format="dimension" />
 
+    </declare-styleable>
 
 
 

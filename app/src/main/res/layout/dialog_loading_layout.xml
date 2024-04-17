@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.hjq.shape.layout.ShapeRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/dp120"
-    android:layout_height="@dimen/dp120"
+    android:layout_width="@dimen/dp110"
+    android:layout_height="@dimen/dp110"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    app:shape_solidColor="@color/c_191919"
+    app:shape_solidColor="@color/bg_layout_common"
     app:shape_radius="@dimen/dp15"
 
     >
@@ -14,7 +14,7 @@
     android:layout_height="wrap_content"
     style="@style/AVLoadingIndicatorView"
     android:visibility="visible"
-    app:indicatorName="LineScalePulseOutRapidIndicator"
+    app:indicatorName="BallSpinFadeLoaderIndicator"
     app:indicatorColor="@color/colorAccent"
     />
 

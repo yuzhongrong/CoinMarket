@@ -15,4 +15,6 @@ import java.util.List;
 
 public class ChartKLineFragmentViewModel extends ViewModel {
 
+
+
 }

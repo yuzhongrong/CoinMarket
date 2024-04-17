@@ -4,6 +4,7 @@ package com.netease.lib_network;
 import static com.netease.lib_network.constants.config.host;
 import static com.netease.lib_network.constants.config.server_port;
 
+import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -23,12 +24,13 @@ import retrofit2.http.GET;
 import retrofit2.http.HEAD;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
 
 
-    String BASE_URL = "https://public-api.birdeye.so";
+    String BASE_URL = "https://api.dexscreener.com";
 
     @GET("login/cellphone")
     Single<LoginBean>  login(@Query("phone") String phone, @Query("password") String password);
@@ -79,4 +81,10 @@ public interface ApiService {
 
     @GET("/upgrade/findUpgrade")
     Single<CommonResponse<UpgradeBean>> getUpgradeInfo();
+
+
+    @GET("/latest/dex/tokens/{tokenAddresses}")
+    Single<DexScreenTokenInfo> getTokenInfoForDexscreen(@Path("tokenAddresses") String address);
+
+
 }

@@ -170,4 +170,15 @@ public class DateUtils {
         return dateStr;
     }
 
+    public static String timestampToDateString(long timestamp) {
+        // 创建 SimpleDateFormat 对象，指定日期格式为 "yyyy-MM-dd"
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        // 将时间戳转换为 Date 对象
+        Date date = new Date(timestamp);
+
+        // 使用 SimpleDateFormat 格式化 Date 对象，并返回格式化后的字符串
+        return sdf.format(date);
+    }
+
 }

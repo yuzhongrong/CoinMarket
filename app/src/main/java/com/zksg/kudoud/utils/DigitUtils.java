@@ -1,5 +1,10 @@
 package com.zksg.kudoud.utils;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class DigitUtils {
 
     public static String formatAmount(double amount) {
@@ -17,6 +22,29 @@ public class DigitUtils {
             // 如果金额大于等于 1000000000，使用 b 后缀表示
             return String.format("%.2fb", amount / 1000000000);
         }
+    }
+    public static String formatAmountTip() {
+        return "1m=1百万,1b=10亿";
+    }
+
+    //格式化大数字整型
+    public static String formatNumberWithCommas(long number) {
+        // 创建 NumberFormat 对象，指定本地化为默认地区
+        NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
+
+        // 设置分组大小为 3
+        nf.setGroupingUsed(true);
+
+        // 使用 NumberFormat 格式化数字，并返回格式化后的字符串
+        return nf.format(number);
+    }
+
+
+    public static double parseDouble(String str) {
+        // 使用 BigDecimal 将字符串转换为 double 类型
+        BigDecimal bd = new BigDecimal(str);
+        double value = bd.doubleValue();
+        return value;
     }
 
 
