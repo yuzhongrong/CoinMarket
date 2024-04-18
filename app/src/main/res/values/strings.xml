@@ -124,7 +124,7 @@
     <string name="str_once_normal">一键校准</string>
     <string name="str_weight_sub">校准时请勿将baby放在称重计上</string>
     <string name="str_meme_trending">🔥热门模因代币</string>
-    <string name="str_meme_base_data">基础数据</string>
+    <string name="str_meme_base_data">统计数据</string>
     <string name="str_meme_last">#实时排行榜</string>
     <string name="str_device">设备</string>
     <string name="str_today_hot_wallet">热门钱包</string>
@@ -246,13 +246,13 @@
     <string name="str_text_it_zhangfu">涨幅</string>
     <string name="str_text_volume">成交量</string>
     <string name="str_address_xxx">xxxxxxxxxxxxxx...xxxxxxxxxx</string>
-    <string name="str_coins_sell_number">现货卖出数量(5m)</string>
-    <string name="str_coins_buy_number">现货买入数量(5m)</string>
+    <string name="str_coins_sell_number">卖出交易数</string>
+    <string name="str_coins_buy_number">买入交易数</string>
     <string name="str_coin_collect_rate">筹码集中度</string>
-    <string name="str_buy_vol_m5">买入成交量(m5)</string>
-    <string name="str_sell_vol_m5">卖出成交量(m5)</string>
-    <string name="str_buy_people_m5">购买总人数(m5)</string>
-    <string name="str_sell_people_m5">卖出总人数(m5)</string>
+    <string name="str_buy_vol">买入成交量</string>
+    <string name="str_sell_vol">卖出成交量</string>
+    <string name="str_buy_people">购买总人数</string>
+    <string name="str_sell_people">卖出总人数</string>
     <string name="str_5m">(5m):</string>
     <string name="str_1h">(1h):</string>
     <string name="str_6h">(6h):</string>
@@ -262,8 +262,8 @@
     <string name="str_mc">总市值</string>
     <string name="str_not_add">不可增发</string>
     <string name="str_contract">合约地址 :</string>
-    <string name="str_pool_createat">池子创建时间</string>
-    <string name="str_liq">流动性</string>
+    <string name="str_pool_createat">创建时间</string>
+    <string name="str_liq">总流动性</string>
     <string name="str_2_exchange">去交易</string>
     <string name="str_Invalid_twitter">无效的推特!!</string>
     <string name="str_Invalid_telegram">无效的电报！！</string>
@@ -273,6 +273,8 @@
     <string name="str_Invalid_website">无效网站!!</string>
     <string name="str_base_number">基础币数量</string>
     <string name="str_ex_data">交易数据</string>
-    <string name="str_apply_number">发行代币总数 :</string>
+    <string name="str_apply_number">发行代币量</string>
+    <string name="str_vol_now">实时交易量</string>
+    <string name="str_pair_address">交易对地址</string>
 
 </resources>

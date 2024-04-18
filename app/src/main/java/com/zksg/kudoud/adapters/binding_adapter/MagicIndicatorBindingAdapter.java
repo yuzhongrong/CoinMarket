@@ -187,6 +187,7 @@ public class MagicIndicatorBindingAdapter {
 
             CommonNavigator commonNavigator = new CommonNavigator(magicIndicator.getContext());
             ViewPager mViewPager = magicIndicator.getRootView().findViewById(R.id.view_pager);
+            mViewPager.setOffscreenPageLimit(4);
             commonNavigator.setAdapter(new CommonNavigatorAdapter() {
                 @Override
                 public int getCount() {

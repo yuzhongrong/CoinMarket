@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.zksg.kudoud.state.Chart5KLineFragmentViewModel" />
+            type="com.zksg.kudoud.state.Chart24HLineFragmentViewModel" />
 
 
     </data>
@@ -40,7 +40,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:textSize="@dimen/sp12"
-                memeviewpager_5m="@{vm.mPairsDTO}"
+                memeviewpager_24h="@{vm.mPairsDTO}"
                 />
 
 
@@ -67,103 +67,103 @@
                 android:textColor="@color/c_1bc89e"
                 android:textStyle="bold"
                 android:textSize="@dimen/sp12"
-                memeviewpager_5m="@{vm.mPairsDTO}"
+                memeviewpager_24h="@{vm.mPairsDTO}"
                 />
 
 
         </RelativeLayout>
 
-<com.hjq.shape.layout.ShapeLinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/colorPrimaryLight"
-    >
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp8"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/str_coins_buy_number"
-            android:textSize="@dimen/sp11"
-            android:textColor="@color/colorTextNormal" />
+            android:orientation="vertical"
+            android:background="@color/colorPrimaryLight"
+            >
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_coins_buy_number"
+                        android:textSize="@dimen/sp11"
+                        android:textColor="@color/colorTextNormal" />
 
 
-        <TextView
-            android:id="@+id/buys"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            memeviewpager_5m="@{vm.mPairsDTO}"
-            android:layout_marginTop="@dimen/dp5"
-            android:textStyle="bold"
-            android:textSize="@dimen/sp15"
-            android:textColor="@color/white" />
-
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp8"
-        android:orientation="vertical"
-        android:layout_alignParentRight="true"
-
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/str_coins_sell_number"
-            android:textSize="@dimen/sp11"
-            android:textColor="@color/colorTextNormal" />
-
-
-        <TextView
-            android:id="@+id/sells"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            memeviewpager_5m="@{vm.mPairsDTO}"
-            android:layout_marginTop="@dimen/dp5"
-            android:textStyle="bold"
-            android:textSize="@dimen/sp15"
-            android:textColor="@color/white" />
-
-
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/buys"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        memeviewpager_24h="@{vm.mPairsDTO}"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp15"
+                        android:textColor="@color/white" />
 
 
 
-    </RelativeLayout>
 
-    <com.zksg.kudoud.widgets.TwoColorProgressBar
-        android:id="@+id/progress_coin_pool_rate"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp5"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/dp10"
-        android:progress="0"
-        android:max="100"
-        app:firstColor="@color/c_f71816"
-        app:secondColor="@color/c_1bc89e"
-        app:gapWidth="@dimen/dp3"
-        app:cornerRadius="@dimen/dp15"
-        meme_tx_number_tv="@{vm.mPairsDTO}"
-        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp8"
+                    android:orientation="vertical"
+                    android:layout_alignParentRight="true"
 
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_coins_sell_number"
+                        android:textSize="@dimen/sp11"
+                        android:textColor="@color/colorTextNormal" />
 
 
-</com.hjq.shape.layout.ShapeLinearLayout>
+                    <TextView
+                        android:id="@+id/sells"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        memeviewpager_24h="@{vm.mPairsDTO}"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/sp15"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+            <com.zksg.kudoud.widgets.TwoColorProgressBar
+                android:id="@+id/progress_coin_pool_rate"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp5"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/dp10"
+                android:progress="76"
+                android:max="100"
+                app:firstColor="@color/c_f71816"
+                app:secondColor="@color/c_1bc89e"
+                app:gapWidth="@dimen/dp3"
+                app:cornerRadius="@dimen/dp15"
+                meme_tx_24h_number_tv="@{vm.mPairsDTO}"
+                />
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
         <com.hjq.shape.layout.ShapeLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -345,5 +345,5 @@
 
 
 
-</LinearLayout>
+    </LinearLayout>
 </layout>

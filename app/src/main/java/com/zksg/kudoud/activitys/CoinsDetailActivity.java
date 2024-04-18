@@ -31,6 +31,10 @@ import java.util.List;
 public class CoinsDetailActivity extends BaseDialogActivity {
     CoinsDetailViewModel mCoinsDetailViewModel;
 
+    public CoinsDetailViewModel getSharedViewModel() {
+        return mCoinsDetailViewModel;
+    }
+
     @Override
     protected void initViewModel() {
         mCoinsDetailViewModel=getActivityScopeViewModel(CoinsDetailViewModel.class);
@@ -62,7 +66,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
         });
 
         mCoinsDetailViewModel.tokenInfo.observe(this, dexScreenTokenInfo -> {
-            mCoinsDetailViewModel.mPairsDTO.set(dexScreenTokenInfo.getPairs().get(0));
+            mCoinsDetailViewModel.mPairsDTO.postValue(dexScreenTokenInfo.getPairs().get(0));
         });
         mCoinsDetailViewModel.getTokenInfo(contract);
 
@@ -77,7 +81,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startTwitter(){
             String username="";
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=mCoinsDetailViewModel.mPairsDTO.get().getInfo().getSocials();
+            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=mCoinsDetailViewModel.mPairsDTO.getValue().getInfo().getSocials();
             for(DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO item:socials){
                 if(item.getType().equals("twitter")){
                     username= StringUtils.extractUsernameFromUrl(item.getUrl());
@@ -93,7 +97,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startTelegram(){
             String username="";
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=mCoinsDetailViewModel.mPairsDTO.get().getInfo().getSocials();
+            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=mCoinsDetailViewModel.mPairsDTO.getValue().getInfo().getSocials();
             for(DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO item:socials){
                 if(item.getType().equals("telegram")){
                     username= StringUtils.extractUsernameFromUrlTG(item.getUrl());
@@ -109,7 +113,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startWeb(){
             String url="";
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.WebsitesDTO> webs=mCoinsDetailViewModel.mPairsDTO.get().getInfo().getWebsites();
+            List<DexScreenTokenInfo.PairsDTO.InfoDTO.WebsitesDTO> webs=mCoinsDetailViewModel.mPairsDTO.getValue().getInfo().getWebsites();
             if(webs==null||webs.size()==0){
                 ToastUtils.showShort(R.string.str_Invalid_website);
                 return;

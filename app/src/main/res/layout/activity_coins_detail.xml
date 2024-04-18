@@ -283,7 +283,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/str_pool_createat"
+                                android:text="@string/str_apply_number"
                                 android:textColor="@color/colorTextNormal"
                                 android:textSize="@dimen/sp12"
                                 android:textStyle="bold"
@@ -298,7 +298,7 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/sp13"
-                                meme_create_tv="@{vm.mPairsDTO}"
+                                meme_suplly_tv="@{vm.mPairsDTO}"
                                 />
 
 
@@ -344,8 +344,6 @@
                             android:singleLine="true"
                             android:gravity="center_horizontal"
                             android:ellipsize="middle"
-
-
                             android:textColor="@color/colorTextNormal" />
 
                         <ImageView
@@ -367,6 +365,7 @@
                     android:orientation="vertical"
                     android:layout_marginTop="@dimen/dp15"
                     android:layout_marginLeft="@dimen/dp15"
+                    android:visibility="gone"
                     >
 
                     <TextView
@@ -434,11 +433,85 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/sp13"
                         android:textColor="@color/white" />
+
+
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp8"
                         >
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_pair_address"
+                            android:textColor="@color/colorTextNormal"
+                            android:textSize="@dimen/sp11"
+                            android:singleLine="true"
+                            android:gravity="center_horizontal"
+                            android:ellipsize="middle"
+                            />
+
+                        <TextView
+                            android:layout_width="@dimen/dp140"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginRight="@dimen/dp10"
+                            android:layout_toLeftOf="@+id/iv_pair_address"
+                            android:ellipsize="middle"
+                            android:gravity="center_horizontal"
+                            android:singleLine="true"
+                            android:text="@{vm.mPairsDTO.pairAddress}"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp11" />
+
+                        <ImageView
+                            android:id="@+id/iv_pair_address"
+                            android:layout_width="@dimen/dp15"
+                            android:layout_height="@dimen/dp15"
+                            android:src="@mipmap/ic_copy"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/dp15"
+
+                            android:textColor="@color/white" />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8"
+                        >
+
+
+
+
+                        <TextView
+                            android:id="@+id/pool_pair_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_pool_createat"
+                            android:textColor="@color/colorTextNormal"
+                            android:textSize="@dimen/sp11" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/sp11"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/dp15"
+                            meme_create_tv="@{vm.mPairsDTO}"
+                            android:textColor="@color/white" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp8"
+                        >
+
+
+
 
                         <TextView
                             android:id="@+id/coin_basenumber"
@@ -461,11 +534,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(vm.mPairsDTO.liquidity.base)}"
                             android:textSize="@dimen/sp11"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="@dimen/dp15"
-
+                            meme_base_value_tv="@{vm.mPairsDTO}"
                             android:textColor="@color/white" />
                     </RelativeLayout>
                     <RelativeLayout
@@ -499,7 +571,7 @@
                             android:textSize="@dimen/sp11"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="@dimen/dp15"
-
+                            meme_quo_value_tv="@{vm.mPairsDTO}"
                             android:textColor="@color/white" />
                     </RelativeLayout>
                     <RelativeLayout
@@ -610,10 +682,9 @@
                 <com.zksg.kudoud.customviews.NoTouchScrollViewpager
                     android:id="@+id/view_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp250"
+                    android:layout_height="@dimen/dp150"
                     android:background="@color/white"
                     android:adapter="@{vm.tabAdapter}"
-                    viewPagerOffsetLimit="3"
                     android:layout_marginLeft="@dimen/dp15"
                     android:layout_marginRight="@dimen/dp15"
                     />

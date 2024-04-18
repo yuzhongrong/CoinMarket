@@ -144,4 +144,17 @@
     <string name="str_ex_data">Exchange Data</string>
     <string name="str_apply_number">Apply Number :</string>
     <string name="str_contract">Contract :</string>
+
+    <string name="str_coins_sell_number">BUYS</string>
+    <string name="str_coins_buy_number">SELLS</string>
+
+    <string name="str_buy_vol">BUY VOL</string>
+    <string name="str_sell_vol">SELL VOL</string>
+
+    <string name="str_buy_people">Buyers</string>
+    <string name="str_sell_people">SELLERS</string>
+    <string name="str_price_change_time">PRICE CHANGE </string>
+    <string name="str_vol_now">VOL</string>
+    <string name="str_pool_createat">CREATE</string>
+    <string name="str_pair_address">PAIR</string>
 </resources>

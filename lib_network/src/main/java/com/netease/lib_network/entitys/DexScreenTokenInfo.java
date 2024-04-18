@@ -54,7 +54,7 @@ public class DexScreenTokenInfo {
         @SerializedName("liquidity")
         private LiquidityDTO liquidity;
         @SerializedName("fdv")
-        private int fdv;
+        private long fdv;
         @SerializedName("pairCreatedAt")
         private long pairCreatedAt;
         @SerializedName("info")
@@ -156,11 +156,11 @@ public class DexScreenTokenInfo {
             this.liquidity = liquidity;
         }
 
-        public int getFdv() {
+        public long getFdv() {
             return fdv;
         }
 
-        public void setFdv(int fdv) {
+        public void setFdv(long fdv) {
             this.fdv = fdv;
         }
 
@@ -389,7 +389,7 @@ public class DexScreenTokenInfo {
             @SerializedName("h1")
             private double h1;
             @SerializedName("m5")
-            private int m5;
+            private double m5;
 
             public double getH24() {
                 return h24;
@@ -415,18 +415,18 @@ public class DexScreenTokenInfo {
                 this.h1 = h1;
             }
 
-            public int getM5() {
+            public double getM5() {
                 return m5;
             }
 
-            public void setM5(int m5) {
+            public void setM5(double m5) {
                 this.m5 = m5;
             }
         }
 
         public static class PriceChangeDTO {
             @SerializedName("m5")
-            private int m5;
+            private double m5;
             @SerializedName("h1")
             private double h1;
             @SerializedName("h6")
@@ -434,11 +434,11 @@ public class DexScreenTokenInfo {
             @SerializedName("h24")
             private double h24;
 
-            public int getM5() {
+            public double getM5() {
                 return m5;
             }
 
-            public void setM5(int m5) {
+            public void setM5(double m5) {
                 this.m5 = m5;
             }
 
@@ -471,7 +471,7 @@ public class DexScreenTokenInfo {
             @SerializedName("usd")
             private double usd;
             @SerializedName("base")
-            private int base;
+            private double base;
             @SerializedName("quote")
             private double quote;
 
@@ -483,11 +483,11 @@ public class DexScreenTokenInfo {
                 this.usd = usd;
             }
 
-            public int getBase() {
+            public double getBase() {
                 return base;
             }
 
-            public void setBase(int base) {
+            public void setBase(double base) {
                 this.base = base;
             }
 

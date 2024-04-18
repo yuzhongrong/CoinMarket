@@ -19,6 +19,7 @@ import kotlinx.coroutines.withContext
  */
 class CoinsDetailViewModel : BaseLoadingViewModel() {
 
+    //总的数据
     @JvmField
     var tokenInfo= MutableResult<DexScreenTokenInfo>()
 
@@ -27,10 +28,10 @@ class CoinsDetailViewModel : BaseLoadingViewModel() {
     var viewpager = ObservableField<NoTouchScrollViewpager>()
     @JvmField
     var indicatorTitle = ObservableField<Array<String>>()
+
+    //当前的PairsDTO
     @JvmField
-    var mPairsDTO=ObservableField<PairsDTO>()
-
-
+    var mPairsDTO=MutableResult<PairsDTO>()
 
     init {
         indicatorTitle.set(arrayOf("5M", "1H", "6H", "24H"))
