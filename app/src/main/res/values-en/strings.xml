@@ -157,4 +157,5 @@
     <string name="str_vol_now">VOL</string>
     <string name="str_pool_createat">CREATE</string>
     <string name="str_pair_address">PAIR</string>
+    <string name="str_pool_liq">LIQ POOL</string>
 </resources>

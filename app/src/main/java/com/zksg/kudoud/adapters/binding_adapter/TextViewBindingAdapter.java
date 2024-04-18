@@ -28,11 +28,9 @@ public class TextViewBindingAdapter {
            if(value==null)return;
             String flat=tv.getContext().getString(R.string.str_vol_daller);
             tv.setText(flat+DigitUtils.formatAmount((double)value));
-
-
     }
 
-    //计算代币发行数
+
     @BindingAdapter(value = {"meme_suplly_tv"},requireAll = false)
     public static void memesupllyTv(TextView tv, DexScreenTokenInfo.PairsDTO value) {
         if(value==null)return;
@@ -64,7 +62,8 @@ public class TextViewBindingAdapter {
 
     }
 
-    private static void memeprice_common_changeTv(TextView tv,double value) {
+    @BindingAdapter(value = {"memeprice_common_changeTv"},requireAll = false)
+    public static void memeprice_common_changeTv(TextView tv,double value) {
         if(tv==null)return;
         if(value>=0.0){
             tv.setTextColor(tv.getContext().getColor(R.color.c_1bc89e));
@@ -114,9 +113,18 @@ public class TextViewBindingAdapter {
 
     //计算mc
     @BindingAdapter(value = {"meme_mc_tv"},requireAll = false)
-    public static void mememcTv(TextView tv, DexScreenTokenInfo.PairsDTO value) {
-        if(value==null)return;
-        double fdv=new BigDecimal(value.getFdv()).doubleValue();
+    public static void mememcTv(TextView tv,long value) {
+        if(tv==null)return;
+        double fdv=new BigDecimal(value).doubleValue();
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        tv.setText(dollar+DigitUtils.formatAmount(fdv));
+    }
+
+    //计算币的价格
+    @BindingAdapter(value = {"meme_price_tv"},requireAll = false)
+    public static void memepriceTv(TextView tv,String value) {
+        if(tv==null)return;
+        double fdv=new BigDecimal(value).doubleValue();
         String dollar=tv.getContext().getString(R.string.str_daller);
         tv.setText(dollar+DigitUtils.formatAmount(fdv));
     }
@@ -124,10 +132,10 @@ public class TextViewBindingAdapter {
 
     //计算流动性
     @BindingAdapter(value = {"meme_liq_tv"},requireAll = false)
-    public static void memeliqTv(TextView tv, DexScreenTokenInfo.PairsDTO value) {
-        if(value==null)return;
+    public static void memeliqTv(TextView tv, double value) {
+        if(tv==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
-        tv.setText(dollar+DigitUtils.formatAmount(value.getLiquidity().getUsd()));
+        tv.setText(dollar+DigitUtils.formatAmount(value));
     }
 
     @BindingAdapter(value = {"meme_create_tv"},requireAll = false)

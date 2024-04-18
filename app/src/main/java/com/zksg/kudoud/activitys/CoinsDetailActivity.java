@@ -17,6 +17,7 @@ import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.zksg.kudoud.BR;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.adapters.CommonKlineDataPagerAdapter;
+import com.zksg.kudoud.adapters.MemePoolListdapter;
 import com.zksg.kudoud.adapters.SimpleFragmentPagerAdapter;
 import com.zksg.kudoud.beans.Kline24ChangeChannelEnum;
 import com.zksg.kudoud.dialogs.ResetFactoryDialog;
@@ -43,7 +44,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
     @Override
     protected DataBindingConfig getDataBindingConfig() {
         return new DataBindingConfig(R.layout.activity_coins_detail, BR.vm,mCoinsDetailViewModel)
-                .addBindingParam(BR.click,new ClickProxy());
+                .addBindingParam(BR.click,new ClickProxy()).addBindingParam(BR.adapter,new MemePoolListdapter(this));
     }
 
 
@@ -56,12 +57,11 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
     private void InitData(){
         String contract=getIntent().getExtras().getString("contract");
-        CommonKlineDataPagerAdapter adapter=new CommonKlineDataPagerAdapter(getSupportFragmentManager(), new Kline24ChangeChannelEnum[]{Kline24ChangeChannelEnum.K_5M,Kline24ChangeChannelEnum.K_1H,Kline24ChangeChannelEnum.K_6H,Kline24ChangeChannelEnum.K_24H});
-        mCoinsDetailViewModel.tabAdapter.set(adapter);
+//        CommonKlineDataPagerAdapter adapter=new CommonKlineDataPagerAdapter(getSupportFragmentManager(), new Kline24ChangeChannelEnum[]{Kline24ChangeChannelEnum.K_5M,Kline24ChangeChannelEnum.K_1H,Kline24ChangeChannelEnum.K_6H,Kline24ChangeChannelEnum.K_24H});
+//        mCoinsDetailViewModel.tabAdapter.set(adapter);
 
         //init data
         mCoinsDetailViewModel.loadingVisible.observe(this,it->{
-            Log.d("-loadingVisible-->",it.toString());
             if(it){showDialog();}else{dismissDialog();}
         });
 
@@ -69,8 +69,6 @@ public class CoinsDetailActivity extends BaseDialogActivity {
             mCoinsDetailViewModel.mPairsDTO.postValue(dexScreenTokenInfo.getPairs().get(0));
         });
         mCoinsDetailViewModel.getTokenInfo(contract);
-
-
 
     }
 

@@ -19,6 +19,7 @@ package com.zksg.kudoud.utils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
+import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.zksg.lib_api.baby.BabyInfo;
 import com.zksg.lib_api.baby.FeedTip;
 import com.zksg.lib_api.beans.EnvBean;
@@ -38,7 +39,7 @@ public class DiffUtils {
     private DiffUtil.ItemCallback<BabyInfo> mBabyItemCallback;
 
     private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
-
+    private DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO> mMemePoolCallback;
 //    private DiffUtil.ItemCallback<MainRecommendPlayListBean.RecommendBean> mRecommendPlaylistItemCallback;
 //
 //    private DiffUtil.ItemCallback<AlbumOrSongBean> mAlbumOrSongItemCallback;
@@ -102,6 +103,24 @@ public class DiffUtils {
             };
         }
         return mMemeBaseCallback;
+    }
+
+
+    public DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO> getMemePooltemCallback() {
+        if (mMemePoolCallback == null) {
+            mMemePoolCallback = new DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull DexScreenTokenInfo.PairsDTO oldItem, @NonNull DexScreenTokenInfo.PairsDTO newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull DexScreenTokenInfo.PairsDTO oldItem, @NonNull DexScreenTokenInfo.PairsDTO newItem) {
+                    return oldItem.getPairAddress().equals(newItem.getPairAddress());
+                }
+            };
+        }
+        return mMemePoolCallback;
     }
 
 
