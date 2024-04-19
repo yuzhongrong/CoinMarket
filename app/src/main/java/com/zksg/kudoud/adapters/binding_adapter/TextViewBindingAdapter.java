@@ -10,6 +10,7 @@ import com.hjq.shape.view.ShapeButton;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.Kline24ChangeChannelEnum;
+import com.zksg.kudoud.entitys.Base2QuoEntity;
 import com.zksg.kudoud.fragments.Chart5MFragment;
 import com.zksg.kudoud.state.Chart1HLineFragmentViewModel;
 import com.zksg.kudoud.state.Chart5KLineFragmentViewModel;
@@ -20,6 +21,7 @@ import com.zksg.kudoud.widgets.SettingBar;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.List;
 
 public class TextViewBindingAdapter {
 
@@ -96,6 +98,8 @@ public class TextViewBindingAdapter {
     @BindingAdapter(value = {"meme_quo_value_tv"},requireAll = false)
     public static void memequovalueTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
         if(tv==null||value==null)return;
+        DexScreenTokenInfo.PairsDTO.LiquidityDTO mliq=value.getLiquidity();
+        if(mliq==null)return;
         BigDecimal que=new BigDecimal(value.getLiquidity().getQuote());
         tv.setText(DigitUtils.formatAmount(que.doubleValue()));
 
@@ -104,7 +108,7 @@ public class TextViewBindingAdapter {
     //设置base value
     @BindingAdapter(value = {"meme_base_value_tv"},requireAll = false)
     public static void memebasevalueTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
-        if(tv==null||value==null)return;
+        if(tv==null||value==null||value.getLiquidity()==null)return;
         BigDecimal base=new BigDecimal(value.getLiquidity().getBase());
         tv.setText(DigitUtils.formatAmount(base.doubleValue()));
 
@@ -124,19 +128,106 @@ public class TextViewBindingAdapter {
     @BindingAdapter(value = {"meme_price_tv"},requireAll = false)
     public static void memepriceTv(TextView tv,String value) {
         if(tv==null)return;
-        double fdv=new BigDecimal(value).doubleValue();
+        double price=new BigDecimal(value).doubleValue();
         String dollar=tv.getContext().getString(R.string.str_daller);
-        tv.setText(dollar+DigitUtils.formatAmount(fdv));
+        tv.setText(dollar+DigitUtils.formatPriceAmount(price));
+    }
+
+
+    //展示base/quo
+    @BindingAdapter(value = {"meme_base2quo_tv"},requireAll = false)
+    public static void memebase2quoTv(TextView tv, DexScreenTokenInfo.PairsDTO.LiquidityDTO value) {
+        if(tv==null||value==null)return;
+        BigDecimal basenumber=new BigDecimal(value.getBase());
+        BigDecimal quonumber=new BigDecimal(value.getQuote());
+        String result= DigitUtils.formatAmount(basenumber.doubleValue())+"/"+DigitUtils.formatAmount(quonumber.doubleValue());
+        tv.setText(result);
     }
 
 
     //计算流动性
     @BindingAdapter(value = {"meme_liq_tv"},requireAll = false)
-    public static void memeliqTv(TextView tv, double value) {
-        if(tv==null)return;
+    public static void memeliqTv(TextView tv, DexScreenTokenInfo.PairsDTO.LiquidityDTO value) {
+        if(tv==null||value==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
-        tv.setText(dollar+DigitUtils.formatAmount(value));
+        tv.setText(dollar+DigitUtils.formatAmount(value.getUsd()));
     }
+
+
+    //计算所有池子总流动性
+    @BindingAdapter(value = {"meme_all_liq_tv"},requireAll = false)
+    public static void memeallliqTv(TextView tv, List<DexScreenTokenInfo.PairsDTO> lists) {
+        if(tv==null|lists==null||lists.size()==0)return;
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        BigDecimal result=new BigDecimal(0.0);
+        for(DexScreenTokenInfo.PairsDTO item:lists){
+            if(item.getLiquidity()==null)break;
+            BigDecimal itemliq=new BigDecimal(item.getLiquidity().getUsd());
+            result=result.add(itemliq);
+        }
+
+        tv.setText(dollar+DigitUtils.formatAmount(result.doubleValue()));
+    }
+
+
+    //计算所有池子总流动性
+    @BindingAdapter(value = {"meme_all_mc_tv"},requireAll = false)
+    public static void meme_all_mc_tv(TextView tv, List<DexScreenTokenInfo.PairsDTO> lists) {
+        if(tv==null|lists==null||lists.size()==0)return;
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        BigDecimal result=new BigDecimal(0.0);
+        for(DexScreenTokenInfo.PairsDTO item:lists){
+            BigDecimal itemfdv=new BigDecimal(item.getFdv());
+            result=result.add(itemfdv);
+        }
+
+        tv.setText(dollar+DigitUtils.formatAmount(result.doubleValue()));
+    }
+
+
+    //计算所有池子总的筹码集中度
+    @BindingAdapter(value = {"meme_all_collect_tv"},requireAll = false)
+    public static void meme_all_collect_tv(ProgressBar pb, Base2QuoEntity datas) {
+        if(pb==null|datas==null||datas.getmPairsDTO().size()==0)return;
+
+        String base_origin=datas.getContract();
+        BigDecimal base_result=new BigDecimal(0.0);
+        for(int i=0;i<datas.getmPairsDTO().size();i++){
+            //获取当前池子的base币个数 这里的base 有可能不是nub 代币 例如 sin/nub
+            String base_address=datas.getmPairsDTO().get(i).getBaseToken().getAddress();
+            //获取当前pool的liq流动性
+            DexScreenTokenInfo.PairsDTO.LiquidityDTO mliq=datas.getmPairsDTO().get(i).getLiquidity();
+            if(mliq==null)break;
+            if(base_address.equalsIgnoreCase(base_origin)){
+               BigDecimal basenumber=new BigDecimal(mliq.getBase());
+                base_result=base_result.add(basenumber);
+            }else{//quo是你要统计的币的个数
+                BigDecimal basenumber=new BigDecimal(mliq.getQuote());
+                base_result=base_result.add(basenumber);
+            }
+
+        }
+
+        //总的发行base个数  这里的base 有可能不是nub 代币
+        BigDecimal supply_result=callculatememesupllyTv(datas.getmPairsDTO().get(0));
+        BigDecimal collect =base_result.divide(supply_result, 2, RoundingMode.HALF_UP);
+        int ok=collect.multiply(new BigDecimal(100)).intValue();
+        pb.setProgress(ok);
+
+
+    }
+
+
+    private static BigDecimal callculatememesupllyTv(DexScreenTokenInfo.PairsDTO value) {
+        if(value==null)return new BigDecimal(0.0);
+        BigDecimal fdv=new BigDecimal(value.getFdv());
+        BigDecimal priceusdValue = new BigDecimal(value.getPriceUsd());
+       return fdv.divide(priceusdValue,RoundingMode.HALF_UP);
+    }
+
+
+
+
 
     @BindingAdapter(value = {"meme_create_tv"},requireAll = false)
     public static void timestampToDateString(TextView tv, DexScreenTokenInfo.PairsDTO value) {
@@ -147,22 +238,6 @@ public class TextViewBindingAdapter {
     }
 
 
-
-
-
-
-    //计算筹码集中度
-    @BindingAdapter(value = {"meme_collect_tv"},requireAll = false)
-    public static void memecollectTv(ProgressBar tv, DexScreenTokenInfo.PairsDTO value) {
-        if(value==null)return;
-        BigDecimal fdv=new BigDecimal(value.getFdv());
-        BigDecimal priceusdValue=new BigDecimal(value.getPriceUsd());
-        BigDecimal result= fdv.divide(priceusdValue,BigDecimal.ROUND_HALF_UP);
-        BigDecimal liqnumber=new BigDecimal(value.getLiquidity().getBase());
-        BigDecimal collect =liqnumber.divide(result, 2, RoundingMode.HALF_UP);
-        int ok=collect.multiply(new BigDecimal(100)).intValue();
-        tv.setProgress(ok);
-    }
 
 
 

@@ -235,6 +235,8 @@
     <string name="str_precent_1">--.--%</string>
 
     <string name="str_f_default">$--.--</string>
+    <string name="str_f_default_zero">$0.0</string>
+    <string name="str_f_default_n_a">N/A</string>
     <string name="str_f_default1">----</string>
     <string name="str_f_default2">--.--</string>
     <string name="str_text_it_fu">幅</string>

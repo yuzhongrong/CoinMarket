@@ -29,16 +29,18 @@
             android:layout_height="@dimen/dp20"
             android:src="@mipmap/ic_solana_common"
             android:scaleType="centerCrop"
-            android:layout_marginTop="@dimen/dp3"
+            android:layout_marginTop="@dimen/dp2"
             />
 
         <com.hjq.shape.view.ShapeImageView
             android:id="@+id/icon_dex"
-            android:layout_width="@dimen/dp25"
-            android:layout_height="@dimen/dp25"
+            android:layout_width="@dimen/dp22"
+            android:layout_height="@dimen/dp22"
             android:src="@mipmap/ic_raydium"
             android:layout_toRightOf="@+id/icon"
             android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/dp1"
+            meme_dex_imv="@{meme.dexId}"
             />
 
         <TextView
@@ -87,7 +89,8 @@
             android:layout_marginTop="@dimen/dp6"
             android:textColor="@color/white"
             android:textSize="@dimen/sp12"
-            meme_price_tv="@{meme.priceUsd}"
+            android:text="@string/str_f_default_n_a"
+            meme_base2quo_tv="@{meme.liquidity}"
 
 
            />
@@ -117,8 +120,9 @@
             android:layout_toRightOf="@+id/tv_liq"
             android:textSize="@dimen/sp10"
             android:textColor="@color/white"
+            android:text="@string/str_f_default_n_a"
             android:layout_marginLeft="@dimen/dp5"
-            meme_liq_tv="@{meme.liquidity.usd}"
+            meme_liq_tv="@{meme.liquidity}"
             />
 
 
@@ -138,7 +142,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_vol_tag"
-            android:text="$230.1k"
+            android:text="@string/str_f_default_n_a"
             android:textSize="@dimen/sp10"
             android:textColor="@color/white"
             android:layout_marginLeft="@dimen/dp5"
@@ -165,6 +169,7 @@
             android:textSize="@dimen/sp10"
             android:textColor="@color/white"
             android:layout_marginLeft="@dimen/dp5"
+            android:text="@string/str_f_default_n_a"
             meme_mc_tv="@{meme.fdv}"
             />
 
@@ -209,7 +214,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="@string/str_f_default"
+            android:text="@string/str_f_default_n_a"
             android:textSize="@dimen/sp10"
             android:textColor="@color/white"
             android:layout_marginLeft="@dimen/dp5"

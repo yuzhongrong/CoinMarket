@@ -203,7 +203,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:padding="@dimen/dp15"
+                        android:padding="@dimen/dp10"
                         android:gravity="center_vertical"
 
                         >
@@ -233,6 +233,7 @@
                                 android:textColor="@color/white"
                                 android:textStyle="bold"
                                 android:textSize="@dimen/sp13"
+                                meme_all_mc_tv="@{vm.tokenInfo.pairs}"
                                 />
 
 
@@ -241,12 +242,11 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/dp12"
-                            android:layout_toRightOf="@+id/icon"
-                            android:orientation="vertical"
                             android:layout_centerInParent="true"
 
-                            >
+                            android:layout_marginLeft="@dimen/dp12"
+                            android:layout_toRightOf="@+id/icon"
+                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -260,6 +260,7 @@
 
 
                             <TextView
+                                meme_all_liq_tv="@{vm.tokenInfo.pairs}"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/dp4"
@@ -321,8 +322,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginTop="@dimen/dp5"
-                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginLeft="@dimen/dp10"
                     >
 
                     <TextView
@@ -423,7 +423,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="@dimen/dp15"
-                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginLeft="@dimen/dp10"
                     android:layout_marginBottom="@dimen/dp15"
                     >
 
@@ -436,145 +436,145 @@
                         android:textColor="@color/white" />
 
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp8"
-                        >
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/dp8"-->
+<!--                        >-->
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str_pair_address"
-                            android:textColor="@color/colorTextNormal"
-                            android:textSize="@dimen/sp11"
-                            android:singleLine="true"
-                            android:gravity="center_horizontal"
-                            android:ellipsize="middle"
-                            />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/str_pair_address"-->
+<!--                            android:textColor="@color/colorTextNormal"-->
+<!--                            android:textSize="@dimen/sp11"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:ellipsize="middle"-->
+<!--                            />-->
 
-                        <TextView
-                            android:layout_width="@dimen/dp140"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:layout_marginRight="@dimen/dp10"
-                            android:layout_toLeftOf="@+id/iv_pair_address"
-                            android:ellipsize="middle"
-                            android:gravity="center_horizontal"
-                            android:singleLine="true"
-                            android:text="@{vm.mPairsDTO.pairAddress}"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/sp11" />
+<!--                        <TextView-->
+<!--                            android:layout_width="@dimen/dp140"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_centerInParent="true"-->
+<!--                            android:layout_marginRight="@dimen/dp10"-->
+<!--                            android:layout_toLeftOf="@+id/iv_pair_address"-->
+<!--                            android:ellipsize="middle"-->
+<!--                            android:gravity="center_horizontal"-->
+<!--                            android:singleLine="true"-->
+<!--                            android:text="@{vm.mPairsDTO.pairAddress}"-->
+<!--                            android:textColor="@color/white"-->
+<!--                            android:textSize="@dimen/sp11" />-->
 
-                        <ImageView
-                            android:id="@+id/iv_pair_address"
-                            android:layout_width="@dimen/dp15"
-                            android:layout_height="@dimen/dp15"
-                            android:src="@mipmap/ic_copy"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/dp15"
+<!--                        <ImageView-->
+<!--                            android:id="@+id/iv_pair_address"-->
+<!--                            android:layout_width="@dimen/dp15"-->
+<!--                            android:layout_height="@dimen/dp15"-->
+<!--                            android:src="@mipmap/ic_copy"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginRight="@dimen/dp15"-->
 
-                            android:textColor="@color/white" />
+<!--                            android:textColor="@color/white" />-->
 
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp8"
-                        >
-
-
-
-
-                        <TextView
-                            android:id="@+id/pool_pair_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str_pool_createat"
-                            android:textColor="@color/colorTextNormal"
-                            android:textSize="@dimen/sp11" />
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/sp11"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/dp15"
-                            meme_create_tv="@{vm.mPairsDTO}"
-                            android:textColor="@color/white" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp8"
-                        >
+<!--                    </RelativeLayout>-->
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/dp8"-->
+<!--                        >-->
 
 
 
 
-                        <TextView
-                            android:id="@+id/coin_basenumber"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str_base_number"
-                            android:textColor="@color/colorTextNormal"
-                            android:textSize="@dimen/sp11" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorTextNormal"
-                            android:textSize="@dimen/sp11"
-                            android:layout_marginLeft="@dimen/dp5"
-                            android:layout_toRightOf="@+id/coin_basenumber"
-                            meme_base_tag_tv="@{vm.mPairsDTO}"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/sp11"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/dp15"
-                            meme_base_value_tv="@{vm.mPairsDTO}"
-                            android:textColor="@color/white" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/dp8"
-                        >
-                        <TextView
-                            android:id="@+id/coin_coin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str_quo_number"
-                            android:textSize="@dimen/sp11"
-                            android:textColor="@color/colorTextNormal" />
+<!--                        <TextView-->
+<!--                            android:id="@+id/pool_pair_address"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/str_pool_createat"-->
+<!--                            android:textColor="@color/colorTextNormal"-->
+<!--                            android:textSize="@dimen/sp11" />-->
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorTextNormal"
-                            android:textSize="@dimen/sp11"
-                            android:layout_marginLeft="@dimen/dp5"
-                            android:layout_toRightOf="@+id/coin_coin"
-                            meme_quo_tag_tv="@{vm.mPairsDTO}"
-                            />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="@dimen/sp11"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginRight="@dimen/dp15"-->
+<!--                            meme_create_tv="@{vm.mPairsDTO}"-->
+<!--                            android:textColor="@color/white" />-->
+<!--                    </RelativeLayout>-->
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/dp8"-->
+<!--                        >-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@{String.valueOf(vm.mPairsDTO.liquidity.quote)}"
-                            android:textSize="@dimen/sp11"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginRight="@dimen/dp15"
-                            meme_quo_value_tv="@{vm.mPairsDTO}"
-                            android:textColor="@color/white" />
-                    </RelativeLayout>
+
+
+
+<!--                        <TextView-->
+<!--                            android:id="@+id/coin_basenumber"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/str_base_number"-->
+<!--                            android:textColor="@color/colorTextNormal"-->
+<!--                            android:textSize="@dimen/sp11" />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textColor="@color/colorTextNormal"-->
+<!--                            android:textSize="@dimen/sp11"-->
+<!--                            android:layout_marginLeft="@dimen/dp5"-->
+<!--                            android:layout_toRightOf="@+id/coin_basenumber"-->
+<!--                            meme_base_tag_tv="@{vm.mPairsDTO}"-->
+<!--                            />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textSize="@dimen/sp11"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginRight="@dimen/dp15"-->
+<!--                            meme_base_value_tv="@{vm.mPairsDTO}"-->
+<!--                            android:textColor="@color/white" />-->
+<!--                    </RelativeLayout>-->
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="@dimen/dp8"-->
+<!--                        >-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/coin_coin"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@string/str_quo_number"-->
+<!--                            android:textSize="@dimen/sp11"-->
+<!--                            android:textColor="@color/colorTextNormal" />-->
+
+
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textColor="@color/colorTextNormal"-->
+<!--                            android:textSize="@dimen/sp11"-->
+<!--                            android:layout_marginLeft="@dimen/dp5"-->
+<!--                            android:layout_toRightOf="@+id/coin_coin"-->
+<!--                            meme_quo_tag_tv="@{vm.mPairsDTO}"-->
+<!--                            />-->
+
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="@{String.valueOf(vm.mPairsDTO.liquidity.quote)}"-->
+<!--                            android:textSize="@dimen/sp11"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginRight="@dimen/dp15"-->
+<!--                            meme_quo_value_tv="@{vm.mPairsDTO}"-->
+<!--                            android:textColor="@color/white" />-->
+<!--                    </RelativeLayout>-->
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -591,7 +591,7 @@
                         <ProgressBar
                             android:id="@+id/progress_coin_pool_rate"
                             style="?android:attr/progressBarStyleHorizontal"
-                            meme_collect_tv="@{vm.mPairsDTO}"
+                            meme_all_collect_tv="@{vm.mBase2QuoEntity}"
                             android:layout_width="@dimen/dp100"
                             android:layout_height="@dimen/dp5"
                             android:layout_alignParentRight="true"

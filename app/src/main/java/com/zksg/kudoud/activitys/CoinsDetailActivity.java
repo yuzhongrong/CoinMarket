@@ -79,7 +79,12 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startTwitter(){
             String username="";
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=mCoinsDetailViewModel.mPairsDTO.getValue().getInfo().getSocials();
+            DexScreenTokenInfo.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
+            if(info==null){
+                ToastUtils.showShort(R.string.str_Invalid_twitter);
+                return;
+            }
+            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=info.getSocials();
             for(DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO item:socials){
                 if(item.getType().equals("twitter")){
                     username= StringUtils.extractUsernameFromUrl(item.getUrl());
@@ -95,7 +100,12 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startTelegram(){
             String username="";
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=mCoinsDetailViewModel.mPairsDTO.getValue().getInfo().getSocials();
+           DexScreenTokenInfo.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
+           if(info==null){
+               ToastUtils.showShort(R.string.str_Invalid_telegram);
+               return;
+           }
+            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=info.getSocials();
             for(DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO item:socials){
                 if(item.getType().equals("telegram")){
                     username= StringUtils.extractUsernameFromUrlTG(item.getUrl());
@@ -111,7 +121,13 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startWeb(){
             String url="";
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.WebsitesDTO> webs=mCoinsDetailViewModel.mPairsDTO.getValue().getInfo().getWebsites();
+            DexScreenTokenInfo.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
+            if(info==null){
+                ToastUtils.showShort(R.string.str_Invalid_website);
+                return;
+            }
+            List<DexScreenTokenInfo.PairsDTO.InfoDTO.WebsitesDTO> webs=info.getWebsites();
+
             if(webs==null||webs.size()==0){
                 ToastUtils.showShort(R.string.str_Invalid_website);
                 return;
