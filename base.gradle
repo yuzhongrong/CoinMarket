@@ -44,7 +44,7 @@ ext{   //这些库是任何项目都需要的公共库
         refresh_header_classics            : '2.0.1',
         utilcodex                          : '1.31.1',
         unpeek                             : '7.8.0',
-        lifecycle_viewmodel_ktx                : '2.4.0'
+        lifecycle_viewmodel_ktx                : '2.4.0',
 
     ]
     depsLibs = [
@@ -92,5 +92,6 @@ ext{   //这些库是任何项目都需要的公共库
             refresh_header_classics               : "com.scwang.smart:refresh-header-classics:${depsVersion.refresh_header_classics}",
             utilcodex                             :   "com.blankj:utilcodex:${depsVersion.utilcodex}",
             unpeek                                : "com.github.KunMinX:UnPeek-LiveData:${depsVersion.unpeek}",
+
     ]
 }

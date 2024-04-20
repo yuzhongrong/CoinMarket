@@ -1,6 +1,7 @@
 package com.zksg.kudoud.activitys;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public class CoinsDetailActivity extends BaseDialogActivity {
     CoinsDetailViewModel mCoinsDetailViewModel;
-
+    String contract;
     public CoinsDetailViewModel getSharedViewModel() {
         return mCoinsDetailViewModel;
     }
@@ -56,7 +57,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
 
     private void InitData(){
-        String contract=getIntent().getExtras().getString("contract");
+        contract=getIntent().getExtras().getString("contract");
 //        CommonKlineDataPagerAdapter adapter=new CommonKlineDataPagerAdapter(getSupportFragmentManager(), new Kline24ChangeChannelEnum[]{Kline24ChangeChannelEnum.K_5M,Kline24ChangeChannelEnum.K_1H,Kline24ChangeChannelEnum.K_6H,Kline24ChangeChannelEnum.K_24H});
 //        mCoinsDetailViewModel.tabAdapter.set(adapter);
 
@@ -147,6 +148,15 @@ public class CoinsDetailActivity extends BaseDialogActivity {
         }
 
 
+
+        public void close(){
+           CoinsDetailActivity.this.finish();
+        }
+
+        public void start2DexscreenKline(){
+            Intent i= new Intent(CoinsDetailActivity.this,Kline2OrderActivity.class).putExtra("contract",contract);
+            IntentUtils.openIntent(CoinsDetailActivity.this,i);
+        }
 
 
     }

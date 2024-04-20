@@ -5,12 +5,11 @@
     <data>
         <variable
             name="vm"
-            type="com.zksg.kudoud.state.WebViewActivityModel" />
+            type="com.zksg.kudoud.state.Kline2OrderActivityViewModel" />
 
         <variable
             name="click"
-            type="com.zksg.kudoud.activitys.WebviewActivity.ClickProxy" />
-
+            type="com.zksg.kudoud.activitys.Kline2OrderActivity.ClickProxy" />
 
     </data>
 
@@ -18,13 +17,75 @@
      android:layout_width="match_parent"
      android:layout_height="match_parent"
      android:orientation="vertical"
+     android:background="@color/bg_layout_common"
      >
-
-     <WebView
-         android:id="@+id/webView"
+     <com.hjq.shape.layout.ShapeRelativeLayout
          android:layout_width="match_parent"
-         android:layout_height="match_parent"
-          />
+         android:layout_height="@dimen/dp45"
+         app:shape_radius="@dimen/sp30"
+         android:layout_marginLeft="@dimen/dp8"
+         android:layout_marginRight="@dimen/dp8"
+         >
+
+
+         <com.hjq.shape.view.ShapeImageView
+             android:layout_width="@dimen/dp30"
+             android:layout_height="@dimen/dp30"
+             android:layout_alignParentLeft="true"
+             android:src="@mipmap/ic_back_left"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="@dimen/dp5"
+             app:shape_solidColor="@color/c_29313d"
+             app:shape_radius="@dimen/dp45"
+             android:padding="@dimen/dp3"
+             app:shape_solidPressedColor="@color/c_a0a0ab"
+             android:clickable="true"
+             android:onClick="@{()->click.close()}"
+             />
+
+         <TextView
+
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerInParent="true"
+             android:text="@string/str_f_default_n_a"
+             android:textColor="@color/white"
+             android:textSize="@dimen/sp20"
+             android:textStyle="bold" />
+
+         <com.hjq.shape.view.ShapeImageView
+             android:layout_width="@dimen/dp25"
+             android:layout_height="@dimen/dp25"
+             android:layout_alignParentRight="true"
+             android:layout_marginRight="@dimen/dp10"
+             android:src="@mipmap/ic_star"
+             android:layout_centerVertical="true"
+             app:shape_solidColor="@color/c_2e2e2e"
+             app:shape_radius="@dimen/dp45"
+             android:visibility="gone"
+             app:shape_solidPressedColor="@color/c_a0a0ab"
+             android:clickable="true"
+             />
+
+     </com.hjq.shape.layout.ShapeRelativeLayout>
+
+   <RelativeLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+
+       <WebView
+           android:id="@+id/webView"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           meme_web_dexscreen="@{vm.htmlStr}"
+           />
+
+
+
+
+   </RelativeLayout>
+
 
 
  </LinearLayout>

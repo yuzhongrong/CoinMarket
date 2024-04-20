@@ -34,7 +34,10 @@
             app:leftIcon="@mipmap/ic_left_back"
             app:title="@string/str_about"
             app:titleColor="@color/c_333333"
-            app:titleGravity="center" />
+            app:titleGravity="center"
+
+
+            />
 
 
         <ImageView

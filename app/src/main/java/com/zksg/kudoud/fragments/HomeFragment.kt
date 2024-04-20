@@ -1,9 +1,7 @@
 package com.zksg.kudoud.fragments
 
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import com.blankj.utilcode.util.AppUtils
@@ -17,7 +15,6 @@ import com.zksg.kudoud.adapters.HomeCWAdapter_V
 import com.zksg.kudoud.adapters.HomeRecentAdapter
 import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
 import com.zksg.kudoud.beans.CommonCategoryDataEnum
-import com.zksg.kudoud.databinding.FragmentHomeBinding
 import com.zksg.kudoud.dialogs.TipVpnDialog
 import com.zksg.kudoud.dialogs.UpgradeVersionDialog
 import com.zksg.kudoud.state.HomeFragmentViewModel
@@ -222,6 +219,7 @@ class HomeFragment:BaseDialogFragment(){
 
         fun startPreSale(){
 //            startActivity(Intent(activity, CoinsDetailActivity::class.java))
+            startActivity(Intent(activity, Kline2OrderActivity::class.java))
         }
 
 

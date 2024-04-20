@@ -26,4 +26,6 @@ public abstract class BaseDialogActivity extends BaseActivity {
     public void dismissDialog(){
         if(dialog!=null&&dialog.isShow())dialog.dismiss();
     }
+
+
 }

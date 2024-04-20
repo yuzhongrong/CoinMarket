@@ -16,11 +16,16 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.Comparator
 import java.util.stream.Collectors
+import com.kunminx.architecture.ui.state.State
 
 /**
  * //TODO tip 5：此处我们使用 "去除防抖特性" 的 ObservableField 子类 State，用以代替 MutableLiveData，
  */
 class CoinsDetailViewModel : BaseLoadingViewModel() {
+
+    //是否显示布局
+    @JvmField
+    var isshow=State<Boolean>(false)
 
     //计算总的base币个数的时候需要用到
     @JvmField
@@ -46,7 +51,6 @@ class CoinsDetailViewModel : BaseLoadingViewModel() {
 
 
     fun getTokenInfo(address:String){
-
         viewModelScope.launch{
             loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
@@ -58,7 +62,6 @@ class CoinsDetailViewModel : BaseLoadingViewModel() {
                             .filter { item->item.liquidity!=null }
                             .sorted(compareByDescending { dao -> dao.liquidity?.usd })
                             .collect(Collectors.toList())
-
                         //覆盖原有集合位过滤后的集合
                         it.result.pairs=filter_result
 
@@ -68,6 +71,7 @@ class CoinsDetailViewModel : BaseLoadingViewModel() {
 
                     }
                     loadingVisible.postValue(false)
+                    isshow.set(true)
                 }
 
             }

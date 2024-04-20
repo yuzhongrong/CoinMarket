@@ -39,4 +39,9 @@ public class IntentUtils {
         mContext.startActivity(intent);
     }
 
+
+    public static void openIntent(Context mContext,Intent intent){
+        mContext.startActivity(intent);
+    }
+
 }

@@ -170,7 +170,7 @@
             />
 
 
-        <activity android:name=".activitys.TestMetamaskActivity"
+        <activity android:name=".activitys.Kline2OrderActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             />

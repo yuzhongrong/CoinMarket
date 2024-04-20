@@ -339,7 +339,7 @@ public class TextViewBindingAdapter {
 
     @BindingAdapter(value = {"bindTextViewContent"},requireAll = false)
     public static void bindTextViewContent(TextView tv,String content) {
-        if(tv==null)return;
+        if(tv==null||content==null||content.equals(""))return;
         tv.setText(content);
     }
 

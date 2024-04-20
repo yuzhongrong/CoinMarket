@@ -16,12 +16,65 @@
             type="com.zksg.kudoud.adapters.MemePoolListdapter" />
 
     </data>
+
+
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/bg_layout_common"
     >
+
+
+    <com.hjq.shape.layout.ShapeRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        app:shape_radius="@dimen/sp30"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp8"
+        >
+
+
+        <com.hjq.shape.view.ShapeImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/ic_back_left"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp5"
+            app:shape_solidColor="@color/c_29313d"
+            app:shape_radius="@dimen/dp45"
+            android:padding="@dimen/dp3"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:clickable="true"
+            android:onClick="@{()->click.close()}"
+            />
+
+        <TextView
+            bindTextViewContent="@{vm.mPairsDTO.baseToken.getSymbol}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/str_f_default_n_a"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp20"
+            android:textStyle="bold" />
+
+        <com.hjq.shape.view.ShapeImageView
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp10"
+            android:src="@mipmap/ic_star"
+            android:layout_centerVertical="true"
+            app:shape_solidColor="@color/c_2e2e2e"
+            app:shape_radius="@dimen/dp45"
+
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:clickable="true"
+            />
+
+    </com.hjq.shape.layout.ShapeRelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -39,6 +92,7 @@
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
                 android:padding="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp15"
                 >
 
                 <TextView
@@ -116,7 +170,7 @@
                         android:layout_width="@dimen/dp45"
                         android:layout_height="@dimen/dp45"
                         app:shape_radius="@dimen/dp45"
-                        android:src="@mipmap/ic_solana"
+                        android:src="@mipmap/ic_unlink"
                         android:scaleType="fitXY"
                         meme_imv="@{vm.mPairsDTO.info.imageUrl}"
                         />
@@ -135,10 +189,11 @@
                             android:id="@+id/name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{vm.mPairsDTO.baseToken.getSymbol}"
+                            android:text="@string/str_f_default_n_a"
                             android:textColor="@color/whitesmoke"
                             android:textSize="@dimen/sp13"
                             android:textStyle="bold"
+                            bindTextViewContent="@{vm.mPairsDTO.baseToken.getSymbol}"
 
 
                             />
@@ -149,9 +204,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp4"
-                            android:text="@{'$'+vm.mPairsDTO.priceUsd}"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/sp12" />
+                            android:textSize="@dimen/sp12"
+                            android:text="@string/str_f_default_n_a"
+                            bindTextViewContent="@{'$'+vm.mPairsDTO.priceUsd}"
+                            />
 
 
                     </LinearLayout>
@@ -163,7 +220,7 @@
                         android:layout_marginLeft="@dimen/dp15"
                         android:layout_marginTop="@dimen/dp24"
                         android:layout_toRightOf="@+id/left_root"
-                        android:text="@string/str_f_default2"
+                        android:text="@string/str_f_default_n_a"
                         android:textColor="@color/c_1bc89e"
                         android:textSize="@dimen/sp12"
                         android:textStyle="bold"
@@ -181,12 +238,16 @@
                             android:gravity="center"
                             android:maxLength="15"
                             android:maxLines="1"
+                            android:onClick="@{()->click.start2DexscreenKline()}"
                             android:text="@string/str_2_exchange"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp12"
                             android:textStyle="bold"
                             app:shape_radius="@dimen/dp45"
-                            app:shape_solidColor="@color/white" />
+                            app:shape_solidColor="@color/white"
+                            app:shape_solidPressedColor="@color/c_a0a0ab"
+                            android:clickable="true"
+                            />
 
 
 
@@ -234,6 +295,7 @@
                                 android:textStyle="bold"
                                 android:textSize="@dimen/sp13"
                                 meme_all_mc_tv="@{vm.tokenInfo.pairs}"
+                                android:text="@string/str_f_default_n_a"
                                 />
 
 
@@ -242,8 +304,8 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
 
+                            android:layout_centerInParent="true"
                             android:layout_marginLeft="@dimen/dp12"
                             android:layout_toRightOf="@+id/icon"
                             android:orientation="vertical">
@@ -267,7 +329,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/sp13"
                                 android:textStyle="bold"
-
+                                android:text="@string/str_f_default_n_a"
                                 />
 
 
@@ -301,6 +363,7 @@
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/sp13"
                                 meme_suplly_tv="@{vm.mPairsDTO}"
+                                android:text="@string/str_f_default_n_a"
                                 />
 
 
@@ -345,7 +408,8 @@
                             android:singleLine="true"
                             android:gravity="center_horizontal"
                             android:ellipsize="middle"
-                            android:textColor="@color/colorTextNormal" />
+                            android:textColor="@color/colorTextNormal"
+                            />
 
                         <ImageView
                             android:layout_width="@dimen/dp15"
@@ -894,6 +958,6 @@
     </androidx.core.widget.NestedScrollView>
 
 
-
 </LinearLayout>
+
 </layout>

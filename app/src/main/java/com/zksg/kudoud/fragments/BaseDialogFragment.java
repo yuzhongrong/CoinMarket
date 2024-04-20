@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import com.kunminx.architecture.ui.page.BaseFragment;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.core.BasePopupView;
+import com.zksg.kudoud.R;
 import com.zksg.kudoud.dialogs.LoadingDialog;
 
 public abstract class BaseDialogFragment extends BaseFragment {
@@ -23,6 +24,7 @@ public abstract class BaseDialogFragment extends BaseFragment {
                 .dismissOnTouchOutside(false)
                 .dismissOnBackPressed(false)
                 .asCustom(new LoadingDialog(getContext()));
+
     }
 
     @Nullable
