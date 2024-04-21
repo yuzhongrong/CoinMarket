@@ -79,9 +79,10 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            meme_web_dexscreen="@{vm.htmlStr}"
+           web_progress_callback="@{vm.callback}"
+           android:background="@color/bg_layout_common"
+
            />
-
-
 
 
    </RelativeLayout>

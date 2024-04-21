@@ -279,5 +279,6 @@
     <string name="str_vol_now">实时交易量</string>
     <string name="str_pair_address">交易对地址</string>
     <string name="str_pool_liq">流动性池子</string>
+    <string name="str_loading">正在加载..</string>
 
 </resources>
