@@ -17,6 +17,7 @@ import com.zksg.kudoud.state.Chart5KLineFragmentViewModel;
 import com.zksg.kudoud.state.Chart6HLineFragmentViewModel;
 import com.zksg.kudoud.utils.DateUtils;
 import com.zksg.kudoud.utils.DigitUtils;
+import com.zksg.kudoud.widgets.CircularProgressBar;
 import com.zksg.kudoud.widgets.SettingBar;
 
 import java.math.BigDecimal;
@@ -213,6 +214,40 @@ public class TextViewBindingAdapter {
         BigDecimal collect =base_result.divide(supply_result, 2, RoundingMode.HALF_UP);
         int ok=collect.multiply(new BigDecimal(100)).intValue();
         pb.setProgress(ok);
+
+
+    }
+
+
+    //计算所有池子总的筹码集中度
+    @BindingAdapter(value = {"meme_all_collect_tv1"},requireAll = false)
+    public static void meme_all_collect_tv1(CircularProgressBar pb, Base2QuoEntity datas) {
+        if(pb==null|datas==null||datas.getmPairsDTO().size()==0)return;
+
+        String base_origin=datas.getContract();
+        BigDecimal base_result=new BigDecimal(0.0);
+        for(int i=0;i<datas.getmPairsDTO().size();i++){
+            //获取当前池子的base币个数 这里的base 有可能不是nub 代币 例如 sin/nub
+            String base_address=datas.getmPairsDTO().get(i).getBaseToken().getAddress();
+            //获取当前pool的liq流动性
+            DexScreenTokenInfo.PairsDTO.LiquidityDTO mliq=datas.getmPairsDTO().get(i).getLiquidity();
+            if(mliq==null)break;
+            if(base_address.equalsIgnoreCase(base_origin)){
+                BigDecimal basenumber=new BigDecimal(mliq.getBase());
+                base_result=base_result.add(basenumber);
+            }else{//quo是你要统计的币的个数
+                BigDecimal basenumber=new BigDecimal(mliq.getQuote());
+                base_result=base_result.add(basenumber);
+            }
+
+        }
+
+        //总的发行base个数  这里的base 有可能不是nub 代币
+        BigDecimal supply_result=callculatememesupllyTv(datas.getmPairsDTO().get(0));
+        BigDecimal collect =base_result.divide(supply_result, 2, RoundingMode.HALF_UP);
+        int ok=collect.multiply(new BigDecimal(100)).intValue();
+        pb.setProgress(ok);
+        pb.setText(ok+"%");
 
 
     }

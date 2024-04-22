@@ -481,22 +481,31 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_marginTop="@dimen/dp15"
                     android:layout_marginLeft="@dimen/dp10"
                     android:layout_marginBottom="@dimen/dp15"
+
                     >
 
                     <TextView
+                        android:id="@+id/any_pool_tip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="流动性池子分析 :"
                         android:textStyle="bold"
                         android:textSize="@dimen/sp13"
                         android:textColor="@color/white" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_coin_collect_rate"
+                        android:textSize="@dimen/sp11"
+                        android:layout_below="@+id/any_pool_tip"
+                        android:textColor="@color/colorTextNormal" />
 
 
 <!--                    <RelativeLayout-->
@@ -642,31 +651,46 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dp8"
+                        android:visibility="gone"
 
                         >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/str_coin_collect_rate"
-                            android:textSize="@dimen/sp11"
-                            android:textColor="@color/colorTextNormal" />
 
-                        <ProgressBar
-                            android:id="@+id/progress_coin_pool_rate"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            meme_all_collect_tv="@{vm.mBase2QuoEntity}"
-                            android:layout_width="@dimen/dp100"
-                            android:layout_height="@dimen/dp5"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerInParent="true"
-                            android:layout_marginRight="@dimen/dp15"
-                            android:progress="0"
-                            android:progressDrawable="@drawable/bg_drawable_progress_coin" />
+<!--                        <ProgressBar-->
+<!--                            android:id="@+id/progress_coin_pool_rate"-->
+<!--                            style="?android:attr/progressBarStyleHorizontal"-->
+<!--                            meme_all_collect_tv="@{vm.mBase2QuoEntity}"-->
+<!--                            android:layout_width="@dimen/dp100"-->
+<!--                            android:layout_height="@dimen/dp5"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_centerInParent="true"-->
+<!--                            android:layout_marginRight="@dimen/dp15"-->
+<!--                            android:progress="0"-->
+<!--                            android:progressDrawable="@drawable/bg_drawable_progress_coin" />-->
+
+
+
 
                     </RelativeLayout>
 
-
-                </LinearLayout>
+                    <com.zksg.kudoud.widgets.CircularProgressBar
+                        android:id="@+id/progress_bar_cus"
+                        android:layout_width="@dimen/dp40"
+                        android:layout_height="@dimen/dp40"
+                        android:layout_gravity="right"
+                        app:maxProgress="100"
+                        app:p_textColor="@color/white"
+                        app:p_textSize="@dimen/sp10"
+                        app:progress="0"
+                        app:progressbarBackgroundColor="@color/colorTextNormal"
+                        app:progressbarColor="@color/colorAccent"
+                        app:radius="@dimen/dp80"
+                        app:strokeWidth="@dimen/dp4"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dp5"
+                        app:text="0%"
+                        meme_all_collect_tv1="@{vm.mBase2QuoEntity}"
+                        />
+                </RelativeLayout>
 
 
 

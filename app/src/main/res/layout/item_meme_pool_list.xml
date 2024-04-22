@@ -86,7 +86,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="@dimen/dp6"
+            android:layout_marginTop="@dimen/dp5"
             android:textColor="@color/white"
             android:textSize="@dimen/sp12"
             android:text="@string/str_f_default_n_a"
