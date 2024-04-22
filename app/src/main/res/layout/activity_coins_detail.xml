@@ -234,20 +234,19 @@
                             android:layout_height="@dimen/dp30"
                             android:layout_alignParentRight="true"
                             android:layout_centerInParent="true"
+                            android:clickable="true"
                             android:ellipsize="end"
                             android:gravity="center"
                             android:maxLength="15"
                             android:maxLines="1"
                             android:onClick="@{()->click.start2DexscreenKline()}"
-                            android:text="@string/str_2_exchange"
+                            android:text="@string/str_kline_map"
                             android:textColor="@color/black"
                             android:textSize="@dimen/sp12"
                             android:textStyle="bold"
                             app:shape_radius="@dimen/dp45"
                             app:shape_solidColor="@color/white"
-                            app:shape_solidPressedColor="@color/c_a0a0ab"
-                            android:clickable="true"
-                            />
+                            app:shape_solidPressedColor="@color/c_a0a0ab" />
 
 
 
@@ -672,6 +671,60 @@
 
 
             </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:padding="@dimen/dp5"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="horizontal"
+                >
+
+                <com.hjq.shape.view.ShapeButton
+                    android:id="@+id/buy"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp40"
+
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:text="@string/str_buy"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp12"
+                    android:textStyle="bold"
+                    app:shape_topLeftRadius="@dimen/dp45"
+                    app:shape_bottomLeftRadius="@dimen/dp45"
+                    app:shape_solidColor="@color/c_1bc89e"
+                    app:shape_solidPressedColor="@color/c_a0a0ab" />
+                <com.hjq.shape.view.ShapeButton
+                    android:id="@+id/sell"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp40"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:maxLength="15"
+                    android:maxLines="1"
+                    android:layout_weight="1"
+                    android:text="@string/str_sell"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp12"
+                    android:textStyle="bold"
+                    app:shape_topRightRadius="@dimen/dp45"
+                    app:shape_bottomRightRadius="@dimen/dp45"
+                    app:shape_solidColor="@color/c_f71816"
+                    app:shape_solidPressedColor="@color/c_a0a0ab"
+                    android:layout_alignParentRight="true"
+
+                    />
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"

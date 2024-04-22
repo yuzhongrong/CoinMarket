@@ -22,7 +22,7 @@ public abstract class BaseProgressBarDialogActivity extends BaseActivity {
         loadingHprogresbarDialog=new LoadingHprogresbarDialog(this);
         dialog= new XPopup.Builder(this)
                 .dismissOnTouchOutside(false)
-                .dismissOnBackPressed(false)
+                .dismissOnBackPressed(true)
                 .asCustom(loadingHprogresbarDialog);
 
 

@@ -280,5 +280,7 @@
     <string name="str_pair_address">交易对地址</string>
     <string name="str_pool_liq">流动性池子</string>
     <string name="str_loading">正在加载..</string>
-
+    <string name="str_kline_map">K线图</string>
+    <string name="str_sell">出售</string>
+    <string name="str_buy">购买</string>
 </resources>

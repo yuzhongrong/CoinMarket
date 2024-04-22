@@ -159,4 +159,7 @@
     <string name="str_pair_address">PAIR</string>
     <string name="str_pool_liq">LIQ POOL</string>
     <string name="str_loading">loading..</string>
+    <string name="str_kline_map">KLine</string>
+    <string name="str_sell">SELL</string>
+    <string name="str_buy">BUY</string>
 </resources>

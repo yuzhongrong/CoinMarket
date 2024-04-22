@@ -45,16 +45,15 @@
 
          <TextView
 
+             bindTextViewContent="@{vm.symbol}"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
              android:layout_centerInParent="true"
              android:text="@string/str_f_default_n_a"
              android:textColor="@color/white"
              android:textSize="@dimen/sp20"
-             android:textStyle="bold"
-             bindTextViewContent="@{vm.symbol}"
 
-             />
+             android:textStyle="bold" />
 
          <com.hjq.shape.view.ShapeImageView
              android:layout_width="@dimen/dp25"
