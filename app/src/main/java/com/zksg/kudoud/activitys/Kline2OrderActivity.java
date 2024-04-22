@@ -39,24 +39,19 @@ public class Kline2OrderActivity extends BaseProgressBarDialogActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String contract=getIntent().getStringExtra("contract");
-
+        String symbol=getIntent().getStringExtra("symbol");
+        mKline2OrderActivityViewModel.symbol.set(symbol);
 //       String html= HtmlUtils.loadHTMLFromAssets(this,"kline_widget.html");
 
        String localHtml="<!DOCTYPE html><html><head>    <meta charset=\"UTF-8\">    <title>Connect Metamask</title>    <script src=\"https://cdn.jsdelivr.net/npm/ethers@5.3.0/dist/ethers.min.js\"></script></head><body><style>    body, html {        margin: 0;        padding: 0;        height: 100%;    }    #dexscreener-embed {        position: fixed;        top: 0;        left: 0;        width: 100%;        height: 100%;    }    #dexscreener-embed iframe {        width: 100%;        height: 100%;        border: 0;    }</style><div id=\"dexscreener-embed\">    <iframe src=\"https://dexscreener.com/solana/"+contract+"?embed=1&theme=dark&info=0\">    </iframe></div></body></html>";
-        
-//        String html="<!DOCTYPE html><html><head>    <meta charset=\"UTF-8\">    <title>Connect Metamask</title>    <script src=\"https://cdn.jsdelivr.net/npm/ethers@5.3.0/dist/ethers.min.js\"></script></head><body><style>    body, html {        margin: 0;        padding: 0;        height: 100%;    }    #dexscreener-embed {        position: fixed;        top: 0;        left: 0;        width: 100%;        height: 100%;    }    #dexscreener-embed iframe {        width: 100%;        height: 100%;        border: 0;    }</style><div id=\"dexscreener-embed\">    <iframe src=\"https://dexscreener.com/solana/"+contract+"?embed=1&theme=dark\"></iframe></div></body></html>";
-
         showDialog();
         mKline2OrderActivityViewModel.htmlStr.set(localHtml);
-        mKline2OrderActivityViewModel.callback.set(new WebViewClientCallback() {
-            @Override
-            public void ProgressCall(int progress) {
-                Log.d("---ProgressCall--->",progress+"");
-                mKline2OrderActivityViewModel.progress.set(progress);
-                getProgressDialog().setProgress(progress);
-                if(progress==100){
-                    dismissDialog();
-                }
+        mKline2OrderActivityViewModel.callback.set(progress -> {
+            Log.d("---ProgressCall--->",progress+"");
+            mKline2OrderActivityViewModel.progress.set(progress);
+            getProgressDialog().setProgress(progress);
+            if(progress==100){
+                dismissDialog();
             }
         });
 

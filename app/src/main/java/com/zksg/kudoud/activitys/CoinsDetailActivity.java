@@ -33,6 +33,7 @@ import java.util.List;
 public class CoinsDetailActivity extends BaseDialogActivity {
     CoinsDetailViewModel mCoinsDetailViewModel;
     String contract;
+    String symbol;
     public CoinsDetailViewModel getSharedViewModel() {
         return mCoinsDetailViewModel;
     }
@@ -58,6 +59,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
     private void InitData(){
         contract=getIntent().getExtras().getString("contract");
+        symbol=getIntent().getExtras().getString("symbol");
 //        CommonKlineDataPagerAdapter adapter=new CommonKlineDataPagerAdapter(getSupportFragmentManager(), new Kline24ChangeChannelEnum[]{Kline24ChangeChannelEnum.K_5M,Kline24ChangeChannelEnum.K_1H,Kline24ChangeChannelEnum.K_6H,Kline24ChangeChannelEnum.K_24H});
 //        mCoinsDetailViewModel.tabAdapter.set(adapter);
 
@@ -154,7 +156,7 @@ public class CoinsDetailActivity extends BaseDialogActivity {
         }
 
         public void start2DexscreenKline(){
-            Intent i= new Intent(CoinsDetailActivity.this,Kline2OrderActivity.class).putExtra("contract",contract);
+            Intent i= new Intent(CoinsDetailActivity.this,Kline2OrderActivity.class).putExtra("contract",contract).putExtra("symbol",symbol);
             IntentUtils.openIntent(CoinsDetailActivity.this,i);
         }
 

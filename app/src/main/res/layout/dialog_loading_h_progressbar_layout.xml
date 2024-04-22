@@ -7,31 +7,29 @@
     app:shape_radius="@dimen/dp15"
     android:orientation="vertical"
 
+
     >
-    <ProgressBar
+
+
+    <com.zksg.kudoud.widgets.CircularProgressBar
         android:id="@+id/progress_bar_cus"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp3"
-        android:layout_marginTop="@dimen/dp45"
-        android:progress="0"
-        android:max="100"
-        android:indeterminate="false"
-        android:layout_marginLeft="@dimen/dp25"
-        android:layout_marginRight="@dimen/dp25"
-        android:progressDrawable="@drawable/custom_progress_bar_loading"
-        />
-    <TextView
-        android:id="@+id/loading_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/str_loading"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/sp13"
-        android:layout_marginLeft="@dimen/dp25"
-        android:layout_marginRight="@dimen/dp25"
-        android:layout_marginTop="@dimen/dp5"
+        android:layout_width="@dimen/dp55"
+        android:layout_height="@dimen/dp55"
+        android:layout_marginTop="@dimen/dp30"
+        app:maxProgress="100"
+        app:progress="0"
+        app:progressbarBackgroundColor="@color/colorTextNormal"
+        app:progressbarColor="@color/colorAccent"
+        app:radius="@dimen/dp80"
+        app:strokeWidth="@dimen/dp4"
+        app:text="0%"
+        app:p_textColor="@color/white"
+        app:p_textSize="@dimen/sp13"
+        android:layout_gravity="center"
 
         />
+
+
+
 
 </com.hjq.shape.layout.ShapeLinearLayout>

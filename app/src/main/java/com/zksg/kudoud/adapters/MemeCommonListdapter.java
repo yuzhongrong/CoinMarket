@@ -26,6 +26,7 @@ public class MemeCommonListdapter extends SimpleDataBindingAdapter<MemeBaseEntry
         setOnItemClickListener((item, position) -> {
             Intent intent=new Intent(context, CoinsDetailActivity.class);
             intent.putExtra("contract",item.getAddress());
+            intent.putExtra("symbol",item.getSymbol());
             context.startActivity(intent);
 
         });

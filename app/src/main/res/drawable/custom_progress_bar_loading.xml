@@ -1,19 +1,21 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- 未加载部分的颜色 -->
     <item android:id="@android:id/background">
-        <shape>
-            <solid android:color="#CCCCCC" /> <!-- 设置未加载部分的颜色 -->
+        <shape android:shape="ring"
+            android:innerRadiusRatio="3"
+            android:thicknessRatio="10"
+            android:useLevel="false">
+            <solid android:color="#CCCCCC" />
         </shape>
     </item>
-
-    <!-- 加载部分的颜色 -->
     <item android:id="@android:id/progress">
-        <clip>
-            <shape>
-                <solid android:color="@color/colorAccent" /> <!-- 设置加载部分的颜色 -->
+        <rotate android:fromDegrees="270"
+            android:toDegrees="270">
+            <shape android:shape="ring"
+                android:innerRadiusRatio="3"
+                android:thicknessRatio="10"
+                android:useLevel="true">
+                <solid android:color="#FF0000" />
             </shape>
-        </clip>
+        </rotate>
     </item>
-
 </layer-list>

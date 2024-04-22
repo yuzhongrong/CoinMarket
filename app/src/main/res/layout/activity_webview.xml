@@ -17,7 +17,7 @@
      android:layout_width="match_parent"
      android:layout_height="match_parent"
      android:orientation="vertical"
-     android:background="@color/bg_layout_common"
+     android:background="@color/c_131722"
      >
      <com.hjq.shape.layout.ShapeRelativeLayout
          android:layout_width="match_parent"
@@ -51,7 +51,10 @@
              android:text="@string/str_f_default_n_a"
              android:textColor="@color/white"
              android:textSize="@dimen/sp20"
-             android:textStyle="bold" />
+             android:textStyle="bold"
+             bindTextViewContent="@{vm.symbol}"
+
+             />
 
          <com.hjq.shape.view.ShapeImageView
              android:layout_width="@dimen/dp25"

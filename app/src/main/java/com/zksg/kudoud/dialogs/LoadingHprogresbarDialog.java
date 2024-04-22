@@ -8,12 +8,13 @@ import androidx.annotation.NonNull;
 
 import com.lxj.xpopup.core.CenterPopupView;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.widgets.CircularProgressBar;
 
 /** TODO:tip 这里创建场景 如何通知全局？ 必须通过mvi模式或者使用全局viewmodel
  *
  */
 public class LoadingHprogresbarDialog extends CenterPopupView {
-    ProgressBar mProgressBar;
+    CircularProgressBar mProgressBar;
     @Override
     protected void onCreate() {
         super.onCreate();
@@ -33,6 +34,7 @@ public class LoadingHprogresbarDialog extends CenterPopupView {
     public void setProgress(Integer integer){
         if(mProgressBar!=null){
             mProgressBar.setProgress(integer);
+            mProgressBar.setText(integer+"%");
         }
     }
 

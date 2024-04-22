@@ -23,5 +23,7 @@ class Kline2OrderActivityViewModel : BaseLoadingViewModel() {
     var callback=ObservableField<WebViewClientCallback>()
     @JvmField
     var progress=ObservableField<Int>()
+    @JvmField
+    var symbol=ObservableField<String>()
 
 }
