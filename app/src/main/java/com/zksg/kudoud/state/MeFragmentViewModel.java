@@ -6,9 +6,10 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 import com.kunminx.architecture.ui.state.State;
+import com.zksg.kudoud.state.load.BaseLoadingViewModel;
 import com.zksg.kudoud.utils.StringUtils;
 
-public class MeFragmentViewModel extends ViewModel {
+public class MeFragmentViewModel extends BaseLoadingViewModel {
     public ObservableField<String> account= new ObservableField<>();
     public ObservableField<String> account_value= new ObservableField<>();
     public State<Integer> account_show= new State<>(View.GONE);

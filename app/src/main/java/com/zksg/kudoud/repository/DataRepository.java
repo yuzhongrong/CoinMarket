@@ -430,7 +430,7 @@ public class DataRepository {
         ApiEngine.getInstance().getApiService().getTokenInfoForDexscreen(address)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
-                .delay(2, TimeUnit.SECONDS)
+                .delay(1, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<DexScreenTokenInfo>() {
                     @Override
                     protected void onSuccessed(DexScreenTokenInfo bean) {

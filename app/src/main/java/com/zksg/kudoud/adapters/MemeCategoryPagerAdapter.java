@@ -30,13 +30,13 @@ public class MemeCategoryPagerAdapter extends FragmentStatePagerAdapter {
         int type=channels[position].getValue();
         switch (type){
             case CommonCategoryDataEnum.CHAT_ZX:
-                return new MemeCategoryCommonFragment(CommonCategoryDataEnum.CHAT_ZX);
+                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_ZX);
             case CommonCategoryDataEnum.CHAT_UP_24:
-                return new MemeCategoryCommonFragment(CommonCategoryDataEnum.CHAT_UP_24);
+                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_UP_24);
             case CommonCategoryDataEnum.CHAT_DOWN_24:
-                return new MemeCategoryCommonFragment(CommonCategoryDataEnum.CHAT_DOWN_24);
+                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_DOWN_24);
             case CommonCategoryDataEnum.CHAT_EX_24:
-                return new MemeCategoryCommonFragment(CommonCategoryDataEnum.CHAT_EX_24);
+                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_EX_24);
             default:
                 break;
         }

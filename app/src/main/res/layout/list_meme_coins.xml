@@ -33,10 +33,6 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp8"
             submitList="@{vm.MHotMeme}"
-
-
-
-
             />
 
 

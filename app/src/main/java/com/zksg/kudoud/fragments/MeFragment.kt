@@ -20,6 +20,7 @@ import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
+import com.zksg.kudoud.adapters.MemeCommonListdapter
 import com.zksg.kudoud.contants.AppConfig
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.utils.StringUtils
@@ -41,6 +42,7 @@ class MeFragment : BaseFragment() {
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_mine, BR.vm, meViewModel!!)
             .addBindingParam(BR.click, ClickProxy())
+            .addBindingParam(BR.adapter, MemeCommonListdapter(context))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

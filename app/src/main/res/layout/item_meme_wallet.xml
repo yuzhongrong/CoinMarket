@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="meme"
+            type="com.zksg.lib_api.beans.MemeBaseEntry" />
+
+    </data>
+<com.hjq.shape.layout.ShapeRelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp15"
+    android:gravity="center_vertical"
+    app:shape_solidColor="@color/bg_layout_common"
+
+    >
+
+
+    <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        meme_imv="@{meme.logoURI}"
+        app:shape_radius="@dimen/dp45"
+        android:src="@mipmap/ic_solana"
+        android:scaleType="fitXY"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp12"
+        android:layout_toRightOf="@+id/icon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{meme.symbol}"
+            android:textColor="@color/whitesmoke"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold"
+
+            />
+
+
+        <TextView
+            android:id="@+id/vol"
+            meme_vol_tv="@{meme.v24hUSD}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4"
+            android:text="@string/str_f_default"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_toLeftOf="@+id/change"
+        android:text="$197.21"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12"
+
+
+        android:textStyle="bold" />
+
+
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/change"
+        meme_percent_tv="@{meme.v24hChangePercent}"
+        android:layout_width="@dimen/dp80"
+        android:layout_height="@dimen/dp30"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="@string/str_precent_1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12"
+        android:textStyle="bold"
+        android:maxLength="15"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:shape_radius="@dimen/dp5" />
+
+
+
+</com.hjq.shape.layout.ShapeRelativeLayout>
+</layout>
