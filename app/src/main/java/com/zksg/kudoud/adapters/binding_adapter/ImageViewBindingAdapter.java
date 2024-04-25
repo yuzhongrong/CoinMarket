@@ -21,7 +21,11 @@ public class ImageViewBindingAdapter {
 
     }
 
+    @BindingAdapter(value = {"meme_common_local_imv"},requireAll = false)
+    public static void meme_common_local_imv(ImageView imv, int resId) {
+        ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,resId,45);
 
+    }
     @BindingAdapter(value = {"meme_dex_imv"},requireAll = false)
     public static void meme_dex_imv(ImageView imv, String dexid) {
         if(dexid.equals(DexEnum.ORCA.getKey())){

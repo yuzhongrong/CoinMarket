@@ -30,6 +30,26 @@ public class ViewVisibleBindingAdapter {
 //           }
 //    }
 
+        @BindingAdapter(value = {"meme_layout_show"},requireAll = false)
+    public static void meme_layout_show(View view, boolean value) {
+           if(view==null)return;
+           if(value){//处理有钱包情况
+               if(view.getId()==R.id.wallet_no){
+                   view.setVisibility(View.GONE);
+               }else{
+                   view.setVisibility(View.VISIBLE);
+               }
+
+           }else{//处理没有钱包情况
+               if(view.getId()==R.id.wallet){
+                   view.setVisibility(View.GONE);
+               }else if(view.getId()==R.id.wallet_no){
+                   view.setVisibility(View.VISIBLE);
+               }
+
+           }
+    }
+
 
 
 

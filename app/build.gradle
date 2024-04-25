@@ -169,10 +169,13 @@ dependencies {
     implementation 'io.github.azhon:appupdate:4.3.0'
     //fastjson
     implementation 'com.alibaba:fastjson:1.2.76'
+
     //solana client
     implementation ('com.paymennt:solanaj:0.0.7') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
+    implementation 'org.bitcoinj:bitcoinj-core:0.16.2'
+
 
 
 

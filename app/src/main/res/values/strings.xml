@@ -283,4 +283,16 @@
     <string name="str_kline_map">K线图</string>
     <string name="str_sell">出售</string>
     <string name="str_buy">购买</string>
+    <string name="str_create_wallet_tip">快去创建个钱包</string>
+    <string name="str_wallet_manager">钱包管理</string>
+    <string name="str_wallet_network">SOLANA</string>
+    <string name="str_wallet_default_name">SOL</string>
+    <string name="str_create_wallet">创建钱包</string>
+    <string name="str_solana">SOLANA</string>
+    <string name="str_confirm_pwd">请确认密码</string>
+    <string name="str_setting_pwd">设置密码</string>
+    <string name="str_confirm_pwd_tip">确认密码</string>
+    <string name="str_wallet_name">钱包名</string>
+    <string name="str_input_walletname">输入钱包名</string>
+    <string name="str_input_pwd">请输入密码</string>
 </resources>

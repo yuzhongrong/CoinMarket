@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.zksg.kudoud.entitys.WalletNetworkEntity;
 import com.zksg.lib_api.baby.BabyInfo;
 import com.zksg.lib_api.baby.FeedTip;
 import com.zksg.lib_api.beans.EnvBean;
@@ -40,6 +41,10 @@ public class DiffUtils {
 
     private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO> mMemePoolCallback;
+    private DiffUtil.ItemCallback<WalletNetworkEntity> mWalletNetworkEntityCallback;
+
+
+
 //    private DiffUtil.ItemCallback<MainRecommendPlayListBean.RecommendBean> mRecommendPlaylistItemCallback;
 //
 //    private DiffUtil.ItemCallback<AlbumOrSongBean> mAlbumOrSongItemCallback;
@@ -121,6 +126,24 @@ public class DiffUtils {
             };
         }
         return mMemePoolCallback;
+    }
+
+
+    public DiffUtil.ItemCallback<WalletNetworkEntity> getWalletNetworkCallback() {
+        if (mWalletNetworkEntityCallback == null) {
+            mWalletNetworkEntityCallback = new DiffUtil.ItemCallback<WalletNetworkEntity>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull WalletNetworkEntity oldItem, @NonNull WalletNetworkEntity newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull WalletNetworkEntity oldItem, @NonNull WalletNetworkEntity newItem) {
+                    return oldItem.getImg()==newItem.getImg();
+                }
+            };
+        }
+        return mWalletNetworkEntityCallback;
     }
 
 

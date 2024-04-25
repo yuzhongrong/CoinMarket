@@ -102,7 +102,7 @@
     <string name="str_app_name">酷豆丁 COOLBABY</string>
     <string name="str_factory_reset">确定恢复出厂设置吗?</string>
     <string name="str_cleaa_all">恢复后所有数据将清空</string>
-    <string name="str_ok">确定</string>
+    <string name="str_ok">Ok</string>
     <string name="str_heart_rate">心率</string>
     <string name="str_day">日</string>
     <string name="str_week">周</string>
@@ -128,7 +128,7 @@
     <string name="str_home">主页</string>
     <string name="str_category">Category</string>
     <string name="str_markets">市场</string>
-    <string name="str_wallet">钱包</string>
+    <string name="str_wallet">Wallet</string>
     <string name="str_dex">兑换</string>
     <string name="str_other">其他</string>
     <string name="str_like">Like</string>
@@ -162,4 +162,18 @@
     <string name="str_kline_map">KLine</string>
     <string name="str_sell">SELL</string>
     <string name="str_buy">BUY</string>
+    <string name="str_create_wallet_tip">create wallet</string>
+    <string name="str_wallet_manager">Wallet Manager</string>
+    <string name="str_wallet_network">SOLANA</string>
+    <string name="str_wallet_default_name">SOL</string>
+    <string name="str_create_wallet">create wallet</string>
+    <string name="str_solana">SOLANA</string>
+    <string name="str_confirm_pwd">Please Confirm Password</string>
+    <string name="str_setting_pwd">Password</string>
+    <string name="str_confirm_pwd_tip">Confirm Password</string>
+    <string name="str_wallet_name">Wallet Name</string>
+    <string name="str_input_walletname">input wallet name</string>
+    <string name="str_input_pwd">Please Input Password</string>
+
+
 </resources>

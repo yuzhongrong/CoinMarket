@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.WalletManagerActivityViewModel" />
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.WalleManagertActivity.ClickProxy" />
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.WalletNetworkListdapter" />
+    </data>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_layout_common"
+    android:orientation="vertical"
+    >
+
+
+    <com.hjq.shape.layout.ShapeRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        app:shape_radius="@dimen/sp30"
+        android:layout_marginLeft="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp8"
+        >
+
+
+        <com.hjq.shape.view.ShapeImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:layout_alignParentLeft="true"
+            android:src="@mipmap/ic_back_left"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp5"
+            app:shape_solidColor="@color/c_29313d"
+            app:shape_radius="@dimen/dp45"
+            android:padding="@dimen/dp3"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:clickable="true"
+            android:onClick="@{()->click.close()}"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/str_wallet_manager"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp20"
+            android:textStyle="bold" />
+
+        <com.hjq.shape.view.ShapeImageView
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp5"
+            android:src="@mipmap/ic_star"
+            android:layout_centerVertical="true"
+            app:shape_solidColor="@color/c_2e2e2e"
+            app:shape_radius="@dimen/dp45"
+
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:clickable="true"
+            />
+
+    </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <com.hjq.shape.layout.ShapeRecyclerView
+        linearAdapter="@{adapter}"
+        cannotScrollVertically="@{false}"
+        itemspace="@{1}"
+        orientation="@{1}"
+        android:layout_width="@dimen/dp90"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dp8"
+        app:shape_strokeWidth="@dimen/dp0"
+        app:shape_strokeColor="@color/colorPrimaryLight"
+        android:padding="@dimen/dp1"
+        submitList="@{vm.leftDatas}"
+        />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_f_default_n_a"
+                    android:textColor="@color/white"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+
+                    />
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="@dimen/dp13"
+                    android:onClick="@{()->click.startCreateWallet()}"
+                    android:src="@mipmap/ic_addtion" />
+
+            </RelativeLayout>
+
+            <com.hjq.shape.layout.ShapeRecyclerView
+                cannotScrollVertically="@{false}"
+                itemspace="@{1}"
+                orientation="@{1}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp8"
+                app:shape_strokeWidth="@dimen/dp0"
+                app:shape_strokeColor="@color/colorPrimaryLight"
+                android:padding="@dimen/dp1"
+
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</layout>

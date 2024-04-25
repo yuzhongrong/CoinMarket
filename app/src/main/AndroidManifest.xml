@@ -72,6 +72,7 @@
             android:screenOrientation="portrait"
             />
 
+
         <activity android:name=".activitys.SmallLightctivity"
             android:exported="false"
             android:screenOrientation="portrait"
@@ -113,10 +114,18 @@
             android:exported="false"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".activitys.CreateWalletActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
 
 
 
         <activity android:name=".activitys.WebviewActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".activitys.WalleManagertActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             />

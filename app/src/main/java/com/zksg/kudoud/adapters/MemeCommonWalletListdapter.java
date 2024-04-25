@@ -9,10 +9,11 @@ import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.CoinsDetailActivity;
 import com.zksg.kudoud.databinding.ItemMemeListBinding;
+import com.zksg.kudoud.databinding.ItemMemeWalletBinding;
 import com.zksg.kudoud.utils.DiffUtils;
 import com.zksg.lib_api.beans.MemeBaseEntry;
 
-public class MemeCommonWalletListdapter extends SimpleDataBindingAdapter<MemeBaseEntry, ItemMemeListBinding> {
+public class MemeCommonWalletListdapter extends SimpleDataBindingAdapter<MemeBaseEntry, ItemMemeWalletBinding> {
 
     private Context mContex;
     public MemeCommonWalletListdapter(Context context) {
@@ -26,10 +27,8 @@ public class MemeCommonWalletListdapter extends SimpleDataBindingAdapter<MemeBas
 
         });
     }
-
-
     @Override
-    protected void onBindItem(ItemMemeListBinding binding, MemeBaseEntry item, RecyclerView.ViewHolder holder) {
+    protected void onBindItem(ItemMemeWalletBinding binding, MemeBaseEntry item, RecyclerView.ViewHolder holder) {
         binding.setMeme(item);
     }
 }

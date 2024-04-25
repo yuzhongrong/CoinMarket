@@ -12,6 +12,12 @@
             name="click"
             type="com.zksg.kudoud.fragments.MeFragment.ClickProxy" />
 
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.MemeCommonWalletListdapter" />
+
+
+
     </data>
 
     <LinearLayout
@@ -29,21 +35,6 @@
             android:gravity="center_vertical"
             >
 
-
-            <com.hjq.shape.view.ShapeImageView
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp30"
-                android:layout_alignParentLeft="true"
-                android:src="@mipmap/ic_back_left"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/dp5"
-                app:shape_solidColor="@color/c_29313d"
-                app:shape_radius="@dimen/dp45"
-                android:padding="@dimen/dp3"
-                app:shape_solidPressedColor="@color/c_a0a0ab"
-                android:clickable="true"
-                android:visibility="gone"
-                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -64,80 +55,25 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/white"
                 android:clickable="true"
+                android:onClick="@{()->click.startCreateWallet()}"
                 />
 
         </com.hjq.shape.layout.ShapeRelativeLayout>
 
-        <com.hjq.shape.layout.ShapeRelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp45"
-            app:shape_solidColor="@color/c_181818"
-            app:shape_radius="@dimen/sp30"
-            android:layout_marginLeft="@dimen/dp8"
-            android:layout_marginRight="@dimen/dp8"
-            android:visibility="gone"
-            >
-
-
-            <com.hjq.shape.view.ShapeImageView
-                android:id="@+id/iv_left"
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp30"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="@dimen/dp15"
-                android:src="@mipmap/logo"
-                android:layout_centerVertical="true"
-
-                app:shape_solidColor="@color/whitesmoke"
-
-                app:shape_radius="@dimen/dp45"
-                android:padding="@dimen/dp3"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="@dimen/dp10"
-
-                android:layout_toLeftOf="@+id/iv_right"
-                android:layout_toRightOf="@+id/iv_left"
-                android:ellipsize="middle"
-                android:maxLines="1"
-                android:text="@{vm.account}"
-                android:textColor="@color/c_f47b44"
-                android:textSize="@dimen/sp20"
-                android:textStyle="bold"
-                android:gravity="center"
-                />
-
-            <com.hjq.shape.view.ShapeImageView
-                android:id="@+id/iv_right"
-                android:layout_width="@dimen/dp30"
-                android:layout_height="@dimen/dp30"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/dp15"
-                android:src="@mipmap/ic_wallet"
-                android:layout_centerVertical="true"
-                app:shape_solidColor="@color/whitesmoke"
-                android:layout_marginRight="@dimen/sp15"
-                app:shape_radius="@dimen/dp45"
-                android:padding="@dimen/dp3"
-                android:clickable="true"
-                app:shape_solidPressedColor="@color/c_a0a0ab"
-                android:onClick="@{()->click.loginTpWallet()}"
-
-                />
-
-        </com.hjq.shape.layout.ShapeRelativeLayout>
-
-
+            android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/wallet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/dp10"
             android:orientation="vertical"
+            meme_layout_show="@{vm.show_wallet}"
+            android:background="@color/bg_layout_common"
+
+
             >
             <LinearLayout
                 android:layout_width="match_parent"
@@ -368,24 +304,59 @@
 
             <com.hjq.shape.layout.ShapeRecyclerView
 
-                linearAdapter="@{vm.adapter}"
+                linearAdapter="@{adapter}"
                 cannotScrollVertically="@{false}"
                 itemspace="@{1}"
                 orientation="@{1}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/dp15"
-                android:layout_marginRight="@dimen/dp15"
                 android:layout_marginTop="@dimen/dp8"
                 app:shape_radius="@dimen/dp10"
-                app:shape_strokeWidth="@dimen/dp0.5"
+                app:shape_strokeWidth="@dimen/dp0"
                 app:shape_strokeColor="@color/colorPrimaryLight"
                 android:padding="@dimen/dp1"
+                submitList="@{vm.mWalletTokens}"
 
                 />
 
 
         </LinearLayout>
+
+
+          <LinearLayout
+              android:id="@+id/wallet_no"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center"
+              android:background="@color/bg_layout_common"
+              meme_layout_show="@{vm.show_wallet}"
+              >
+              <LinearLayout
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:gravity="center"
+                  >
+
+                  <ImageView
+                      android:layout_width="@dimen/dp45"
+                      android:layout_height="@dimen/dp45"
+                      android:src="@mipmap/ic_nothing" />
+
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textColor="@color/white"
+                      android:text="@string/str_create_wallet_tip" />
+
+              </LinearLayout>
+
+
+          </LinearLayout>
+
+        </FrameLayout>
 
 
     </LinearLayout>

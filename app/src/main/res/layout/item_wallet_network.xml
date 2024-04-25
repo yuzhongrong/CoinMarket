@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="meme"
+            type="com.zksg.kudoud.entitys.WalletNetworkEntity" />
+
+    </data>
+<com.hjq.shape.layout.ShapeLinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dp10"
+    >
+
+    <com.hjq.shape.view.ShapeImageView
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        meme_common_local_imv="@{meme.img}"
+        />
+
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>
+</layout>

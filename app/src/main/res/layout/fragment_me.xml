@@ -59,7 +59,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="@dimen/dp5"
                 android:src="@mipmap/ic_more"
-                android:onClick="@{()->click.skip2More()}"
                 />
 
         </RelativeLayout>
@@ -119,88 +118,8 @@
         </LinearLayout>
 
 
-        <com.zksg.kudoud.widgets.SettingBar
-            android:id="@+id/sb_baby"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp53"
-            android:layout_marginTop="@dimen/dp50"
-            android:background="@drawable/bg_settingbar"
-            app:bar_leftText="@string/str_baby"
-            app:bar_leftTextColor="@color/c_333333"
-            app:bar_rightTextSize="14sp"
-            app:bar_lineVisible="false"
-            app:bar_rightDrawable="@mipmap/ic_right_back"
-            android:onClick="@{()->click.skip2BabyDetail()}"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
-            />
 
 
-        <com.zksg.kudoud.widgets.SettingBar
-            android:id="@+id/sb_device"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp53"
-            android:layout_marginTop="@dimen/dp20"
-            android:background="@drawable/bg_settingbar"
-            app:bar_leftText="@string/str_device"
-            app:bar_leftTextColor="@color/c_333333"
-            app:bar_rightTextSize="14sp"
-            app:bar_lineVisible="false"
-            app:bar_rightDrawable="@mipmap/ic_right_back"
-            android:onClick="@{()->click.testClick()}"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
-            />
-
-
-        <com.zksg.kudoud.widgets.SettingBar
-            android:id="@+id/sb_health_record"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp53"
-            android:layout_marginTop="@dimen/dp20"
-            android:background="@drawable/bg_settingbar"
-            app:bar_leftText="@string/str_health_record"
-            app:bar_leftTextColor="@color/c_333333"
-            app:bar_rightTextSize="14sp"
-            app:bar_lineVisible="false"
-            app:bar_rightDrawable="@mipmap/ic_right_back"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
-            android:onClick="@{()->click.skip2health()}"
-            />
-
-
-        <com.zksg.kudoud.widgets.SettingBar
-            android:id="@+id/sb_wei_tip"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp53"
-            android:layout_marginTop="@dimen/dp20"
-            android:background="@drawable/bg_settingbar"
-            app:bar_leftText="@string/str_wei_tip"
-            app:bar_lineVisible="false"
-            app:bar_leftTextColor="@color/c_333333"
-            app:bar_rightDrawable="@mipmap/ic_right_back"
-            android:onClick="@{()->click.skip2Feed()}"
-            app:bar_rightTextSize="14sp"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
-            />
-
-        <com.zksg.kudoud.widgets.SettingBar
-            android:id="@+id/sb_product_buy"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp53"
-            android:layout_marginTop="@dimen/dp20"
-            android:background="@drawable/bg_settingbar"
-            app:bar_leftText="@string/str_product_buy"
-            app:bar_lineVisible="false"
-            app:bar_leftTextColor="@color/c_333333"
-            app:bar_rightDrawable="@mipmap/ic_right_back"
-            app:bar_rightTextSize="14sp"
-            android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginRight="@dimen/dp20"
-
-            />
 
 
     </LinearLayout>

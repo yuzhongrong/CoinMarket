@@ -5,9 +5,9 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="vm"-->
-<!--            type="com.zksg.kudoud.state.CreateFeedViewModel" />-->
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.CreateFeedViewModel" />
 
         <variable
             name="click"
