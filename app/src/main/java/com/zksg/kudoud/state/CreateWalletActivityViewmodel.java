@@ -1,5 +1,6 @@
 package com.zksg.kudoud.state;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 /**
@@ -7,5 +8,12 @@ import androidx.lifecycle.ViewModel;
  */
 public class CreateWalletActivityViewmodel extends ViewModel {
 //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();
+    public ObservableField<String> walletname=new ObservableField<>();
+    public ObservableField<String> walletpwd=new ObservableField<>();
+    public ObservableField<String> walletconfirmpwd=new ObservableField<>();
+
+    public ObservableField<Boolean> pwd=new ObservableField<>(false);
+    public ObservableField<Boolean> pwdConfirm=new ObservableField<>(false);
+
 
 }

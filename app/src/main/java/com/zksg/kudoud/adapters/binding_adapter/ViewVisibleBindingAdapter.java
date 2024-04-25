@@ -1,6 +1,7 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -48,6 +49,16 @@ public class ViewVisibleBindingAdapter {
                }
 
            }
+    }
+
+
+    @BindingAdapter(value = {"img_eye_show_hide"},requireAll = false)
+    public static void img_eye_show_hide(ImageView view, boolean value) {
+            if(value){
+                view.setImageResource(R.mipmap.ic_eye_show);
+            }else{
+                view.setImageResource(R.mipmap.ic_eye_hide);
+            }
     }
 
 

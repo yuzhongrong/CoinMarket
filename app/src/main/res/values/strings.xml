@@ -292,7 +292,7 @@
     <string name="str_confirm_pwd">请确认密码</string>
     <string name="str_setting_pwd">设置密码</string>
     <string name="str_confirm_pwd_tip">确认密码</string>
-    <string name="str_wallet_name">钱包名</string>
+    <string name="str_wallet_name">钱包名称</string>
     <string name="str_input_walletname">输入钱包名</string>
     <string name="str_input_pwd">请输入密码</string>
 </resources>
