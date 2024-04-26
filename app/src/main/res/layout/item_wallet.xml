@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="mywallet"
+            type="com.zksg.kudoud.utils.manager.SimpleWallet" />
+
+    </data>
+<com.hjq.shape.layout.ShapeLinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp100"
+    android:orientation="vertical"
+    android:padding="@dimen/dp15"
+    android:background="@color/bg_layout_common"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp20"
+        android:text="@string/str_f_default_n_a"
+        loadtext="@{mywallet.name}"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp15"
+        >
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="@dimen/dp120"
+            android:layout_height="wrap_content"
+            android:text="@string/str_f_default_n_a"
+            android:textSize="@dimen/sp14"
+            android:singleLine="true"
+            android:gravity="left"
+            android:ellipsize="middle"
+            android:textColor="@color/primaryTextGray"
+            loadtext="@{mywallet.address}"
+            />
+
+    <ImageView
+        android:layout_width="@dimen/dp15"
+        android:layout_height="@dimen/dp15"
+        android:src="@mipmap/ic_copy"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_gravity="center_vertical"
+
+        />
+    </LinearLayout>
+
+</com.hjq.shape.layout.ShapeLinearLayout>
+</layout>

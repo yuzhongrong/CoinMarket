@@ -295,4 +295,9 @@
     <string name="str_wallet_name">钱包名称</string>
     <string name="str_input_walletname">输入钱包名</string>
     <string name="str_input_pwd">请输入密码</string>
+    <string name="str_wallet_name_notnull">钱包名称不能为空!!</string>
+    <string name="str_invalid_pwd">无效的密码!!</string>
+    <string name="str_pwd_not_same">密码不一致!!</string>
+    <string name="str_wallet_create_success">钱包创建成功</string>
+    <string name="str_wallet_create_fail">钱包创建失败!!</string>
 </resources>

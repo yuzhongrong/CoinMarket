@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.zksg.kudoud.entitys.WalletNetworkEntity;
+import com.zksg.kudoud.utils.manager.SimpleWallet;
 import com.zksg.lib_api.baby.BabyInfo;
 import com.zksg.lib_api.baby.FeedTip;
 import com.zksg.lib_api.beans.EnvBean;
@@ -42,7 +43,7 @@ public class DiffUtils {
     private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO> mMemePoolCallback;
     private DiffUtil.ItemCallback<WalletNetworkEntity> mWalletNetworkEntityCallback;
-
+    private DiffUtil.ItemCallback<SimpleWallet> mMyWalletEntityCallback;
 
 
 //    private DiffUtil.ItemCallback<MainRecommendPlayListBean.RecommendBean> mRecommendPlaylistItemCallback;
@@ -145,6 +146,25 @@ public class DiffUtils {
         }
         return mWalletNetworkEntityCallback;
     }
+
+
+    public DiffUtil.ItemCallback<SimpleWallet> getWalletCallback() {
+        if (mMyWalletEntityCallback == null) {
+            mMyWalletEntityCallback = new DiffUtil.ItemCallback<SimpleWallet>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull SimpleWallet oldItem, @NonNull SimpleWallet newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull SimpleWallet oldItem, @NonNull SimpleWallet newItem) {
+                    return oldItem.getAddress().equals(newItem.getAddress());
+                }
+            };
+        }
+        return mMyWalletEntityCallback;
+    }
+
 
 
     public DiffUtil.ItemCallback<FeedTip> getFeedTipItemCallback() {

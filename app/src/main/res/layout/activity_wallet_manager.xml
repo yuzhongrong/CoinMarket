@@ -14,6 +14,10 @@
         <variable
             name="adapter"
             type="com.zksg.kudoud.adapters.WalletNetworkListdapter" />
+
+        <variable
+            name="walltlistadapter"
+            type="com.zksg.kudoud.adapters.WalletListdapter" />
     </data>
 
 
@@ -94,6 +98,7 @@
         app:shape_strokeColor="@color/colorPrimaryLight"
         android:padding="@dimen/dp1"
         submitList="@{vm.leftDatas}"
+
         />
 
         <LinearLayout
@@ -139,7 +144,8 @@
                 app:shape_strokeWidth="@dimen/dp0"
                 app:shape_strokeColor="@color/colorPrimaryLight"
                 android:padding="@dimen/dp1"
-
+                submitList="@{vm.rightDatas}"
+                linearAdapter="@{walltlistadapter}"
                 />
 
         </LinearLayout>

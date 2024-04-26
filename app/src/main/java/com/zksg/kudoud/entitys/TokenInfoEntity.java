@@ -1,14 +1,16 @@
 package com.zksg.kudoud.entitys;
 
-public class TokenInfoEntity {
+import java.io.Serializable;
+
+public class TokenInfoEntity implements Serializable {
     private String address;
     private String logourl;
     private String symbol;
     private int resId;
 
 
-    public TokenInfoEntity(String address, String logourl,int resId, String symbol) {
-        this.address = address;
+    public TokenInfoEntity(String contract, String logourl,int resId, String symbol) {
+        this.address = contract;
         this.logourl = logourl;
         this.symbol = symbol;
         this.resId=resId;

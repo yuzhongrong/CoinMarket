@@ -16,7 +16,7 @@
 
 package com.zksg.kudoud.app;
 
-import androidx.appcompat.app.AppCompatDelegate;
+import android.content.Context;
 
 import com.kunminx.architecture.BaseApplication;
 import com.kunminx.architecture.utils.Utils;
@@ -27,10 +27,11 @@ import com.tencent.mmkv.MMKV;
 /**
  * @author Administrator
  */
-public class KudoudApplication extends BaseApplication {
+public class PepeApplication extends BaseApplication {
 
     //TODO tip：可借助 Application 来管理一个应用级 的 SharedViewModel，
     // 实现全应用范围内的 生命周期安全 且 事件源可追溯的 视图控制器 事件通知。
+
 
 
     @Override
@@ -39,5 +40,9 @@ public class KudoudApplication extends BaseApplication {
         Utils.init(this);
         String rootDir = MMKV.initialize(this);
         System.out.println("mmkv root: " + rootDir);
+
     }
+
+
+
 }

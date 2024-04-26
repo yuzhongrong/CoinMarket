@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.kunminx.architecture.domain.message.MutableResult;
 import com.zksg.kudoud.entitys.WalletNetworkEntity;
+import com.zksg.kudoud.utils.manager.SimpleWallet;
 
 import java.util.List;
 
@@ -14,5 +15,8 @@ public class WalletManagerActivityViewModel extends ViewModel {
 //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();
 
     public MutableResult<List<WalletNetworkEntity>> leftDatas=new MutableResult<>();
+
+    public MutableResult<List<SimpleWallet>> rightDatas=new MutableResult<>();
+
 
 }

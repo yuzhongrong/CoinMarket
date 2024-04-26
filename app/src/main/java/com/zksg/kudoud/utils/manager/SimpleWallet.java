@@ -2,24 +2,26 @@ package com.zksg.kudoud.utils.manager;
 
 import com.zksg.kudoud.entitys.TokenInfoEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class MySolanaWallet {
+public class SimpleWallet implements Serializable {
     private String name;
     private String address;
     private List<TokenInfoEntity> tokens;
     private String keyAlias;
+    private int network;
+    private boolean isbackup=false;
 
 
 
-    private byte[] encryptData; //对solanawallet加密后的数据
 
-    public MySolanaWallet(String keyAlias,String name, String address, List<TokenInfoEntity> tokens, byte[] encryptData) {
+    public SimpleWallet(String keyAlias, int network, String name, String address, List<TokenInfoEntity> tokens) {
         this.name = name;
         this.address = address;
         this.tokens = tokens;
-        this.encryptData = encryptData;
         this.keyAlias=keyAlias;
+        this.network=network;
     }
 
     public String getName() {
@@ -45,15 +47,6 @@ public class MySolanaWallet {
     public void setTokens(List<TokenInfoEntity> tokens) {
         this.tokens = tokens;
     }
-
-    public byte[] getEncryptData() {
-        return encryptData;
-    }
-
-    public void setEncryptData(byte[] encryptData) {
-        this.encryptData = encryptData;
-    }
-
     public String getKeyAlias() {
         return keyAlias;
     }
@@ -61,4 +54,21 @@ public class MySolanaWallet {
     public void setKeyAlias(String keyAlias) {
         this.keyAlias = keyAlias;
     }
+
+    public int getNetwork() {
+        return network;
+    }
+
+    public void setNetwork(int network) {
+        this.network = network;
+    }
+
+    public boolean isIsbackup() {
+        return isbackup;
+    }
+
+    public void setIsbackup(boolean isbackup) {
+        this.isbackup = isbackup;
+    }
+
 }

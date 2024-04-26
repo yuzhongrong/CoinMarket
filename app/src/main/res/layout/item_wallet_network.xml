@@ -14,6 +14,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/dp10"
+    android:background="@color/c_29313d"
     >
 
     <com.hjq.shape.view.ShapeImageView

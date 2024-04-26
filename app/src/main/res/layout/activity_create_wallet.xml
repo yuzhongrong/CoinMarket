@@ -138,7 +138,7 @@
             android:layout_height="@dimen/dp45"
             android:layout_marginTop="@dimen/dp10"
             android:hint="@string/str_input_walletname"
-            android:textSize="13sp"
+            android:textSize="@dimen/sp11"
             android:background="@color/c_29313d"
             android:textColorHint="@color/primaryTextGray"
             android:textColor="@color/primaryTextGray"
@@ -147,7 +147,7 @@
             app:shape_strokeColor="@color/c_29313d"
             app:shape_strokeWidth="@dimen/dp1"
             android:maxLength="10"
-
+            textChangedListener="@{WalletnameTextWatcher}"
 
            />
 
@@ -182,7 +182,7 @@
                 android:layout_height="@dimen/dp45"
                 android:layout_weight="1"
                 android:hint="@string/str_input_pwd"
-                android:textSize="13sp"
+                android:textSize="@dimen/sp11"
                 android:background="@color/c_29313d"
                 android:textColorHint="@color/primaryTextGray"
                 android:textColor="@color/primaryTextGray"
@@ -195,6 +195,7 @@
                 android:layout_marginRight="@dimen/dp15"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.$#"
                 edit_pwd_handle="@{vm.pwd}"
+                textChangedListener="@{WalletPwdTextWatcher}"
                 />
                 <ImageView
                     android:layout_width="@dimen/dp25"
@@ -236,7 +237,7 @@
                 android:layout_width="@dimen/dp0"
                 android:layout_height="@dimen/dp45"
                 android:hint="@string/str_confirm_pwd"
-                android:textSize="13sp"
+                android:textSize="@dimen/sp11"
                 android:layout_weight="1"
                 android:background="@color/c_29313d"
                 android:textColorHint="@color/primaryTextGray"
@@ -250,6 +251,7 @@
                 android:layout_marginRight="@dimen/dp15"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.$#"
                 edit_pwd_handle="@{vm.pwdConfirm}"
+                textChangedListener="@{WalletConfirmPwdTextWatcher}"
                 />
                 <ImageView
                     android:layout_width="@dimen/dp25"
@@ -280,7 +282,9 @@
             app:shape_solidColor="@color/colorAccent"
             android:layout_marginLeft="@dimen/dp25"
             android:layout_marginRight="@dimen/dp25"
-            app:shape_solidPressedColor="@color/c_a0a0ab" />
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            android:onClick="@{()->click.createWallet()}"
+            />
 
 
     </LinearLayout>
