@@ -300,4 +300,6 @@
     <string name="str_pwd_not_same">密码不一致!!</string>
     <string name="str_wallet_create_success">钱包创建成功</string>
     <string name="str_wallet_create_fail">钱包创建失败!!</string>
+    <string name="str_no_backup">未备份</string>
+    <string name="str_backuped">已备份</string>
 </resources>

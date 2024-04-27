@@ -8,37 +8,91 @@
             name="mywallet"
             type="com.zksg.kudoud.utils.manager.SimpleWallet" />
 
+        <variable
+            name="mshareVm"
+            type="com.zksg.kudoud.state.SharedViewModel" />
+
+
     </data>
 <com.hjq.shape.layout.ShapeLinearLayout
     android:layout_width="match_parent"
-    android:layout_height="@dimen/dp100"
+    android:layout_height="@dimen/dp80"
     android:orientation="vertical"
-    android:padding="@dimen/dp15"
-    android:background="@color/bg_layout_common"
+    app:shape_solidColor="@color/bg_layout_common"
+    app:shape_radius="@dimen/dp5"
+    app:shape_strokeWidth="@dimen/dp0.5"
+    app:shape_strokeColor="@color/c_29313d"
+    android:clickable="true"
+    app:shape_solidPressedColor="@color/c_29313d"
+    android:layout_marginRight="@dimen/dp5"
+    layout_bg="@{mywallet.getKeyAlias().equals(mshareVm.selectWallet.getKeyAlias())}"
+
     >
 
-    <TextView
+    <com.hjq.shape.view.ShapeTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp20"
+        android:textColor="@color/c_f71816"
+        android:textSize="@dimen/sp8"
         android:text="@string/str_f_default_n_a"
-        loadtext="@{mywallet.name}"
+        android:textStyle="bold"
+        tvbyboolen="@{mywallet.isbackup}"
+        android:layout_gravity="right"
+        app:shape_strokeWidth="@dimen/dp0.5"
+        app:shape_strokeColor="@color/c_29313d"
+        app:shape_bottomLeftRadius="@dimen/dp5"
+        app:shape_topRightRadius="@dimen/dp5"
+        android:padding="@dimen/dp5"
+
+
 
         />
+<LinearLayout
+    android:layout_width="@dimen/dp250"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    >
+
+   <RelativeLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="@dimen/dp15"
+
+       >
+
+
+       <com.hjq.shape.view.ShapeTextView
+           loadtext="@{mywallet.name}"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_centerInParent="true"
+           android:text="@string/str_f_default_n_a"
+           android:textColor="@color/white"
+           android:textSize="@dimen/sp17"
+
+           android:textStyle="bold" />
+
+
+
+   </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp8"
+        android:layout_marginRight="@dimen/dp85"
+        android:layout_marginLeft="@dimen/dp15"
+
         >
-        <TextView
+    <TextView
             android:id="@+id/address"
             android:layout_width="@dimen/dp120"
             android:layout_height="wrap_content"
             android:text="@string/str_f_default_n_a"
-            android:textSize="@dimen/sp14"
+            android:textSize="@dimen/sp12"
             android:singleLine="true"
             android:gravity="left"
             android:ellipsize="middle"
@@ -50,11 +104,13 @@
         android:layout_width="@dimen/dp15"
         android:layout_height="@dimen/dp15"
         android:src="@mipmap/ic_copy"
-        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp5"
         android:layout_gravity="center_vertical"
 
         />
     </LinearLayout>
+
+</LinearLayout>
 
 </com.hjq.shape.layout.ShapeLinearLayout>
 </layout>

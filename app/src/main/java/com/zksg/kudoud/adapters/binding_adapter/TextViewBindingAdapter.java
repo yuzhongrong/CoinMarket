@@ -460,7 +460,20 @@ public class TextViewBindingAdapter {
 
     }
 
+    @BindingAdapter(value = {"tvbyboolen"},requireAll = false)
+    public static void tvbyboolen(TextView tv,boolean value) {
+        if(tv==null)return;
+        if(value){
+            tv.setText(R.string.str_backuped);
+            tv.setTextColor(tv.getContext().getColor(R.color.c_1bc89e));
 
+        }else{
+            tv.setText(R.string.str_no_backup);
+            tv.setTextColor(tv.getContext().getColor(R.color.primaryTextGray));
+
+        }
+
+    }
   
 
 

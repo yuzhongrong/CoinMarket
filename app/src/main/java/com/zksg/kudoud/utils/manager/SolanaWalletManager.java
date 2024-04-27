@@ -94,7 +94,7 @@ public class SolanaWalletManager {
         List<TokenInfoEntity> tokens=new ArrayList<>();
         //一般第一个token都使用本地的图片
         tokens.add(new TokenInfoEntity("So11111111111111111111111111111111111111112","",R.mipmap.ic_solana_common,context.getString(R.string.str_wallet_default_name)));
-        SimpleWallet mySimpleWallet=new SimpleWallet(keyAlias, CoinType.SOLANA.getValue(), name,walletName,tokens);
+        SimpleWallet mySimpleWallet=new SimpleWallet(keyAlias, CoinType.SOLANA.getKey(), name,walletName,tokens);
         byte[]  simpleWallet = ObjectSerializationUtils.serializeObject(mySimpleWallet);
 
         saveToMmkv(simpleWallet, keyAlias,encryptedWallet);

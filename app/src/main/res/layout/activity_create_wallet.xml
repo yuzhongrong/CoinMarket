@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/str_wallet_name"
                 android:textSize="@dimen/sp13"
-                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
                 android:textColor="@color/white"
                 />
 
@@ -138,7 +138,7 @@
             android:layout_height="@dimen/dp45"
             android:layout_marginTop="@dimen/dp10"
             android:hint="@string/str_input_walletname"
-            android:textSize="@dimen/sp11"
+            android:textSize="@dimen/sp10"
             android:background="@color/c_29313d"
             android:textColorHint="@color/primaryTextGray"
             android:textColor="@color/primaryTextGray"
@@ -167,7 +167,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/str_setting_pwd"
                 android:textSize="@dimen/sp13"
-                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
                 android:textColor="@color/white"
                 />
             <LinearLayout
@@ -182,7 +182,7 @@
                 android:layout_height="@dimen/dp45"
                 android:layout_weight="1"
                 android:hint="@string/str_input_pwd"
-                android:textSize="@dimen/sp11"
+                android:textSize="@dimen/sp10"
                 android:background="@color/c_29313d"
                 android:textColorHint="@color/primaryTextGray"
                 android:textColor="@color/primaryTextGray"
@@ -222,7 +222,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/str_confirm_pwd_tip"
                 android:textSize="@dimen/sp13"
-                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp5"
                 android:textColor="@color/white"
                 />
 
@@ -237,7 +237,7 @@
                 android:layout_width="@dimen/dp0"
                 android:layout_height="@dimen/dp45"
                 android:hint="@string/str_confirm_pwd"
-                android:textSize="@dimen/sp11"
+                android:textSize="@dimen/sp10"
                 android:layout_weight="1"
                 android:background="@color/c_29313d"
                 android:textColorHint="@color/primaryTextGray"

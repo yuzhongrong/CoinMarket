@@ -19,6 +19,7 @@ package com.zksg.kudoud.adapters.binding_adapter;
 import static com.blankj.utilcode.util.StringUtils.getStringArray;
 import static com.netease.lib_network.constants.config.ipfs_base_url;
 
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
@@ -42,6 +43,7 @@ import com.ToxicBakery.viewpager.transforms.DefaultTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.google.android.material.appbar.AppBarLayout;
+import com.hjq.shape.layout.ShapeLinearLayout;
 import com.kunminx.architecture.utils.ClickUtils;
 import com.netease.lib_common_ui.HornizeItemView;
 import com.netease.lib_common_ui.bannder.HolderCreator;
@@ -53,6 +55,8 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.entitys.SelectWalletEntity;
+import com.zksg.kudoud.utils.manager.SimpleWallet;
 import com.zksg.lib_api.beans.BannerBean;
 
 import java.util.List;
@@ -83,6 +87,20 @@ public class CommonBindingAdapter {
 
 
     }
+
+
+    @BindingAdapter(value = {"layout_bg",}, requireAll = false)
+    public static void layout_bg(ShapeLinearLayout view,boolean value) {
+        if(view ==null)return;
+        if(value){
+            view.getShapeDrawableBuilder().setSolidColor(Color.parseColor("#29313d")).intoBackground();
+        }else{
+            view.getShapeDrawableBuilder().setSolidColor(Color.parseColor("#202630")).intoBackground();
+        }
+
+    }
+
+
 
 
     @BindingAdapter(value = {"webviewload","progressBar"}, requireAll = false)

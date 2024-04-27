@@ -10,18 +10,18 @@ public class SimpleWallet implements Serializable {
     private String address;
     private List<TokenInfoEntity> tokens;
     private String keyAlias;
-    private int network;
+    private String network;
     private boolean isbackup=false;
 
 
 
 
-    public SimpleWallet(String keyAlias, int network, String name, String address, List<TokenInfoEntity> tokens) {
+    public SimpleWallet(String keyAlias, String group, String name, String address, List<TokenInfoEntity> tokens) {
         this.name = name;
         this.address = address;
         this.tokens = tokens;
         this.keyAlias=keyAlias;
-        this.network=network;
+        this.network=group;
     }
 
     public String getName() {
@@ -55,11 +55,11 @@ public class SimpleWallet implements Serializable {
         this.keyAlias = keyAlias;
     }
 
-    public int getNetwork() {
+    public String getNetwork() {
         return network;
     }
 
-    public void setNetwork(int network) {
+    public void setNetwork(String network) {
         this.network = network;
     }
 

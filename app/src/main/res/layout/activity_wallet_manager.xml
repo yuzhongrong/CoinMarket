@@ -8,6 +8,10 @@
         <variable
             name="vm"
             type="com.zksg.kudoud.state.WalletManagerActivityViewModel" />
+
+        <variable
+            name="vm_share"
+            type="com.zksg.kudoud.state.SharedViewModel" />
         <variable
             name="click"
             type="com.zksg.kudoud.activitys.WalleManagertActivity.ClickProxy" />
@@ -91,15 +95,20 @@
         cannotScrollVertically="@{false}"
         itemspace="@{1}"
         orientation="@{1}"
-        android:layout_width="@dimen/dp90"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp8"
         app:shape_strokeWidth="@dimen/dp0"
         app:shape_strokeColor="@color/colorPrimaryLight"
-        android:padding="@dimen/dp1"
         submitList="@{vm.leftDatas}"
 
         />
+
+        <View
+            android:layout_width="0.1dp"
+            android:layout_height="match_parent"
+            android:background="@color/c_29313d"
+            android:layout_marginBottom="@dimen/dp15"
+            />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -111,17 +120,18 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp15"
                 >
 
                 <TextView
+                    loadtext="@{vm_share.selectWallet.netwrokgroup}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_f_default_n_a"
-                    android:textColor="@color/white"
+                    android:textStyle="bold"
                     android:layout_alignParentLeft="true"
                     android:layout_centerInParent="true"
-
-                    />
+                    android:text="@string/str_f_default_n_a"
+                    android:textColor="@color/white" />
 
                 <com.hjq.shape.view.ShapeImageView
                     android:layout_width="@dimen/dp25"
@@ -136,7 +146,7 @@
 
             <com.hjq.shape.layout.ShapeRecyclerView
                 cannotScrollVertically="@{false}"
-                itemspace="@{1}"
+                itemspace="@{20}"
                 orientation="@{1}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

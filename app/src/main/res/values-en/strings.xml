@@ -179,5 +179,7 @@
     <string name="str_pwd_not_same">Passwords are inconsistent</string>
     <string name="str_wallet_create_success">Wallet Create Success</string>
     <string name="str_wallet_create_fail">Wallet Create Fail!!</string>
+    <string name="str_no_backup">Not Backup</string>
+    <string name="str_backuped">Backuped</string>
 
 </resources>
