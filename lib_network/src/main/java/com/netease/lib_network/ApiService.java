@@ -4,6 +4,7 @@ package com.netease.lib_network;
 import static com.netease.lib_network.constants.config.host;
 import static com.netease.lib_network.constants.config.server_port;
 
+import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
@@ -98,7 +99,7 @@ public interface ApiService {
     Single<CommonResponse<List<NewWalletToken>>> getWalletTokens(@Query("wallet") String wallet);
 
     @GET("/api/wallet/getWalletSolBalance")
-    Single<CommonResponse<String>> getWalletSolBalance(@Query("wallet") String wallet);
+    Single<CommonResponse<ApiTokenInfo>> getWalletSolBalance(@Query("wallet") String wallet,@Query("mint") String mint);
 
 
 

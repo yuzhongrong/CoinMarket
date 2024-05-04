@@ -59,7 +59,7 @@ public class DigitUtils {
     //格式化大数字整型
     public static String formatNumberWithCommas(double number) {
         // 如果小于 0，则直接返回原始的 double 字符串
-        if (number < 0) {
+        if (number <=0) {
             return String.valueOf(number);
         }
 
@@ -69,6 +69,22 @@ public class DigitUtils {
 
         // 对数字进行舍入，保留两位小数，并使用 DecimalFormat 格式化数字
         return df.format(Math.round(number * 100) / 100.0);
+    }
+
+
+    public static String formatNumberWithCommas(double number, int decimalDigits) {
+        // 如果小于等于 0，则直接返回原始的 double 字符串
+        if (number <= 0) {
+            return String.valueOf(number);
+        }
+
+        // 构造格式化对象
+        String pattern = "#,###." + new String(new char[decimalDigits]).replace('\0', '#');
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.getDefault());
+        DecimalFormat df = new DecimalFormat(pattern, symbols);
+
+        // 对数字进行舍入，并使用 DecimalFormat 格式化数字
+        return df.format(Math.round(number * Math.pow(10, decimalDigits)) / Math.pow(10, decimalDigits));
     }
 
 

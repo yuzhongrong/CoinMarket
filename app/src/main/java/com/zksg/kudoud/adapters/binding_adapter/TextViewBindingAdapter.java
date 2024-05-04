@@ -180,14 +180,14 @@ public class TextViewBindingAdapter {
     public static void meme_wallet_token_price_tv(TextView tv, String value) {
         if(tv==null||value==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
-        tv.setText(dollar+value);
+        tv.setText(dollar+DigitUtils.formatNumberWithCommas(new BigDecimal(value).doubleValue(),6));
     }
 
 
     @BindingAdapter(value = {"meme_wallet_token_amount_tv"},requireAll = false)
     public static void meme_wallet_token_amount_tv(TextView tv, String amount) {
         if(tv==null|| TextUtils.isEmpty(amount))return;
-        tv.setText(DigitUtils.formatNumberWithCommas(new BigDecimal(amount).doubleValue()));
+        tv.setText(DigitUtils.formatNumberWithCommas(new BigDecimal(amount).doubleValue(),6));
     }
 
 

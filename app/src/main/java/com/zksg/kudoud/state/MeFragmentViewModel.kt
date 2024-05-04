@@ -1,6 +1,5 @@
 package com.zksg.kudoud.state
 
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import androidx.databinding.ObservableField
@@ -14,7 +13,6 @@ import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.kudoud.utils.manager.SimpleWallet
-import com.zksg.lib_api.beans.MemeBaseEntry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -136,14 +134,14 @@ class MeFragmentViewModel : BaseLoadingViewModel() {
     }
 
     //获取钱包sol 余额
-    fun getWalletSolBalance(wallet: String, callback: WalletSolBalanceCallback){
+    fun getWalletSolBalance(wallet: String, mint: String,callback: WalletSolBalanceCallback){
         viewModelScope.launch{
             withContext(Dispatchers.IO){
-                DataRepository.getInstance().getWalletSolBalanceFromRepository(wallet){
+                DataRepository.getInstance().getWalletSolBalanceFromRepository(wallet,mint){
                     if(it.responseStatus.isSuccess){
-                        if(it.result.data!=null&&!TextUtils.isEmpty(it.result.data)){
+                        if(it.result.data!=null){
                             //更新uitokenInfos列表第一个数据
-                            Log.d("----sol balance---->",GsonUtil.toJson(it.result.data))
+                            Log.d("----apiinfo---->",GsonUtil.toJson(it.result.data))
                             callback.walletSolUpdate(it.result.data)
                         }
 

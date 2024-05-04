@@ -4,8 +4,8 @@ package com.zksg.kudoud.fragments
 import android.content.Intent
 import android.text.TextUtils
 import android.util.Log
-import com.blankj.utilcode.util.ThreadUtils.runOnUiThread
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.netease.lib_network.entitys.ApiTokenInfo
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
@@ -13,13 +13,14 @@ import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.adapters.MemeCommonWalletListdapter
 import com.zksg.kudoud.callback.WalletSolBalanceCallback
 import com.zksg.kudoud.entitys.UiWalletToken
-import com.zksg.kudoud.jupswap.utils.JsonParser
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.IntentUtils
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.utils.manager.SolanaWalletManager
+import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
+import java.math.BigDecimal
 
 
 class MeFragment : BaseDialogFragment() {
@@ -78,6 +79,8 @@ class MeFragment : BaseDialogFragment() {
         }else{
             //加载选中钱包
             meViewModel!!.show_wallet.set(true)
+            //初始化总余额
+            meViewModel!!.mWalletAmountMoney.value="0.0"
             //这个组用于展示页面基本信息
             var network=sharedViewModel!!.oneSelectWallet.value!!.netwrokgroup
             var simpleWallet= SolanaWalletManager.getOneSimpleWalletFromMMKV(network,keyAlias)
@@ -122,13 +125,13 @@ class MeFragment : BaseDialogFragment() {
         meViewModel!!.uitokenInfos.set(uiTokenlist)
 
         //获取钱包SOL余额
-        meViewModel!!.getWalletSolBalance(simpleWallet.address,object:WalletSolBalanceCallback{
-            override fun walletSolUpdate(balance: String?) {
-                if(TextUtils.isEmpty(balance)||balance.equals("0"))return
+        meViewModel!!.getWalletSolBalance(simpleWallet.address,TOKEN_SOL_CONTRACT,object:WalletSolBalanceCallback{
+            override fun walletSolUpdate(mApiTokenInfo: ApiTokenInfo?) {
+                if(mApiTokenInfo==null)return
                 requireActivity().runOnUiThread {
                     var olddatas= meViewModel!!.uitokenInfos.get()!!
                     var newdatas=olddatas.apply {
-                        set(0,UiWalletToken(olddatas.get(0).mint,balance,olddatas.get(0).decimal,olddatas.get(0).price,olddatas.get(0).symbol,olddatas.get(0).imageUrl,olddatas.get(0).resId))
+                        set(0,UiWalletToken(olddatas.get(0).mint,mApiTokenInfo.balance,olddatas.get(0).decimal,BigDecimal(mApiTokenInfo.price).toString(),olddatas.get(0).symbol,olddatas.get(0).imageUrl,olddatas.get(0).resId))
                     }
 //                        var newwallet= SimpleWallet(oldWallet.keyAlias,oldWallet.network,oldWallet.name,oldWallet.address,newTokens)
                     meViewModel!!.uitokenInfos.set(newdatas)

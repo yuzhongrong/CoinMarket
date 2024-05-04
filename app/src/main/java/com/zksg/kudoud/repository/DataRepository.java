@@ -23,6 +23,7 @@ import com.kunminx.architecture.data.response.ResultSource;
 import com.netease.lib_network.ApiEngine;
 import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
+import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
@@ -497,16 +498,16 @@ public class DataRepository {
                 });
     }
 
-    public void getWalletSolBalanceFromRepository(String wallet,DataResult.Result<CommonResponse<String>> result){
+    public void getWalletSolBalanceFromRepository(String wallet,String mint,DataResult.Result<CommonResponse<ApiTokenInfo>> result){
         ApiEngine.getInstance()
                 .getApiService()
-                .getWalletSolBalance(wallet)
+                .getWalletSolBalance(wallet,mint)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
 //                .delay(1, TimeUnit.SECONDS)
-                .subscribe(new MySimpleObserver<CommonResponse<String>>() {
+                .subscribe(new MySimpleObserver<CommonResponse<ApiTokenInfo>>() {
                     @Override
-                    protected void onSuccessed(CommonResponse<String> bean) {
+                    protected void onSuccessed(CommonResponse<ApiTokenInfo> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));

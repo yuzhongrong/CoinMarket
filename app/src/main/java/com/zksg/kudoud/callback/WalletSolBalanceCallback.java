@@ -1,6 +1,8 @@
 package com.zksg.kudoud.callback;
 
+import com.netease.lib_network.entitys.ApiTokenInfo;
+
 public interface WalletSolBalanceCallback {
-    void walletSolUpdate(String value);
+    void walletSolUpdate(ApiTokenInfo value);
 
 }
