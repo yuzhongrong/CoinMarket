@@ -1,6 +1,7 @@
 package com.zksg.kudoud.utils.manager;
 
-import com.zksg.kudoud.entitys.TokenInfoEntity;
+import com.netease.lib_network.entitys.NewWalletToken;
+import com.zksg.kudoud.entitys.UiWalletToken;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,20 +9,21 @@ import java.util.List;
 public class SimpleWallet implements Serializable {
     private String name;
     private String address;
-    private List<TokenInfoEntity> tokens;
     private String keyAlias;
     private String network;
     private boolean isbackup=false;
+    private String usd;
+    private UiWalletToken defaultsol;
 
 
-
-
-    public SimpleWallet(String keyAlias, String group, String name, String address, List<TokenInfoEntity> tokens) {
+    public SimpleWallet(String keyAlias, String group, String name, String address, UiWalletToken defaultsol) {
         this.name = name;
         this.address = address;
-        this.tokens = tokens;
+
         this.keyAlias=keyAlias;
         this.network=group;
+        this.defaultsol=defaultsol;
+
     }
 
     public String getName() {
@@ -40,13 +42,6 @@ public class SimpleWallet implements Serializable {
         this.address = address;
     }
 
-    public List<TokenInfoEntity> getTokens() {
-        return tokens;
-    }
-
-    public void setTokens(List<TokenInfoEntity> tokens) {
-        this.tokens = tokens;
-    }
     public String getKeyAlias() {
         return keyAlias;
     }
@@ -70,5 +65,21 @@ public class SimpleWallet implements Serializable {
     public void setIsbackup(boolean isbackup) {
         this.isbackup = isbackup;
     }
+    public String getUsd() {
+        return usd;
+    }
+
+    public void setUsd(String usd) {
+        this.usd = usd;
+    }
+    public UiWalletToken getDefaultsol() {
+        return defaultsol;
+    }
+
+    public void setDefaultsol(UiWalletToken defaultsol) {
+        this.defaultsol = defaultsol;
+    }
+
+
 
 }

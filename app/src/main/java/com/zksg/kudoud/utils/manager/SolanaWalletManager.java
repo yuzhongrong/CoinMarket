@@ -1,17 +1,20 @@
 package com.zksg.kudoud.utils.manager;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+
 import android.content.Context;
 import android.security.keystore.KeyGenParameterSpec;
 import android.security.keystore.KeyProperties;
 
 import com.google.gson.Gson;
+import com.netease.lib_network.entitys.NewWalletToken;
 import com.paymennt.crypto.bip32.Network;
 import com.paymennt.crypto.bip32.wallet.AbstractWallet;
-import com.paymennt.solanaj.wallet.SolanaWallet;
+import com.zksg.kudoud.entitys.UiWalletToken;
+import com.zksg.kudoud.wallet.wallet.SolanaWallet;
 import com.tencent.mmkv.MMKV;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.callback.WalletCreateCallback;
 import com.zksg.kudoud.contants.CoinType;
-import com.zksg.kudoud.entitys.TokenInfoEntity;
 import com.zksg.kudoud.utils.MnemonicUtils;
 import com.zksg.kudoud.utils.ObjectSerializationUtils;
 
@@ -87,14 +90,13 @@ public class SolanaWalletManager {
      */
     private static String saveMysolana(Context context, String walletName,String name, SolanaWallet wallet,String password) throws Exception {
         String keyAlias = KEY_ALIAS_PREFIX + walletName;
+        String address=wallet.getAddress(0, AbstractWallet.Chain.EXTERNAL,null);
         String walletJson = new Gson().toJson(wallet);
         byte[] encryptedWallet = encrypt(walletJson.getBytes(), keyAlias,password);
 
+        UiWalletToken defalut=new UiWalletToken(TOKEN_SOL_CONTRACT,"0","9","0","SOL","",R.mipmap.ic_solana_common);
         //初始化的时候 构建一个sol地址token出来，所有的钱包都是这个样子
-        List<TokenInfoEntity> tokens=new ArrayList<>();
-        //一般第一个token都使用本地的图片
-        tokens.add(new TokenInfoEntity("So11111111111111111111111111111111111111112","",R.mipmap.ic_solana_common,context.getString(R.string.str_wallet_default_name)));
-        SimpleWallet mySimpleWallet=new SimpleWallet(keyAlias, CoinType.SOLANA.getKey(), name,walletName,tokens);
+        SimpleWallet mySimpleWallet=new SimpleWallet(keyAlias, CoinType.SOLANA.getKey(), name,walletName,defalut);
         byte[]  simpleWallet = ObjectSerializationUtils.serializeObject(mySimpleWallet);
 
         saveToMmkv(simpleWallet, keyAlias,encryptedWallet);
@@ -138,6 +140,13 @@ public class SolanaWalletManager {
     public static SolanaWallet getWallet(Context context, String walletName,String password) throws Exception {
         String keyAlias = KEY_ALIAS_PREFIX + walletName;
         byte[] encryptedWallet = loadFromKeystore(keyAlias);
+        String walletJson = new String(decrypt(encryptedWallet, keyAlias,password));
+        return new Gson().fromJson(walletJson, SolanaWallet.class);
+    }
+
+    public static SolanaWallet getWallet( String walletName,String password,byte[] encryptedata) throws Exception {
+        String keyAlias = walletName;
+        byte[] encryptedWallet = encryptedata;
         String walletJson = new String(decrypt(encryptedWallet, keyAlias,password));
         return new Gson().fromJson(walletJson, SolanaWallet.class);
     }

@@ -6,6 +6,7 @@ import static com.netease.lib_network.constants.config.server_port;
 
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
+import com.netease.lib_network.entitys.NewWalletToken;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
 import com.zksg.lib_api.beans.CommonResponse;
@@ -16,6 +17,7 @@ import com.zksg.lib_api.beans.UpgradeBean;
 import com.zksg.lib_api.login.LoginBean;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Single;
 import okhttp3.RequestBody;
@@ -26,11 +28,14 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface ApiService {
 
 
-    String BASE_URL = "https://api.dexscreener.com";
+//    String BASE_URL = "https://api.dexscreener.com";
+      String BASE_URL=" http://192.168.10.4:3000";
+
 
     @GET("login/cellphone")
     Single<LoginBean>  login(@Query("phone") String phone, @Query("password") String password);
@@ -85,6 +90,16 @@ public interface ApiService {
 
     @GET("/latest/dex/tokens/{tokenAddresses}")
     Single<DexScreenTokenInfo> getTokenInfoForDexscreen(@Path("tokenAddresses") String address);
+
+
+    @GET("/v4/price/{ids}")
+    Single<DexScreenTokenInfo> getTokenInfoForJupSwap(@Path("ids") String address);
+    @GET("/api/wallet/getTokenList")
+    Single<CommonResponse<List<NewWalletToken>>> getWalletTokens(@Query("wallet") String wallet);
+
+    @GET("/api/wallet/getWalletSolBalance")
+    Single<CommonResponse<String>> getWalletSolBalance(@Query("wallet") String wallet);
+
 
 
 }

@@ -170,11 +170,17 @@ dependencies {
     //fastjson
     implementation 'com.alibaba:fastjson:1.2.76'
 
-    //solana client
+    /**
+     *      solana client 这里导入了这个库 但是没有用到 从新把库里面的代码copy出去另外创建一个wallet库
+     这里导入只是借用了这个库的依赖环境而已，因为我需要重写里面的节点代码
+     */
+
     implementation ('com.paymennt:solanaj:0.0.7') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
     implementation 'org.bitcoinj:bitcoinj-core:0.16.2'
+
+
 
 
 

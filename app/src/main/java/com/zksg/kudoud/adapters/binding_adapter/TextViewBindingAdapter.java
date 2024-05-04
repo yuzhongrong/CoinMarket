@@ -1,13 +1,16 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
 import com.hjq.shape.view.ShapeButton;
+import com.kunminx.architecture.domain.message.MutableResult;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.NewWalletToken;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.Kline24ChangeChannelEnum;
 import com.zksg.kudoud.entitys.Base2QuoEntity;
@@ -15,6 +18,7 @@ import com.zksg.kudoud.fragments.Chart5MFragment;
 import com.zksg.kudoud.state.Chart1HLineFragmentViewModel;
 import com.zksg.kudoud.state.Chart5KLineFragmentViewModel;
 import com.zksg.kudoud.state.Chart6HLineFragmentViewModel;
+import com.zksg.kudoud.state.MeFragmentViewModel;
 import com.zksg.kudoud.utils.DateUtils;
 import com.zksg.kudoud.utils.DigitUtils;
 import com.zksg.kudoud.widgets.CircularProgressBar;
@@ -125,6 +129,15 @@ public class TextViewBindingAdapter {
         tv.setText(dollar+DigitUtils.formatAmount(fdv));
     }
 
+
+    @BindingAdapter(value = {"wallet_token_mc_tv"},requireAll = false)
+    public static void wallet_token_mc_tv(TextView tv,String value) {
+        if(tv==null)return;
+        double wallet_token_mc=new BigDecimal(value).longValue();
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        tv.setText(dollar+DigitUtils.formatPriceAmount(wallet_token_mc));
+    }
+
     //计算币的价格
     @BindingAdapter(value = {"meme_price_tv"},requireAll = false)
     public static void memepriceTv(TextView tv,String value) {
@@ -132,6 +145,15 @@ public class TextViewBindingAdapter {
         double price=new BigDecimal(value).doubleValue();
         String dollar=tv.getContext().getString(R.string.str_daller);
         tv.setText(dollar+DigitUtils.formatPriceAmount(price));
+    }
+
+
+    @BindingAdapter(value = {"meme_price_normal_tv"},requireAll = false)
+    public static void meme_price_normal_tv(TextView tv,String value) {
+        if(tv==null||TextUtils.isEmpty(value))return;
+        double price=new BigDecimal(value).doubleValue();
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        tv.setText(dollar+DigitUtils.formatNumberWithCommas(price));
     }
 
 
@@ -152,6 +174,20 @@ public class TextViewBindingAdapter {
         if(tv==null||value==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
         tv.setText(dollar+DigitUtils.formatAmount(value.getUsd()));
+    }
+
+    @BindingAdapter(value = {"meme_wallet_token_price_tv"},requireAll = false)
+    public static void meme_wallet_token_price_tv(TextView tv, String value) {
+        if(tv==null||value==null)return;
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        tv.setText(dollar+value);
+    }
+
+
+    @BindingAdapter(value = {"meme_wallet_token_amount_tv"},requireAll = false)
+    public static void meme_wallet_token_amount_tv(TextView tv, String amount) {
+        if(tv==null|| TextUtils.isEmpty(amount))return;
+        tv.setText(DigitUtils.formatNumberWithCommas(new BigDecimal(amount).doubleValue()));
     }
 
 
@@ -474,8 +510,20 @@ public class TextViewBindingAdapter {
         }
 
     }
-  
 
+    @BindingAdapter(value = {"calculateTokenDallor","vm"},requireAll = false)
+    public static void calculateTokenDallor(TextView tv, NewWalletToken token, MutableResult<String> money){
+        if(tv==null||token==null||money==null)return;
+        //获取balance
+        BigDecimal balance=  new BigDecimal(token.getBalance());
+        BigDecimal price=new BigDecimal(token.getPrice());
+        BigDecimal amount=balance.multiply(price);
+        String flat=tv.getContext().getString(R.string.str_vol_daller);
+        tv.setText(flat+DigitUtils.formatNumberWithCommas(amount.doubleValue()));
+
+        String result= new BigDecimal(money.getValue()).add(amount).toString();
+        money.setValue(result);
+    }
 
 
 }

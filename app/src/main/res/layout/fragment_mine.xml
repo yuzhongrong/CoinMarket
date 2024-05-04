@@ -88,17 +88,19 @@
                     android:layout_height="@dimen/dp25"
                     android:src="@mipmap/ic_solana_common"
                     app:shape_radius="@dimen/dp45"
+                    meme_common_local_imv="@{vm.mSimpleWallet.defaultsol.resId}"
                     />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="SOLANA"
+                    android:text="@string/str_f_default_n_a"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     android:textSize="@dimen/sp12"
                     android:layout_marginLeft="@dimen/dp5"
+                    loadtext="@{vm.mSimpleWallet.network}"
 
                     />
 
@@ -113,6 +115,7 @@
                     android:gravity="center_horizontal"
                     android:layout_marginLeft="@dimen/dp5"
                     android:ellipsize="middle"
+                    loadtext="@{vm.mSimpleWallet.address}"
                     android:textColor="@color/colorTextNormal"
                     />
                 <ImageView
@@ -150,9 +153,11 @@
                     android:gravity="center"
                     android:text="$0.00"
                     android:textColor="@color/white"
+                    android:textSize="@dimen/sp35"
+                    android:textStyle="bold"
+                    meme_price_normal_tv="@{vm.mWalletAmountMoney}"
 
-                    android:textSize="@dimen/sp45"
-                    android:textStyle="bold" />
+                    />
 
 
 
@@ -315,8 +320,7 @@
                 app:shape_strokeWidth="@dimen/dp0"
                 app:shape_strokeColor="@color/colorPrimaryLight"
                 android:padding="@dimen/dp1"
-                submitList="@{vm.mWalletTokens}"
-
+                submitList="@{vm.uitokenInfos}"
                 />
 
 

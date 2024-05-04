@@ -128,7 +128,12 @@ class MainActivity : BaseActivity() {
 
        var localSelectWallet= SelectWalletEntity(network,keyAlias)
         //初始化当前选中钱包
-        mSharedViewModel!!.selectWallet.postValue(localSelectWallet)
+
+        mSharedViewModel!!.requestSelectWallet(localSelectWallet)
+
+
+
+
     }
 
 //    class States : StateHolder() {

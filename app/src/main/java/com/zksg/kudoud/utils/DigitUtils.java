@@ -2,6 +2,7 @@ package com.zksg.kudoud.utils;
 
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -56,15 +57,18 @@ public class DigitUtils {
     }
 
     //格式化大数字整型
-    public static String formatNumberWithCommas(long number) {
-        // 创建 NumberFormat 对象，指定本地化为默认地区
-        NumberFormat nf = NumberFormat.getInstance(Locale.getDefault());
+    public static String formatNumberWithCommas(double number) {
+        // 如果小于 0，则直接返回原始的 double 字符串
+        if (number < 0) {
+            return String.valueOf(number);
+        }
 
-        // 设置分组大小为 3
-        nf.setGroupingUsed(true);
+        // 设置小数点后的位数为 2
+        DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance(Locale.getDefault());
+        DecimalFormat df = new DecimalFormat("#,###.##", symbols);
 
-        // 使用 NumberFormat 格式化数字，并返回格式化后的字符串
-        return nf.format(number);
+        // 对数字进行舍入，保留两位小数，并使用 DecimalFormat 格式化数字
+        return df.format(Math.round(number * 100) / 100.0);
     }
 
 

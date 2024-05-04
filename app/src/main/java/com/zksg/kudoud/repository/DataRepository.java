@@ -25,6 +25,7 @@ import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
+import com.netease.lib_network.entitys.NewWalletToken;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -36,6 +37,7 @@ import com.zksg.lib_api.beans.UpgradeBean;
 import com.zksg.lib_api.login.LoginBean;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.MediaType;
@@ -446,6 +448,78 @@ public class DataRepository {
                     }
                 });
     }
+
+
+    public void getTokenInfoForJup(String arr_address,DataResult.Result<DexScreenTokenInfo> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getTokenInfoForJupSwap(arr_address)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<DexScreenTokenInfo>() {
+                    @Override
+                    protected void onSuccessed(DexScreenTokenInfo bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
+    public void getWalletTokensFromRepository(String wallet,DataResult.Result<CommonResponse<List<NewWalletToken>>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getWalletTokens(wallet)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<List<NewWalletToken>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<List<NewWalletToken>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+    public void getWalletSolBalanceFromRepository(String wallet,DataResult.Result<CommonResponse<String>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getWalletSolBalance(wallet)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<String>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<String> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
 
 
 }

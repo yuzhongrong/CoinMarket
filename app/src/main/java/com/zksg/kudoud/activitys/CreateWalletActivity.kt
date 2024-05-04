@@ -46,7 +46,7 @@ class CreateWalletActivity : BaseDialogActivity() {
 
     fun initData(){
 
-//        mCreateWalletActivityViewmodel?.getBalance()
+
         mCreateWalletActivityViewmodel!!.loadingVisible.observe(this){
             if(it)showDialog() else dismissDialog()
         }

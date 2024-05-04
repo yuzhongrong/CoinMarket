@@ -25,7 +25,7 @@
     android:clickable="true"
     app:shape_solidPressedColor="@color/c_29313d"
     android:layout_marginRight="@dimen/dp5"
-    layout_bg="@{mywallet.getKeyAlias().equals(mshareVm.selectWallet.getKeyAlias())}"
+    layout_bg="@{mywallet.getKeyAlias().equals(mshareVm.getOneSelectWallet().keyAlias)}"
 
     >
 

@@ -32,8 +32,9 @@ public class WalletListdapter extends SimpleDataBindingAdapter<SimpleWallet, Ite
             //1.更新本地缓存
             MMKV.mmkvWithID("currentWallet").encode("netwrokgroup",item.getNetwork());
             MMKV.mmkvWithID("currentWallet").encode("keyAlias",item.getKeyAlias());
+
             //2.post全局的当前钱包
-            sharedViewModel.selectWallet.postValue(new SelectWalletEntity(item.getNetwork(),item.getKeyAlias()));
+            sharedViewModel.requestSelectWallet(new SelectWalletEntity(item.getNetwork(),item.getKeyAlias()));
             mActivity.finish();
         });
 

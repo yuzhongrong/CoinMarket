@@ -5,8 +5,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="meme"
-            type="com.zksg.lib_api.beans.MemeBaseEntry" />
+            name="uiwallettoken"
+            type="com.zksg.kudoud.entitys.UiWalletToken" />
+
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.MeFragmentViewModel" />
 
     </data>
 <com.hjq.shape.layout.ShapeRelativeLayout
@@ -24,10 +29,10 @@
         android:id="@+id/icon"
         android:layout_width="@dimen/dp45"
         android:layout_height="@dimen/dp45"
-        meme_imv="@{meme.logoURI}"
+        meme_imv_wallet="@{uiwallettoken}"
         app:shape_radius="@dimen/dp45"
         android:src="@mipmap/ic_solana_common"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         />
 
 
@@ -43,10 +48,11 @@
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SOL"
+            android:text="@string/str_f_default_n_a"
             android:textColor="@color/whitesmoke"
             android:textSize="@dimen/sp15"
             android:textStyle="bold"
+            loadtext="@{uiwallettoken.symbol}"
 
             />
 
@@ -56,9 +62,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp4"
-            android:text="$158.27"
+            android:text="@string/str_f_default_n_a"
             android:textColor="@color/primaryTextGray"
-            android:textSize="@dimen/sp12" />
+            android:textSize="@dimen/sp12"
+            meme_wallet_token_price_tv="@{uiwallettoken.price}"
+            />
 
 
     </LinearLayout>
@@ -76,10 +84,14 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="200,023,009.56"
+            android:text="@string/str_f_default_n_a"
             android:textColor="@color/white"
             android:textSize="@dimen/sp15"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            meme_wallet_token_amount_tv="@{uiwallettoken.balance}"
+
+            />
 
         <TextView
             android:id="@+id/number_allprice"
@@ -93,7 +105,11 @@
             android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12"
             android:textStyle="bold"
-            app:shape_radius="@dimen/dp5" />
+            app:shape_radius="@dimen/dp5"
+            calculateTokenDallor="@{uiwallettoken}"
+            vm="@{vm.mWalletAmountMoney}"
+            />
+
 
     </LinearLayout>
 

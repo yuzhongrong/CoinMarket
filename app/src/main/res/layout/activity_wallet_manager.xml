@@ -124,7 +124,7 @@
                 >
 
                 <TextView
-                    loadtext="@{vm_share.selectWallet.netwrokgroup}"
+                    loadtext="@{vm_share.getOneSelectWallet().netwrokgroup}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
