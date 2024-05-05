@@ -1,5 +1,6 @@
 package com.zksg.kudoud.utils.manager;
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+import static com.zksg.kudoud.wallet.constants.Constants.UI_TOKENS;
 
 import android.content.Context;
 import android.security.keystore.KeyGenParameterSpec;
@@ -94,12 +95,12 @@ public class SolanaWalletManager {
         String walletJson = new Gson().toJson(wallet);
         byte[] encryptedWallet = encrypt(walletJson.getBytes(), keyAlias,password);
 
-        UiWalletToken defalut=new UiWalletToken(TOKEN_SOL_CONTRACT,"0","9","0","SOL","",R.mipmap.ic_solana_common);
+        UiWalletToken defalut=new UiWalletToken(TOKEN_SOL_CONTRACT,"0","9","0","SOL","Wrapped SOL","",R.mipmap.ic_solana_common);
         //初始化的时候 构建一个sol地址token出来，所有的钱包都是这个样子
         SimpleWallet mySimpleWallet=new SimpleWallet(keyAlias, CoinType.SOLANA.getKey(), name,walletName,defalut);
         byte[]  simpleWallet = ObjectSerializationUtils.serializeObject(mySimpleWallet);
 
-        saveToMmkv(simpleWallet, keyAlias,encryptedWallet);
+        saveToMmkv(simpleWallet,defalut, keyAlias,encryptedWallet);
         return keyAlias;
     }
     //更新钱包里面的token
@@ -321,12 +322,16 @@ public class SolanaWalletManager {
      *@param encryptedWallet :  带私钥的solana钱包
      * @throws Exception
      */
-    private static void saveToMmkv(byte[] simplewallet, String keyAlias,byte[] encryptedWallet){
+    private static void saveToMmkv(byte[] simplewallet,UiWalletToken defaultsol, String keyAlias,byte[] encryptedWallet) throws Exception {
         //这个组用于展示页面基本信息
         MMKV.mmkvWithID(CoinType.SOLANA.getKey()).encode(keyAlias,simplewallet);
         //这个组提供查询获取加密数据功能--例如公钥私钥
         MMKV.defaultMMKV().encode(keyAlias,encryptedWallet);
-
+        //初始化一个tokens列表保存到本地 为了使加载的时候可以直接拿这个列表初始化
+        List<UiWalletToken> uitokens=new ArrayList<>();
+        uitokens.add(defaultsol);
+       byte[] saveContent= ObjectSerializationUtils.serializeObject(uitokens);
+        MMKV.mmkvWithID(UI_TOKENS).encode(keyAlias,saveContent);
 //       SolanaWallet solanaWallet= getSolanaWalletFromMMKV(keyAlias);
 //        HdPrivateKey privateKey= solanaWallet.getPrivateKey(0, AbstractWallet.Chain.EXTERNAL, null);
 //        SolanaAccount solanaAccount=new SolanaAccount(privateKey);

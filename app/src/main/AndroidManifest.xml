@@ -200,6 +200,10 @@
             android:exported="false"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".activitys.CoinManagerActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
 
 
 

@@ -302,4 +302,9 @@
     <string name="str_wallet_create_fail">钱包创建失败!!</string>
     <string name="str_no_backup">未备份</string>
     <string name="str_backuped">已备份</string>
+    <string name="str_coin_manager">币种管理</string>
+    <string name="str_cus_coin">自定义币种</string>
+    <string name="str_added_coin">已添加币种</string>
+    <string name="str_hot_coin">热门币种</string>
+    <string name="str_add_coin">添加代币</string>
 </resources>

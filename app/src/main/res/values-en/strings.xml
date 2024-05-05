@@ -181,5 +181,10 @@
     <string name="str_wallet_create_fail">Wallet Create Fail!!</string>
     <string name="str_no_backup">Not Backup</string>
     <string name="str_backuped">Backuped</string>
+    <string name="str_coin_manager">Coin Manager</string>
+    <string name="str_cus_coin">Custom Coin</string>
+    <string name="str_added_coin">Added Coin</string>
+    <string name="str_hot_coin">Trending Coin</string>
+    <string name="str_add_coin">Add Coin</string>
 
 </resources>

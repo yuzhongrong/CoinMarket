@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.CoinManagerActivityViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.CoinManagerActivity.ClickProxy" />
+
+        <variable
+            name="addedadapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+
+
+        <variable
+            name="hotadapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+
+    </data>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/bg_layout_common"
+            >
+            <com.hjq.shape.layout.ShapeRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                app:shape_radius="@dimen/sp30"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
+                >
+
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:layout_alignParentLeft="true"
+                    android:src="@mipmap/ic_back_left"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/dp5"
+                    app:shape_solidColor="@color/c_29313d"
+                    app:shape_radius="@dimen/dp45"
+                    android:padding="@dimen/dp3"
+                    app:shape_solidPressedColor="@color/c_a0a0ab"
+                    android:clickable="true"
+                    android:onClick="@{()->click.close()}"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/str_coin_manager"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp20"
+                    android:textStyle="bold" />
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:src="@mipmap/ic_star"
+                    android:layout_centerVertical="true"
+                    app:shape_solidColor="@color/c_2e2e2e"
+                    app:shape_radius="@dimen/dp45"
+
+                    app:shape_solidPressedColor="@color/c_a0a0ab"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    />
+            </com.hjq.shape.layout.ShapeRelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:id="@+id/layout_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/logo"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                app:shape_solidColor="@color/c_29313d"
+                app:shape_radius="@dimen/dp45"
+                android:layout_marginTop="@dimen/dp15"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:src="@mipmap/ic_search1"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:padding="@dimen/dp1"
+
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="搜索币种,合约地址"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:textColor="@color/primaryText"
+                    android:textSize="@dimen/sp12"
+                    />
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp5"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:text="@string/str_cus_coin"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp15"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/ic_right_back"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp1"
+                android:background="@color/c_29313d"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_added_coin"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp15"
+                    android:textSize="@dimen/sp13"
+                    android:textStyle="bold"
+                    android:textColor="@color/primaryTextGray" />
+        <androidx.recyclerview.widget.RecyclerView
+
+            linearAdapter="@{addedadapter}"
+            cannotScrollVertically="@{false}"
+            itemspace="@{1}"
+            orientation="@{1}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            app:shape_radius="@dimen/dp10"
+            app:shape_strokeWidth="@dimen/dp0"
+            app:shape_strokeColor="@color/colorPrimaryLight"
+            android:padding="@dimen/dp1"
+            submitList="@{vm.localdatas}"
+            />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_hot_coin"
+                android:textSize="@dimen/sp13"
+                android:layout_marginLeft="@dimen/dp15"
+                android:textColor="@color/primaryTextGray"
+                android:layout_marginTop="@dimen/dp15"
+                android:textStyle="bold"
+
+                />
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            linearAdapter="@{hotadapter}"
+            cannotScrollVertically="@{false}"
+            itemspace="@{1}"
+            orientation="@{1}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp8"
+            app:shape_radius="@dimen/dp10"
+            app:shape_strokeWidth="@dimen/dp0"
+            app:shape_strokeColor="@color/colorPrimaryLight"
+            android:padding="@dimen/dp1"
+            submitList="@{vm.hotdatas}"
+            />
+      </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+</layout>

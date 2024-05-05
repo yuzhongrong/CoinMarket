@@ -29,7 +29,7 @@
         android:id="@+id/icon"
         android:layout_width="@dimen/dp45"
         android:layout_height="@dimen/dp45"
-        meme_imv_wallet="@{uiwallettoken}"
+        meme_imv_if_sol="@{uiwallettoken}"
         app:shape_radius="@dimen/dp45"
         android:src="@mipmap/ic_solana_common"
         android:scaleType="centerCrop"

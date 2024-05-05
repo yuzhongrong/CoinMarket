@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.DiffUtil;
 
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.NewWalletToken;
+import com.zksg.kudoud.entitys.JubToken;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.entitys.WalletNetworkEntity;
 import com.zksg.kudoud.utils.manager.SimpleWallet;
@@ -48,6 +49,7 @@ public class DiffUtils {
     private DiffUtil.ItemCallback<SimpleWallet> mMyWalletEntityCallback;
 
     private DiffUtil.ItemCallback<UiWalletToken> mTokenInfoEntityCallback;
+    private DiffUtil.ItemCallback<JubToken> mJubTokenItemCallback;
 
 
 //    private DiffUtil.ItemCallback<MainRecommendPlayListBean.RecommendBean> mRecommendPlaylistItemCallback;
@@ -224,6 +226,24 @@ public class DiffUtils {
             };
         }
         return mBabyItemCallback;
+    }
+
+
+    public DiffUtil.ItemCallback<JubToken> getJubTokenItemCallback() {
+        if (mJubTokenItemCallback == null) {
+            mJubTokenItemCallback = new DiffUtil.ItemCallback<JubToken>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull JubToken oldItem, @NonNull JubToken newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull JubToken oldItem, @NonNull JubToken newItem) {
+                    return oldItem.getAddress().equals(newItem.getAddress());
+                }
+            };
+        }
+        return mJubTokenItemCallback;
     }
 
 
