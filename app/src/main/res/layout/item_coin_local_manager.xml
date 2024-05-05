@@ -71,6 +71,7 @@
 
 
     <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/action"
         meme_imv_token_remove="@{meme}"
         android:layout_width="@dimen/dp25"
         android:layout_height="@dimen/dp25"

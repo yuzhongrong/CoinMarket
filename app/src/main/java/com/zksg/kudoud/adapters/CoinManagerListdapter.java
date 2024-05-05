@@ -1,6 +1,7 @@
 package com.zksg.kudoud.adapters;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,14 +24,12 @@ public class CoinManagerListdapter extends SimpleDataBindingAdapter<UiWalletToke
         super(context, R.layout.item_coin_add_manager, DiffUtils.getInstance().geTokenInfoEntityCallback());
         this.mContex=context;
         this.mCoinManagerActivityViewModel=((CoinManagerActivity)mContex).getViewModel();
-        setOnItemClickListener((item, position) -> {
-//            Intent intent=new Intent(context, CoinsDetailActivity.class);
-//            intent.putExtra("contract",item.getAddress());
-//            intent.putExtra("symbol",item.getSymbol());
-//            context.startActivity(intent);
+        setOnItemClickViewListener((item, position, view) -> {
+            //必须点击imageview
+            if(view.getId()!=R.id.action)return;
             //先localdatas更新集合
-           List<UiWalletToken> oldlacaldatas=mCoinManagerActivityViewModel.localdatas.getValue();
-           oldlacaldatas.add(item);
+            List<UiWalletToken> oldlacaldatas=mCoinManagerActivityViewModel.localdatas.getValue();
+            oldlacaldatas.add(item);
             mCoinManagerActivityViewModel.localdatas.postValue(oldlacaldatas);
 
             //再更新hotdatas
@@ -39,10 +38,7 @@ public class CoinManagerListdapter extends SimpleDataBindingAdapter<UiWalletToke
             mCoinManagerActivityViewModel.hotdatas.postValue(oldhotdatas);
 
             //
-
-
-
-        });
+        },R.id.action);
     }
 
 

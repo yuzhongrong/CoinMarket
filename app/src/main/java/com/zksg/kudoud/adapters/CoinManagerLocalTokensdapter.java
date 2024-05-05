@@ -3,6 +3,7 @@ package com.zksg.kudoud.adapters;
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,21 +28,22 @@ public class CoinManagerLocalTokensdapter extends SimpleDataBindingAdapter<UiWal
         super(context, R.layout.item_coin_local_manager, DiffUtils.getInstance().geTokenInfoEntityCallback());
         this.mContex=context;
         this.mCoinManagerActivityViewModel=((CoinManagerActivity)mContex).getViewModel();
-        setOnItemClickListener((item, position) -> {
-             //排除sol
+
+        setOnItemClickViewListener((OnItemClickViewListener<UiWalletToken>) (item, position, view) -> {
+            //必须点击imageview
+            if(view.getId()!=R.id.action)return;
+            //排除sol
             if(item.getMint().equalsIgnoreCase(TOKEN_SOL_CONTRACT))return;
             //更新localtokens列表,然后把这个item从本地删除
-          List<UiWalletToken> oldLocalDatas=mCoinManagerActivityViewModel.localdatas.getValue();
-                                            oldLocalDatas.remove(item);
+            List<UiWalletToken> oldLocalDatas=mCoinManagerActivityViewModel.localdatas.getValue();
+            oldLocalDatas.remove(item);
             mCoinManagerActivityViewModel.localdatas.postValue(oldLocalDatas);
             //更新hottokens列表
             List<UiWalletToken> oldHotDatas= mCoinManagerActivityViewModel.hotdatas.getValue();
-                                oldHotDatas.add(item);
+            oldHotDatas.add(item);
 
             mCoinManagerActivityViewModel.hotdatas.postValue(oldHotDatas);
-
-
-        });
+        },R.id.action);
     }
 
     @Override

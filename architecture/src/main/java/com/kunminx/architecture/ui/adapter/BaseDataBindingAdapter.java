@@ -22,10 +22,20 @@ public abstract class BaseDataBindingAdapter<M, B extends ViewDataBinding> exten
     protected Context mContext;
 
     private OnItemClickListener<M> mOnItemClickListener;
+
+    private OnItemClickViewListener<M> mOnItemClickViewListener;
     private OnItemLongClickListener<M> mOnItemLongClickListener;
+
+    private int clickViewId;
 
     public void setOnItemClickListener(OnItemClickListener<M> onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
+    }
+
+    public void setOnItemClickViewListener(OnItemClickViewListener<M> onItemClickViewListener,int viewId) {
+        this.mOnItemClickViewListener = onItemClickViewListener;
+        this.clickViewId=viewId;
+
     }
 
     public void setOnItemLongClickListener(OnItemLongClickListener<M> onItemLongClickListener) {
@@ -54,7 +64,18 @@ public abstract class BaseDataBindingAdapter<M, B extends ViewDataBinding> exten
                 int position = holder.getAdapterPosition();
                 mOnItemClickListener.onItemClick(getItem(position), position);
             }
+
         });
+        if(mOnItemClickViewListener!=null){
+            holder.itemView.findViewById(clickViewId).setOnClickListener(v->{
+                int position = holder.getAdapterPosition();
+                mOnItemClickViewListener.onItemClick(getItem(position), position,v);
+
+            });
+
+        }
+
+
         holder.itemView.setOnLongClickListener(v -> {
             if (mOnItemLongClickListener != null) {
                 int position = holder.getAdapterPosition();
@@ -97,7 +118,17 @@ public abstract class BaseDataBindingAdapter<M, B extends ViewDataBinding> exten
 
     public interface OnItemClickListener<M> {
         void onItemClick(M item, int position);
+
     }
+
+    public interface OnItemClickViewListener<M> {
+        public int resId=0;
+        void onItemClick(M item, int position,View viewId);
+
+
+    }
+
+
 
     public interface OnItemLongClickListener<M> {
         void onItemLongClick(M item, int position);

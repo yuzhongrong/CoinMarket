@@ -71,6 +71,7 @@
 
 
     <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/action"
         android:layout_width="@dimen/dp25"
         android:layout_height="@dimen/dp25"
         android:layout_alignParentRight="true"
