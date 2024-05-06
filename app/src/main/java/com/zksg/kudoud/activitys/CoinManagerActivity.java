@@ -111,7 +111,8 @@ public class CoinManagerActivity extends BaseActivity {
             throw new RuntimeException(e);
         }
 
-        initSearchData(tokens,initHots(tokens));
+       List<UiWalletToken> hotDatas=initHots(tokens);
+       initSearchData(tokens,hotDatas);
 
     }
 

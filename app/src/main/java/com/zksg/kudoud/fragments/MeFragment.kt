@@ -96,8 +96,6 @@ class MeFragment : BaseDialogFragment() {
 
             initLoadingTokensForWallet(simpleWallet)
 
-
-
         }
 
 
