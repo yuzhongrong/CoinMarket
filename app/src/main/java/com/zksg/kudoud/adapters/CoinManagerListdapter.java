@@ -27,6 +27,7 @@ public class CoinManagerListdapter extends SimpleDataBindingAdapter<UiWalletToke
         setOnItemClickViewListener((item, position, view) -> {
             //必须点击imageview
             if(view.getId()!=R.id.action)return;
+            item.setShow(true);
             //先localdatas更新集合
             List<UiWalletToken> oldlacaldatas=mCoinManagerActivityViewModel.localdatas.getValue();
             oldlacaldatas.add(item);

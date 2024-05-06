@@ -241,6 +241,11 @@ public class CommonBindingAdapter {
         editText.addTextChangedListener(listener);
     }
 
+    @BindingAdapter(value = {"textfocusChangedListener"})
+    public static void textfocusChangedListener(EditText editText, View.OnFocusChangeListener listener) {
+        editText.setOnFocusChangeListener(listener);
+    }
+
     @BindingAdapter(value = {"checkChangedListener"})
     public static void checkChangedListener(SwitchButton checkBox, SwitchButton.OnCheckedChangeListener listener) {
         checkBox.setOnCheckedChangeListener(listener);

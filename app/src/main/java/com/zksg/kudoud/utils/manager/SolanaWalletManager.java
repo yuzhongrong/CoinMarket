@@ -96,6 +96,7 @@ public class SolanaWalletManager {
         byte[] encryptedWallet = encrypt(walletJson.getBytes(), keyAlias,password);
 
         UiWalletToken defalut=new UiWalletToken(TOKEN_SOL_CONTRACT,"0","9","0","SOL","Wrapped SOL","",R.mipmap.ic_solana_common);
+        defalut.setShow(true);
         //初始化的时候 构建一个sol地址token出来，所有的钱包都是这个样子
         SimpleWallet mySimpleWallet=new SimpleWallet(keyAlias, CoinType.SOLANA.getKey(), name,walletName,defalut);
         byte[]  simpleWallet = ObjectSerializationUtils.serializeObject(mySimpleWallet);

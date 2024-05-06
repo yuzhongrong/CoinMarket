@@ -9,6 +9,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PictureDrawable;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
+import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -119,6 +121,18 @@ public class ImageLoaderManager {
 				.transform(transformation)
 				.into(imageView);
 
+
+	}
+
+
+	public void displayImageForSvg(final ImageView imageView, String url) {
+
+//		RequestBuilder<PictureDrawable> requestBuilder = Glide.with(imageView.getContext())
+//				.as(PictureDrawable.class)
+////				.transition(withCrossFade())
+//				.listener(new SvgSoftwareLayerSetter());
+//
+//		requestBuilder.load(url).into(imageView);
 
 	}
 

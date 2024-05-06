@@ -68,6 +68,25 @@ public class ImageViewBindingAdapter {
 
     }
 
+    @BindingAdapter(value = {"meme_imv_token_amount_show"},requireAll = false)
+    public static void meme_imv_token_amount_show(ImageView imv, UiWalletToken token) {
+
+        if(imv==null||token==null)return;
+        if(token.getMint().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){//默认sol不让操作只显示ic_not_minus
+            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_not_minus,0);
+        }else{
+            if(token.isShow()){
+                ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_minus,0);
+            }else if(!token.isShow()){
+                ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_plus,0);
+            }
+
+        }
+
+
+
+    }
+
     @BindingAdapter(value = {"meme_imv_if_sol"},requireAll = false)
     public static void meme_imv_if_sol(ImageView imv, UiWalletToken token) {
         if(imv==null||token==null)return;

@@ -75,7 +75,7 @@
     <string name="str_save_device_btn">保存设备</string>
     <string name="str_del_baby">确定删除baby吗?</string>
     <string name="str_del">删除</string>
-    <string name="str_cancel">取消</string>
+    <string name="str_cancel">Cancel</string>
     <string name="str_add">添加</string>
     <string name="str_feed_tip">喂奶提醒</string>
     <string name="str_timer">时间</string>

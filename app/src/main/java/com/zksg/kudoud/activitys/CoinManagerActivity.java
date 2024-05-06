@@ -3,7 +3,10 @@ package com.zksg.kudoud.activitys;
 import static com.zksg.kudoud.wallet.constants.Constants.UI_TOKENS;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -20,12 +23,14 @@ import com.zksg.kudoud.BR;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.adapters.CoinManagerListdapter;
 import com.zksg.kudoud.adapters.CoinManagerLocalTokensdapter;
+import com.zksg.kudoud.adapters.CoinManagerSearchTokensdapter;
 import com.zksg.kudoud.dialogs.ResetFactoryDialog;
 import com.zksg.kudoud.entitys.JubToken;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.state.AboutViewModel;
 import com.zksg.kudoud.state.CoinManagerActivityViewModel;
 import com.zksg.kudoud.utils.ObjectSerializationUtils;
+import com.zksg.kudoud.utils.SearchTokenUtils;
 import com.zksg.kudoud.utils.TokenConverter;
 
 import java.lang.reflect.Type;
@@ -50,7 +55,11 @@ public class CoinManagerActivity extends BaseActivity {
         return new DataBindingConfig(R.layout.activity_coin_manager, BR.vm,mCoinManagerActivityViewModel)
                 .addBindingParam(BR.click,new ClickProxy())
                 .addBindingParam(BR.hotadapter,new CoinManagerListdapter(this))
-                .addBindingParam(BR.addedadapter,new CoinManagerLocalTokensdapter(this));
+                .addBindingParam(BR.addedadapter,new CoinManagerLocalTokensdapter(this))
+                .addBindingParam(BR.searchadapter,new CoinManagerSearchTokensdapter(this))
+                .addBindingParam(BR.editfocus, this.onEditFocusChangeListener)
+                .addBindingParam(BR.searchTextWatcher, this.onSearchTextWatcher);
+
     }
 
 
@@ -113,6 +122,18 @@ public class CoinManagerActivity extends BaseActivity {
         }
 
 
+        //初始化总的数据源
+
+                List<UiWalletToken> amountDatas= new ArrayList<>();
+                amountDatas.addAll(tokens);
+                amountDatas.addAll(convertResault);
+                mCoinManagerActivityViewModel.amountdatas.postValue(amountDatas);
+                //用于备份原始数据 在amountdatascache里面查数据 ，把结果post到amountdatas这里
+                mCoinManagerActivityViewModel.amountdatascache.postValue(amountDatas);
+                //关闭 清理图标
+                mCoinManagerActivityViewModel.clearAll.set(false);
+                //还原edittext显示内容
+                mCoinManagerActivityViewModel.empty.set("");
     }
 
 
@@ -122,11 +143,79 @@ public class CoinManagerActivity extends BaseActivity {
         return gson.fromJson(jsonString, listType);
     }
 
+    private final View.OnFocusChangeListener onEditFocusChangeListener=new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+            // 当焦点获取时，启动光标闪烁动画
+            if (hasFocus) {
+
+                //显示搜索布局
+                mCoinManagerActivityViewModel.showSearchLayout.set(true);
+            } else {
+                //隐藏搜索布局
+                mCoinManagerActivityViewModel.showSearchLayout.set(false);
+                initData();
+
+            }
+        }
+    };
+
+    private final TextWatcher onSearchTextWatcher=new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            //获取当前的amountdatascache 数据
+            List<UiWalletToken> cacheTokens=mCoinManagerActivityViewModel.amountdatascache.getValue();
+
+            if(charSequence==null)return;
+
+            if(charSequence.toString().trim().length()==0){
+                mCoinManagerActivityViewModel.amountdatas.postValue(cacheTokens);
+                mCoinManagerActivityViewModel.clearAll.set(false);
+            }else{
+                if(mCoinManagerActivityViewModel.showSearchLayout.get()){
+                    mCoinManagerActivityViewModel.clearAll.set(true);
+                }else{
+                    mCoinManagerActivityViewModel.clearAll.set(false);
+                }
+            }
+
+
+            //在这里查询
+            List<UiWalletToken> searchResult= SearchTokenUtils.searchTokens(cacheTokens,charSequence.toString().trim());
+            mCoinManagerActivityViewModel.amountdatas.postValue(searchResult);
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable editable) {
+
+        }
+    };
+
 
     public class ClickProxy {
         public void close() {
             finish();
 
         }
+
+        public void clearAllText(){
+            mCoinManagerActivityViewModel.empty.set("");
+        }
+
+        public void cancelSearchModel(){
+
+            //关闭搜索模式总开关
+            mCoinManagerActivityViewModel.showSearchLayout.set(false);
+
+//            initData();
+        }
+
     }
 }

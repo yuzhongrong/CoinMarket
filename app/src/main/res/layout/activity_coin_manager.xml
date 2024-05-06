@@ -22,6 +22,21 @@
             name="hotadapter"
             type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
 
+
+        <variable
+            name="searchadapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+
+
+        <variable
+            name="editfocus"
+            type="android.view.View.OnFocusChangeListener" />
+
+
+        <variable
+            name="searchTextWatcher"
+            type="android.text.TextWatcher" />
+
     </data>
 
 
@@ -85,19 +100,28 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp15"
+            >
             <com.hjq.shape.layout.ShapeLinearLayout
                 android:id="@+id/layout_search"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="@dimen/dp40"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/logo"
                 android:layout_marginLeft="@dimen/dp15"
                 android:layout_marginRight="@dimen/dp15"
                 app:shape_solidColor="@color/c_29313d"
                 app:shape_radius="@dimen/dp45"
-                android:layout_marginTop="@dimen/dp15"
+
                 >
 
                 <ImageView
@@ -111,19 +135,48 @@
 
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="搜索币种,合约地址"
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:hint="搜索币种,合约地址"
+                    android:textColorHint="@color/white"
                     android:layout_marginLeft="@dimen/dp5"
                     android:textColor="@color/primaryText"
                     android:textSize="@dimen/sp12"
+                    android:background="@null"
+                    android:text="@{vm.empty}"
+                    android:layout_weight="1"
+                    textfocusChangedListener="@{editfocus}"
+                    textChangedListener="@{searchTextWatcher}"
+                    closeSearchModel="@{vm.showSearchLayout}"
                     />
 
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp15"
+                    android:layout_height="@dimen/dp15"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:src="@mipmap/ic_cancel"
+                    visible="@{vm.clearAll}"
+                    android:onClick="@{()->click.clearAllText()}"
 
+                    />
 
             </com.hjq.shape.layout.ShapeLinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_cancel"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp15"
+                android:layout_marginRight="@dimen/dp15"
+                visible="@{vm.showSearchLayout}"
+                android:onClick="@{()->click.cancelSearchModel()}"
 
+                />
+        </LinearLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,10 +215,42 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:orientation="vertical"
+                   visible="@{vm.showSearchLayout}"
+                   >
+
+                   <androidx.recyclerview.widget.RecyclerView
+
+                       linearAdapter="@{searchadapter}"
+                       cannotScrollVertically="@{false}"
+                       itemspace="@{1}"
+                       orientation="@{1}"
+                       android:layout_width="match_parent"
+                       android:layout_height="match_parent"
+                       android:layout_marginTop="@dimen/dp8"
+                       app:shape_radius="@dimen/dp10"
+                       app:shape_strokeWidth="@dimen/dp0"
+                       app:shape_strokeColor="@color/colorPrimaryLight"
+                       android:padding="@dimen/dp1"
+                       submitList="@{vm.amountdatas}"
+                       />
+
+
+               </LinearLayout>
+               <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                visible="@{!vm.showSearchLayout}"
+                   >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -219,6 +304,8 @@
             submitList="@{vm.hotdatas}"
             />
       </LinearLayout>
+
+            </FrameLayout>
         </androidx.core.widget.NestedScrollView>
 
     </LinearLayout>

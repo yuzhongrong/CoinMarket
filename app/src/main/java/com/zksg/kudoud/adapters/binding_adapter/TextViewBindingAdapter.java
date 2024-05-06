@@ -1,7 +1,10 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -525,5 +528,18 @@ public class TextViewBindingAdapter {
         money.setValue(result);
     }
 
+
+    @BindingAdapter(value = {"closeSearchModel"},requireAll = false)
+    public static void closeSearchModel(EditText tv, boolean value){
+        if(tv==null)return;
+        if(value==false){
+            InputMethodManager imm = (InputMethodManager) tv.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(tv.getWindowToken(), 0);
+            tv.clearFocus();
+
+        }
+
+
+    }
 
 }
