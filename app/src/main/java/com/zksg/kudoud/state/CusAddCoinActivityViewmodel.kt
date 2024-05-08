@@ -3,6 +3,8 @@ package com.zksg.kudoud.state
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.ThreadUtils.runOnUiThread
+import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
 import com.kunminx.architecture.domain.message.MutableResult
 import com.kunminx.architecture.utils.Utils
@@ -32,6 +34,8 @@ import kotlinx.coroutines.withContext
 import org.bitcoinj.core.Base58
 import com.kunminx.architecture.ui.state.State
 import com.netease.lib_network.entitys.JupToken
+import com.zksg.kudoud.R
+import com.zksg.kudoud.callback.WalletCusTokenInfo
 import com.zksg.kudoud.repository.DataRepository
 
 
@@ -51,25 +55,24 @@ class CusAddCoinActivityViewmodel : BaseLoadingViewModel() {
 //    @JvmField
 //    var pwdConfirm = ObservableField(false)
 
-    fun reqCusCoinInfo(contract: String){
+    fun reqCusCoinInfo(contract: String,callback: WalletCusTokenInfo){
 
         viewModelScope.launch {
             loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getCusCoinInfo(contract){
                     if(it.responseStatus.isSuccess){
-//                        symbol.postValue()
-//                        decimal.postValue()
-                        Log.d("-----coin info--->",Gson().toJson(it.result.data))
-                        //用于保存的数据
-                        token.postValue(it.result.data)
-                        //用于展示的数据
-                        symbol.set(it.result.data.symbol)
-                        var decimalValue=it.result.data.decimals.toString()
-                        decimal.set(decimalValue)
+
+                        if(it.result.data!=null){
+
+                            callback.cusTokenInfo(it.result.data)
+
+                        }else{
+                            callback.cusTokenInfo(null)
+                        }
                         //更新状态
                         loadingVisible.postValue(false)
-                        isadd.set(true)
+
                     }else{
                         loadingVisible.postValue(false)
                     }

@@ -193,5 +193,6 @@
     <string name="str_decimal_18">Maximum 18 decimal places</string>
     <string name="str_existed">Existed</string>
     <string name="str_add_success">Add Success</string>
+    <string name="str_not_found_coin">Not found the toen</string>
 
 </resources>

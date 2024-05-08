@@ -6,9 +6,11 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.netease.lib_network.entitys.JupToken
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
+import com.zksg.kudoud.callback.WalletCusTokenInfo
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.CusAddCoinActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
@@ -95,7 +97,24 @@ class CusAddCoinActivity : BaseDialogActivity() {
             if(!TextUtils.isEmpty(s)){
                 var contract=s.toString().trim()
                 if(contract.length==44){//粘贴合约上来的时候去请求
-                    mCusAddCoinActivityViewmodel!!.reqCusCoinInfo(contract)
+                    mCusAddCoinActivityViewmodel!!.reqCusCoinInfo(contract,object:WalletCusTokenInfo{
+                        override fun cusTokenInfo(jupToken: JupToken?) {
+                            if(jupToken==null){
+                                runOnUiThread { ToastUtils.showShort(getString(R.string.str_not_found_coin)) }
+                            }else{
+                                //用于保存的数据
+                                mCusAddCoinActivityViewmodel!!.token.postValue(jupToken)
+                                mCusAddCoinActivityViewmodel!!.symbol.set("")
+                                mCusAddCoinActivityViewmodel!!.decimal.set("")
+                              //用于展示的数据
+                                mCusAddCoinActivityViewmodel!!.symbol.set(jupToken.symbol)
+                                mCusAddCoinActivityViewmodel!!.decimal.set(jupToken.decimals.toString())
+                                mCusAddCoinActivityViewmodel!!.isadd.set(true)
+                            }
+                        }
+
+
+                    })
                 }else{
                     mCusAddCoinActivityViewmodel!!.isadd.set(false)
                 }
