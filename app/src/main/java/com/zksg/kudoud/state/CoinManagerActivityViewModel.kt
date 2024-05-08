@@ -1,9 +1,7 @@
 package com.zksg.kudoud.state
 
-import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.kunminx.architecture.domain.message.MutableResult
-import com.zksg.kudoud.entitys.JubToken
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.kunminx.architecture.ui.state.State
 

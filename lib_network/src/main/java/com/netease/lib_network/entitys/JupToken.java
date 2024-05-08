@@ -1,11 +1,11 @@
-package com.zksg.kudoud.entitys;
+package com.netease.lib_network.entitys;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 import java.util.Objects;
 
-public class JubToken {
+public class JupToken {
     @SerializedName("address")
     private String address;
     @SerializedName("chainId")
@@ -118,7 +118,7 @@ public class JubToken {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        JubToken token = (JubToken) obj;
+        JupToken token = (JupToken) obj;
         return Objects.equals(address, token.address);
     }
 

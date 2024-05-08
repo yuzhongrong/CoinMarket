@@ -150,6 +150,16 @@ public class ImageLoaderManager {
 
 	}
 
+	public void displayLocalImage(final ImageView imageView, int resId) {
+		Glide.with(imageView.getContext())
+				.asBitmap()
+				.load(resId)
+				.apply(initCommonRequestOption())
+				.into(imageView);
+
+
+	}
+
 	public void displayLocalImageForCorner(final ImageView imageView, int resId, int corner,int weith,int hight) {
 		CornerTransform transformation = new CornerTransform(imageView.getContext(), ImageUtils.dip2px(imageView.getContext(), corner));
 		transformation.setExceptCorner(false, false, false, false);

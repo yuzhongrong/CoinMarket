@@ -25,6 +25,7 @@
 
     >
     <com.hjq.shape.view.ShapeImageView
+
         android:id="@+id/icon"
         android:layout_width="@dimen/dp45"
         android:layout_height="@dimen/dp45"
@@ -72,12 +73,13 @@
 
     <com.hjq.shape.view.ShapeImageView
         android:id="@+id/action"
-        meme_imv_token_remove="@{meme}"
         android:layout_width="@dimen/dp25"
         android:layout_height="@dimen/dp25"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
-        android:src="@mipmap/ic_minus" />
+        android:src="@mipmap/ic_minus"
+        meme_imv_token_remove="@{meme.mint}"
+        />
 
 
 

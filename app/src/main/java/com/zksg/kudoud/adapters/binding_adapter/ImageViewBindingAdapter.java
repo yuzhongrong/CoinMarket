@@ -2,20 +2,16 @@ package com.zksg.kudoud.adapters.binding_adapter;
 
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
-import com.hjq.shape.view.ShapeButton;
 import com.netease.lib_image_loader.app.ImageLoaderManager;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.DexEnum;
-import com.zksg.kudoud.entitys.JubToken;
 import com.zksg.kudoud.entitys.UiWalletToken;
-import com.zksg.kudoud.utils.DigitUtils;
-import com.zksg.kudoud.widgets.SettingBar;
 
 public class ImageViewBindingAdapter {
 
@@ -57,13 +53,16 @@ public class ImageViewBindingAdapter {
 
 
     @BindingAdapter(value = {"meme_imv_token_remove"},requireAll = false)
-    public static void meme_imv_token_remove(ImageView imv, UiWalletToken token) {
+    public static void meme_imv_token_remove(ImageView imv, String mint) {
 
-        if(imv==null||token==null)return;
-        if(token.getMint().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){//默认sol不让操作
-            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_not_minus,0);
+        if(imv==null|| TextUtils.isEmpty(mint))return;
+        if(mint.equalsIgnoreCase(TOKEN_SOL_CONTRACT)){//默认sol不让操作
+            imv.setImageResource( R.mipmap.ic_not_minus);
+
+//            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_not_minus,0);
         }else{
-            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_minus,0);
+//            ImageLoaderManager.getInstance().displayLocalImage(imv,R.mipmap.ic_minus);
+            imv.setImageResource(R.mipmap.ic_minus);
         }
 
     }

@@ -3,7 +3,6 @@ package com.zksg.kudoud.adapters;
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
 
 import android.content.Context;
-import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,12 +10,9 @@ import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.CoinManagerActivity;
 import com.zksg.kudoud.databinding.ItemCoinLocalManagerBinding;
-import com.zksg.kudoud.entitys.JubToken;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.state.CoinManagerActivityViewModel;
 import com.zksg.kudoud.utils.DiffUtils;
-
-import org.checkerframework.checker.guieffect.qual.UI;
 
 import java.util.List;
 
@@ -42,7 +38,6 @@ public class CoinManagerLocalTokensdapter extends SimpleDataBindingAdapter<UiWal
             //更新hottokens列表
             List<UiWalletToken> oldHotDatas= mCoinManagerActivityViewModel.hotdatas.getValue();
             oldHotDatas.add(item);
-
             mCoinManagerActivityViewModel.hotdatas.postValue(oldHotDatas);
         },R.id.action);
     }

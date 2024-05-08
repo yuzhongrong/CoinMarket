@@ -27,6 +27,7 @@ import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
+import com.netease.lib_network.entitys.JupToken;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -508,6 +509,29 @@ public class DataRepository {
                 .subscribe(new MySimpleObserver<CommonResponse<ApiTokenInfo>>() {
                     @Override
                     protected void onSuccessed(CommonResponse<ApiTokenInfo> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+    public void getHotCoinDatas(String model,DataResult.Result<CommonResponse<List<JupToken>>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getHotCoinDatas(model)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<List<JupToken>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<List<JupToken>> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));

@@ -6,21 +6,28 @@ package com.zksg.kudoud.activitys
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.netease.lib_network.entitys.JupToken
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.contants.CoinType
+import com.zksg.kudoud.contants.GlobalConstant.*
 import com.zksg.kudoud.databinding.ActivityMainBinding
 import com.zksg.kudoud.entitys.SelectWalletEntity
+import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.fragments.CategoryFragment
 import com.zksg.kudoud.fragments.HomeFragment
 import com.zksg.kudoud.fragments.MeFragment
 import com.zksg.kudoud.fragments.RankingFragment
 import com.zksg.kudoud.state.MainActivityViewModel
 import com.zksg.kudoud.state.SharedViewModel
+import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.StatusBarUtil
+import com.zksg.kudoud.utils.TokenConverter
 import com.zksg.kudoud.widgets.NavigateTabBar
 
 
@@ -131,9 +138,42 @@ class MainActivity : BaseActivity() {
 
         mSharedViewModel!!.requestSelectWallet(localSelectWallet)
 
+        mMainActivityViewModel!!.ReqHotCointDatas("strict"){
+
+            if(it!=null){
+                //初始化热门代币
+                var convertResault = TokenConverter.convertJubTokensToUiWalletTokens(it)
+                mSharedViewModel!!.walletHotCoins.postValue(convertResault)
+                MMKV.mmkvWithID(GROUP_WALLET_DATAS).encode(GROUP_WALLET_DATAS_STRICT,ObjectSerializationUtils.serializeObject(convertResault))
+
+            }else{
+
+               var hotdatasbytes= MMKV.mmkvWithID(GROUP_WALLET_DATAS).decodeBytes(GROUP_WALLET_DATAS_STRICT,null)
+                if(hotdatasbytes==null){
+                    //本地也没有-这种是第一次安装app极端情况
+                    var datas=parseTokenData(DEFAULT_WALLET_DATAS_JSON)
+                    var convertResault = TokenConverter.convertJubTokensToUiWalletTokens(datas)
+                    mSharedViewModel!!.walletHotCoins.postValue(convertResault)
+                    MMKV.mmkvWithID(GROUP_WALLET_DATAS).encode(GROUP_WALLET_DATAS_STRICT,ObjectSerializationUtils.serializeObject(convertResault))
+
+                }else{
+                    var hotdatas=ObjectSerializationUtils.deserializeObject(hotdatasbytes) as List<UiWalletToken>
+                    mSharedViewModel!!.walletHotCoins.postValue(hotdatas)
+                }
+
+            }
+
+        }
 
 
 
+
+    }
+
+    fun parseTokenData(jsonString: String?): List<JupToken?>? {
+        val gson = Gson()
+        val listType = object : TypeToken<List<JupToken?>?>() {}.type
+        return gson.fromJson(jsonString, listType)
     }
 
 //    class States : StateHolder() {

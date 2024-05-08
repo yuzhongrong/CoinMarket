@@ -1,11 +1,9 @@
 package com.netease.lib_network;
 
 
-import static com.netease.lib_network.constants.config.host;
-import static com.netease.lib_network.constants.config.server_port;
-
 import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.zksg.lib_api.beans.AppInfoBean;
@@ -24,18 +22,16 @@ import io.reactivex.Single;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.HEAD;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import retrofit2.http.Url;
 
 public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.4:3000";
+      String BASE_URL=" http://192.168.10.3:3000";
 
 
     @GET("login/cellphone")
@@ -101,6 +97,8 @@ public interface ApiService {
     @GET("/api/wallet/getWalletSolBalance")
     Single<CommonResponse<ApiTokenInfo>> getWalletSolBalance(@Query("wallet") String wallet,@Query("mint") String mint);
 
+    @GET("/api/wallet/getDefaultStrict")
+    Single<CommonResponse<List<JupToken>>> getHotCoinDatas(@Query("model") String model);
 
 
 }
