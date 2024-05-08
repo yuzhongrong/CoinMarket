@@ -32,16 +32,12 @@
 
 
     </data>
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_layout_common"
 
-        >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/bg_layout_common"
         >
 
         <com.hjq.shape.layout.ShapeRelativeLayout
@@ -271,25 +267,22 @@
             android:layout_height="@dimen/dp45"
             android:clickable="true"
             android:gravity="center"
-
             android:text="@string/str_ok"
             android:textColor="@color/white"
             android:textSize="@dimen/sp12"
             android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
             app:shape_radius="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp60"
             app:shape_solidColor="@color/colorAccent"
             android:layout_marginLeft="@dimen/dp25"
             android:layout_marginRight="@dimen/dp25"
             app:shape_solidPressedColor="@color/c_a0a0ab"
             android:onClick="@{()->click.createWallet()}"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/dp80"
             />
-
 
     </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
 
 
 </layout>

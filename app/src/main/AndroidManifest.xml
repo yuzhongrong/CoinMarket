@@ -178,6 +178,11 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".activitys.CusAddCoinActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
 
         <activity android:name=".activitys.Kline2OrderActivity"
             android:exported="false"

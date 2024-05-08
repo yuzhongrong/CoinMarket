@@ -546,5 +546,30 @@ public class DataRepository {
     }
 
 
+    // 添加自定义币种
+    public void getCusCoinInfo(String contract,DataResult.Result<CommonResponse<JupToken>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getCusCoinInfo(contract)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<JupToken>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<JupToken> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
 
 }

@@ -143,7 +143,7 @@
     <string name="str_coin_collect_rate">Coin Collect</string>
     <string name="str_ex_data">Exchange Data</string>
     <string name="str_apply_number">Apply Number :</string>
-    <string name="str_contract">Contract :</string>
+    <string name="str_contract">Contract</string>
 
     <string name="str_coins_sell_number">BUYS</string>
     <string name="str_coins_buy_number">SELLS</string>
@@ -186,5 +186,12 @@
     <string name="str_added_coin">Added Coin</string>
     <string name="str_hot_coin">Trending Coin</string>
     <string name="str_add_coin">Add Coin</string>
+    <string name="str_input_contract_address"> Input Contract Address</string>
+    <string name="str_symbol">Symbol</string>
+    <string name="str_coin_symbol">Coin Symbol</string>
+    <string name="str_coin_decimal">Decimal</string>
+    <string name="str_decimal_18">Maximum 18 decimal places</string>
+    <string name="str_existed">Existed</string>
+    <string name="str_add_success">Add Success</string>
 
 </resources>

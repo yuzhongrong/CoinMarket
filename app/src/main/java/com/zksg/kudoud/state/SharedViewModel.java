@@ -25,7 +25,7 @@ public class SharedViewModel extends ViewModel {
          return addOneEnvNotify;
      }
 
-     public MutableResult<List<UiWalletToken>> walletHotCoins=new MutableResult<>();
+//     public MutableResult<List<UiWalletToken>> walletHotCoins=new MutableResult<>();
 
 
 

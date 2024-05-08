@@ -44,6 +44,7 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.hjq.shape.layout.ShapeLinearLayout;
+import com.hjq.shape.view.ShapeButton;
 import com.kunminx.architecture.utils.ClickUtils;
 import com.netease.lib_common_ui.HornizeItemView;
 import com.netease.lib_common_ui.bannder.HolderCreator;
@@ -324,7 +325,18 @@ public class CommonBindingAdapter {
         view.setOnClickListener(listener);
     }
 
+    @BindingAdapter(value = "shape_btn_solidcolor")
+    public static void shape_btn_solidcolor(ShapeButton view, boolean value) {
+        if(view==null)return;
+        if(value){
+            view.getShapeDrawableBuilder().setSolidColor(Color.parseColor("#f7a600")).intoBackground();
+        }else{
 
+            view.getShapeDrawableBuilder().setSolidColor(Color.parseColor("#aeaeb0")).intoBackground();
+
+        }
+        view.setEnabled(value);
+    }
 
 
 }

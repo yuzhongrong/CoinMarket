@@ -263,7 +263,7 @@
     <string name="str_quo_number">计价币数量</string>
     <string name="str_mc">总市值</string>
     <string name="str_not_add">不可增发</string>
-    <string name="str_contract">合约地址 :</string>
+    <string name="str_contract">合约地址</string>
     <string name="str_pool_createat">创建时间</string>
     <string name="str_liq">总流动性</string>
     <string name="str_2_exchange">去交易</string>
@@ -307,4 +307,11 @@
     <string name="str_added_coin">已添加币种</string>
     <string name="str_hot_coin">热门币种</string>
     <string name="str_add_coin">添加代币</string>
+    <string name="str_input_contract_address">输入合约地址</string>
+    <string name="str_symbol">符号</string>
+    <string name="str_coin_symbol">货币符号</string>
+    <string name="str_coin_decimal">币种精度</string>
+    <string name="str_decimal_18">支持最多小数位18位</string>
+    <string name="str_existed">已存在</string>
+    <string name="str_add_success">添加成功</string>
 </resources>

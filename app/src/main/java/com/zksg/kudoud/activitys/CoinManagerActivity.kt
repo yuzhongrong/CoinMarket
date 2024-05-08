@@ -1,115 +1,91 @@
-package com.zksg.kudoud.activitys;
+package com.zksg.kudoud.activitys
 
-import static com.zksg.kudoud.wallet.constants.Constants.UI_TOKENS;
+import android.content.Intent
+import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.kunminx.architecture.ui.page.BaseActivity
+import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.netease.lib_network.entitys.JupToken
+import com.tencent.mmkv.MMKV
+import com.zksg.kudoud.BR
+import com.zksg.kudoud.R
+import com.zksg.kudoud.adapters.CoinManagerListdapter
+import com.zksg.kudoud.adapters.CoinManagerLocalTokensdapter
+import com.zksg.kudoud.adapters.CoinManagerSearchTokensdapter
+import com.zksg.kudoud.contants.GlobalConstant
+import com.zksg.kudoud.entitys.UiWalletToken
+import com.zksg.kudoud.state.CoinManagerActivityViewModel
+import com.zksg.kudoud.state.SharedViewModel
+import com.zksg.kudoud.utils.IntentUtils
+import com.zksg.kudoud.utils.ObjectSerializationUtils
+import com.zksg.kudoud.utils.SearchTokenUtils
+import com.zksg.kudoud.utils.TokenConverter
+import com.zksg.kudoud.wallet.constants.Constants
 
-import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-
-import androidx.annotation.Nullable;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.kunminx.architecture.ui.page.BaseActivity;
-import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.tencent.mmkv.MMKV;
-import com.zksg.kudoud.BR;
-import com.zksg.kudoud.R;
-import com.zksg.kudoud.adapters.CoinManagerListdapter;
-import com.zksg.kudoud.adapters.CoinManagerLocalTokensdapter;
-import com.zksg.kudoud.adapters.CoinManagerSearchTokensdapter;
-import com.netease.lib_network.entitys.JupToken;
-import com.zksg.kudoud.entitys.UiWalletToken;
-import com.zksg.kudoud.state.CoinManagerActivityViewModel;
-import com.zksg.kudoud.state.SharedViewModel;
-import com.zksg.kudoud.utils.ObjectSerializationUtils;
-import com.zksg.kudoud.utils.SearchTokenUtils;
-import com.zksg.kudoud.utils.TokenConverter;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
-public class CoinManagerActivity extends BaseActivity {
-    CoinManagerActivityViewModel mCoinManagerActivityViewModel;
-    SharedViewModel mSharedViewModel;
-    String keyAlias;
-
-
-    public CoinManagerActivityViewModel getViewModel(){
-        return mCoinManagerActivityViewModel;
+class CoinManagerActivity : BaseActivity() {
+    var viewModel: CoinManagerActivityViewModel? = null
+    var mSharedViewModel: SharedViewModel? = null
+    var keyAlias: String? = null
+    override fun initViewModel() {
+        viewModel = getActivityScopeViewModel(
+            CoinManagerActivityViewModel::class.java
+        )
+        mSharedViewModel = getApplicationScopeViewModel(SharedViewModel::class.java)
     }
 
-    @Override
-    protected void initViewModel() {
-        mCoinManagerActivityViewModel=getActivityScopeViewModel(CoinManagerActivityViewModel.class);
-        mSharedViewModel =
-                getApplicationScopeViewModel(SharedViewModel.class);
+    override fun getDataBindingConfig(): DataBindingConfig {
+        return DataBindingConfig(R.layout.activity_coin_manager, BR.vm, viewModel!!)
+            .addBindingParam(BR.click, ClickProxy())
+            .addBindingParam(BR.hotadapter, CoinManagerListdapter(this))
+            .addBindingParam(BR.addedadapter, CoinManagerLocalTokensdapter(this))
+            .addBindingParam(BR.searchadapter, CoinManagerSearchTokensdapter(this))
+            .addBindingParam(BR.editfocus, onEditFocusChangeListener)
+            .addBindingParam(BR.searchTextWatcher, onSearchTextWatcher)
     }
 
-    @Override
-    protected DataBindingConfig getDataBindingConfig() {
-        return new DataBindingConfig(R.layout.activity_coin_manager, BR.vm,mCoinManagerActivityViewModel)
-                .addBindingParam(BR.click,new ClickProxy())
-                .addBindingParam(BR.hotadapter,new CoinManagerListdapter(this))
-                .addBindingParam(BR.addedadapter,new CoinManagerLocalTokensdapter(this))
-                .addBindingParam(BR.searchadapter,new CoinManagerSearchTokensdapter(this))
-                .addBindingParam(BR.editfocus, this.onEditFocusChangeListener)
-                .addBindingParam(BR.searchTextWatcher, this.onSearchTextWatcher);
-
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        keyAlias = intent.getStringExtra("keyAlias")
+        initObserve(keyAlias)
+        initData(keyAlias)
     }
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        keyAlias=getIntent().getStringExtra("keyAlias");
-        initObserve(keyAlias);
-        initData(keyAlias);
-    }
-
-    private void initObserve(String keyAlias){
+    private fun initObserve(keyAlias: String?) {
 
         //订阅添加
-        mCoinManagerActivityViewModel.localdatas.observe(this, uiWalletToken -> {
+        viewModel!!.localdatas.observe(this) { uiWalletToken: List<UiWalletToken?>? ->
             //保存自己到本地即可
-            List<UiWalletToken> newLocalDatas= mCoinManagerActivityViewModel.localdatas.getValue();
+            val newLocalDatas = viewModel!!.localdatas.value!!
             try {
-                byte[] newLocalDatasbytes= ObjectSerializationUtils.serializeObject(newLocalDatas);
-                MMKV.mmkvWithID(UI_TOKENS).encode(keyAlias,newLocalDatasbytes);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
+                val newLocalDatasbytes = ObjectSerializationUtils.serializeObject(newLocalDatas)
+                MMKV.mmkvWithID(Constants.UI_TOKENS).encode(keyAlias, newLocalDatasbytes)
+            } catch (e: Exception) {
+                throw RuntimeException(e)
             }
-
-
-        });
-
-
-
+        }
     }
 
-
-
-    private void initData(String keyAlias){
-
+    private fun initData(keyAlias: String?) {
         try {
             //1.先初始化本地已有的币种列表
-            byte[] tokensbytes=MMKV.mmkvWithID(UI_TOKENS).decodeBytes(keyAlias);
-            List<UiWalletToken> tokens=(ArrayList<UiWalletToken>)ObjectSerializationUtils.deserializeObject(tokensbytes);
-            mCoinManagerActivityViewModel.localdatas.postValue(tokens);
-            List<UiWalletToken> hotdatas=initHots(tokens);
-            initSearchData(tokens,hotdatas);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            val tokensbytes = MMKV.mmkvWithID(Constants.UI_TOKENS).decodeBytes(keyAlias)
+            val tokens: List<UiWalletToken> =
+                ObjectSerializationUtils.deserializeObject(tokensbytes) as ArrayList<UiWalletToken>
+            viewModel!!.localdatas.postValue(tokens)
+            val hotdatas = initHots(tokens)
+            initSearchData(tokens, hotdatas)
+        } catch (e: Exception) {
+            throw RuntimeException(e)
         }
-
     }
 
-    public List<UiWalletToken> initHots(List<UiWalletToken> localdatas){
+    fun initHots(localdatas: List<UiWalletToken>?): List<UiWalletToken> {
 
         //2.初始化热门代币列表
-
         /**本地摸你json数据 流程： MainActivity里面 请求api服务拿到总数据源--->生成热门数据源--->保存总数据源,保存热门数据源 ，这里提取的是热门数据源
          *
          */
@@ -118,117 +94,112 @@ public class CoinManagerActivity extends BaseActivity {
 //        List<JupToken> datas=parseTokenData(jub_str);
 
         //初始化热门代币-从中排除已经添加过的代币
-
-        List<UiWalletToken> uiWalletTokens=mSharedViewModel.walletHotCoins.getValue();
-        List<UiWalletToken> hottokensCopy = new ArrayList<>(uiWalletTokens);
-        boolean isRemoveAll= TokenConverter.FilterJubTokens(hottokensCopy,localdatas);
-        if(isRemoveAll){
-            mCoinManagerActivityViewModel.hotdatas.postValue(hottokensCopy);
+        return try {
+            val hotdatasbytes = MMKV.mmkvWithID(GlobalConstant.GROUP_WALLET_DATAS)
+                .decodeBytes(GlobalConstant.GROUP_WALLET_DATAS_STRICT, null)
+            val hotdatas =
+                ObjectSerializationUtils.deserializeObject(hotdatasbytes) as List<UiWalletToken>
+            val hottokensCopy: List<UiWalletToken> = ArrayList(hotdatas)
+            val isRemoveAll = TokenConverter.FilterJubTokens(hottokensCopy, localdatas)
+            if (isRemoveAll) {
+                viewModel!!.hotdatas.postValue(hottokensCopy)
+            }
+            hottokensCopy
+        } catch (e: Exception) {
+            throw RuntimeException(e)
         }
-
-        return hottokensCopy;
-
-
-
     }
 
-    private void initSearchData(List<UiWalletToken> localdatas,List<UiWalletToken> hotdatas){
-
-        if(localdatas==null||hotdatas==null)return;
+    private fun initSearchData(localdatas: List<UiWalletToken>?, hotdatas: List<UiWalletToken>?) {
+        if (localdatas == null || hotdatas == null) return
 
         //初始化总的数据源
-        List<UiWalletToken> amountDatas= new ArrayList<>();
-        amountDatas.addAll(localdatas);
-        amountDatas.addAll( hotdatas);
-        mCoinManagerActivityViewModel.amountdatas.postValue(amountDatas);
+        val amountDatas: MutableList<UiWalletToken> = ArrayList()
+        amountDatas.addAll(localdatas)
+        amountDatas.addAll(hotdatas)
+        viewModel!!.amountdatas.postValue(amountDatas)
         //用于备份原始数据 在amountdatascache里面查数据 ，把结果post到amountdatas这里
-        mCoinManagerActivityViewModel.amountdatascache.postValue(amountDatas);
+        viewModel!!.amountdatascache.postValue(amountDatas)
         //关闭 清理图标
-        mCoinManagerActivityViewModel.clearAll.set(false);
+        viewModel!!.clearAll.set(false)
         //还原edittext显示内容
-        mCoinManagerActivityViewModel.empty.set("");
-
+        viewModel!!.empty.set("")
     }
 
-
-    public static List<JupToken> parseTokenData(String jsonString) {
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<JupToken>>() {}.getType();
-        return gson.fromJson(jsonString, listType);
+    private val onEditFocusChangeListener = View.OnFocusChangeListener { v, hasFocus ->
+        // 当焦点获取时，启动光标闪烁动画
+        if (hasFocus) {
+            //显示搜索布局
+            viewModel!!.showSearchLayout.set(true)
+        } else {
+            //隐藏搜索布局
+            viewModel!!.showSearchLayout.set(false)
+            initData(keyAlias)
+        }
     }
-
-    private final View.OnFocusChangeListener onEditFocusChangeListener=new View.OnFocusChangeListener() {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus) {
-            // 当焦点获取时，启动光标闪烁动画
-            if (hasFocus) {
-                //显示搜索布局
-                mCoinManagerActivityViewModel.showSearchLayout.set(true);
-            } else {
-                //隐藏搜索布局
-                mCoinManagerActivityViewModel.showSearchLayout.set(false);
-                initData(keyAlias);
-
-            }
-        }
-    };
-
-    private final TextWatcher onSearchTextWatcher=new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+    private val onSearchTextWatcher: TextWatcher = object : TextWatcher {
+        override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
+        override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
 
             //获取当前的amountdatascache 数据
-            List<UiWalletToken> cacheTokens=mCoinManagerActivityViewModel.amountdatascache.getValue();
-
-            if(charSequence==null)return;
-
-            if(charSequence.toString().trim().length()==0){
-                mCoinManagerActivityViewModel.amountdatas.postValue(cacheTokens);
-                mCoinManagerActivityViewModel.clearAll.set(false);
-            }else{
-                if(mCoinManagerActivityViewModel.showSearchLayout.get()){
-                    mCoinManagerActivityViewModel.clearAll.set(true);
-                }else{
-                    mCoinManagerActivityViewModel.clearAll.set(false);
+            val cacheTokens = viewModel!!.amountdatascache.value!!
+            if (charSequence == null) return
+            if (charSequence.toString().trim { it <= ' ' }.length == 0) {
+                viewModel!!.amountdatas.postValue(cacheTokens)
+                viewModel!!.clearAll.set(false)
+            } else {
+                if (viewModel!!.showSearchLayout.get()!!) {
+                    viewModel!!.clearAll.set(true)
+                } else {
+                    viewModel!!.clearAll.set(false)
                 }
             }
 
 
             //在这里查询
-            List<UiWalletToken> searchResult= SearchTokenUtils.searchTokens(cacheTokens,charSequence.toString().trim());
-            mCoinManagerActivityViewModel.amountdatas.postValue(searchResult);
-
+            val searchResult = SearchTokenUtils.searchTokens(
+                cacheTokens,
+                charSequence.toString().trim { it <= ' ' })
+            viewModel!!.amountdatas.postValue(searchResult)
         }
 
-        @Override
-        public void afterTextChanged(Editable editable) {
+        override fun afterTextChanged(editable: Editable) {}
+    }
 
-        }
-    };
-
-
-    public class ClickProxy {
-        public void close() {
-            finish();
-
+    inner class ClickProxy {
+        fun close() {
+            finish()
         }
 
-        public void clearAllText(){
-            mCoinManagerActivityViewModel.empty.set("");
+        fun clearAllText() {
+            viewModel!!.empty.set("")
         }
 
-        public void cancelSearchModel(){
+        fun cancelSearchModel() {
 
             //关闭搜索模式总开关
-            mCoinManagerActivityViewModel.showSearchLayout.set(false);
+            viewModel!!.showSearchLayout.set(false)
 
 //            initData();
         }
 
+        fun startCusCoinAdd() {
+            IntentUtils.openIntent(
+                this@CoinManagerActivity,
+                Intent(
+                    this@CoinManagerActivity,
+                    CusAddCoinActivity::class.java
+                ).putExtra("keyAlias", keyAlias)
+            )
+            finish()
+        }
+    }
+
+    companion object {
+        fun parseTokenData(jsonString: String?): List<JupToken> {
+            val gson = Gson()
+            val listType = object : TypeToken<List<JupToken?>?>() {}.type
+            return gson.fromJson(jsonString, listType)
+        }
     }
 }

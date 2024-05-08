@@ -143,7 +143,7 @@ class MainActivity : BaseActivity() {
             if(it!=null){
                 //初始化热门代币
                 var convertResault = TokenConverter.convertJubTokensToUiWalletTokens(it)
-                mSharedViewModel!!.walletHotCoins.postValue(convertResault)
+//                mSharedViewModel!!.walletHotCoins.postValue(convertResault)
                 MMKV.mmkvWithID(GROUP_WALLET_DATAS).encode(GROUP_WALLET_DATAS_STRICT,ObjectSerializationUtils.serializeObject(convertResault))
 
             }else{
@@ -153,12 +153,12 @@ class MainActivity : BaseActivity() {
                     //本地也没有-这种是第一次安装app极端情况
                     var datas=parseTokenData(DEFAULT_WALLET_DATAS_JSON)
                     var convertResault = TokenConverter.convertJubTokensToUiWalletTokens(datas)
-                    mSharedViewModel!!.walletHotCoins.postValue(convertResault)
+//                    mSharedViewModel!!.walletHotCoins.postValue(convertResault)
                     MMKV.mmkvWithID(GROUP_WALLET_DATAS).encode(GROUP_WALLET_DATAS_STRICT,ObjectSerializationUtils.serializeObject(convertResault))
 
                 }else{
                     var hotdatas=ObjectSerializationUtils.deserializeObject(hotdatasbytes) as List<UiWalletToken>
-                    mSharedViewModel!!.walletHotCoins.postValue(hotdatas)
+//                    mSharedViewModel!!.walletHotCoins.postValue(hotdatas)
                 }
 
             }

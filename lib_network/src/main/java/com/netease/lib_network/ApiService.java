@@ -100,5 +100,6 @@ public interface ApiService {
     @GET("/api/wallet/getDefaultStrict")
     Single<CommonResponse<List<JupToken>>> getHotCoinDatas(@Query("model") String model);
 
-
+    @GET("/api/wallet/getCusCoinInfo")
+    Single<CommonResponse<JupToken>> getCusCoinInfo(@Query("contract") String contract);
 }
