@@ -2,16 +2,24 @@ package com.zksg.kudoud.fragments
 
 
 import android.content.Intent
+import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.google.gson.Gson
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.netease.lib_network.entitys.ApiTokenInfo
+import com.netease.lib_network.entitys.NewWalletToken
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
-import com.zksg.kudoud.adapters.MemeCommonWalletListdapter
-import com.zksg.kudoud.callback.WalletSolBalanceCallback
+import com.zksg.kudoud.adapters.MemeWalletListdapter
+import com.zksg.kudoud.callback.WalletUpdateTokensBalanceCallback
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
@@ -19,15 +27,15 @@ import com.zksg.kudoud.utils.IntentUtils
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.utils.manager.SolanaWalletManager
-import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import com.zksg.kudoud.wallet.constants.Constants.UI_TOKENS
-import java.math.BigDecimal
 
 
 class MeFragment : BaseDialogFragment() {
 
     private var meViewModel: MeFragmentViewModel? = null
     private var sharedViewModel:SharedViewModel?=null
+    var mMemeWalletListdapter:MemeWalletListdapter?=null
+
 
 
     override fun initViewModel() {
@@ -39,16 +47,19 @@ class MeFragment : BaseDialogFragment() {
 
 
     override fun getDataBindingConfig(): DataBindingConfig {
+
+        mMemeWalletListdapter=MemeWalletListdapter(
+            context,
+            meViewModel
+        )
         return DataBindingConfig(R.layout.fragment_mine, BR.vm, meViewModel!!)
             .addBindingParam(BR.click, ClickProxy())
-            .addBindingParam(BR.adapter, MemeCommonWalletListdapter(context,meViewModel))
+            .addBindingParam(BR.adapter,mMemeWalletListdapter!!)
+            .addBindingParam(BR.listener,this.onRefresh)
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        initData()
-    }
+
 
 
     override fun loadInitData() {
@@ -62,17 +73,35 @@ class MeFragment : BaseDialogFragment() {
 //                meViewModel!!.show_wallet.set(true)
 //            }
             Log.d("----selectWallet.observe--->","observe")
-//            initData()
+            initData()
 
         }
 
+        initObsver()
+        //切换钱包逻辑暂时不处理
+        initData()
+
     }
+
+
+    fun initObsver(){
+
+        //当你点击添加删除时候会走这里
+        sharedViewModel!!.getAddTokenNotify().observe(this){
+            var keyAlias= sharedViewModel!!.getOneSelectWallet().value!!.keyAlias
+            var tokensbytes= MMKV.mmkvWithID(UI_TOKENS).decodeBytes(keyAlias)
+            var uitokens=ObjectSerializationUtils.deserializeObject(tokensbytes) as ArrayList<UiWalletToken>
+            meViewModel!!.uitokenInfos.postValue(uitokens)
+        }
+
+
+    }
+
 
 
     fun initData(){
 //        JsonParser.parse2TokenInfo(JsonParser.jsonString)
 
-//        meViewModel!!.loadingVisible.observe(this){ if(it)showDialog()else dismissDialog()}
 
 
         //1.判断是否展示钱包页面
@@ -91,9 +120,6 @@ class MeFragment : BaseDialogFragment() {
             var simpleWallet= SolanaWalletManager.getOneSimpleWalletFromMMKV(network,keyAlias)
             Log.d("----sol-address--->",simpleWallet.address)
             meViewModel!!.mSimpleWallet.set(simpleWallet)
-            //获取钱吧meta数据
-//            meViewModel!!.getWalletTokens("5eFsFYRrULZVTfvqGmEYE2aETpGF4V6bfReTQJ69L7qY")
-
             initLoadingTokensForWallet(simpleWallet)
 
         }
@@ -118,48 +144,72 @@ class MeFragment : BaseDialogFragment() {
 
     fun initLoadingTokensForWallet(simpleWallet:SimpleWallet){
 
-        //应该去读取本地tokens列表-钱包创建时候就存在这个列表了，列表中有个默认的sol信息 --这里只管读取
+        //1.加载本地token列表
         var tokensbytes= MMKV.mmkvWithID(UI_TOKENS).decodeBytes(simpleWallet.keyAlias)
         var uitokens=ObjectSerializationUtils.deserializeObject(tokensbytes) as ArrayList<UiWalletToken>
-         meViewModel!!.uitokenInfos.set(uitokens)
+         meViewModel!!.uitokenInfos.postValue(uitokens)
 
-        //获取钱包SOL余额 先不请求 这个接口可能需要修改
-//        meViewModel!!.getWalletSolBalance(simpleWallet.address,TOKEN_SOL_CONTRACT,object:WalletSolBalanceCallback{
-//            override fun walletSolUpdate(mApiTokenInfo: ApiTokenInfo?) {
-//                if(mApiTokenInfo==null)return
-//                requireActivity().runOnUiThread {
-//                    var olddatas= meViewModel!!.uitokenInfos.get()!!
-//                    var newdatas=olddatas.apply {
-//                        set(0,UiWalletToken(olddatas.get(0).mint,mApiTokenInfo.balance,olddatas.get(0).decimal,BigDecimal(mApiTokenInfo.price).toString(),olddatas.get(0).symbol,olddatas.get(0).imageUrl,olddatas.get(0).resId))
-//                    }
-////                        var newwallet= SimpleWallet(oldWallet.keyAlias,oldWallet.network,oldWallet.name,oldWallet.address,newTokens)
-//                    meViewModel!!.uitokenInfos.set(newdatas)
-//
-//                }
-//
-//            }
-//
-//        })
-
-    }
-
-    //这里实现除了sol以外的其他tOKEN展示 主要是处理tokendinfos
-    fun initOtherTokenList(simpleWallet: SimpleWallet){
-        //从本地拿这个钱包address<-->tokeninfos
-//        var tokens= MMKV.mmkvWithID(simpleWallet.keyAlias).decodeBytes("tokens",null)
-//        if(tokens==null){ //除了默认token之外,没有其他token了
-//
-//        }else{
-//           var tokens= ObjectSerializationUtils.deserializeObject(tokens) as MutableList<UiWalletToken>
-//           var newtokens= meViewModel!!.uitokenInfos.get()!!.apply { addAll(tokens) }
-//            meViewModel!!.uitokenInfos.set(newtokens)
-//        }
-
+        //第一次进来自动刷新
+        meViewModel!!.isAutoRefresh.postValue(true)
 
     }
 
 
+    fun updateWalletBalance(){
+        var simpleWallet= meViewModel!!.mSimpleWallet.get()!!
+        //2.更新钱包余额
+        meViewModel!!.updateWalletBalance(simpleWallet.address,object :
+            WalletUpdateTokensBalanceCallback{
+            override fun updateWalletTokensBalance(it: MutableList<NewWalletToken>?) {
+                Log.d("----walletbalance---->",Gson().toJson(it))
+                //在tokenlist中遍历去结果中找 如果找不到就不用设置balance和price
+                if(it!=null){
+                    var tokenlist= meViewModel!!.uitokenInfos.value!!
+                    //更新token列表价格和余额
+                    getBalanceAndPriceFromUpdateInfo(it,tokenlist)
+                    //更新缓存
+                    MMKV.mmkvWithID(UI_TOKENS).encode(simpleWallet.keyAlias,ObjectSerializationUtils.serializeObject(tokenlist))
+                    //刷新列表-这里采用这种模式更好因为你更改的是引用
+                    requireActivity().runOnUiThread {
+                        mMemeWalletListdapter!!.notifyDataSetChanged()
+                    }
 
+                }
+                finishRefresh()
+            }
+
+
+        })
+
+    }
+
+
+
+    fun finishRefresh(){
+        meViewModel!!.isAutoRefresh.postValue(false)
+    }
+    fun getBalanceAndPriceFromUpdateInfo(results: MutableList<NewWalletToken>, uiWalletTokens: MutableList<UiWalletToken>): MutableList<UiWalletToken> {
+        if (uiWalletTokens.isNotEmpty()) {
+            uiWalletTokens.forEach { uiToken ->
+                val matchingResult = results.find { it.mint == uiToken.mint } // 在 results 中查找与当前 uiToken 匹配的 NewWalletToken 对象
+                matchingResult?.let { result ->
+                    // 如果找到了匹配的结果，则更新 uiToken 的 balance 和 price 字段
+                    uiToken.balance = result.balance
+                    uiToken.price = result.price
+                }
+            }
+        }
+       return uiWalletTokens;
+    }
+
+
+
+    var onRefresh=object :OnRefreshListener{
+        override fun onRefresh(refreshLayout: RefreshLayout) {
+            updateWalletBalance()
+        }
+
+    }
 
 
     inner class ClickProxy {

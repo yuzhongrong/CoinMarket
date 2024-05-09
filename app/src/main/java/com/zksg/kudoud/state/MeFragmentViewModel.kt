@@ -9,6 +9,7 @@ import com.kunminx.architecture.ui.state.State
 import com.netease.lib_common_ui.utils.GsonUtil
 import com.netease.lib_network.entitys.NewWalletToken
 import com.zksg.kudoud.callback.WalletSolBalanceCallback
+import com.zksg.kudoud.callback.WalletUpdateTokensBalanceCallback
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
@@ -38,7 +39,11 @@ class MeFragmentViewModel : BaseLoadingViewModel() {
 
     //展示在钱包列表ui 数据 UiWalletToken is song for NewWalletToken
     @JvmField
-    var uitokenInfos=State(mutableListOf<UiWalletToken>())
+    var uitokenInfos=MutableResult(mutableListOf<UiWalletToken>())
+
+    @JvmField
+    var isAutoRefresh=MutableResult<Boolean>()
+
 
 
     //这里已经实现了获取钱包token基本信息-现在弃用改为统一的从自己写的api服务器拿 方便统一管理
@@ -113,21 +118,26 @@ class MeFragmentViewModel : BaseLoadingViewModel() {
 //    }
 
 
-    fun getWalletTokens(wallet: String){
+
+
+
+
+    fun updateWalletBalance(wallet: String,mWalletUpdateTokensBalanceCallback: WalletUpdateTokensBalanceCallback){
         viewModelScope.launch{
             withContext(Dispatchers.IO){
-                DataRepository.getInstance().getWalletTokensFromRepository(wallet){
+//                loadingVisible.postValue(true)
+                DataRepository.getInstance().updateWalletBalance(wallet){
                     if(it.responseStatus.isSuccess){
-                        if(it.result.data!=null||it.result.data.size!=0){
+                        if(it.result.data!=null||it.result.data.size>0){
                             //降序
                             val sortedWalletTokens = it.result.data.sortedByDescending { BigDecimal(it.balance).toDouble() }
-                            //存储钱包meta数据
-                            tokenInfos.postValue(sortedWalletTokens)
+                            mWalletUpdateTokensBalanceCallback.updateWalletTokensBalance(sortedWalletTokens)
                         }
-
-
+                    }else{
+                        mWalletUpdateTokensBalanceCallback.updateWalletTokensBalance(null)
                     }
                 }
+
             }
         }
 

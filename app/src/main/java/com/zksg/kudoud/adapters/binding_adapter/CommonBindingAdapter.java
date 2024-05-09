@@ -54,6 +54,7 @@ import com.netease.lib_image_loader.app.ImageLoaderManager;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.entitys.SelectWalletEntity;
@@ -337,6 +338,26 @@ public class CommonBindingAdapter {
         }
         view.setEnabled(value);
     }
+
+    @BindingAdapter(value = {"smartlayout_auto"}, requireAll = false)
+    public static void smartlayout_auto(SmartRefreshLayout view,boolean value) {
+        if(view==null)return;
+        if(value){
+            view.autoRefresh();
+        }else{
+            if(view.isRefreshing()){
+                view.finishRefresh();
+            }
+
+        }
+    }
+
+    @BindingAdapter(value = {"smartlayout_binding_refresh"}, requireAll = false)
+    public static void smartlayout_binding_refresh(SmartRefreshLayout view, OnRefreshListener listner) {
+        if(view==null||listner==null)return;
+        view.setOnRefreshListener(listner);
+    }
+
 
 
 }

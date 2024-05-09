@@ -63,6 +63,7 @@ class CoinManagerActivity : BaseActivity() {
             try {
                 val newLocalDatasbytes = ObjectSerializationUtils.serializeObject(newLocalDatas)
                 MMKV.mmkvWithID(Constants.UI_TOKENS).encode(keyAlias, newLocalDatasbytes)
+                mSharedViewModel!!.requestAddToken(true)
             } catch (e: Exception) {
                 throw RuntimeException(e)
             }

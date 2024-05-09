@@ -68,7 +68,7 @@ public class CreateEnvActivity extends BaseActivity {
                     .asCustom(new EnvNameDialog(CreateEnvActivity.this).setOnSaveListener(new EnvNameDialog.OnSaveListener() {
                         @Override
                         public void onSave(String title) {//click the save
-                            mSharedViewModel.requestToAddOneEnv(new EnvBean(title,0,false, EnvBean.Type.NONE));
+//                            mSharedViewModel.requestToAddOneEnv(new EnvBean(title,0,false, EnvBean.Type.NONE));
 
                         }
                     }))

@@ -14,18 +14,35 @@
 
         <variable
             name="adapter"
-            type="com.zksg.kudoud.adapters.MemeCommonWalletListdapter" />
+            type="com.zksg.kudoud.adapters.MemeWalletListdapter" />
+        <variable
+            name="listener"
+            type="com.scwang.smart.refresh.layout.listener.OnRefreshListener" />
 
 
 
     </data>
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/mSmartRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srlDisableContentWhenLoading="true"
+        app:srlDisableContentWhenRefresh="true"
+        android:background="@color/bg_layout_common"
+        smartlayout_binding_refresh="@{listener}"
+        smartlayout_auto="@{vm.isAutoRefresh}"
+        >
+        <com.zksg.kudoud.widgets.MetaStoreHeader
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:srlTextRefreshing="Refresh..."
+
+            />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/bg_layout_common"
-
 
         >
         <com.hjq.shape.layout.ShapeRelativeLayout
@@ -365,5 +382,6 @@
 
 
     </LinearLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
 </layout>

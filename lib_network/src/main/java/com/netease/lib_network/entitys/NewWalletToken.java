@@ -3,6 +3,7 @@ package com.netease.lib_network.entitys;
 import com.netease.lib_network.R;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class NewWalletToken implements Serializable {
 
@@ -71,6 +72,16 @@ public class NewWalletToken implements Serializable {
         this.imageUrl = imageUrl;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        NewWalletToken token = (NewWalletToken) obj;
+        return Objects.equals(this.mint, token.getMint());
+    }
 
 }

@@ -571,5 +571,28 @@ public class DataRepository {
     }
 
 
+    public void updateWalletBalance(String wallet,DataResult.Result<CommonResponse<List<NewWalletToken>>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .updateWalletBalance(wallet)
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .delay(2, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<List<NewWalletToken>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<List<NewWalletToken>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
 
 }

@@ -35,10 +35,12 @@ public class CoinManagerLocalTokensdapter extends SimpleDataBindingAdapter<UiWal
             List<UiWalletToken> oldLocalDatas=mCoinManagerActivityViewModel.localdatas.getValue();
             oldLocalDatas.remove(item);
             mCoinManagerActivityViewModel.localdatas.postValue(oldLocalDatas);
+
             //更新hottokens列表
             List<UiWalletToken> oldHotDatas= mCoinManagerActivityViewModel.hotdatas.getValue();
             oldHotDatas.add(item);
             mCoinManagerActivityViewModel.hotdatas.postValue(oldHotDatas);
+
         },R.id.action);
     }
 

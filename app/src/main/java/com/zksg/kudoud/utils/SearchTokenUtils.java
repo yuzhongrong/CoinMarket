@@ -15,7 +15,7 @@ public class SearchTokenUtils {
         for (UiWalletToken token : tokens) {
             // 如果对象的 name 或 symbol 中包含搜索文本，则将该对象添加到结果列表中
             if (token.getName().toLowerCase().contains(searchText.toLowerCase()) ||
-                    token.getSymbol().toLowerCase().contains(searchText.toLowerCase())) {
+                    token.getSymbol().toLowerCase().contains(searchText.toLowerCase())||token.getMint().equalsIgnoreCase(searchText.toLowerCase())) {
                 searchResults.add(token);
             }
         }

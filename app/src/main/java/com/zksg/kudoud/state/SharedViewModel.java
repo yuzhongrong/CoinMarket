@@ -19,14 +19,21 @@ import java.util.List;
 
 public class SharedViewModel extends ViewModel {
     private final UnPeekLiveData<EnvBean> addOneEnvNotify = new UnPeekLiveData<>();
-     private final UnPeekLiveData<SelectWalletEntity> selectWallet=new UnPeekLiveData<>(new SelectWalletEntity(CoinType.SOLANA.getKey(),""));
+
+    public final UnPeekLiveData<Boolean> addTokenNotify=new UnPeekLiveData<>();
+    private final UnPeekLiveData<SelectWalletEntity> selectWallet=new UnPeekLiveData<>(new SelectWalletEntity(CoinType.SOLANA.getKey(),""));
 
      public ProtectedUnPeekLiveData<EnvBean> getOneEnvNotify() {
          return addOneEnvNotify;
      }
 
-//     public MutableResult<List<UiWalletToken>> walletHotCoins=new MutableResult<>();
 
+    public ProtectedUnPeekLiveData<Boolean> getAddTokenNotify() {
+        return addTokenNotify;
+    }
+    public void requestAddToken(Boolean value) {
+        addTokenNotify.setValue(value);
+    }
 
 
 

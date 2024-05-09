@@ -75,9 +75,9 @@ public class ImageViewBindingAdapter {
             ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_not_minus,0);
         }else{
             if(token.isShow()){
-                ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_minus,0);
+                imv.setImageResource(R.mipmap.ic_minus);
             }else if(!token.isShow()){
-                ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_plus,0);
+                imv.setImageResource(R.mipmap.ic_plus);
             }
 
         }

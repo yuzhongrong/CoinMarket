@@ -17,6 +17,8 @@
     <color name="primaryTextGray">#aeaeb0</color>
     <color name="transparent">#00000000</color>
     <color name="text_c5c5c5">#c5c5c5</color>
+    <color name="c_loading">#80000000</color>
+
 
     <color name="bg_layout_common">#202630</color>
     <color name="bg_root_common">#202630</color>

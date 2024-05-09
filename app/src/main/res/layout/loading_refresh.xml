@@ -4,19 +4,16 @@
     android:layout_height="@dimen/dp120"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    app:shape_solidColor="@color/c_171717"
-
-
+    app:shape_solidColor="@color/bg_layout_common"
     >
     <com.wang.avi.AVLoadingIndicatorView
     android:id="@+id/avi"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="@dimen/dp30"
+    android:layout_height="@dimen/dp30"
     style="@style/AVLoadingIndicatorView"
     android:visibility="visible"
-    app:indicatorName="LineScalePulseOutRapidIndicator"
+    app:indicatorName="BallSpinFadeLoaderIndicator"
     app:indicatorColor="@color/c_f6a50c"
-
     />
 
 
