@@ -315,4 +315,5 @@
     <string name="str_existed">已存在</string>
     <string name="str_add_success">添加成功</string>
     <string name="str_not_found_coin">没找到代币</string>
+    <string name="str_copy_success">复制成功</string>
 </resources>

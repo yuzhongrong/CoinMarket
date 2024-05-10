@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.netease.lib_network.entitys.NewWalletToken
@@ -23,6 +24,7 @@ import com.zksg.kudoud.callback.WalletUpdateTokensBalanceCallback
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
+import com.zksg.kudoud.utils.CopyUtils
 import com.zksg.kudoud.utils.IntentUtils
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.manager.SimpleWallet
@@ -158,28 +160,27 @@ class MeFragment : BaseDialogFragment() {
     fun updateWalletBalance(){
         var simpleWallet= meViewModel!!.mSimpleWallet.get()!!
         //2.更新钱包余额
-        meViewModel!!.updateWalletBalance(simpleWallet.address,object :
-            WalletUpdateTokensBalanceCallback{
-            override fun updateWalletTokensBalance(it: MutableList<NewWalletToken>?) {
-                Log.d("----walletbalance---->",Gson().toJson(it))
-                //在tokenlist中遍历去结果中找 如果找不到就不用设置balance和price
-                if(it!=null){
-                    var tokenlist= meViewModel!!.uitokenInfos.value!!
-                    //更新token列表价格和余额
-                    getBalanceAndPriceFromUpdateInfo(it,tokenlist)
-                    //更新缓存
-                    MMKV.mmkvWithID(UI_TOKENS).encode(simpleWallet.keyAlias,ObjectSerializationUtils.serializeObject(tokenlist))
-                    //刷新列表-这里采用这种模式更好因为你更改的是引用
-                    requireActivity().runOnUiThread {
-                        mMemeWalletListdapter!!.notifyDataSetChanged()
-                    }
-
+        meViewModel!!.updateWalletBalance(simpleWallet.address
+        ) {
+            Log.d("----walletbalance---->", Gson().toJson(it))
+            //在tokenlist中遍历去结果中找 如果找不到就不用设置balance和price
+            if (it != null) {
+                var tokenlist = meViewModel!!.uitokenInfos.value!!
+                //更新token列表价格和余额
+                getBalanceAndPriceFromUpdateInfo(it, tokenlist)
+                //更新缓存
+                MMKV.mmkvWithID(UI_TOKENS).encode(
+                    simpleWallet.keyAlias,
+                    ObjectSerializationUtils.serializeObject(tokenlist)
+                )
+                //刷新列表-这里采用这种模式更好因为你更改的是引用
+                requireActivity().runOnUiThread {
+                    mMemeWalletListdapter!!.notifyDataSetChanged()
                 }
-                finishRefresh()
+
             }
-
-
-        })
+            finishRefresh()
+        }
 
     }
 
@@ -224,6 +225,10 @@ class MeFragment : BaseDialogFragment() {
 
         }
 
+        fun copyAddress(){
+            CopyUtils.copyToClipboard(requireContext(),meViewModel!!.mSimpleWallet.get()!!.address)
+            ToastUtils.showShort(getString(R.string.str_copy_success))
+        }
     }
 
 

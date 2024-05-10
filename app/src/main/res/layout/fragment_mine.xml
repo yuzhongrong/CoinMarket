@@ -51,6 +51,16 @@
             app:shape_radius="@dimen/sp30"
             android:gravity="center_vertical"
             >
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:src="@mipmap/ic_solana_common"
+                app:shape_radius="@dimen/dp45"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_centerInParent="true"
+                android:layout_alignParentLeft="true"
+                meme_imv_if_sol="@{vm.mSimpleWallet.defaultsol}"
+                />
 
 
             <TextView
@@ -100,13 +110,6 @@
                 >
 
 
-                <com.hjq.shape.view.ShapeImageView
-                    android:layout_width="@dimen/dp25"
-                    android:layout_height="@dimen/dp25"
-                    android:src="@mipmap/ic_solana_common"
-                    app:shape_radius="@dimen/dp45"
-                    meme_imv_if_sol="@{vm.mSimpleWallet.defaultsol}"
-                    />
 
 
                 <TextView
@@ -118,7 +121,7 @@
                     android:textSize="@dimen/sp12"
                     android:layout_marginLeft="@dimen/dp5"
                     loadtext="@{vm.mSimpleWallet.network}"
-
+                    android:visibility="gone"
                     />
 
 
@@ -140,6 +143,8 @@
                     android:layout_height="@dimen/dp15"
                     android:src="@mipmap/ic_copy"
                     android:layout_marginLeft="@dimen/dp5"
+                    android:onClick="@{()->click.copyAddress()}"
+
                     />
 
             </LinearLayout>
