@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.CoinWalletDetailActivityViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.CoinWalletDetailActivity.ClickProxy" />
+
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.ExSwapListdapter" />
+        <variable
+            name="listener"
+            type="com.scwang.smart.refresh.layout.listener.OnRefreshListener" />
+
+
+
+    </data>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_layout_common"
+
+        >
+        <com.hjq.shape.layout.ShapeRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:shape_radius="@dimen/sp30"
+            android:gravity="center_vertical"
+            >
+
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentLeft="true"
+                android:src="@mipmap/ic_back_left"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp5"
+                app:shape_solidColor="@color/c_29313d"
+                app:shape_radius="@dimen/dp45"
+                android:padding="@dimen/dp3"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:clickable="true"
+                android:onClick="@{()->click.close()}"
+                />
+
+
+            <TextView
+                android:id="@+id/coinname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/str_f_default_n_a"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/dp5"
+                android:textSize="@dimen/sp20"
+                android:textStyle="bold" />
+
+            <com.hjq.shape.view.ShapeImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@+id/coinname"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_solana_common"
+                app:shape_radius="@dimen/dp45" />
+
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp15"
+                android:src="@mipmap/ic_money_manager"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:clickable="true"
+
+                />
+
+        </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/wallet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/dp10"
+            android:orientation="vertical"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone"
+                >
+
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_f_default_n_a"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp12"
+                    android:layout_marginLeft="@dimen/dp5"
+                    loadtext="@{vm.mSimpleWallet.network}"
+                    android:visibility="gone"
+                    />
+
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="@dimen/dp120"
+                    android:layout_height="wrap_content"
+                    android:text="ep5fsaf9sf0af7sa0f0sa987fa907"
+                    android:textSize="@dimen/sp14"
+                    android:singleLine="true"
+                    android:gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:ellipsize="middle"
+                    android:visibility="gone"
+                    loadtext="@{vm.mSimpleWallet.address}"
+                    android:textColor="@color/colorTextNormal"
+                    />
+                <ImageView
+                    android:layout_width="@dimen/dp15"
+                    android:layout_height="@dimen/dp15"
+                    android:src="@mipmap/ic_copy"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:visibility="gone"
+
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp5"
+                android:gravity="center"
+                android:orientation="vertical"
+                >
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp50"
+                    android:layout_height="@dimen/dp50"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:layout_toLeftOf="@+id/money"
+                    android:src="@mipmap/ic_home_icon"
+                    android:visibility="gone"
+                    app:shape_radius="@dimen/dp45" />
+
+                <TextView
+                    android:id="@+id/money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="$0.00"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp35"
+                    android:textStyle="bold"
+                    meme_price_normal_tv="@{vm.mWalletAmountMoney}"
+
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="≈ $1000.7"
+
+
+                    />
+
+
+
+
+
+            </LinearLayout>
+
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/layout_top"
+            android:padding="@dimen/sp10"
+            android:gravity="center_vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                >
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
+                    android:src="@mipmap/ic_up"
+                    app:shape_radius="@dimen/dp15"
+                    android:padding="@dimen/dp10"
+                    app:shape_strokeWidth="@dimen/dp1"
+                    app:shape_strokeColor="@color/c_29313d"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发送"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp12"
+                    android:layout_marginTop="@dimen/dp5"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/dp15"
+                >
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
+                    android:src="@mipmap/ic_down"
+                    android:padding="@dimen/dp10"
+                    app:shape_radius="@dimen/dp15"
+                    app:shape_strokeWidth="@dimen/dp1"
+                    app:shape_strokeColor="@color/c_29313d"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="接收"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+
+                    android:textSize="@dimen/sp12"
+                    android:layout_marginTop="@dimen/dp5"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/dp15"
+                >
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
+                    android:src="@mipmap/ic_exchange"
+                    android:padding="@dimen/dp10"
+                    app:shape_radius="@dimen/dp15"
+                    app:shape_strokeWidth="@dimen/dp1"
+                    app:shape_strokeColor="@color/c_29313d"
+
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_ex_swap"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/sp12"
+                    android:layout_marginTop="@dimen/dp5"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/dp15"
+                android:visibility="gone"
+                >
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
+                    android:src="@mipmap/ic_history"
+                    app:shape_radius="@dimen/dp15"
+                    android:padding="@dimen/dp10"
+                    app:shape_strokeWidth="@dimen/dp1"
+                    app:shape_strokeColor="@color/c_29313d"
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="历史"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:textSize="@dimen/sp12"
+                    />
+
+            </LinearLayout>
+
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+            <com.hjq.shape.layout.ShapeRecyclerView
+
+                linearAdapter="@{adapter}"
+                cannotScrollVertically="@{false}"
+                itemspace="@{1}"
+                orientation="@{1}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dp8"
+                app:shape_radius="@dimen/dp10"
+                app:shape_strokeWidth="@dimen/dp0"
+                app:shape_strokeColor="@color/colorPrimaryLight"
+                android:padding="@dimen/dp1"
+                submitList="@{vm.uitokenInfos}"
+                />
+
+
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+</layout>

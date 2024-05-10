@@ -195,5 +195,6 @@
     <string name="str_add_success">Add Success</string>
     <string name="str_not_found_coin">Not found the toen</string>
     <string name="str_copy_success">Copy Success</string>
+    <string name="str_ex_swap">Swap</string>
 
 </resources>

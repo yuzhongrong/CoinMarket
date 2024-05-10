@@ -210,6 +210,11 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".activitys.CoinWalletDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
 
 
 

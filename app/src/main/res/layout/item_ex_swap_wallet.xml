@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="uiwallettoken"
+            type="com.zksg.kudoud.entitys.UiWalletToken" />
+
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.CoinWalletDetailActivityViewModel" />
+
+    </data>
+<com.hjq.shape.layout.ShapeRelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp10"
+    android:gravity="center_vertical"
+    app:shape_solidColor="@color/bg_layout_common"
+
+    >
+
+
+    <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        meme_imv_if_sol="@{uiwallettoken}"
+        app:shape_radius="@dimen/dp45"
+        android:src="@mipmap/ic_solana_common"
+        android:scaleType="centerCrop"
+        />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/dp12"
+        android:layout_toRightOf="@+id/icon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_f_default_n_a"
+            android:textColor="@color/whitesmoke"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold"
+            loadtext="@{uiwallettoken.symbol}"
+
+            />
+
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4"
+            android:text="@string/str_f_default_n_a"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12"
+            meme_wallet_token_price_tv="@{uiwallettoken.price}"
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        >
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="@string/str_f_default_n_a"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold"
+            android:layout_gravity="right"
+            meme_wallet_token_amount_tv="@{uiwallettoken.balance}"
+
+            />
+
+        <TextView
+            android:id="@+id/number_allprice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/dp5"
+            android:text="@string/str_f_default_n_a"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold"
+            app:shape_radius="@dimen/dp5"
+            calculateTokenDallor="@{uiwallettoken}"
+            vm="@{vm.mWalletAmountMoney}"
+            />
+
+
+    </LinearLayout>
+
+</com.hjq.shape.layout.ShapeRelativeLayout>
+</layout>
