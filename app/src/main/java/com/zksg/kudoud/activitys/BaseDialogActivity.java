@@ -16,7 +16,7 @@ public abstract class BaseDialogActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         dialog= new XPopup.Builder(this)
                 .dismissOnTouchOutside(false)
-                .dismissOnBackPressed(false)
+                .dismissOnBackPressed(true)
                 .asCustom(new LoadingDialog(this));
 
     }

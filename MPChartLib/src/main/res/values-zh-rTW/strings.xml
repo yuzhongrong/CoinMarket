@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">PPDEX</string>
+    <string name="app_name">MeMe</string>
     <string name="loading">加載中...</string>
     <string name="no_data">暫無數據</string>
     <string name="vol_name">成交量</string>
