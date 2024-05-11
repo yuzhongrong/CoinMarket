@@ -25,21 +25,16 @@ class CoinWalletDetailActivityViewModel : BaseLoadingViewModel() {
     var account_show = State(View.GONE)
     @JvmField
     var show_wallet = ObservableField(false)
+
+
     @JvmField
-    var mSimpleWallet = ObservableField<SimpleWallet>()
-
-
+    var currentToken = ObservableField<UiWalletToken>()
 
     @JvmField
     var mWalletAmountMoney=MutableResult("0.0")
 
-    //总的钱包meta链上数据
-    @JvmField
-    var tokenInfos= MutableResult<List<NewWalletToken>>()
 
-    //展示在钱包列表ui 数据 UiWalletToken is song for NewWalletToken
-    @JvmField
-    var uitokenInfos=MutableResult(mutableListOf<UiWalletToken>())
+
 
     @JvmField
     var isAutoRefresh=MutableResult<Boolean>()

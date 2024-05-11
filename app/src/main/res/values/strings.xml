@@ -317,4 +317,9 @@
     <string name="str_not_found_coin">没找到代币</string>
     <string name="str_copy_success">复制成功</string>
     <string name="str_ex_swap">兑换</string>
+    <string name="str_input_send_number">通过键盘输入数量</string>
+    <string name="str_balance">余额</string>
+    <string name="str_max_number">最大</string>
+    <string name="str_input_receiver_address">请输入接收钱包地址</string>
+    <string name="str_send_number">发送数量</string>
 </resources>

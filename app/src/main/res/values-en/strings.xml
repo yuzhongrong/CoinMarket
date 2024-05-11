@@ -196,5 +196,10 @@
     <string name="str_not_found_coin">Not found the toen</string>
     <string name="str_copy_success">Copy Success</string>
     <string name="str_ex_swap">Swap</string>
+    <string name="str_input_send_number">Input the number by keyboard</string>
+    <string name="str_balance">Balance</string>
+    <string name="str_max_number">Max</string>
+    <string name="str_input_receiver_address">Input Receiver Address</string>
+    <string name="str_send_number">Number</string>
 
 </resources>

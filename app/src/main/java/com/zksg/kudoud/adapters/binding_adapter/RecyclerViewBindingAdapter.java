@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.adapters.decorations.SpacesItemDecoration;
 
@@ -114,6 +115,8 @@ public class RecyclerViewBindingAdapter {
                 ((ListAdapter) recyclerView.getAdapter()).submitList(data);
             } else if (recyclerView.getAdapter() instanceof BaseQuickAdapter) {
                 ((BaseQuickAdapter) recyclerView.getAdapter()).replaceData(data);
+            }else if(recyclerView.getAdapter() instanceof SimpleDataBindingAdapter){
+                ((SimpleDataBindingAdapter) recyclerView.getAdapter()).submitList(data);
             }
         }
     }

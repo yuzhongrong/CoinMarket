@@ -90,7 +90,7 @@ public class ImageViewBindingAdapter {
     public static void meme_imv_if_sol(ImageView imv, UiWalletToken token) {
         if(imv==null||token==null)return;
         if(token.getMint().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){
-            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_solana_common,45);
+            imv.setImageResource(R.mipmap.ic_solana_common);
         }else{
             ImageLoaderManager.getInstance().displayImageForCircle(imv,token.getImageUrl());
         }

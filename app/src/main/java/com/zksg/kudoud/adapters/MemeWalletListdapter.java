@@ -23,8 +23,7 @@ public class MemeWalletListdapter extends SimpleDataBindingAdapter<UiWalletToken
         this.meFragmentViewModel=vm;
         setOnItemClickListener((item, position) -> {
             Intent intent=new Intent(context, CoinWalletDetailActivity.class);
-//            intent.putExtra("contract",item.getAddress());
-//            intent.putExtra("symbol",item.getSymbol());
+            intent.putExtra("token",item);
             context.startActivity(intent);
 
         });

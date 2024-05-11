@@ -56,17 +56,19 @@
 
             <TextView
                 android:id="@+id/coinname"
+                loadtext="@{vm.currentToken.symbol}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/dp5"
                 android:text="@string/str_f_default_n_a"
                 android:textColor="@color/white"
-                android:layout_marginLeft="@dimen/dp5"
                 android:textSize="@dimen/sp20"
                 android:textStyle="bold" />
 
             <com.hjq.shape.view.ShapeImageView
                 android:id="@+id/icon"
+                meme_imv_if_sol="@{vm.currentToken}"
                 android:layout_width="@dimen/dp30"
                 android:layout_height="@dimen/dp30"
                 android:layout_centerInParent="true"
@@ -100,55 +102,7 @@
             android:orientation="vertical"
 
             >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:visibility="gone"
-                >
 
-
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str_f_default_n_a"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/sp12"
-                    android:layout_marginLeft="@dimen/dp5"
-                    loadtext="@{vm.mSimpleWallet.network}"
-                    android:visibility="gone"
-                    />
-
-
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="@dimen/dp120"
-                    android:layout_height="wrap_content"
-                    android:text="ep5fsaf9sf0af7sa0f0sa987fa907"
-                    android:textSize="@dimen/sp14"
-                    android:singleLine="true"
-                    android:gravity="center_horizontal"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:ellipsize="middle"
-                    android:visibility="gone"
-                    loadtext="@{vm.mSimpleWallet.address}"
-                    android:textColor="@color/colorTextNormal"
-                    />
-                <ImageView
-                    android:layout_width="@dimen/dp15"
-                    android:layout_height="@dimen/dp15"
-                    android:src="@mipmap/ic_copy"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:visibility="gone"
-
-
-                    />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -175,11 +129,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:gravity="center"
-                    android:text="$0.00"
+                    android:text="0.0"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp35"
                     android:textStyle="bold"
-                    meme_price_normal_tv="@{vm.mWalletAmountMoney}"
+                    meme_wallet_token_amount_tv="@{vm.currentToken.balance}"
+
 
                     />
 
@@ -188,9 +143,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:text="≈ $1000.7"
-
-
+                    android:text="≈ $0.00"
+                    calculateTokenDallor="@{vm.currentToken}"
                     />
 
 
@@ -224,7 +178,7 @@
                     android:padding="@dimen/dp10"
                     app:shape_strokeWidth="@dimen/dp1"
                     app:shape_strokeColor="@color/c_29313d"
-
+                    android:onClick="@{()->click.startSendIntent()}"
                     />
 
                 <TextView
@@ -353,7 +307,6 @@
                 app:shape_strokeWidth="@dimen/dp0"
                 app:shape_strokeColor="@color/colorPrimaryLight"
                 android:padding="@dimen/dp1"
-                submitList="@{vm.uitokenInfos}"
                 />
 
 
