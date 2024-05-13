@@ -48,14 +48,13 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
 
     @JvmField
     var currentToken = ObservableField<UiWalletToken>()
-
     @JvmField
-    var numbers = State(listOf<String>())
+    var numberText=MutableResult<String>()
 
 
     //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();
     var contract = ObservableField<String>()
-    var isadd = State(false)
+    var isapass = State(false)
     var symbol=ObservableField<String>()
     var decimal=ObservableField<String>()
     var token=MutableResult<JupToken>()

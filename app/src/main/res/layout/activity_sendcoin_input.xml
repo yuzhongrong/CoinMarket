@@ -177,6 +177,8 @@
                 app:shape_strokeWidth="@dimen/dp1"
                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789."
                 android:hint="@string/str_input_send_number"
+                android:enabled="false"
+                android:text="@{vm.numberText}"
                 />
 
                </LinearLayout>
@@ -279,7 +281,6 @@
             </com.hjq.shape.layout.ShapeRelativeLayout>
 
             <com.hjq.shape.layout.ShapeRecyclerView
-
                 gridAdapter="@{adapter}"
                 columnspace="@{15}"
                 android:layout_width="match_parent"
@@ -316,7 +317,7 @@
             app:shape_solidPressedColor="@color/c_a0a0ab"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/dp15"
-            shape_btn_solidcolor="@{vm.isadd}"
+            shape_btn_solidcolor="@{vm.isapass}"
             android:onClick="@{()->click.sendCoinNext()}"
             />
 
