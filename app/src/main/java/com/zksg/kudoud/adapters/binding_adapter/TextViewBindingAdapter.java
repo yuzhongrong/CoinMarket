@@ -17,6 +17,7 @@ import com.netease.lib_network.entitys.NewWalletToken;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.Kline24ChangeChannelEnum;
 import com.zksg.kudoud.entitys.Base2QuoEntity;
+import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.fragments.Chart5MFragment;
 import com.zksg.kudoud.state.Chart1HLineFragmentViewModel;
 import com.zksg.kudoud.state.Chart5KLineFragmentViewModel;
@@ -180,10 +181,10 @@ public class TextViewBindingAdapter {
     }
 
     @BindingAdapter(value = {"meme_wallet_token_price_tv"},requireAll = false)
-    public static void meme_wallet_token_price_tv(TextView tv, String value) {
-        if(tv==null||value==null)return;
+    public static void meme_wallet_token_price_tv(TextView tv, UiWalletToken token) {
+        if(tv==null||token==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
-        tv.setText(dollar+DigitUtils.formatNumberWithCommas(new BigDecimal(value).doubleValue(),6));
+        tv.setText(dollar+DigitUtils.formatNumberWithCommas(new BigDecimal(token.getPrice()).doubleValue(),Integer.parseInt(token.getDecimal())));
     }
 
 
@@ -514,18 +515,47 @@ public class TextViewBindingAdapter {
 
     }
 
-    @BindingAdapter(value = {"calculateTokenDallor","vm"},requireAll = false)
-    public static void calculateTokenDallor(TextView tv, NewWalletToken token, MutableResult<String> money){
-        if(tv==null||token==null||money==null)return;
+    @BindingAdapter(value = {"calculateTokenDallor"},requireAll = false)
+    public static void calculateTokenDallor(TextView tv, NewWalletToken token){
+        if(tv==null||token==null)return;
         //获取balance
         BigDecimal balance=  new BigDecimal(token.getBalance());
         BigDecimal price=new BigDecimal(token.getPrice());
         BigDecimal amount=balance.multiply(price);
         String flat=tv.getContext().getString(R.string.str_vol_daller);
-        tv.setText(flat+DigitUtils.formatNumberWithCommas(amount.doubleValue()));
 
-        String result= new BigDecimal(money.getValue()).add(amount).toString();
-        money.setValue(result);
+        tv.setText(flat+DigitUtils.formatNumberWithCommas(amount.doubleValue(),Integer.parseInt(token.getDecimal())));
+
+    }
+
+
+    @BindingAdapter(value = {"calculateAmount"},requireAll = false)
+    public static void calculateAmount(TextView tv, List<UiWalletToken> tokens){
+        if(tv==null||tokens==null||tokens.size()==0)return;
+        BigDecimal amount=new BigDecimal(0);
+        for(UiWalletToken token:tokens){
+            //获取balance
+            BigDecimal balance=  new BigDecimal(token.getBalance());
+            BigDecimal price=new BigDecimal(token.getPrice());
+            amount=amount.add(balance.multiply(price));
+        }
+
+        String flat=tv.getContext().getString(R.string.str_vol_daller);
+        tv.setText(flat+DigitUtils.formatNumberWithCommas(amount.doubleValue(),6));
+
+
+    }
+
+    @BindingAdapter(value = {"calculateTokenDallor1"},requireAll = false)
+    public static void calculateTokenDallor1(TextView tv, NewWalletToken token){
+        if(tv==null||token==null)return;
+        //获取balance
+        BigDecimal balance=  new BigDecimal(token.getBalance());
+        BigDecimal price=new BigDecimal(token.getPrice());
+        BigDecimal amount=balance.multiply(price);
+        String flat=tv.getContext().getString(R.string.str_vol_daller);
+        tv.setText(flat+DigitUtils.formatNumberWithCommas(amount.doubleValue(),Integer.parseInt(token.getDecimal())));
+
     }
 
 

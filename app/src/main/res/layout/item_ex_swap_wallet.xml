@@ -65,7 +65,7 @@
             android:text="@string/str_f_default_n_a"
             android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12"
-            meme_wallet_token_price_tv="@{uiwallettoken.price}"
+            meme_wallet_token_price_tv="@{uiwallettoken}"
             />
 
 
@@ -107,7 +107,6 @@
             android:textStyle="bold"
             app:shape_radius="@dimen/dp5"
             calculateTokenDallor="@{uiwallettoken}"
-            vm="@{vm.mWalletAmountMoney}"
             />
 
 

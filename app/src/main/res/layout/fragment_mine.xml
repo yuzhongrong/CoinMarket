@@ -177,8 +177,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp35"
                     android:textStyle="bold"
-                    meme_price_normal_tv="@{vm.mWalletAmountMoney}"
-
+                    loadtext="@{vm.mWalletAmountMoney}"
                     />
 
 

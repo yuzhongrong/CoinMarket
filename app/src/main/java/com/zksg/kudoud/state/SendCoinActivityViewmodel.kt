@@ -49,7 +49,7 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
     @JvmField
     var currentToken = ObservableField<UiWalletToken>()
     @JvmField
-    var numberText=MutableResult<String>()
+    var numberText=MutableResult("0")
 
 
     //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();

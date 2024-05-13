@@ -109,6 +109,32 @@ class SendCoinActivity : BaseDialogActivity() {
 
         }
 
+        fun actionMax(){
+           var balance= mSendCoinActivityViewmodel!!.currentToken.get()!!.balance
+            var mint=mSendCoinActivityViewmodel!!.currentToken.get()!!.mint
+            var balanceBig=BigDecimal(balance)
+            var inputValue=mSendCoinActivityViewmodel!!.numberText.value
+            var inputValueBig=BigDecimal(inputValue)
+            if(balanceBig.toDouble()>0){
+                //判断是不是sol
+                if(mint.equals(TOKEN_SOL_CONTRACT)){
+                    if(balanceBig.toDouble()<0.001){
+                        ToastUtils.showShort(getString(R.string.str_transfor_tip))
+                    }else{
+                        mSendCoinActivityViewmodel!!.numberText.postValue(balanceBig.subtract(BigDecimal(0.001)).toString())
+                    }
+
+                }else{
+                    mSendCoinActivityViewmodel!!.numberText.postValue(balance)
+                }
+
+
+            }else{
+                ToastUtils.showShort(getString(R.string.str_balance_not))
+            }
+
+        }
+
 
 
     }

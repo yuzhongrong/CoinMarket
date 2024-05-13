@@ -201,5 +201,7 @@
     <string name="str_max_number">Max</string>
     <string name="str_input_receiver_address">Input Receiver Address</string>
     <string name="str_send_number">Number</string>
+    <string name="str_balance_not">Insufficient balance</string>
+    <string name="str_transfor_tip">Please keep at least 0.001 sol as account rental fee</string>
 
 </resources>

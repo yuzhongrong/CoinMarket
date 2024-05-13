@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:text="≈ $0.00"
-                    calculateTokenDallor="@{vm.currentToken}"
+                    calculateTokenDallor1="@{vm.currentToken}"
                     />
 
 

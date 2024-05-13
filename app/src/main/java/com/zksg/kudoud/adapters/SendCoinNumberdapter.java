@@ -58,7 +58,7 @@ public class SendCoinNumberdapter extends SimpleDataBindingAdapter<String, ItemS
 
             if(position!=11){
                 if(oldItem==null){
-                    oldItem="";
+                    oldItem="0";
                 }
                 String newItem=oldItem+item;
 

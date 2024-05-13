@@ -1,9 +1,16 @@
 package com.zksg.kudoud.utils;
 
+import android.content.Context;
+import android.widget.TextView;
+
+import com.zksg.kudoud.R;
+import com.zksg.kudoud.entitys.UiWalletToken;
+
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 
 public class DigitUtils {
@@ -107,6 +114,21 @@ public class DigitUtils {
         // 使用阈值避免精度问题
         double threshold = 1e-10;
         return value < -threshold;
+    }
+
+
+    public static String calculateAmount(Context mContext,List<UiWalletToken> tokens){
+        if(tokens==null||tokens.size()==0)return "0";
+        BigDecimal amount=new BigDecimal(0);
+        for(UiWalletToken token:tokens){
+            //获取balance
+            BigDecimal balance=  new BigDecimal(token.getBalance());
+            if(balance.doubleValue()==0.0)continue;
+            BigDecimal price=new BigDecimal(token.getPrice());
+            amount=amount.add(balance.multiply(price));
+        }
+        String flat=mContext.getString(R.string.str_vol_daller);
+       return flat+DigitUtils.formatNumberWithCommas(amount.doubleValue(),6);
     }
 
 }

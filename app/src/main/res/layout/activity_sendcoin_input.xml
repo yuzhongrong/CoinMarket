@@ -269,6 +269,7 @@
                         app:shape_solidColor="@color/c_29313d"
                         app:shape_solidPressedColor="@color/c_a0a0ab"
                         android:layout_alignParentBottom="true"
+                        android:onClick="@{()->click.actionMax()}"
 
 
                         />

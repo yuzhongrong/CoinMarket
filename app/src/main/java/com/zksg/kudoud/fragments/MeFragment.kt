@@ -25,6 +25,7 @@ import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.CopyUtils
+import com.zksg.kudoud.utils.DigitUtils
 import com.zksg.kudoud.utils.IntentUtils
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.manager.SimpleWallet
@@ -88,12 +89,17 @@ class MeFragment : BaseDialogFragment() {
 
     fun initObsver(){
 
-        //当你点击添加删除时候会走这里
+        //当你点击添加删除时候会走这里-这里有个延迟就是不能立马显示添加的代币
         sharedViewModel!!.getAddTokenNotify().observe(this){
             var keyAlias= sharedViewModel!!.getOneSelectWallet().value!!.keyAlias
             var tokensbytes= MMKV.mmkvWithID(UI_TOKENS).decodeBytes(keyAlias)
             var uitokens=ObjectSerializationUtils.deserializeObject(tokensbytes) as ArrayList<UiWalletToken>
             meViewModel!!.uitokenInfos.postValue(uitokens)
+        }
+
+        meViewModel!!.uitokenInfos.observe(this){
+            calculateAmount(it)
+
         }
 
 
@@ -176,6 +182,7 @@ class MeFragment : BaseDialogFragment() {
                 //刷新列表-这里采用这种模式更好因为你更改的是引用
                 requireActivity().runOnUiThread {
                     mMemeWalletListdapter!!.notifyDataSetChanged()
+                    calculateAmount(tokenlist)
                 }
 
             }
@@ -201,6 +208,12 @@ class MeFragment : BaseDialogFragment() {
             }
         }
        return uiWalletTokens;
+    }
+
+    fun calculateAmount(tokens: MutableList<UiWalletToken>){
+        var amount=DigitUtils.calculateAmount(requireContext(),tokens)
+        meViewModel!!.mWalletAmountMoney.postValue(amount)
+
     }
 
 
@@ -230,6 +243,8 @@ class MeFragment : BaseDialogFragment() {
             ToastUtils.showShort(getString(R.string.str_copy_success))
         }
     }
+
+
 
 
 }
