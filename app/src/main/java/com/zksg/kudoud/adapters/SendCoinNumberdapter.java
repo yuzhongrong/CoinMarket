@@ -29,52 +29,10 @@ public class SendCoinNumberdapter extends SimpleDataBindingAdapter<String, ItemS
         this.mContex=context;
         mSendCoinActivityViewmodel=((SendCoinActivity)mContex).getMSendCoinActivityViewmodel();
         setOnItemClickListener((item, position) -> {
-            Log.d("----item-click-->",item);
-
-
-            //检查输入的数值=余额, 直接=余额
-
-
-
-            String oldItem= mSendCoinActivityViewmodel.numberText.getValue();
-            if(position==9){//处理输入多余的.问题
-
-                if(oldItem!=null&&oldItem.contains("."))return;
-                if(TextUtils.isEmpty(oldItem) ||oldItem.length()==0){//不让输入第一个数字是.的判断
-                   return;
-                }
-
-            }
-
-            if(position==10){
-
-                if(!TextUtils.isEmpty(oldItem)&&oldItem.length()==1){//去掉多余的0
-                    if(item.equals("0")){
-                        return;
-                    }
-                }
-
-            }
-
-            if(position!=11){
-                if(oldItem==null){
-                    oldItem="0";
-                }
-                String newItem=oldItem+item;
-
-                mSendCoinActivityViewmodel.numberText.postValue(newItem);
-                vibrate();
-
-
-
-            }else{
-                Log.d("----item-click_remove-->",item);
-                if(oldItem==null||oldItem.length()==0)return;
-
-                String newItem=oldItem.substring(0,oldItem.length()-1);
-                mSendCoinActivityViewmodel.numberText.postValue(newItem);
-            }
-
+            String postvalue=filterNumber(item);
+            Log.d("----item-click-filter-->",postvalue);
+            mSendCoinActivityViewmodel.numberText.postValue(postvalue);
+            vibrate();
 
         });
     }
@@ -96,6 +54,40 @@ public class SendCoinNumberdapter extends SimpleDataBindingAdapter<String, ItemS
                 vibrator.vibrate(50);
             }
         }
+    }
+
+
+    private String filterNumber(String content){
+        String value=mSendCoinActivityViewmodel.numberText.getValue();
+        String result="0";
+        //分2种  第一 . 第二 数字
+        if(content.equals("\u232B")){
+            if(value.length()==1&&value.equals("0")){
+                result= value.substring(0,value.length());
+            }else if(value.length()==1&&!value.equals("0")){
+                result="0";
+            }
+            else{
+                result= value.substring(0,value.length()-1);
+            }
+
+        }
+        else if(value.length()==1&&content.equals(".")){
+            result=value+content;
+        }else if(value.equals("0")&&content.equals("0")){
+            result=value;
+        }else if(value.equals("0")&&!content.equals("0")){
+            result=content;
+        }
+        else if(value.contains(".")&&content.equals(".")){//不重复.输入
+            result=value;
+        }else if(value.length()>1&&value.contains(".")){
+            result=value+content;
+        } else{
+            result=value+content;
+        }
+
+        return result;
     }
 
 }

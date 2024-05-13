@@ -69,6 +69,7 @@ class CusAddCoinActivity : BaseDialogActivity() {
         fun addCoin2Local(){
             //保存到本地已添加列表
 
+            showDialog()
             //1.先初始化本地已有的币种列表
             var tokensbytes = MMKV.mmkvWithID(Constants.UI_TOKENS).decodeBytes(keyAlias)
             var localtokens  = ObjectSerializationUtils.deserializeObject(tokensbytes) as MutableList<UiWalletToken>
@@ -78,6 +79,7 @@ class CusAddCoinActivity : BaseDialogActivity() {
             if(!localtokens.contains(result.get(0))){
                 localtokens.add(result.get(0))
                 MMKV.mmkvWithID(Constants.UI_TOKENS).encode(keyAlias, ObjectSerializationUtils.serializeObject(localtokens))
+                mSharedViewModel!!.requestAddToken(true)
                 ToastUtils.showShort(getString(R.string.str_add_success))
                 finish()
             }else{

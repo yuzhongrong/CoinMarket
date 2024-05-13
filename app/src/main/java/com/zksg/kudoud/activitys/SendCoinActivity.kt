@@ -56,31 +56,6 @@ class SendCoinActivity : BaseDialogActivity() {
 
         mSendCoinActivityViewmodel!!.numberText.observe(this){
 
-            if(TextUtils.isEmpty(it)||it.equals("0.")||BigDecimal(it).toDouble()==0.0){
-                mSendCoinActivityViewmodel!!.isapass.set(false)
-                return@observe
-            }
-
-            //余额-输入的数值<0.001的话无法 保证账号租金 不让转账
-            var balancebigdecimal=BigDecimal("0.01")
-            var inputvalue=BigDecimal(it)
-            //
-            if(mSendCoinActivityViewmodel!!.currentToken.get()!!.mint.equals(TOKEN_SOL_CONTRACT)){
-                var calif=balancebigdecimal.subtract(inputvalue).toDouble() //余额扣除你所需要转的钱>0.001
-                if(calif>0.001){//有余额的前提下给予提示
-                    mSendCoinActivityViewmodel!!.isapass.set(true)
-                }else{
-                    mSendCoinActivityViewmodel!!.isapass.set(false)
-                }
-
-            }else{
-                if(balancebigdecimal.toDouble()<inputvalue.toDouble()){ //spL代币不足
-                    mSendCoinActivityViewmodel!!.isapass.set(false)
-                }else{
-                    mSendCoinActivityViewmodel!!.isapass.set(true)
-                }
-
-            }
 
 
         }
@@ -111,28 +86,7 @@ class SendCoinActivity : BaseDialogActivity() {
 
         fun actionMax(){
            var balance= mSendCoinActivityViewmodel!!.currentToken.get()!!.balance
-            var mint=mSendCoinActivityViewmodel!!.currentToken.get()!!.mint
-            var balanceBig=BigDecimal(balance)
-            var inputValue=mSendCoinActivityViewmodel!!.numberText.value
-            var inputValueBig=BigDecimal(inputValue)
-            if(balanceBig.toDouble()>0){
-                //判断是不是sol
-                if(mint.equals(TOKEN_SOL_CONTRACT)){
-                    if(balanceBig.toDouble()<0.001){
-                        ToastUtils.showShort(getString(R.string.str_transfor_tip))
-                    }else{
-                        mSendCoinActivityViewmodel!!.numberText.postValue(balanceBig.subtract(BigDecimal(0.001)).toString())
-                    }
-
-                }else{
-                    mSendCoinActivityViewmodel!!.numberText.postValue(balance)
-                }
-
-
-            }else{
-                ToastUtils.showShort(getString(R.string.str_balance_not))
-            }
-
+            mSendCoinActivityViewmodel!!.numberText.postValue(balance)
         }
 
 
