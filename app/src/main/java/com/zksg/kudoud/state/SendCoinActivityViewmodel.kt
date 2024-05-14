@@ -51,6 +51,10 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
     @JvmField
     var numberText=MutableResult("0")
 
+    //账号租金 默认 0.00089
+    @JvmField
+    var AccountRent=ObservableField("0.00089")
+
 
     //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();
     var contract = ObservableField<String>()

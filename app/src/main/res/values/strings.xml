@@ -324,4 +324,5 @@
     <string name="str_send_number">发送数量</string>
     <string name="str_balance_not">余额不足</string>
     <string name="str_transfor_tip">请保留至少0.001 sol 作为账号租金费用</string>
+    <string name="str_step_next">下一步</string>
 </resources>

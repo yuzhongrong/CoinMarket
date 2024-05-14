@@ -29,6 +29,7 @@ public class SendCoinNumberdapter extends SimpleDataBindingAdapter<String, ItemS
         this.mContex=context;
         mSendCoinActivityViewmodel=((SendCoinActivity)mContex).getMSendCoinActivityViewmodel();
         setOnItemClickListener((item, position) -> {
+            //过滤操作sol和spl都是一样
             String postvalue=filterNumber(item);
             Log.d("----item-click-filter-->",postvalue);
             mSendCoinActivityViewmodel.numberText.postValue(postvalue);
