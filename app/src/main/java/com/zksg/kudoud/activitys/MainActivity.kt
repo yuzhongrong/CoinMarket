@@ -91,15 +91,15 @@ class MainActivity : BaseActivity() {
                 CJ_PAGE
             )
         )
-        val ME_PAGE = getString(R.string.str_chance)
-        mainBinding.homeNavigate!!.addTab(MeFragment::class.java,
-            NavigateTabBar.TabParam(
-                resources.getColor(R.color.white),
-                R.mipmap.me_normal,
-                R.mipmap.me_select,
-                ME_PAGE
-            )
-        )
+//        val ME_PAGE = getString(R.string.str_chance)
+//        mainBinding.homeNavigate!!.addTab(MeFragment::class.java,
+//            NavigateTabBar.TabParam(
+//                resources.getColor(R.color.white),
+//                R.mipmap.me_normal,
+//                R.mipmap.me_select,
+//                ME_PAGE
+//            )
+//        )
 
         val ME_ASSET = getString(R.string.str_wallet)
         mainBinding.homeNavigate!!.addTab(MeFragment::class.java,

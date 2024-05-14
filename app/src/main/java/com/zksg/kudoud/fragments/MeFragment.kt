@@ -97,6 +97,7 @@ class MeFragment : BaseDialogFragment() {
             meViewModel!!.uitokenInfos.postValue(uitokens)
         }
 
+        //监听到列表发生变化引起的其他事件event
         meViewModel!!.uitokenInfos.observe(this){
             calculateAmount(it)
 
@@ -186,6 +187,8 @@ class MeFragment : BaseDialogFragment() {
                 }
 
             }
+            var tokenlist = meViewModel!!.uitokenInfos.value!!
+            Log.d("----walletbalance-debug---->", Gson().toJson(tokenlist))
             finishRefresh()
         }
 

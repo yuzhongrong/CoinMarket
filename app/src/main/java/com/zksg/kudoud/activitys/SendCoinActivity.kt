@@ -58,8 +58,16 @@ class SendCoinActivity : BaseDialogActivity() {
             //这里负责判断校验
             var mint=token!!.mint
             if(mint.equals(TOKEN_SOL_CONTRACT)){//sol的情况需要考虑到租金rent的费用
+                var numberText=mSendCoinActivityViewmodel!!.numberText.value
+                var numberTextBig= BigDecimal(numberText)
+                var balanceBig=BigDecimal(token!!.balance)
 
-
+                var maxbalance=balanceBig.subtract(BigDecimal(mSendCoinActivityViewmodel!!.AccountRent.get()))
+                if(numberTextBig.toDouble()>0&&numberTextBig.toDouble()<=maxbalance.toDouble()){
+                    mSendCoinActivityViewmodel!!.isapass.set(true)
+                }else{
+                    mSendCoinActivityViewmodel!!.isapass.set(false)
+                }
 
             }else{//spl token的话 直接满足  0<input<=balance 即可
                 var numberText=mSendCoinActivityViewmodel!!.numberText.value

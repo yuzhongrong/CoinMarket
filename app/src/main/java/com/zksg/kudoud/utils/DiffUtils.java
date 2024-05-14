@@ -131,7 +131,7 @@ public class DiffUtils {
                 //区别2个item是内容否是相同，一般用item内的属性
                 @Override
                 public boolean areContentsTheSame(@NonNull UiWalletToken oldItem, @NonNull UiWalletToken newItem) {
-                    return oldItem.getMint().equals(newItem.getMint());
+                    return oldItem.getMint().equals(newItem.getMint())&&oldItem.getBalance().equals(newItem.getBalance())&&oldItem.getPrice().equals(newItem.getPrice());
                 }
             };
         }
