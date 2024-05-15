@@ -48,7 +48,7 @@ class SendCoinActivity : BaseDialogActivity() {
     fun initData(){
         token = intent.getSerializableExtra("token") as UiWalletToken?
         if(token!!.mint.equals(TOKEN_SOL_CONTRACT)){
-            mSendCoinActivityViewmodel!!.AccountRentShow.set(true)
+//            mSendCoinActivityViewmodel!!.AccountRentShow.set(true)
         }
         mSendCoinActivityViewmodel!!.numberText.observe(this){
             //这里负责判断校验
@@ -58,7 +58,7 @@ class SendCoinActivity : BaseDialogActivity() {
                 var numberTextBig= BigDecimal(numberText)
                 var balanceBig=BigDecimal(token!!.balance)
 
-                var maxbalance=balanceBig.subtract(BigDecimal(mSendCoinActivityViewmodel!!.AccountRent.get()))
+                var maxbalance=balanceBig.subtract(BigDecimal(mSendCoinActivityViewmodel!!.transforGas.get()))
                 if(numberTextBig.toDouble()>0&&numberTextBig.toDouble()<=maxbalance.toDouble()){
                     if(mSendCoinActivityViewmodel!!.iscontractpass.get()==true){
                         mSendCoinActivityViewmodel!!.isapass.set(true)
@@ -130,9 +130,9 @@ class SendCoinActivity : BaseDialogActivity() {
 
 
             var balance= mSendCoinActivityViewmodel!!.currentToken.get()!!.balance
-            var rent=mSendCoinActivityViewmodel!!.AccountRent.get()
+            var gas=mSendCoinActivityViewmodel!!.transforGas.get()
             if(isSol(token!!.mint)){
-               var result= BigDecimal(balance).subtract(BigDecimal(rent))
+               var result= BigDecimal(balance).subtract(BigDecimal(gas))
                 if(result.toDouble()<=0.0){
                     ToastUtils.showShort(getString(R.string.str_not_2_pay))
                 }else{

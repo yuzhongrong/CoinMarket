@@ -205,7 +205,7 @@
     <string name="str_transfor_tip">Please keep at least 0.001 sol as account rental fee</string>
     <string name="str_step_next">Next</string>
     <string name="str_account_rent">Rent</string>
-    <string name="str_not_2_pay">There is no need to pay rent on account balance</string>
+    <string name="str_not_2_pay">There is no need to pay  on account balance</string>
     <string name="str_contract_address_err">The receiving address or quantity is wrong</string>
 
 </resources>

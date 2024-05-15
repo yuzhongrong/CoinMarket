@@ -54,6 +54,11 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
     //账号租金 默认 0.00089
     @JvmField
     var AccountRent=ObservableField("0.00089")
+
+    //账号租金 默认 0.00000926
+    @JvmField
+    var transforGas=ObservableField("0.00000926")
+
     @JvmField
     var AccountRentShow=ObservableField(false)
 
