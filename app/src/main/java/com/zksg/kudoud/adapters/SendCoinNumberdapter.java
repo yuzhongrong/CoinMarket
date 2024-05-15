@@ -9,6 +9,7 @@ import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.SendCoinActivity;
@@ -29,6 +30,12 @@ public class SendCoinNumberdapter extends SimpleDataBindingAdapter<String, ItemS
         this.mContex=context;
         mSendCoinActivityViewmodel=((SendCoinActivity)mContex).getMSendCoinActivityViewmodel();
         setOnItemClickListener((item, position) -> {
+            //必须先判断是否输入合约
+            if(mSendCoinActivityViewmodel.getIscontractpass().get()==false){
+                ToastUtils.showShort(mContex.getString(R.string.str_input_receiver_address));
+                return;
+            }
+
             //过滤操作sol和spl都是一样
             String postvalue=filterNumber(item);
             Log.d("----item-click-filter-->",postvalue);

@@ -54,11 +54,13 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
     //账号租金 默认 0.00089
     @JvmField
     var AccountRent=ObservableField("0.00089")
-
+    @JvmField
+    var AccountRentShow=ObservableField(false)
 
     //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();
     var contract = ObservableField<String>()
     var isapass = State(false)
+    var iscontractpass=State(false)
     var symbol=ObservableField<String>()
     var decimal=ObservableField<String>()
     var token=MutableResult<JupToken>()
@@ -70,33 +72,17 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
 //    @JvmField
 //    var pwdConfirm = ObservableField(false)
 
-    fun reqCusCoinInfo(contract: String,callback: WalletCusTokenInfo){
-
+    //请求账号租金-转sol的时候才需要
+    fun reqAccountRentInfo(contract: String){
         viewModelScope.launch {
             loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getCusCoinInfo(contract){
-                    if(it.responseStatus.isSuccess){
 
-                        if(it.result.data!=null){
-
-                            callback.cusTokenInfo(it.result.data)
-
-                        }else{
-                            callback.cusTokenInfo(null)
-                        }
-                        //更新状态
-                        loadingVisible.postValue(false)
-
-                    }else{
-                        loadingVisible.postValue(false)
-                    }
                 }
             }
 
         }
-
-
 
     }
 

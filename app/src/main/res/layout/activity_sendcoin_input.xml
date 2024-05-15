@@ -18,9 +18,7 @@
             name="contractNameTextWatcher"
             type="android.text.TextWatcher" />
 
-        <variable
-            name="inputCoinNumber"
-            type="android.text.TextWatcher" />
+
 
         <variable
             name="adapter"
@@ -250,6 +248,32 @@
 
                 </LinearLayout>
 
+                <LinearLayout
+                    visible="@{vm.AccountRentShow}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_account_rent"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        text_rent="@{vm.AccountRent}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp4"
+                        android:text="≈0.00089/sol"
+                        android:textColor="@color/primaryTextGray"
+                        android:textSize="@dimen/sp10"
+                        android:textStyle="bold" />
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

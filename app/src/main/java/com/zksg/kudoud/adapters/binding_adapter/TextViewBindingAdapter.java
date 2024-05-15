@@ -572,4 +572,11 @@ public class TextViewBindingAdapter {
 
     }
 
+
+    @BindingAdapter(value = {"text_rent"},requireAll = false)
+    public static void text_rent(TextView tv, String number){
+        if(tv==null&&TextUtils.isEmpty(number))return;
+        tv.setText("≈"+number+"/sol");
+    }
+
 }
