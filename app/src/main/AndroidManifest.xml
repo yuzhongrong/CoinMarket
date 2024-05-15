@@ -224,6 +224,12 @@
             android:windowSoftInputMode="adjustPan"
             />
 
+        <activity android:name=".activitys.SendCoinConfirmActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+
+            />
+
 
 
 

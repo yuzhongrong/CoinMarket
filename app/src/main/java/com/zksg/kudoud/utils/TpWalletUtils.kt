@@ -33,12 +33,12 @@ object TpWalletUtils {
         authorize.memo = "MetaStore"
         TPManager.getInstance().authorize(context, authorize, object : TPListener {
             override fun onSuccess(s: String) {
-                Log.d("TP-WALLET",s)
-                var result= GsonUtil.fromJSON(s, TpWalletConnectResult::class.java)
-                meViewModel?.account?.set(StringUtils.hideMiddleOfString(result.account,30))
-                meViewModel?.account_show?.set(View.VISIBLE)
-                meViewModel?.account_value?.set(result.account)
-                MMKV.mmkvWithID("accounts").encode("wallet_account",result.account)
+//                Log.d("TP-WALLET",s)
+//                var result= GsonUtil.fromJSON(s, TpWalletConnectResult::class.java)
+//                meViewModel?.account?.set(StringUtils.hideMiddleOfString(result.account,30))
+//                meViewModel?.account_show?.set(View.VISIBLE)
+//                meViewModel?.account_value?.set(result.account)
+//                MMKV.mmkvWithID("accounts").encode("wallet_account",result.account)
 
 
             }

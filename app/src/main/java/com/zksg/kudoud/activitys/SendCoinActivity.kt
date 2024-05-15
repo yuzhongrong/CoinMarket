@@ -1,5 +1,6 @@
 package com.zksg.kudoud.activitys
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
@@ -12,11 +13,16 @@ import com.zksg.kudoud.adapters.SendCoinNumberdapter
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.SendCoinActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
+import com.zksg.kudoud.utils.IntentUtils
+import com.zksg.kudoud.utils.WalletUtils
+import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import java.math.BigDecimal
 
 class SendCoinActivity : BaseDialogActivity() {
     var token: UiWalletToken? = null
+    var sol:UiWalletToken?=null
+    var wallet:SimpleWallet?=null
     var mSendCoinActivityViewmodel: SendCoinActivityViewmodel? = null
     var mSharedViewModel:SharedViewModel?=null
     var adapter:SendCoinNumberdapter?=null
@@ -46,7 +52,9 @@ class SendCoinActivity : BaseDialogActivity() {
     }
 
     fun initData(){
+        wallet= WalletUtils.getCurrentSimpleWallet(mSharedViewModel)
         token = intent.getSerializableExtra("token") as UiWalletToken?
+        sol= intent.getSerializableExtra("sol") as UiWalletToken?
         if(token!!.mint.equals(TOKEN_SOL_CONTRACT)){
 //            mSendCoinActivityViewmodel!!.AccountRentShow.set(true)
         }
@@ -58,7 +66,7 @@ class SendCoinActivity : BaseDialogActivity() {
                 var numberTextBig= BigDecimal(numberText)
                 var balanceBig=BigDecimal(token!!.balance)
 
-                var maxbalance=balanceBig.subtract(BigDecimal(mSendCoinActivityViewmodel!!.transforGas.get()))
+                var maxbalance=balanceBig.subtract(BigDecimal(mSendCoinActivityViewmodel!!.AccountRent.get()))
                 if(numberTextBig.toDouble()>0&&numberTextBig.toDouble()<=maxbalance.toDouble()){
                     if(mSendCoinActivityViewmodel!!.iscontractpass.get()==true){
                         mSendCoinActivityViewmodel!!.isapass.set(true)
@@ -112,6 +120,21 @@ class SendCoinActivity : BaseDialogActivity() {
                 return
             }
 
+
+            IntentUtils.openIntent(
+                this@SendCoinActivity,
+                Intent(
+                    this@SendCoinActivity,
+                    SendCoinConfirmActivity::class.java
+                ).putExtra("receiver",mSendCoinActivityViewmodel!!.contract.get())
+                    .putExtra("sender",wallet!!.address)
+                    .putExtra("number",mSendCoinActivityViewmodel!!.numberText.value)
+                    .putExtra("token",mSendCoinActivityViewmodel!!.currentToken.get())
+                    .putExtra("rent",mSendCoinActivityViewmodel!!.AccountRent.get())
+                    .putExtra("sol",sol)
+
+            )
+
         }
 
         fun isSol(mint:String):Boolean{
@@ -130,9 +153,9 @@ class SendCoinActivity : BaseDialogActivity() {
 
 
             var balance= mSendCoinActivityViewmodel!!.currentToken.get()!!.balance
-            var gas=mSendCoinActivityViewmodel!!.transforGas.get()
+            var rent=mSendCoinActivityViewmodel!!.AccountRent.get()
             if(isSol(token!!.mint)){
-               var result= BigDecimal(balance).subtract(BigDecimal(gas))
+               var result= BigDecimal(balance).subtract(BigDecimal(rent))
                 if(result.toDouble()<=0.0){
                     ToastUtils.showShort(getString(R.string.str_not_2_pay))
                 }else{
@@ -156,6 +179,7 @@ class SendCoinActivity : BaseDialogActivity() {
                 var contract=s.toString().trim()
                 if(contract.length==44){//粘贴合约上来的时候去请求
                     mSendCoinActivityViewmodel!!.iscontractpass.set(true)
+                    mSendCoinActivityViewmodel!!.contract.set(contract)
                 }else{
                     mSendCoinActivityViewmodel!!.iscontractpass.set(false)
                 }

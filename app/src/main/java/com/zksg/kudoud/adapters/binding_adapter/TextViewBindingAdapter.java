@@ -579,4 +579,21 @@ public class TextViewBindingAdapter {
         tv.setText("≈"+number+"/sol");
     }
 
+
+
+
+    @BindingAdapter(value = {"text_send_gas"},requireAll = false)
+    public static void text_send_gas(TextView tv, String number){
+        if(tv==null&&TextUtils.isEmpty(number))return;
+        tv.setText(number+" sol");
+    }
+
+    @BindingAdapter(value = {"text_send_number"},requireAll = false)
+    public static void text_send_number(TextView tv, String number){
+        if(tv==null&&TextUtils.isEmpty(number))return;
+        tv.setText(number+" SOL");
+    }
+
+
+
 }

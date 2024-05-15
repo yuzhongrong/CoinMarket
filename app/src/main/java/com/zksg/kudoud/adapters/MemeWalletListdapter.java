@@ -1,5 +1,7 @@
 package com.zksg.kudoud.adapters;
 
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+
 import android.content.Context;
 import android.content.Intent;
 
@@ -13,6 +15,9 @@ import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.state.MeFragmentViewModel;
 import com.zksg.kudoud.utils.DiffUtils;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class MemeWalletListdapter extends SimpleDataBindingAdapter<UiWalletToken, ItemMemeWalletBinding> {
 
     private MeFragmentViewModel meFragmentViewModel;
@@ -22,8 +27,10 @@ public class MemeWalletListdapter extends SimpleDataBindingAdapter<UiWalletToken
         this.mContex=context;
         this.meFragmentViewModel=vm;
         setOnItemClickListener((item, position) -> {
+            List<UiWalletToken> datas=meFragmentViewModel.uitokenInfos.getValue().stream().filter(f->f.getMint().equals(TOKEN_SOL_CONTRACT)).collect(Collectors.toList());
             Intent intent=new Intent(context, CoinWalletDetailActivity.class);
             intent.putExtra("token",item);
+            intent.putExtra("sol",datas.get(0));
             context.startActivity(intent);
 
         });

@@ -43,51 +43,39 @@ import com.zksg.kudoud.repository.DataRepository
 /**
  * //TODO tip 5：此处我们使用 "去除防抖特性" 的 ObservableField 子类 State，用以代替 MutableLiveData，
  */
-class SendCoinActivityViewmodel : BaseLoadingViewModel() {
+class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
 
 
-    @JvmField
-    var currentToken = ObservableField<UiWalletToken>()
-    @JvmField
-    var numberText=MutableResult("0")
 
-    //账号租金 默认 0.00089
-    @JvmField
-    var AccountRent=ObservableField("0.0008909")
-
-    //账号租金 默认 0.00000926
-    @JvmField
-    var transforGas=ObservableField("0.00000926")
-
-    @JvmField
-    var AccountRentShow=ObservableField(false)
-
-    //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();
-    var contract = ObservableField<String>()
-    var isapass = State(false)
-    var iscontractpass=State(false)
-    var symbol=ObservableField<String>()
-    var decimal=ObservableField<String>()
-    var token=MutableResult<JupToken>()
-
-
+    var currentToken=ObservableField<UiWalletToken>()
+    var sender=ObservableField<String>()
+    var receiver=ObservableField<String>()
+    var gas=ObservableField("0.0000096")
+    var rent=ObservableField("0.000896")
+    var keepsol=ObservableField("0.0")
+    var number=ObservableField("0.0")
+    var sol=ObservableField<UiWalletToken>()
+    var issend=ObservableField(false)
 
 //    @JvmField
 //    var pwd = ObservableField(false)
 //    @JvmField
 //    var pwdConfirm = ObservableField(false)
 
-    //请求账号租金-转sol的时候才需要
-    fun reqAccountRentInfo(contract: String){
+    fun getEstimatedFee(from: String,to:String,value:String){
         viewModelScope.launch {
             loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
-                DataRepository.getInstance().getCusCoinInfo(contract){
-
+                DataRepository.getInstance().getEstimatedFee(from,to,value){
+                    if(it.responseStatus.isSuccess){
+                        Log.d("----getEstimatedFee-->",it.result.data)
+                    }
                 }
             }
 
         }
+
+
 
     }
 

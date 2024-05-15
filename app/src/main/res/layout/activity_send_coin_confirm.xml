@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.SendCoinConfirmActivityViewmodel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.SendCoinConfirmActivity.ClickProxy" />
+
+
+
+
+
+
+
+
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_layout_common"
+        >
+
+        <com.hjq.shape.layout.ShapeRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            app:shape_radius="@dimen/sp30"
+            android:layout_marginLeft="@dimen/dp8"
+            android:layout_marginRight="@dimen/dp8"
+            >
+
+
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="@dimen/dp30"
+                android:layout_height="@dimen/dp30"
+                android:layout_alignParentLeft="true"
+                android:src="@mipmap/ic_back_left"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/dp5"
+                app:shape_solidColor="@color/c_29313d"
+                app:shape_radius="@dimen/dp45"
+                android:padding="@dimen/dp3"
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:clickable="true"
+                android:onClick="@{()->click.close()}"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="@string/str_send_action"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp20"
+                android:textStyle="bold" />
+
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="@dimen/dp28"
+                android:layout_height="@dimen/dp28"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/dp5"
+                android:src="@mipmap/ic_solana_common"
+                android:layout_centerVertical="true"
+                app:shape_solidColor="@color/c_2e2e2e"
+                app:shape_radius="@dimen/dp45"
+
+                app:shape_solidPressedColor="@color/c_a0a0ab"
+                android:clickable="true"
+                />
+        </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+        >
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_send_number"
+                android:textSize="@dimen/sp14"
+                android:layout_marginLeft="@dimen/dp5"
+                android:textColor="@color/white"
+                />
+
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp15"
+                android:padding="@dimen/dp8"
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                >
+
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:id="@+id/icon1"
+                    meme_imv_if_sol="@{vm.currentToken}"
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_unlink"
+                    app:shape_radius="@dimen/dp45" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp20"
+                    android:text="@string/str_f_default_n_a"
+                    android:layout_marginLeft="@dimen/dp15"
+                    loadtext="@{vm.number}"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp20"
+                    android:text="@string/str_f_default_n_a"
+                    android:layout_marginLeft="@dimen/dp15"
+                    loadtext="@{vm.currentToken.symbol}"
+                    />
+
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp35"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_send_address"
+                android:textSize="@dimen/sp14"
+                android:layout_marginLeft="@dimen/dp5"
+                android:textColor="@color/white"
+                />
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                >
+            <com.hjq.shape.view.ShapeTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp45"
+                android:textSize="@dimen/sp12"
+                android:textColor="@color/primaryTextGray"
+                android:paddingLeft="@dimen/dp10"
+                android:layout_weight="1"
+
+                android:gravity="center_vertical"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.$#"
+                android:layout_marginRight="@dimen/dp10"
+                loadtext="@{vm.sender}"
+                />
+                <ImageView
+                    android:layout_width="@dimen/dp15"
+                    android:layout_height="@dimen/dp15"
+                    android:src="@mipmap/ic_copy"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:onClick="@{()->click.copyAddress()}"
+
+                    />
+
+               </com.hjq.shape.layout.ShapeLinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp10"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_receiver_address"
+                android:textSize="@dimen/sp14"
+                android:layout_marginLeft="@dimen/dp5"
+                android:textColor="@color/white"
+                />
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp10"
+                android:gravity="center_vertical"
+                app:shape_radius="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+
+                >
+            <com.hjq.shape.view.ShapeTextView
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp45"
+                android:layout_weight="1"
+                android:textSize="@dimen/sp12"
+                android:gravity="center_vertical"
+                android:textColor="@color/primaryTextGray"
+                android:layout_marginRight="@dimen/dp10"
+                loadtext="@{vm.receiver}"
+                android:paddingLeft="@dimen/dp10"
+                />
+                <ImageView
+                    android:layout_width="@dimen/dp15"
+                    android:layout_height="@dimen/dp15"
+                    android:src="@mipmap/ic_copy"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:onClick="@{()->click.copyAddress()}"
+
+                    />
+
+               </com.hjq.shape.layout.ShapeLinearLayout>
+        </LinearLayout>
+
+        <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                app:shape_solidColor="@color/bg_layout_common"
+                android:layout_marginTop="@dimen/dp35"
+                android:padding="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp15"
+                app:shape_radius="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+
+
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp5"
+                >
+                            <com.hjq.shape.view.ShapeImageView
+                                android:layout_width="@dimen/dp20"
+                                android:layout_height="@dimen/dp20"
+                                android:scaleType="centerCrop"
+                                android:src="@mipmap/ic_solana_common"
+                                app:shape_radius="@dimen/dp45" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp12"
+                                android:text="@string/str_gas"
+                                android:layout_marginLeft="@dimen/dp15"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textStyle="bold"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/sp12"
+                                android:text="@string/str_f_default_n_a"
+                                android:layout_marginLeft="@dimen/dp15"
+                                text_send_gas="@{vm.gas}"
+                                />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:textSize="@dimen/sp10"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="@string/str_gas_tip"
+                android:textColor="@color/primaryTextGray"
+                android:lineSpacingExtra="5dp"
+                />
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+        <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                app:shape_solidColor="@color/bg_layout_common"
+                android:padding="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp15"
+                app:shape_radius="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+                android:layout_marginTop="@dimen/dp15"
+
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp5"
+                >
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp20"
+                    android:layout_height="@dimen/dp20"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_solana_common"
+                    app:shape_radius="@dimen/dp45" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp12"
+                    android:text="@string/str_account_rent"
+                    android:layout_marginLeft="@dimen/dp15"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp12"
+                    android:text="@string/str_f_default_n_a"
+                    android:layout_marginLeft="@dimen/dp15"
+                    text_send_gas="@{vm.rent}"
+                    />
+
+          </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp5"
+                android:textSize="@dimen/sp10"
+                android:layout_marginTop="@dimen/dp5"
+                android:text="@string/str_rent_tip"
+                android:textColor="@color/primaryTextGray"
+                android:lineSpacingExtra="5dp"
+                />
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:padding="@dimen/dp5"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:layout_marginLeft="@dimen/dp5"
+                android:textSize="@dimen/sp12"
+                android:text="@string/str_need_sol" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/str_f_default_n_a"
+                    android:layout_marginLeft="@dimen/dp15"
+                    text_send_gas="@{vm.keepsol}"
+                    />
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+     </LinearLayout>
+
+        <com.hjq.shape.view.ShapeButton
+            android:id="@+id/add"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/str_ok"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold"
+            app:shape_radius="@dimen/dp10"
+            android:layout_marginTop="@dimen/dp15"
+            app:shape_solidColor="@color/primaryTextGray"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            app:shape_solidPressedColor="@color/c_a0a0ab"
+            shape_btn_solidcolor="@{vm.issend}"
+            android:onClick="@{()->click.sendCoin()}"
+            />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
+
+</layout>

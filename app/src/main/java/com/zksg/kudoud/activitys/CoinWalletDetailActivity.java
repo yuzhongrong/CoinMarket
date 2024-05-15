@@ -18,6 +18,7 @@ import com.zksg.kudoud.state.CoinWalletDetailActivityViewModel;
 import com.zksg.kudoud.utils.IntentUtils;
 
 public class CoinWalletDetailActivity extends BaseActivity {
+    UiWalletToken sol;
     CoinWalletDetailActivityViewModel mCoinWalletDetailActivityViewModel;
     UiWalletToken item;
 
@@ -44,6 +45,7 @@ public class CoinWalletDetailActivity extends BaseActivity {
 
     private void initData(){
         item= (UiWalletToken) getIntent().getExtras().get("token");
+        sol= (UiWalletToken) getIntent().getExtras().get("sol");
         if(item!=null){
             mCoinWalletDetailActivityViewModel.currentToken.set(item);
         }
@@ -56,7 +58,7 @@ public class CoinWalletDetailActivity extends BaseActivity {
         }
 
         public void startSendIntent(){
-            IntentUtils.openIntent(CoinWalletDetailActivity.this,new Intent(CoinWalletDetailActivity.this,SendCoinActivity.class).putExtra("token",item));
+            IntentUtils.openIntent(CoinWalletDetailActivity.this,new Intent(CoinWalletDetailActivity.this,SendCoinActivity.class).putExtra("token",item).putExtra("sol",sol));
         }
     }
 }

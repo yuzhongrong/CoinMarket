@@ -104,5 +104,6 @@ public interface ApiService {
     Single<CommonResponse<JupToken>> getCusCoinInfo(@Query("contract") String contract);
     @GET("/api/wallet/updateWalletBalance")
     Single<CommonResponse<List<NewWalletToken>>> updateWalletBalance(@Query("wallet") String wallet);
-
+    @GET("/api/wallet/getEstimatedFee")
+    Single<CommonResponse<String>> getEstimatedFee(@Query("from") String from,@Query("to") String to,@Query("value") String value);
 }

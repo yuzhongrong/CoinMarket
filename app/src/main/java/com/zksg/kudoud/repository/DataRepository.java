@@ -571,6 +571,31 @@ public class DataRepository {
     }
 
 
+
+    public void getEstimatedFee(String from,String to,String value,DataResult.Result<CommonResponse<String>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getEstimatedFee(from,to,value)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<String>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<String> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
     public void updateWalletBalance(String wallet,DataResult.Result<CommonResponse<List<NewWalletToken>>> result){
         ApiEngine.getInstance()
                 .getApiService()

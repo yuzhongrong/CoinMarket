@@ -207,5 +207,12 @@
     <string name="str_account_rent">Rent</string>
     <string name="str_not_2_pay">There is no need to pay  on account balance</string>
     <string name="str_contract_address_err">The receiving address or quantity is wrong</string>
+    <string name="str_send_address">Sender</string>
+    <string name="str_receiver_address">Receiver</string>
+    <string name="str_gas">Gas</string>
+    <string name="str_send_action">Send</string>
+    <string name="str_need_sol">needs balance at least: </string>
+    <string name="str_gas_tip">Each transaction on the Solana network requires a certain amount of SOL as transaction fees. This fee will vary depending on the complexity of the transaction and the congestion of the network</string>
+    <string name="str_rent_tip">In Solana, accounts need to maintain a certain amount of SOL as rent to ensure that they can persist on the chain. If you are sending a transaction that involves creating or updating an account, \n you need to make sure the account has enough SOL to pay the rent. Otherwise, the account may be liquidated \n and the assets in it will be lost.</string>
 
 </resources>
