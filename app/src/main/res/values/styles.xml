@@ -12,6 +12,15 @@
 
     </style>
 
+
+    <!-- 对话框的主题 -->
+    <style name="AppTheme.Dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- 使用与应用程序相同的颜色 -->
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
     <style name="AppTheme.Splash" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!--将顶部状态栏设置为透明，并将界面内容布局上边界上提至状态栏顶部-->
         <item name="android:windowTranslucentStatus">true</item>

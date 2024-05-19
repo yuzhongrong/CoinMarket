@@ -73,6 +73,11 @@ public class CommonBindingAdapter {
     public static void visible(View view, boolean visible) {
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
+
+    @BindingAdapter(value = {"visible1"}, requireAll = false)
+    public static void visible1(View view, boolean visible) {
+        view.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+    }
     @BindingAdapter(value = {"notifyselect"}, requireAll = false)
     public static void select(View view, boolean isselect) {
         view.setSelected(isselect);

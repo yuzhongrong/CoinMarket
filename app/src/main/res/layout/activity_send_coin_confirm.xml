@@ -105,15 +105,48 @@
             android:layout_marginTop="@dimen/dp15"
             >
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                >
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_send_number"
                 android:textSize="@dimen/sp14"
+                android:textStyle="bold"
                 android:layout_marginLeft="@dimen/dp5"
                 android:textColor="@color/white"
                 />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_wallet_tag"
+                    android:layout_toLeftOf="@+id/sol_balance"
+                    android:textSize="@dimen/sp14"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:textColor="@color/white"
 
+                    />
+
+                <TextView
+                    android:id="@+id/sol_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_f_default_n_a"
+                    android:layout_alignParentRight="true"
+                    android:textSize="@dimen/sp14"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    text_sol_show="@{vm.sol.balance}"
+                    />
+
+            </RelativeLayout>
 
             <com.hjq.shape.layout.ShapeLinearLayout
                 android:layout_width="match_parent"
@@ -183,6 +216,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/str_send_address"
                 android:textSize="@dimen/sp14"
+                android:textStyle="bold"
                 android:layout_marginLeft="@dimen/dp5"
                 android:textColor="@color/white"
                 />
@@ -214,7 +248,7 @@
                     android:layout_height="@dimen/dp15"
                     android:src="@mipmap/ic_copy"
                     android:layout_marginRight="@dimen/dp10"
-                    android:onClick="@{()->click.copyAddress()}"
+                    android:onClick="@{()->click.copySenderAddress()}"
 
                     />
 
@@ -234,6 +268,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/str_receiver_address"
+                android:textStyle="bold"
                 android:textSize="@dimen/sp14"
                 android:layout_marginLeft="@dimen/dp5"
                 android:textColor="@color/white"
@@ -266,7 +301,7 @@
                     android:layout_height="@dimen/dp15"
                     android:src="@mipmap/ic_copy"
                     android:layout_marginRight="@dimen/dp10"
-                    android:onClick="@{()->click.copyAddress()}"
+                    android:onClick="@{()->click.copyReceiverAddress()}"
 
                     />
 
@@ -353,7 +388,7 @@
                 app:shape_strokeColor="@color/c_29313d"
                 app:shape_strokeWidth="@dimen/dp1"
                 android:layout_marginTop="@dimen/dp15"
-
+                visible1="@{vm.isspl}"
             >
             <LinearLayout
                 android:layout_width="wrap_content"

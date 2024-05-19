@@ -2,6 +2,9 @@ package com.netease.lib_network;
 
 
 import com.netease.lib_network.entitys.ApiTokenInfo;
+
+import com.netease.lib_network.entitys.BroadcastRequest;
+import com.netease.lib_network.entitys.CommitTransation;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
@@ -104,6 +107,16 @@ public interface ApiService {
     Single<CommonResponse<JupToken>> getCusCoinInfo(@Query("contract") String contract);
     @GET("/api/wallet/updateWalletBalance")
     Single<CommonResponse<List<NewWalletToken>>> updateWalletBalance(@Query("wallet") String wallet);
+
+
     @GET("/api/wallet/getEstimatedFee")
-    Single<CommonResponse<String>> getEstimatedFee(@Query("from") String from,@Query("to") String to,@Query("value") String value);
+    Single<CommonResponse<String>> getEstimatedFee(@Query("from") String from,@Query("to") String to,@Query("amount") long amount);
+    @GET("/api/wallet/getRentForAccount")
+    Single<CommonResponse<String>> getRentForAccount(@Query("wallet") String sign);
+
+    @GET("/api/wallet/getLatestBlockhash")
+    Single<CommonResponse<String>> getLatestBlockhash();
+
+    @POST("/api/wallet/broadcast")
+    Single<CommonResponse<CommitTransation>> BroadCastTx(@Body BroadcastRequest request );
 }

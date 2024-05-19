@@ -219,8 +219,8 @@ public class SolanaWalletManager {
 
     //使用新的方式来加密和解密
     private static byte[] encrypt(byte[] input, String keyAlias, String password) throws Exception {
-        // 生成AES密钥
-        SecretKey secretKey = generateAESKey();
+        // 生成AES密钥用密码
+        SecretKey secretKey = generateAESKey(password);
 
         // 使用AES加密数据
         byte[] encryptedData = encryptAES(input, secretKey);
@@ -234,14 +234,21 @@ public class SolanaWalletManager {
         outputStream.write(encryptedKey);
         outputStream.write(encryptedData);
         return outputStream.toByteArray();
+
     }
 
     // 生成AES密钥
-    private static SecretKey generateAESKey() throws NoSuchAlgorithmException {
-        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-        keyGenerator.init(256);
-        return keyGenerator.generateKey();
+//    private static SecretKey generateAESKey() throws NoSuchAlgorithmException {
+//        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+//        keyGenerator.init(256);
+//        return keyGenerator.generateKey();
+//    }
+
+    private static SecretKey generateAESKey(String password) throws NoSuchAlgorithmException {
+        byte[] key = password.getBytes();
+        return new SecretKeySpec(Arrays.copyOf(key, 32), "AES");
     }
+
 
     // 使用AES加密数据
     private static byte[] encryptAES(byte[] input, SecretKey secretKey) throws Exception {
@@ -257,7 +264,7 @@ public class SolanaWalletManager {
         return cipher.doFinal(input);
     }
 
-    private static byte[] decrypt(byte[] encryptedData, String keyAlias, String password) throws Exception {
+    public static byte[] decrypt(byte[] encryptedData, String keyAlias, String password) throws Exception {
         // 使用RSA解密AES密钥
         PrivateKey privateKey = getKeyPair(keyAlias, password).getPrivate();
         byte[] encryptedKey = Arrays.copyOfRange(encryptedData, 0, 256); // 假设RSA加密的密钥长度为256字节
@@ -267,6 +274,10 @@ public class SolanaWalletManager {
         byte[] encryptedDataContent = Arrays.copyOfRange(encryptedData, 256, encryptedData.length);
         SecretKey secretKey = new SecretKeySpec(decryptedKey, "AES");
         return decryptAES(encryptedDataContent, secretKey);
+
+
+
+
     }
 
     // 使用RSA解密数据

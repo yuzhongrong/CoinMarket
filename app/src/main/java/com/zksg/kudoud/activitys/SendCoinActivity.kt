@@ -7,9 +7,11 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.SendCoinNumberdapter
+import com.zksg.kudoud.dialogs.ConfirmTransationPwdDialog
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.SendCoinActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
@@ -17,6 +19,7 @@ import com.zksg.kudoud.utils.IntentUtils
 import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
+import com.zksg.kudoud.wallet.data.SolanaAccount
 import java.math.BigDecimal
 
 class SendCoinActivity : BaseDialogActivity() {
@@ -26,6 +29,8 @@ class SendCoinActivity : BaseDialogActivity() {
     var mSendCoinActivityViewmodel: SendCoinActivityViewmodel? = null
     var mSharedViewModel:SharedViewModel?=null
     var adapter:SendCoinNumberdapter?=null
+    var solanaAccount:SolanaAccount?=null
+
     override fun initViewModel() {
         mSendCoinActivityViewmodel = getActivityScopeViewModel(
             SendCoinActivityViewmodel::class.java)
@@ -52,11 +57,19 @@ class SendCoinActivity : BaseDialogActivity() {
     }
 
     fun initData(){
-        wallet= WalletUtils.getCurrentSimpleWallet(mSharedViewModel)
+
+        wallet= WalletUtils.getCurrentSimpleWallet(mSharedViewModel!!)
         token = intent.getSerializableExtra("token") as UiWalletToken?
         sol= intent.getSerializableExtra("sol") as UiWalletToken?
-        if(token!!.mint.equals(TOKEN_SOL_CONTRACT)){
-//            mSendCoinActivityViewmodel!!.AccountRentShow.set(true)
+
+
+        mSendCoinActivityViewmodel!!.loadingVisible.observe(this){
+            if(it)showDialog() else dismissDialog()
+        }
+
+        //订阅关闭这个页面的通知
+        mSharedViewModel!!.fristPageClose.observe(this){
+            this.finish()
         }
         mSendCoinActivityViewmodel!!.numberText.observe(this){
             //这里负责判断校验
@@ -65,8 +78,12 @@ class SendCoinActivity : BaseDialogActivity() {
                 var numberText=mSendCoinActivityViewmodel!!.numberText.value
                 var numberTextBig= BigDecimal(numberText)
                 var balanceBig=BigDecimal(token!!.balance)
-
-                var maxbalance=balanceBig.subtract(BigDecimal(mSendCoinActivityViewmodel!!.AccountRent.get()))
+                var rent=mSendCoinActivityViewmodel!!.AccountRent.get()
+                if(rent.equals("0.0")){
+                    ToastUtils.showShort(getString(R.string.str_invalidate_rent))
+                    return@observe
+                }
+                var maxbalance=balanceBig.subtract(BigDecimal(rent))
                 if(numberTextBig.toDouble()>0&&numberTextBig.toDouble()<=maxbalance.toDouble()){
                     if(mSendCoinActivityViewmodel!!.iscontractpass.get()==true){
                         mSendCoinActivityViewmodel!!.isapass.set(true)
@@ -94,12 +111,18 @@ class SendCoinActivity : BaseDialogActivity() {
         }
 
 
+        if(token!!.mint.equals(TOKEN_SOL_CONTRACT)){
+            mSendCoinActivityViewmodel!!.AccountRentShow.set(true)
+        }
+
+        //spl和sol转账都要获取租金-转spl-token需要扣除手续费，如果账号sol太低 扣除手续费都不够租金的情况呢
+        //这里只不过转spl-token不显示租金而已
+        mSendCoinActivityViewmodel!!.getRentForAccount(wallet!!.address)
+
 
         token?.let { mSendCoinActivityViewmodel!!.currentToken.set(it) }
         adapter!!.submitList(listOf("1","2","3","4","5","6","7","8","9",".","0","\u232B"))
-        mSendCoinActivityViewmodel!!.loadingVisible.observe(this){
-            if(it)showDialog() else dismissDialog()
-        }
+
 
 
     }
@@ -119,6 +142,10 @@ class SendCoinActivity : BaseDialogActivity() {
                 ToastUtils.showShort(getString(R.string.str_contract_address_err))
                 return
             }
+
+
+
+
 
 
             IntentUtils.openIntent(
@@ -145,15 +172,21 @@ class SendCoinActivity : BaseDialogActivity() {
         }
 
         fun actionMax(){
+
+
+
             //必须先输入合约
             if(mSendCoinActivityViewmodel!!.iscontractpass.get()==false){
                 ToastUtils.showShort(getString(R.string.str_input_receiver_address))
                 return
             }
-
-
             var balance= mSendCoinActivityViewmodel!!.currentToken.get()!!.balance
             var rent=mSendCoinActivityViewmodel!!.AccountRent.get()
+
+            if(rent.equals("0.0")){
+                ToastUtils.showShort(getString(R.string.str_invalidate_rent))
+                return
+            }
             if(isSol(token!!.mint)){
                var result= BigDecimal(balance).subtract(BigDecimal(rent))
                 if(result.toDouble()<=0.0){

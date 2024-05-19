@@ -57,4 +57,7 @@ public class ResponseStatus {
     public Enum<ResultSource> getSource() {
         return source;
     }
+    public  String getMsg(){
+        return  this.msg;
+    }
 }

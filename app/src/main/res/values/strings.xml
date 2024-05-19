@@ -140,6 +140,7 @@
     <string name="str_last_updatetime">Last Update Time 6 Hours Ago!!</string>
     <string name="str_markets">交易</string>
     <string name="str_wallet">钱包</string>
+    <string name="str_wallet_tag">钱包 : </string>
     <string name="str_chance">机会</string>
     <string name="str_dex">Swap</string>
     <string name="str_chat">Chat</string>
@@ -332,7 +333,14 @@
     <string name="str_receiver_address">接受地址</string>
     <string name="str_gas">网络费用</string>
     <string name="str_send_action">发送</string>
-    <string name="str_need_sol">钱包至少需保留: </string>
+    <string name="str_need_sol">钱包至少需: </string>
     <string name="str_gas_tip">每笔交易在Solana网络上都需要支付一定数量的 SOL 作为交易费用。这个费用会根据交易的复杂性和网络的拥堵程度而变化</string>
-    <string name="str_rent_tip">在Solana中，账户需要保持一定的 SOL 作为租金，以确保它们可以 \n 持续存在于链上。如果你在发送交易时涉及到创建或更新账户， \n 你需要确保账户有足够的 SOL 来支付租金。否则，账户可能会被清 \n 除其中的资产也会丢失</string>
+    <string name="str_rent_tip"> 在Solana中，账户需要保持一定的 SOL 作为租金，以确保它们可以 \n 持续存在于链上。如果你在发送交易时涉及到创建或更新账户， \n 你需要确保账户有足够的 SOL 来支付租金。否则，账户可能会被清 \n 除其中的资产也会丢失</string>
+    <string name="str_invalidate_rent">无法获取到账号租金</string>
+    <string name="str_input_wallet_pwd">请输入钱包密码</string>
+    <string name="str_wallet_pwd">钱包安全验证</string>
+    <string name="str_pwd_not_ok">密码不正确</string>
+    <string name="str_verfity_wallet_pwd">验证钱包密码</string>
+    <string name="str_notget_last_chain">无法获取链上最新区块,无法创建交易</string>
+    <string name="str_transation_pendding">交易已提交,等待链上确认</string>
 </resources>

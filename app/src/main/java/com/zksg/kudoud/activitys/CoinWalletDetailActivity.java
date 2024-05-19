@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 
 import com.kunminx.architecture.ui.page.BaseActivity;
 import com.kunminx.architecture.ui.page.DataBindingConfig;
@@ -15,15 +16,19 @@ import com.zksg.kudoud.dialogs.ResetFactoryDialog;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.state.AboutViewModel;
 import com.zksg.kudoud.state.CoinWalletDetailActivityViewModel;
+import com.zksg.kudoud.state.SharedViewModel;
 import com.zksg.kudoud.utils.IntentUtils;
 
 public class CoinWalletDetailActivity extends BaseActivity {
     UiWalletToken sol;
     CoinWalletDetailActivityViewModel mCoinWalletDetailActivityViewModel;
     UiWalletToken item;
+    private SharedViewModel mSharedViewModel;
 
     @Override
     protected void initViewModel() {
+        mSharedViewModel =
+                getApplicationScopeViewModel(SharedViewModel.class);
         mCoinWalletDetailActivityViewModel=getActivityScopeViewModel(CoinWalletDetailActivityViewModel.class);
     }
 
@@ -44,6 +49,10 @@ public class CoinWalletDetailActivity extends BaseActivity {
 
 
     private void initData(){
+
+        mSharedViewModel.fristPageClose.observe(this, aBoolean -> {
+            this.finish();
+        });
         item= (UiWalletToken) getIntent().getExtras().get("token");
         sol= (UiWalletToken) getIntent().getExtras().get("sol");
         if(item!=null){

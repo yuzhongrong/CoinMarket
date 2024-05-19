@@ -53,14 +53,14 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
 
     //账号租金 默认 0.00089
     @JvmField
-    var AccountRent=ObservableField("0.0008909")
+    var AccountRent=ObservableField("0.0")
 
-    //账号租金 默认 0.00000926
-    @JvmField
-    var transforGas=ObservableField("0.00000926")
 
     @JvmField
     var AccountRentShow=ObservableField(false)
+
+
+    var solanaAccount=ObservableField<SolanaAccount>()
 
     //    public ObservableField<List<FeedTip>> datas=new ObservableField<>();
     var contract = ObservableField<String>()
@@ -78,13 +78,19 @@ class SendCoinActivityViewmodel : BaseLoadingViewModel() {
 //    var pwdConfirm = ObservableField(false)
 
     //请求账号租金-转sol的时候才需要
-    fun reqAccountRentInfo(contract: String){
+    fun getRentForAccount(wallet: String){
         viewModelScope.launch {
             loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
-                DataRepository.getInstance().getCusCoinInfo(contract){
 
+                DataRepository.getInstance().getRentForAccount(wallet){
+                    if(it.result!=null){
+                        Log.d("----getRentForAccount---->",it.result.data)
+                        AccountRent.set(it.result.data)
+                        loadingVisible.postValue(false)
+                    }
                 }
+
             }
 
         }

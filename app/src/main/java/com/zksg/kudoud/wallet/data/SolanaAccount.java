@@ -7,10 +7,12 @@ package com.zksg.kudoud.wallet.data;
 import com.paymennt.crypto.bip32.wallet.key.HdPrivateKey;
 import com.zksg.kudoud.wallet.utils.TweetNaclFast;
 
+import java.io.Serializable;
+
 /**
  * 
  */
-public class SolanaAccount {
+public class SolanaAccount implements Serializable {
     
     /**  */
     private TweetNaclFast.Signature.KeyPair keyPair;

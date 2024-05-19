@@ -576,7 +576,7 @@ public class TextViewBindingAdapter {
     @BindingAdapter(value = {"text_rent"},requireAll = false)
     public static void text_rent(TextView tv, String number){
         if(tv==null&&TextUtils.isEmpty(number))return;
-        tv.setText("≈"+number+"/sol");
+        tv.setText("≈"+number+" sol");
     }
 
 
@@ -586,6 +586,14 @@ public class TextViewBindingAdapter {
     public static void text_send_gas(TextView tv, String number){
         if(tv==null&&TextUtils.isEmpty(number))return;
         tv.setText(number+" sol");
+    }
+
+
+
+    @BindingAdapter(value = {"text_sol_show"},requireAll = false)
+    public static void text_sol_show(TextView tv, String number){
+        if(tv==null&&TextUtils.isEmpty(number))return;
+        tv.setText(number+" SOL");
     }
 
     @BindingAdapter(value = {"text_send_number"},requireAll = false)

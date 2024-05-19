@@ -36,6 +36,10 @@ public class SharedViewModel extends ViewModel {
     }
 
 
+    public final UnPeekLiveData<Boolean> fristPageClose=new UnPeekLiveData<>();
+
+
+
 
 
      public void requestToAddOneEnv(EnvBean env) {

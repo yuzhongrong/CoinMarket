@@ -1,25 +1,25 @@
 package com.zksg.kudoud.activitys
 
 import android.os.Bundle
-import android.text.Editable
 import android.text.TextUtils
-import android.text.TextWatcher
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.netease.lib_network.entitys.JupToken
+import com.lxj.xpopup.XPopup
+import com.netease.lib_common_ui.utils.GsonUtil
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.callback.WalletCusTokenInfo
+import com.zksg.kudoud.dialogs.ConfirmTransationPwdDialog
 import com.zksg.kudoud.entitys.UiWalletToken
-import com.zksg.kudoud.state.CusAddCoinActivityViewmodel
+import com.zksg.kudoud.fragments.PasswordDialogFragment
 import com.zksg.kudoud.state.SendCoinConfirmActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.CopyUtils
-import com.zksg.kudoud.utils.ObjectSerializationUtils
-import com.zksg.kudoud.utils.TokenConverter
+import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.constants.Constants
+import com.zksg.kudoud.wallet.data.SolanaAccount
+import java.math.BigDecimal
+
 
 class SendCoinConfirmActivity : BaseDialogActivity() {
     var sender: String? = null
@@ -54,6 +54,31 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
     }
 
     fun initData(){
+        mSendCoinConfirmActivityViewmodel!!.loadingVisible.observe(this){
+            if(it)showDialog() else dismissDialog()
+        }
+
+        mSendCoinConfirmActivityViewmodel!!.commit.observe(this){
+            if(it!=null){
+                //记录所有钱包下的交易 group:钱包地址 ,下面地址存储以key=txid
+                MMKV.mmkvWithID(it.sender).encode(it.txid,GsonUtil.toJson(it))
+                mSharedViewModel!!.fristPageClose.postValue(true)
+                ToastUtils.showShort(getString(R.string.str_transation_pendding))
+                this.finish()
+            }
+        }
+
+        mSendCoinConfirmActivityViewmodel!!.gas.observe(this){
+            //如果余额-支出>=够网络费用+租金 就广播交易
+            var payamount= BigDecimal(number).add(BigDecimal(it)).add(BigDecimal(rent))
+            var result= BigDecimal(sol!!.balance).subtract(payamount)
+            if(result.toDouble()>=0){//可以转账
+                mSendCoinConfirmActivityViewmodel!!.issend.set(true)
+            }else{
+                mSendCoinConfirmActivityViewmodel!!.issend.set(false)
+            }
+            mSendCoinConfirmActivityViewmodel!!.keepsol.set(payamount.toString())
+        }
 
         sender = intent.getStringExtra("sender")
         receiver = intent.getStringExtra("receiver")
@@ -66,12 +91,17 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
         mSendCoinConfirmActivityViewmodel!!.number.set(number)
         mSendCoinConfirmActivityViewmodel!!.currentToken.set(token)
         mSendCoinConfirmActivityViewmodel!!.sol.set(sol)
-        mSendCoinConfirmActivityViewmodel!!.loadingVisible.observe(this){
-            if(it)showDialog() else dismissDialog()
-        }
+        mSendCoinConfirmActivityViewmodel!!.rent.set(rent)
 
-        mSendCoinConfirmActivityViewmodel!!.getEstimatedFee(sender!!,receiver!!,number!!)
+        if(token!!.mint.equals(Constants.TOKEN_SOL_CONTRACT)){
+            mSendCoinConfirmActivityViewmodel!!.isspl.set(true)
+        }
+        var lamports=WalletUtils.sol2lamports(number!!)
+        mSendCoinConfirmActivityViewmodel!!.getEstimatedFee(sender!!,receiver!!,lamports!!)
     }
+
+
+
 
 
 
@@ -82,15 +112,42 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
 
 
 
-        fun copyAddress(){
-//            CopyUtils.copyToClipboard(requireContext(),"xxx")
-//            ToastUtils.showShort(getString(R.string.str_copy_success))
+        fun copySenderAddress(){
+            CopyUtils.copyToClipboard(this@SendCoinConfirmActivity,mSendCoinConfirmActivityViewmodel!!.sender.get()!!)
+            ToastUtils.showShort(getString(R.string.str_copy_success))
+
         }
+       fun copyReceiverAddress(){
+           CopyUtils.copyToClipboard(this@SendCoinConfirmActivity,mSendCoinConfirmActivityViewmodel!!.receiver.get()!!)
+           ToastUtils.showShort(getString(R.string.str_copy_success))
+
+       }
 
        //请求网络转账
        fun sendCoin(){
+           //验证密码
+           XPopup.Builder(this@SendCoinConfirmActivity)
+               .autoOpenSoftInput(false)
+               .dismissOnTouchOutside(false)
+               .dismissOnBackPressed(false)
+               .moveUpToKeyboard(false)
+               .asCustom(ConfirmTransationPwdDialog(this@SendCoinConfirmActivity,mSharedViewModel!!,mSendCoinConfirmActivityViewmodel!!))
+               .show()
 
+
+
+
+//           val passwordDialog = PasswordDialogFragment()
+//           passwordDialog.show(this@SendCoinConfirmActivity.supportFragmentManager, "PasswordDialogFragment")
+
+           //2.首先获取最新区块hash
+
+           //3.构造一个交易获取预估网络费用
+
+           //4.广播交易
        }
+
+
 
 
 

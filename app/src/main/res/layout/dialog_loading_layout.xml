@@ -4,7 +4,7 @@
     android:layout_height="@dimen/dp90"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
-    app:shape_solidColor="@color/bg_layout_common"
+    app:shape_solidColor="#1B1F27"
     app:shape_radius="@dimen/dp15"
 
     >
