@@ -1,6 +1,8 @@
 package com.zksg.kudoud.utils
 
+import android.os.Build
 import android.text.TextUtils
+import androidx.annotation.RequiresApi
 import com.netease.lib_common_ui.utils.GsonUtil
 import com.paymennt.crypto.bip32.wallet.AbstractWallet
 import com.tencent.mmkv.MMKV
@@ -8,6 +10,7 @@ import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.utils.manager.SolanaWalletManager
 import com.zksg.kudoud.wallet.data.SolanaAccount
+import com.zksg.kudoud.wallet.keystore.KeystoreManager
 import com.zksg.kudoud.wallet.wallet.SolanaWallet
 import java.math.BigDecimal
 

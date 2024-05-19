@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="@dimen/dp35"
+    android:layout_marginRight="@dimen/dp35"
+    app:shape_solidColor="@color/dialog_common_bg"
+    app:shape_radius="@dimen/dp15"
+
+
+    >
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:shape_radius="@dimen/dp15"
+        app:shape_solidColor="@color/bg_layout_common"
+        android:padding="@dimen/dp15"
+        android:visibility="gone"
+
+        >
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_common_dialog_tip"
+            android:layout_gravity="center"
+
+            />
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/dp15"
+            >
+            <TextView
+                android:id="@+id/versionName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_wallet_pwd"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp15"
+                android:textStyle="bold"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp20"
+                android:visibility="gone"
+
+                />
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                >
+                <ImageView
+                    android:id="@+id/eye"
+                    android:layout_width="@dimen/dp60"
+                    android:layout_height="@dimen/dp60"
+                    android:src="@mipmap/ic_fingerprint"
+                    android:layout_marginTop="@dimen/dp15"
+
+                    />
+
+                <TextView
+                    android:id="@+id/edit_input_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp15"
+                    android:textColor="@color/white"
+                    android:text="验证你的指纹"
+                    android:layout_marginTop="@dimen/dp15"
+
+
+
+                    />
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+</LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="@color/c_29313d"
+        android:layout_above="@+id/rv_select"
+        android:layout_marginTop="@dimen/dp25"
+
+        />
+
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/str_cancel"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp16"
+        app:shape_radius="@dimen/dp10"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginBottom="@dimen/dp15"
+        app:shape_solidPressedColor="@color/c_a0a0ab"
+        />
+
+
+
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>

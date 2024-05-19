@@ -1,23 +1,42 @@
 package com.zksg.kudoud.activitys
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
+import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
+import androidx.biometric.BiometricManager
+import androidx.biometric.BiometricPrompt
+import androidx.biometric.BiometricPrompt.PromptInfo
+import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.ToastUtils
+import com.github.ajalt.reprint.core.AuthenticationFailureReason
+import com.github.ajalt.reprint.core.AuthenticationListener
+import com.github.ajalt.reprint.core.Reprint
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.callback.WalletCreateCallback
+import com.zksg.kudoud.callback.WalletCreateFingPrintCallback
+
+import com.zksg.kudoud.dialogs.CreateWalletfingprintDialog
 import com.zksg.kudoud.state.CreateWalletActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
-import com.zksg.kudoud.utils.manager.SolanaWalletManager
-import java.lang.Exception
+import com.zksg.kudoud.wallet.keystore.KeystoreManager
+import java.util.concurrent.Executor
+
 
 class CreateWalletActivity : BaseDialogActivity() {
 
     var mCreateWalletActivityViewmodel: CreateWalletActivityViewmodel? = null
     var mSharedViewModel:SharedViewModel?=null
+
+
+
     override fun initViewModel() {
         mCreateWalletActivityViewmodel = getActivityScopeViewModel(
             CreateWalletActivityViewmodel::class.java)
@@ -45,14 +64,57 @@ class CreateWalletActivity : BaseDialogActivity() {
     }
 
     fun initData(){
+        Reprint.initialize(this)
+
+        //初始化指纹
+//        val executor: Executor = ContextCompat.getMainExecutor(this)
+
 
 
         mCreateWalletActivityViewmodel!!.loadingVisible.observe(this){
             if(it)showDialog() else dismissDialog()
         }
 
+
+        Reprint.initialize(this)
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private fun createPromptInfo(): PromptInfo? {
+        return PromptInfo.Builder()
+            .setTitle("钱包安全认证")
+            .setSubtitle("创建钱包前请指纹认证")
+            .setAllowedAuthenticators(BiometricManager.Authenticators.BIOMETRIC_STRONG)
+            .setNegativeButtonText(" ") // 使用空格字符作为负按钮文本
+            .build()
     }
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun CreateSolanaWallet(){
+
+        mCreateWalletActivityViewmodel?.createWallet(object : WalletCreateCallback {
+            override fun walletCreateComplete(keyAlias: String?) {
+                if(!TextUtils.isEmpty(keyAlias)){
+                    runOnUiThread {
+                        ToastUtils.showShort(getString(R.string.str_wallet_create_success))
+                         finish()
+                    }
+
+                }
+            }
+            override fun walletCreateFail(err: Exception?) {
+                runOnUiThread {
+
+                    ToastUtils.showShort(getString(R.string.str_wallet_create_fail))
+                    finish()
+                }
+
+            }
+
+        })
+
+    }
 
 
     inner class ClickProxy {
@@ -89,43 +151,32 @@ class CreateWalletActivity : BaseDialogActivity() {
                 ToastUtils.showShort(getString(R.string.str_wallet_name_notnull))
                 return
             }
-            if(TextUtils.isEmpty(pwd)){
-                ToastUtils.showShort(getString(R.string.str_invalid_pwd))
-                return
-            }
-            if(TextUtils.isEmpty(pwdConfirm)){
-                ToastUtils.showShort(getString(R.string.str_invalid_pwd))
-                return
-            }
 
-            if(!pwd!!.equals(pwdConfirm)){
-                ToastUtils.showShort(getString(R.string.str_pwd_not_same))
-                return
-            }
-
-            mCreateWalletActivityViewmodel?.createWallet(object : WalletCreateCallback {
-                override fun walletCreateComplete(keyAlias: String?) {
-                    if(!TextUtils.isEmpty(keyAlias)){
-                        runOnUiThread {
-                            ToastUtils.showShort(getString(R.string.str_wallet_create_success))
-                            close()
-                        }
-
-                    }
-                }
-                override fun walletCreateFail(err: Exception?) {
-                    runOnUiThread {
-
-                        ToastUtils.showShort(getString(R.string.str_wallet_create_fail))
-                        close()
+            XPopup.Builder(this@CreateWalletActivity)
+                .autoOpenSoftInput(false)
+                .dismissOnTouchOutside(false)
+                .dismissOnBackPressed(false)
+                .moveUpToKeyboard(false)
+                .asCustom(CreateWalletfingprintDialog(this@CreateWalletActivity,object:WalletCreateFingPrintCallback{
+                    @RequiresApi(Build.VERSION_CODES.O)
+                    override fun walletCreateComplete(success: Int) {
+                      CreateSolanaWallet()
                     }
 
-                }
+                    override fun walletCreateFingPrintFail(errcode: Int) {
 
-            })
+                    }
+
+
+                }))
+                .show()
+
+
 
 
         }
+
+
 
 
     }

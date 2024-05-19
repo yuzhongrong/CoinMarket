@@ -3,13 +3,17 @@ package com.zksg.kudoud.activitys
 //import com.kunminx.architecture.ui.page.StateHolder
 //import com.kunminx.architecture.ui.state.State
 //import com.kunminx.architecture.utils.BarUtils
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import com.github.ajalt.reprint.core.Reprint
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.lxj.xpopup.XPopup
 import com.netease.lib_network.entitys.JupToken
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
@@ -17,6 +21,7 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.contants.CoinType
 import com.zksg.kudoud.contants.GlobalConstant.*
 import com.zksg.kudoud.databinding.ActivityMainBinding
+import com.zksg.kudoud.dialogs.ConfirmTransationfingprintDialog
 import com.zksg.kudoud.entitys.SelectWalletEntity
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.fragments.CategoryFragment
@@ -28,7 +33,10 @@ import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.StatusBarUtil
 import com.zksg.kudoud.utils.TokenConverter
+import com.zksg.kudoud.wallet.keystore.KeystoreManager
+import com.zksg.kudoud.wallet.keystore.KeystoreManagerDebug
 import com.zksg.kudoud.widgets.NavigateTabBar
+import java.util.*
 
 
 class MainActivity : BaseActivity() {
@@ -54,6 +62,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         initView(binding as ActivityMainBinding)
+
     }
 
     private fun initView(mainBinding: ActivityMainBinding) {
@@ -185,8 +194,39 @@ class MainActivity : BaseActivity() {
 //    }
 
 
-
-
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    fun debug(){
+//
+//        try {
+//            KeystoreManager.initialize()
+//            Reprint.initialize(this)
+//            // 加密钱包数据
+//            val walletData = "This is a secret wallet data."
+//            val encryptedData = KeystoreManagerDebug.encryptWalletData(walletData.toByteArray())
+//            println("Encrypted Data: " + encryptedData.encryptedData)
+//            println("Encrypted AES Key: " + encryptedData.encryptedAESKey)
+//            System.out.println("IV: " + Base64.getEncoder().encodeToString(encryptedData.iv))
+//
+//
+//            XPopup.Builder(this@MainActivity)
+//                .autoOpenSoftInput(false)
+//                .dismissOnTouchOutside(false)
+//                .dismissOnBackPressed(false)
+//                .moveUpToKeyboard(false)
+//                .asCustom(ConfirmTransationfingprintDialog(this@MainActivity,mSharedViewModel!!,null))
+//                .show()
+//
+//
+//            // 解密钱包数据
+//            val decryptedData = KeystoreManagerDebug.decryptWalletData(encryptedData)
+//            val decryptedWalletData = String(decryptedData)
+//            println("Decrypted Wallet Data: $decryptedWalletData")
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//        }
+//
+//
+//    }
 
 
 }

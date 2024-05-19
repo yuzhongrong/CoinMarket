@@ -94,7 +94,7 @@
         </com.hjq.shape.layout.ShapeRelativeLayout>
 
 
-            <LinearLayout
+         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -142,6 +142,7 @@
             android:layout_marginRight="@dimen/dp15"
             android:layout_marginLeft="@dimen/dp15"
             android:layout_marginTop="@dimen/dp20"
+            android:visibility="gone"
             >
 
             <TextView
@@ -199,6 +200,7 @@
             android:layout_marginRight="@dimen/dp15"
             android:layout_marginLeft="@dimen/dp15"
             android:layout_marginTop="@dimen/dp20"
+            android:visibility="gone"
             >
 
             <TextView
@@ -250,7 +252,67 @@
 
                </com.hjq.shape.layout.ShapeLinearLayout>
         </LinearLayout>
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                app:shape_solidColor="@color/bg_layout_common"
+                android:layout_marginTop="@dimen/dp35"
+                android:padding="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp15"
+                app:shape_radius="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+
+
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dp5"
+                    >
+                    <com.hjq.shape.view.ShapeImageView
+                        android:layout_width="@dimen/dp20"
+                        android:layout_height="@dimen/dp20"
+                        android:scaleType="centerCrop"
+                        android:src="@mipmap/ic_solana_common"
+                        app:shape_radius="@dimen/dp45" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp12"
+                        android:text="指纹认证"
+                        android:layout_marginLeft="@dimen/dp15"
+                        />
+
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp5"
+                    android:textSize="@dimen/sp10"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:text="创建钱包前需要指纹认证,确保只有授权用户才能创建钱包，防止他人未经授权创建钱包并访问应用，通过指纹认证，增加了一层安全保障，确保敏感操作（如创建钱包,交易等）只有在用户通过生物识别认证后才能进行"
+                    android:textColor="@color/primaryTextGray"
+                    android:lineSpacingExtra="5dp"
+                    />
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
      </LinearLayout>
+
+
         <com.hjq.shape.view.ShapeButton
             android:id="@+id/exchange"
             android:layout_width="match_parent"

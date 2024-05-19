@@ -1,6 +1,8 @@
 package com.zksg.kudoud.state
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
@@ -44,12 +46,14 @@ class CreateWalletActivityViewmodel : BaseLoadingViewModel() {
     @JvmField
     var pwdConfirm = ObservableField(false)
 
+
+    @RequiresApi(Build.VERSION_CODES.O)
     fun createWallet(mWalletCreateCallback: WalletCreateCallback){
 
         viewModelScope.launch {
             loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
-                SolanaWalletManager.createWallet(Utils.getApp().applicationContext,walletname.get(),walletpwd.get(),mWalletCreateCallback)
+                SolanaWalletManager.createWallet(Utils.getApp().applicationContext,walletname.get(),"",mWalletCreateCallback)
                 loadingVisible.postValue(false)
             }
 

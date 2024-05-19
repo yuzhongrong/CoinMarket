@@ -14,7 +14,12 @@
 
     <uses-permission android:name="android.permission.VIBRATE" />
 
-    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
+    <!-- Marshmallow fingerprint permission-->
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
+    <!-- Samsung fingerprint permission, only required if you include the Spass module -->
+    <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY"/>
 
     <application
         android:allowBackup="true"

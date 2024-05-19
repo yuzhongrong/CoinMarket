@@ -1,23 +1,21 @@
 package com.zksg.kudoud.activitys
 
 import android.os.Bundle
-import android.text.TextUtils
 import com.blankj.utilcode.util.ToastUtils
+import com.github.ajalt.reprint.core.Reprint
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lxj.xpopup.XPopup
 import com.netease.lib_common_ui.utils.GsonUtil
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.dialogs.ConfirmTransationPwdDialog
+import com.zksg.kudoud.dialogs.ConfirmTransationfingprintDialog
 import com.zksg.kudoud.entitys.UiWalletToken
-import com.zksg.kudoud.fragments.PasswordDialogFragment
 import com.zksg.kudoud.state.SendCoinConfirmActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.CopyUtils
 import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.constants.Constants
-import com.zksg.kudoud.wallet.data.SolanaAccount
 import java.math.BigDecimal
 
 
@@ -54,6 +52,7 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
     }
 
     fun initData(){
+        Reprint.initialize(this)
         mSendCoinConfirmActivityViewmodel!!.loadingVisible.observe(this){
             if(it)showDialog() else dismissDialog()
         }
@@ -125,13 +124,13 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
 
        //请求网络转账
        fun sendCoin(){
-           //验证密码
+           //验证指纹
            XPopup.Builder(this@SendCoinConfirmActivity)
                .autoOpenSoftInput(false)
                .dismissOnTouchOutside(false)
                .dismissOnBackPressed(false)
                .moveUpToKeyboard(false)
-               .asCustom(ConfirmTransationPwdDialog(this@SendCoinConfirmActivity,mSharedViewModel!!,mSendCoinConfirmActivityViewmodel!!))
+               .asCustom(ConfirmTransationfingprintDialog(this@SendCoinConfirmActivity,mSharedViewModel!!,mSendCoinConfirmActivityViewmodel!!))
                .show()
 
 

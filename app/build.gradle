@@ -175,10 +175,18 @@ dependencies {
      这里导入只是借用了这个库的依赖环境而已，因为我需要重写里面的节点代码
      */
 
+    //这个库的基础上开发solana钱包的，因为要修改所以自己写了个包wallet 其实就是copy这个库做修改的
     implementation ('com.paymennt:solanaj:0.0.7') {
         exclude group: 'com.squareup.okhttp3', module: 'okhttp'
     }
     implementation 'org.bitcoinj:bitcoinj-core:0.16.2'
+
+    //指纹认证
+    implementation 'androidx.biometric:biometric:1.2.0-alpha04'
+    implementation 'androidx.security:security-crypto:1.1.0-alpha03'
+
+    implementation 'com.github.ajalt.reprint:core:3.3.2@aar' // required: supports marshmallow devices
+    implementation 'com.github.ajalt.reprint:reprint_spass:3.3.2@aar' // optional: deprecated support for pre-marshmallow Samsung devices
 
 
 

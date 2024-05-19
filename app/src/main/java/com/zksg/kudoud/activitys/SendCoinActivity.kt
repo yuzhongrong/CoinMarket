@@ -11,7 +11,6 @@ import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.SendCoinNumberdapter
-import com.zksg.kudoud.dialogs.ConfirmTransationPwdDialog
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.SendCoinActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
