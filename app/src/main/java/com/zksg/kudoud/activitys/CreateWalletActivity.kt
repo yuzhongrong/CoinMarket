@@ -64,7 +64,7 @@ class CreateWalletActivity : BaseDialogActivity() {
     }
 
     fun initData(){
-        Reprint.initialize(this)
+
 
         //初始化指纹
 //        val executor: Executor = ContextCompat.getMainExecutor(this)
@@ -76,7 +76,7 @@ class CreateWalletActivity : BaseDialogActivity() {
         }
 
 
-        Reprint.initialize(this)
+
 
     }
     @RequiresApi(api = Build.VERSION_CODES.Q)

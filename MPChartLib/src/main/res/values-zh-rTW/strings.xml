@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">MeMe</string>
     <string name="loading">加載中...</string>
-    <string name="no_data">暫無數據</string>
+    <string name="no_data">暫無數據</string>M
     <string name="vol_name">成交量</string>
     <string name="billions_shou">億手</string>
     <string name="millions_shou">萬手</string>

@@ -52,7 +52,7 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
     }
 
     fun initData(){
-        Reprint.initialize(this)
+
         mSendCoinConfirmActivityViewmodel!!.loadingVisible.observe(this){
             if(it)showDialog() else dismissDialog()
         }
