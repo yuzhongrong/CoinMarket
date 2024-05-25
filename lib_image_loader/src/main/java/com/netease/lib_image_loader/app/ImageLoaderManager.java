@@ -125,6 +125,13 @@ public class ImageLoaderManager {
 	}
 
 
+	public void displayCommon(final ImageView imageView, String url) {
+		Glide.with(imageView.getContext())
+				.load(url)
+				.into(imageView);
+	}
+
+
 	public void displayImageForSvg(final ImageView imageView, String url) {
 
 //		RequestBuilder<PictureDrawable> requestBuilder = Glide.with(imageView.getContext())

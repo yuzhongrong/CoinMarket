@@ -60,7 +60,6 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
         mSendCoinConfirmActivityViewmodel!!.commit.observe(this){
             if(it!=null){
                 //记录所有钱包下的交易 group:钱包地址 ,下面地址存储以key=txid
-                MMKV.mmkvWithID(it.sender).encode(it.txid,GsonUtil.toJson(it))
                 mSharedViewModel!!.fristPageClose.postValue(true)
                 ToastUtils.showShort(getString(R.string.str_transation_pendding))
                 this.finish()

@@ -3,6 +3,7 @@ package com.zksg.kudoud.adapters.binding_adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -14,7 +15,9 @@ import com.hjq.shape.view.ShapeButton;
 import com.kunminx.architecture.domain.message.MutableResult;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.NewWalletToken;
+import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.adapters.TransHistorysrdapter;
 import com.zksg.kudoud.beans.Kline24ChangeChannelEnum;
 import com.zksg.kudoud.entitys.Base2QuoEntity;
 import com.zksg.kudoud.entitys.UiWalletToken;
@@ -25,6 +28,7 @@ import com.zksg.kudoud.state.Chart6HLineFragmentViewModel;
 import com.zksg.kudoud.state.MeFragmentViewModel;
 import com.zksg.kudoud.utils.DateUtils;
 import com.zksg.kudoud.utils.DigitUtils;
+import com.zksg.kudoud.utils.TimeUtils;
 import com.zksg.kudoud.widgets.CircularProgressBar;
 import com.zksg.kudoud.widgets.SettingBar;
 
@@ -195,6 +199,18 @@ public class TextViewBindingAdapter {
     }
 
 
+    @BindingAdapter(value = {"transation_amount"},requireAll = false)
+    public static void meme_trasantion_history_token_amount_decimal_tv(TextView tv, TransationHistoryEntity item) {
+        if(tv==null||item==null)return;
+        if(item.isIsSolTransfer()){
+           String result= DigitUtils.formatAmount(new BigDecimal(item.getAmount()).longValue(),item.getDecimals());
+            tv.setText(DigitUtils.formatNumberWithCommas(new BigDecimal(result).doubleValue(),item.getDecimals())+" "+item.getSymbol()+"SOL");
+        }else{
+            tv.setText(item.getAmount()+" "+item.getSymbol());
+        }
+    }
+
+
     //计算所有池子总流动性
     @BindingAdapter(value = {"meme_all_liq_tv"},requireAll = false)
     public static void memeallliqTv(TextView tv, List<DexScreenTokenInfo.PairsDTO> lists) {
@@ -311,6 +327,39 @@ public class TextViewBindingAdapter {
         String result=DateUtils.timestampToDateString(value.getPairCreatedAt());
         tv.setText(result);
     }
+
+
+    @BindingAdapter(value = {"transation_history_adapter","transation_history_item"},requireAll = false)
+    public static void transation_history_time(TextView tv, TransHistorysrdapter adapter, TransationHistoryEntity item) {
+        if(tv==null||adapter==null||item==null)return;
+
+            int position= adapter.getCurrentList().indexOf(item);
+            if(position>0){
+                TransationHistoryEntity olditem=adapter.getCurrentList().get(position-1);
+
+                String newDate=DateUtils.convertTimestampToDate(item.getBlockTime());
+                String oldDate=DateUtils.convertTimestampToDate(olditem.getBlockTime());
+                if(newDate.equals(oldDate)){
+                    tv.setVisibility(View.GONE);
+                }else{
+                    tv.setVisibility(View.VISIBLE);
+                    tv.setText(DateUtils.convertTimestampToDate(item.getBlockTime()));
+                }
+            }else{
+                tv.setVisibility(View.VISIBLE);
+                tv.setText(DateUtils.convertTimestampToDate(item.getBlockTime()));
+            }
+
+
+            }
+
+
+//        if(olditem.getBlockTime()==newitem.getBlockTime()){
+//            tv.setVisibility(View.GONE);
+//        }else{
+//            tv.setVisibility(View.VISIBLE);
+//        }
+
 
 
 
@@ -601,6 +650,28 @@ public class TextViewBindingAdapter {
         if(tv==null&&TextUtils.isEmpty(number))return;
         tv.setText(number+" SOL");
     }
+
+    @BindingAdapter(value = {"txDirect"},requireAll = false)
+    public static void txDirect(TextView tv, boolean value){
+        if(tv==null)return;
+        if(value){//发送者是自己
+            tv.setText(tv.getContext().getString(R.string.str_send));
+        }else{
+            tv.setText(tv.getContext().getString(R.string.str_receiver));
+        }
+    }
+
+    @BindingAdapter(value = {"history_item","direct"},requireAll = false)
+    public static void history_item_direct(TextView tv, TransationHistoryEntity value,boolean direct){
+        if(tv==null||value==null)return;
+        if(direct){//发送者是自己
+            tv.setText(tv.getContext().getString(R.string.str_to_tag)+value.getReceiver());
+        }else{
+            tv.setText(tv.getContext().getString(R.string.str_from_tag)+value.getSender());
+        }
+    }
+
+
 
 
 

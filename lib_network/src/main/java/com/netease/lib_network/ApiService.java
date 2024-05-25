@@ -9,6 +9,7 @@ import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
+import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
 import com.zksg.lib_api.beans.CommonResponse;
@@ -119,4 +120,7 @@ public interface ApiService {
 
     @POST("/api/wallet/broadcast")
     Single<CommonResponse<CommitTransation>> BroadCastTx(@Body BroadcastRequest request );
+
+    @GET("/api/wallet/getTransations")
+    Single<CommonResponse<List<TransationHistoryEntity>>> getAllTransationHistory(@Query("wallet") String wallet,@Query("before") String before);
 }

@@ -63,4 +63,6 @@ public class ApiTokenInfo {
     public void setBalance(String balance) {
         this.balance = balance;
     }
+
+
 }

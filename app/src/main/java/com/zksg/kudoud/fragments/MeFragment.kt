@@ -245,6 +245,12 @@ class MeFragment : BaseDialogFragment() {
             CopyUtils.copyToClipboard(requireContext(),meViewModel!!.mSimpleWallet.get()!!.address)
             ToastUtils.showShort(getString(R.string.str_copy_success))
         }
+
+        fun startTransationHistory(){
+            IntentUtils.openIntent(requireContext(), Intent(requireContext(),CoinTransationHistorysActivity::class.java))
+
+        }
+
     }
 
 

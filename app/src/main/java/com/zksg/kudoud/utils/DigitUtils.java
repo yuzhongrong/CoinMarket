@@ -7,6 +7,7 @@ import com.zksg.kudoud.R;
 import com.zksg.kudoud.entitys.UiWalletToken;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -92,6 +93,22 @@ public class DigitUtils {
 
         // 对数字进行舍入，并使用 DecimalFormat 格式化数字
         return df.format(Math.round(number * Math.pow(10, decimalDigits)) / Math.pow(10, decimalDigits));
+    }
+
+
+
+    public static String formatAmount(long amount, int decimalPlaces) {
+        // 将 long 类型的 amount 转换为 BigDecimal
+        BigDecimal amountBigDecimal = new BigDecimal(amount);
+
+        // 计算除数 10 的次方
+        BigDecimal divisor = BigDecimal.TEN.pow(decimalPlaces);
+
+        // 将金额除以 10 的 divisorPower 次方
+        BigDecimal result = amountBigDecimal.divide(divisor, decimalPlaces, RoundingMode.HALF_UP);
+
+        // 使用 toPlainString 方法来避免科学记数法
+        return result.toPlainString();
     }
 
 

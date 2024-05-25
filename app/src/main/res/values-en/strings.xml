@@ -222,4 +222,10 @@
     <string name="str_notget_last_chain">Unable to obtain the latest block on the chain and unable to create a transaction</string>
     <string name="str_wallet_tag">Wallet : </string>
     <string name="str_transation_pendding">Transaction submitted</string>
+    <string name="str_history">Transation Historys</string>
+    <string name="str_send">Send</string>
+    <string name="str_receiver">Receiver</string>
+    <string name="str_to_tag">to </string>
+    <string name="str_from_tag">from </string>
+    <string name="str_look_onchain_historys">Go to the chain to view more data </string>
 </resources>

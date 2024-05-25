@@ -148,11 +148,19 @@ public class CommonBindingAdapter {
     }
 
 
+    @BindingAdapter(value = {"loadint"}, requireAll = false)
+    public static void loadint(TextView view,long str) {
+        if(view==null)return;
+        view.setText(str+"");
+    }
+
+
     @BindingAdapter(value = {"loadtext"}, requireAll = false)
     public static void loadtext(TextView view,String str) {
         if(view==null|| TextUtils.isEmpty(str))return;
         view.setText(str);
     }
+
 
     @BindingAdapter(value = {"loadtextforcategory"}, requireAll = false)
     public static void loadtextforcategory(TextView view,String category) {

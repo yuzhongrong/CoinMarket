@@ -146,6 +146,10 @@
             />
 
 
+        <activity android:name=".activitys.CoinTransationHistorysActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
 
         <activity android:name=".activitys.WeightDatasActivity"
             android:exported="false"

@@ -28,6 +28,15 @@ public class TimeUtils {
         return date;
     }
 
+    public static String time2date(long miltime,String format) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(miltime);
+//        SimpleDateFormat sf = new SimpleDateFormat("MM-dd ");//这里的格式可换"yyyy年-MM月dd日-HH时mm分ss秒"等等格式
+        SimpleDateFormat sf = new SimpleDateFormat(format);
+        String date = sf.format(calendar.getTime());
+        return date;
+    }
+
     public static String time2week(long miltime){
        return com.blankj.utilcode.util.TimeUtils.getChineseWeek(miltime);
     }

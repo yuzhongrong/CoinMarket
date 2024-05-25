@@ -22,6 +22,20 @@ public class ImageViewBindingAdapter {
 
     }
 
+    @BindingAdapter(value = {"transfor_icon","issystem"},requireAll = false)
+    public static void transfor_icon(ImageView imv, String url,boolean issystem) {
+        if(imv==null)return;
+        if(issystem){//sol
+            imv.setImageResource(R.mipmap.ic_solana_common);
+        }else{
+            if(!TextUtils.isEmpty(url)){
+                ImageLoaderManager.getInstance().displayImageForCircle(imv,url);
+            }
+
+        }
+
+    }
+
 
 
     @BindingAdapter(value = {"meme_imv_wallet"},requireAll = false)

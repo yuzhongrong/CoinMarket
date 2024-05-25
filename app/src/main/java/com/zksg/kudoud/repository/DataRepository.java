@@ -30,6 +30,7 @@ import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.JupToken;
+import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -675,7 +676,6 @@ public class DataRepository {
                 .getApiService()
                 .updateWalletBalance(wallet)
                 .compose(ApiEngine.getInstance().applySchedulers())
-                .delay(2, TimeUnit.SECONDS)
                 .subscribe(new MySimpleObserver<CommonResponse<List<NewWalletToken>>>() {
                     @Override
                     protected void onSuccessed(CommonResponse<List<NewWalletToken>> bean) {
@@ -692,6 +692,28 @@ public class DataRepository {
                 });
     }
 
+
+
+    public void getAllHistorys(String wallet,String before,DataResult.Result<CommonResponse<List<TransationHistoryEntity>>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getAllTransationHistory(wallet,before)
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .subscribe(new MySimpleObserver<CommonResponse<List<TransationHistoryEntity>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<List<TransationHistoryEntity>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
 
 
 }

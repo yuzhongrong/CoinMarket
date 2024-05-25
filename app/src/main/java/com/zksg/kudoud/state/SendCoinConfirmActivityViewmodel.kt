@@ -41,7 +41,6 @@ import com.netease.lib_network.entitys.BroadcastRequest
 import com.netease.lib_network.entitys.JupToken
 import com.zksg.kudoud.R
 import com.zksg.kudoud.callback.WalletCusTokenInfo
-import com.zksg.kudoud.entitys.TransationHistory
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.wallet.data.SolanaTransaction
@@ -67,7 +66,7 @@ class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
     var sol=ObservableField<UiWalletToken>()
     var issend=ObservableField(false)
     var isspl=ObservableField(false)
-    var commit=MutableResult<TransationHistory>()
+    var commit=MutableResult(false)
 
     @JvmField
     var lastblockhash= MutableResult("")
@@ -132,7 +131,7 @@ class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
                         if(it.result!=null&&it.result.data!=null){
                             Log.d("----broadcastTx-success-->",GsonUtil.toJson(it.result.data))
                             loadingVisible.postValue(false)
-                            commit.postValue(TransationHistory(sender.get(),receiver.get(),gas.value,number.get(),it.result.data.txid,it.result.data.status,it.result.data.committime))//txid
+                            commit.postValue(true)
                         }
 
                     }else{

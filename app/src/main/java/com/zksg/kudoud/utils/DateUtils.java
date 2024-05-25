@@ -4,9 +4,14 @@ import android.text.TextUtils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 
 public class DateUtils {
@@ -164,21 +169,38 @@ public class DateUtils {
      * @return
      */
     public static String getDateTimeFromMillisecond(Long millisecond){
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd");
         Date date = new Date(millisecond);
         String dateStr = simpleDateFormat.format(date);
         return dateStr;
     }
 
     public static String timestampToDateString(long timestamp) {
+        long time=1715825193L;
         // 创建 SimpleDateFormat 对象，指定日期格式为 "yyyy-MM-dd"
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
         // 将时间戳转换为 Date 对象
-        Date date = new Date(timestamp);
+        Date date = new Date(time);
 
         // 使用 SimpleDateFormat 格式化 Date 对象，并返回格式化后的字符串
         return sdf.format(date);
     }
+    public static String convertTimestampToDate(long timestamp) {
+        // 将 Unix 时间戳转换为 LocalDateTime 对象
+        long time=1715825171L;
+        LocalDateTime dateTime = LocalDateTime.ofInstant(Instant.ofEpochSecond(timestamp), ZoneId.systemDefault());
+
+        // 定义日期格式
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+
+        // 格式化日期
+        return dateTime.format(formatter);
+    }
+
+
+
+
+
 
 }

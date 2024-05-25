@@ -343,4 +343,10 @@
     <string name="str_verfity_wallet_pwd">验证钱包密码</string>
     <string name="str_notget_last_chain">无法获取链上最新区块,无法创建交易</string>
     <string name="str_transation_pendding">交易已提交,等待链上确认</string>
+    <string name="str_history">交易历史</string>
+    <string name="str_send">发送</string>
+    <string name="str_receiver">接收</string>
+    <string name="str_to_tag">\"到 \"</string>
+    <string name="str_from_tag">"来自 "</string>
+    <string name="str_look_onchain_historys">去链上观看更多数据</string>
 </resources>

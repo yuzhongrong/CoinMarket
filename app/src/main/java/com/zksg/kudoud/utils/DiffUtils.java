@@ -19,8 +19,10 @@ package com.zksg.kudoud.utils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
+import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.JupToken;
+import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.entitys.WalletNetworkEntity;
 import com.zksg.kudoud.utils.manager.SimpleWallet;
@@ -48,6 +50,8 @@ public class DiffUtils {
     private DiffUtil.ItemCallback<SimpleWallet> mMyWalletEntityCallback;
 
     private DiffUtil.ItemCallback<UiWalletToken> mTokenInfoEntityCallback;
+
+    private DiffUtil.ItemCallback<TransationHistoryEntity> mTransationHistoryEntity;
     private DiffUtil.ItemCallback<JupToken> mJubTokenItemCallback;
 
     private DiffUtil.ItemCallback<String> sendCoinNumberCallback;
@@ -136,6 +140,26 @@ public class DiffUtils {
             };
         }
         return mTokenInfoEntityCallback;
+    }
+
+
+    public DiffUtil.ItemCallback<TransationHistoryEntity> geTTransationHistoryEntity() {
+        if (mTransationHistoryEntity == null) {
+            mTransationHistoryEntity = new DiffUtil.ItemCallback<TransationHistoryEntity>() {
+                //区别2个item是否是同一个ite，一般用唯一的标识
+                @Override
+                public boolean areItemsTheSame(@NonNull TransationHistoryEntity oldItem, @NonNull TransationHistoryEntity newItem) {
+
+                    return oldItem.equals(newItem);
+                }
+                //区别2个item是内容否是相同，一般用item内的属性
+                @Override
+                public boolean areContentsTheSame(@NonNull TransationHistoryEntity oldItem, @NonNull TransationHistoryEntity newItem) {
+                    return oldItem.getSender().equals(newItem.getSender())&&oldItem.getReceiver().equals(newItem.getReceiver());
+                }
+            };
+        }
+        return mTransationHistoryEntity;
     }
 
 
