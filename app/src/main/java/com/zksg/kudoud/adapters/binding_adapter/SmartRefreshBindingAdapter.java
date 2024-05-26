@@ -43,6 +43,16 @@ public class SmartRefreshBindingAdapter {
 
     }
 
+    @BindingAdapter(value = {"smart_finishnomoredata"}, requireAll = false)
+    public static void finishnomoredata(SmartRefreshLayout view,boolean moreData) {
+        if(view==null) return;
+        if(moreData){
+            view.finishLoadMoreWithNoMoreData();
+        }
+    }
+
+
+
 
 
 

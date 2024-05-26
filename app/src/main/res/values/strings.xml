@@ -348,5 +348,5 @@
     <string name="str_receiver">接收</string>
     <string name="str_to_tag">\"到 \"</string>
     <string name="str_from_tag">"来自 "</string>
-    <string name="str_look_onchain_historys">去链上观看更多数据</string>
+    <string name="str_look_onchain_historys">去链上看更多数据</string>
 </resources>

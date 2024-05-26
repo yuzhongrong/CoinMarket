@@ -29,6 +29,10 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
     var historys = MutableResult(listOf<TransationHistoryEntity>())
     @JvmField
     var isfinishRefresh=MutableResult(false)
+
+    //没有更多数据
+   var nomoredata=ObservableField(false)
+
     //提供展示搜索内容用的=localdatas+hotdatas
     @JvmField
     var amountdatas = MutableResult<List<UiWalletToken>>()

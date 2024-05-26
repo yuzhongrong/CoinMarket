@@ -90,8 +90,10 @@
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:srlEnableRefresh="false"
         app:onSmartLoadMoreListener="@{loadmore}"
         smart_refresh_finish="@{vm.isfinishRefresh}"
+        smart_finishnomoredata="@{vm.nomoredata}"
         >
 
         <androidx.recyclerview.widget.RecyclerView

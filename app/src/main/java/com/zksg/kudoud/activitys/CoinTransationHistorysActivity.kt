@@ -60,21 +60,21 @@ class CoinTransationHistorysActivity : BaseDialogActivity() {
             if(it!=null&& it.isNotEmpty()){
                 //最多只让加载50个数据
                 if(it.size>=50){
-                    isloadMore=false
-//                    ToastUtils.showShort(getString(R.string.str_look_onchain_historys))
+                    viewModel!!.nomoredata.set(true)
 
                 }else{
 
                     //设置加载下一页数据
                     it.get(it.size-1).let {
                         currentHistoryTxID=it.signature
-                        isloadMore=true
+//                        isloadMore=true
                     }
 
                 }
 
             }else{
-                isloadMore=false
+//                isloadMore=false
+                viewModel!!.nomoredata.set(true)
             }
 
         }
@@ -91,9 +91,9 @@ class CoinTransationHistorysActivity : BaseDialogActivity() {
     var loadmore=object: OnLoadMoreListener {
         override fun onLoadMore(refreshLayout: RefreshLayout) {
             //当集合最后一个txid=currentHistoryTxID
-            if(isloadMore){
+//            if(isloadMore){
                 viewModel?.getAllHistorys("75qj1YKiXGzWaY9YApCWjU9eAcUXV5YgJPGX9LLKKxiE",currentHistoryTxID,false)
-            }
+//            }
         }
 
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.hjq.shape.layout.ShapeRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="@dimen/dp120"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
+    android:orientation="vertical"
     app:shape_solidColor="@color/bg_layout_common"
     >
     <com.wang.avi.AVLoadingIndicatorView
@@ -16,5 +17,23 @@
     app:indicatorColor="@color/c_f6a50c"
     />
 
+    <com.hjq.shape.view.ShapeTextView
+        android:id="@+id/nomoredata"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp20"
+        android:textColor="@color/white"
+        android:text="@string/str_look_onchain_historys"
+        android:paddingLeft="@dimen/dp5"
+        android:paddingRight="@dimen/dp5"
+        android:gravity="center"
+        android:textSize="@dimen/sp12"
+        android:textStyle="bold"
+        android:visibility="gone"
 
-</com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+        />
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>

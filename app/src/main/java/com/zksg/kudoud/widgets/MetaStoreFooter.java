@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -23,6 +24,7 @@ public class MetaStoreFooter extends LinearLayout implements RefreshFooter {
 
     private View root;
     private AVLoadingIndicatorView mAVLoadingIndicatorView;
+    private TextView tv_mlookonchain;
     public MetaStoreFooter(Context context) {
         super(context);
         initView(context);
@@ -40,7 +42,7 @@ public class MetaStoreFooter extends LinearLayout implements RefreshFooter {
         setGravity(Gravity.CENTER);
          root= LayoutInflater.from(context).inflate(R.layout.loading_refresh,null,false);
          mAVLoadingIndicatorView=root.findViewById(R.id.avi);
-
+        tv_mlookonchain=root.findViewById(R.id.nomoredata);
         addView(root, LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         setMinimumHeight(SmartUtil.dp2px(60));
     }
@@ -140,6 +142,16 @@ public class MetaStoreFooter extends LinearLayout implements RefreshFooter {
     @SuppressLint("RestrictedApi")
     @Override
     public boolean setNoMoreData(boolean noMoreData) {
-        return false;
+        if (noMoreData) {
+            tv_mlookonchain.setVisibility(VISIBLE);
+            mAVLoadingIndicatorView.setVisibility(GONE);
+        } else {
+            tv_mlookonchain.setVisibility(VISIBLE);
+            mAVLoadingIndicatorView.setVisibility(GONE);
+
+        }
+        return true;
+
+
     }
 }
