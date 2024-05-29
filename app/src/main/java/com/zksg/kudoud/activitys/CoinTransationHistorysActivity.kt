@@ -88,9 +88,6 @@ class CoinTransationHistorysActivity : BaseDialogActivity() {
                     }
                 }
 
-            }else{
-
-                viewModel!!.nomoredata.set(true)
             }
 
         }
@@ -98,7 +95,7 @@ class CoinTransationHistorysActivity : BaseDialogActivity() {
 
         //请求全部交易历史
         //获取当前钱包的地址
-        Log.d("TTTTTT", viewModel!!.walletAddress.get()!!)
+//        Log.d("TTTTTT", viewModel!!.walletAddress.get()!!)
         viewModel!!.getAllHistorys( viewModel!!.walletAddress.get()!!,"",true)//传入""默认拿最近30条记录
     }
 

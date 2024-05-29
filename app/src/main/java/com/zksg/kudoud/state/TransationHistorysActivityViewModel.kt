@@ -1,5 +1,6 @@
 package com.zksg.kudoud.state
 
+import android.text.TextUtils
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
@@ -56,24 +57,30 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
             withContext(Dispatchers.IO){
 
                 DataRepository.getInstance().getAllHistorys(wallet,before){
-                    if(it.result!=null){
-                        var plusResult= historys.value?.plus(it.result.data)
-
-                        if(isLoadCache(it.result.data)){//没有新的交易
+                    if(it.result!=null&&it.result.data.size>0) {
+                        var plusResult = historys.value?.plus(it.result.data)
+                        //如果初始化网络最新一笔交易txid=本地最新一笔的交易txid 代表没有新的交易
+                        if (isTransationDiffHead(it.result.data)) {//没有新的交易
                             //切换到本地加载模式
                             loadType.postValue(1)
-                            var localCacheDatas= getLocalTransactionsBeforeSignature(wallet,plusResult!!.first().signature,15)
+                            var localCacheDatas = getLocalTransactionsBeforeSignature(
+                                wallet,
+                                plusResult!!.first().signature,
+                                15
+                            )
                             historys.postValue(localCacheDatas)
 
-                        }else{//加载网络数据
+                        } else {//加载网络数据
                             loadType.postValue(0)
                             historys.postValue(plusResult)
 
                         }
+                        if (isShowDialog) loadingVisible.postValue(false)
 
 
-                        if(isShowDialog)loadingVisible.postValue(false)
+                    }else if(it.result!=null&&it.result.data.size==0&&!TextUtils.isEmpty(before)){//没有更多数据
 
+                        nomoredata.set(true)
                     }
                     isfinishRefresh.postValue(true)
                 }
@@ -102,6 +109,26 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
 
     }
 
+    fun isTransationDiffHead(newplusResult:List<TransationHistoryEntity>):Boolean{
+        //始终获取集合第一个
+//        var firstBlockTime=plusResult.firstOrNull()?.blockTime?:0
+        //始终获取本地缓存第一个
+        var localfirst=WalletUtils.getLocalCacheTransationHistory(walletAddress.get()!!)
+//        val localFirstBlockTime = localfirst.firstOrNull()?.blockTime?:0
+        if(localfirst!=null&&localfirst.size==0){
+            return false
+        }else{
+            var netTxHead=newplusResult.firstOrNull()?.signature
+            var isfindcache_start=localfirst.get(0).signature
+            return netTxHead.equals(isfindcache_start)
+
+        }
+
+
+
+    }
+
+
     fun getLocalTransactionsBeforeSignature(
         wallet: String,
         startSignature: String,
@@ -112,9 +139,9 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
         val startIndex = transactionHistoryList.indexOfFirst { it.signature == startSignature }
         return if (startIndex != -1) {
             val endIndex = (startIndex + count).coerceAtMost(transactionHistoryList.size)
-            if(startIndex+1==endIndex){
-                return emptyList()
-            }
+//            if(startIndex+1==endIndex){
+//                return emptyList()
+//            }
             transactionHistoryList.subList(startIndex, endIndex)
         } else {
             emptyList() // 找不到签名返回空列表

@@ -136,7 +136,6 @@ class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
 
                     }else{
                         Log.d("----broadcastTx-err-->",it.responseStatus.msg)
-
                     }
                 }
             }

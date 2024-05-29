@@ -346,7 +346,9 @@
     <string name="str_history">交易历史</string>
     <string name="str_send">发送</string>
     <string name="str_receiver">接收</string>
-    <string name="str_to_tag">\"到 \"</string>
-    <string name="str_from_tag">"来自 "</string>
+    <string name="str_to_tag">到 </string>
+    <string name="str_from_tag">来自 </string>
     <string name="str_look_onchain_historys">去链上看更多数据</string>
+    <string name="str_finished">已完成</string>
+    <string name="str_signer">交易签名</string>
 </resources>

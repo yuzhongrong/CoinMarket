@@ -96,6 +96,26 @@ public class DigitUtils {
     }
 
 
+    public static String formatPriceWithoutScientificNotation(String price, int precision) {
+        // Convert String to BigDecimal
+        BigDecimal bigDecimal = new BigDecimal(price);
+
+        // Create a DecimalFormat instance with the specified precision
+        StringBuilder pattern = new StringBuilder("0.");
+        for (int i = 0; i < precision; i++) {
+            pattern.append('#');
+        }
+
+        DecimalFormat df = new DecimalFormat(pattern.toString());
+        df.setMinimumFractionDigits(0); // Ensure it doesn't pad with zeros
+        df.setGroupingUsed(false); // Avoid grouping (e.g., 1,000)
+
+        // Format BigDecimal value to plain string
+        return df.format(bigDecimal);
+    }
+
+
+
 
     public static String formatAmount(long amount, int decimalPlaces) {
         // 将 long 类型的 amount 转换为 BigDecimal

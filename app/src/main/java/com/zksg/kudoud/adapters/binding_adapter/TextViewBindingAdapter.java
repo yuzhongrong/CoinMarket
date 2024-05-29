@@ -188,7 +188,9 @@ public class TextViewBindingAdapter {
     public static void meme_wallet_token_price_tv(TextView tv, UiWalletToken token) {
         if(tv==null||token==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
-        tv.setText(dollar+DigitUtils.formatNumberWithCommas(new BigDecimal(token.getPrice()).doubleValue(),Integer.parseInt(token.getDecimal())));
+        int decimal=6;
+//        if(decimal<6){decimal=6;}
+        tv.setText(dollar+DigitUtils.formatPriceWithoutScientificNotation(token.getPrice(),decimal));
     }
 
 
@@ -582,7 +584,7 @@ public class TextViewBindingAdapter {
         BigDecimal amount=balance.multiply(price);
         String flat=tv.getContext().getString(R.string.str_vol_daller);
 
-        tv.setText(flat+DigitUtils.formatNumberWithCommas(amount.doubleValue(),Integer.parseInt(token.getDecimal())));
+        tv.setText(flat+DigitUtils.formatPriceWithoutScientificNotation(amount.toPlainString(),6));
 
     }
 

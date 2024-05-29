@@ -82,7 +82,8 @@ class SendCoinActivity : BaseDialogActivity() {
                     ToastUtils.showShort(getString(R.string.str_invalidate_rent))
                     return@observe
                 }
-                var maxbalance=balanceBig.subtract(BigDecimal(rent))
+                var maxbalance=balanceBig.subtract(BigDecimal(rent)).subtract(BigDecimal("0.000005"))
+
                 if(numberTextBig.toDouble()>0&&numberTextBig.toDouble()<=maxbalance.toDouble()){
                     if(mSendCoinActivityViewmodel!!.iscontractpass.get()==true){
                         mSendCoinActivityViewmodel!!.isapass.set(true)
@@ -187,7 +188,8 @@ class SendCoinActivity : BaseDialogActivity() {
                 return
             }
             if(isSol(token!!.mint)){
-               var result= BigDecimal(balance).subtract(BigDecimal(rent))
+               var result= BigDecimal(balance).subtract(BigDecimal(rent)).subtract(BigDecimal("0.000005"))
+
                 if(result.toDouble()<=0.0){
                     ToastUtils.showShort(getString(R.string.str_not_2_pay))
                 }else{

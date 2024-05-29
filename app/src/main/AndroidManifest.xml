@@ -239,6 +239,14 @@
             android:windowSoftInputMode="adjustPan"
 
             />
+
+        <activity android:name=".activitys.TransationHistoryDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+
+            />
+
+
         <activity android:name=".activitys.SendVerifyPwdActivity"
             android:exported="false"
             android:screenOrientation="portrait"

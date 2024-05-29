@@ -228,4 +228,6 @@
     <string name="str_to_tag">to </string>
     <string name="str_from_tag">from </string>
     <string name="str_look_onchain_historys">Go to the chain to view more data </string>
+    <string name="str_finished">Finished</string>
+    <string name="str_signer">TxId</string>
 </resources>
