@@ -30,6 +30,7 @@ public class TransHistorysrdapter extends SimpleDataBindingAdapter<TransationHis
     protected void onBindItem(ItemTransationBinding binding, TransationHistoryEntity item, RecyclerView.ViewHolder holder) {
         binding.setItem(item);
         binding.setAdapter(this);
+        binding.setVm(mTransationHistorysActivityViewModel);
 
     }
 }

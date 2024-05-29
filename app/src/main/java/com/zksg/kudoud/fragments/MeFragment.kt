@@ -247,7 +247,7 @@ class MeFragment : BaseDialogFragment() {
         }
 
         fun startTransationHistory(){
-            IntentUtils.openIntent(requireContext(), Intent(requireContext(),CoinTransationHistorysActivity::class.java))
+            IntentUtils.openIntent(requireContext(), Intent(requireContext(),CoinTransationHistorysActivity::class.java).putExtra("wallet",meViewModel!!.mSimpleWallet.get()!!.address))
 
         }
 

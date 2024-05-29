@@ -9,6 +9,7 @@ import com.kunminx.architecture.ui.state.State
 import com.netease.lib_network.entitys.TransationHistoryEntity
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
+import com.zksg.kudoud.utils.WalletUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -19,9 +20,8 @@ import java.util.stream.Collectors
  * //TODO tip 5：此处我们使用 "去除防抖特性" 的 ObservableField 子类 State，用以代替 MutableLiveData，
  */
 class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
-
     @JvmField
-    var walletAddress = MutableResult<String>("")
+    var walletAddress = ObservableField<String>()
 
     @JvmField
     var localdatas = MutableResult<List<UiWalletToken>>()
@@ -31,8 +31,12 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
     var isfinishRefresh=MutableResult(false)
 
     //没有更多数据
+    @JvmField
    var nomoredata=ObservableField(false)
-
+//    @JvmField
+//   var loadType=MutableResult(0) //0:从网络加载数据,1:从本地加载数据
+    @JvmField
+    var loadType=MutableResult.Builder<Int>().setAllowNullValue(false).create()
     //提供展示搜索内容用的=localdatas+hotdatas
     @JvmField
     var amountdatas = MutableResult<List<UiWalletToken>>()
@@ -53,9 +57,23 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
 
                 DataRepository.getInstance().getAllHistorys(wallet,before){
                     if(it.result!=null){
-                       var plusResult= historys.value?.plus(it.result.data)
-                        historys.postValue(plusResult)
+                        var plusResult= historys.value?.plus(it.result.data)
+
+                        if(isLoadCache(it.result.data)){//没有新的交易
+                            //切换到本地加载模式
+                            loadType.postValue(1)
+                            var localCacheDatas= getLocalTransactionsBeforeSignature(wallet,plusResult!!.first().signature,15)
+                            historys.postValue(localCacheDatas)
+
+                        }else{//加载网络数据
+                            loadType.postValue(0)
+                            historys.postValue(plusResult)
+
+                        }
+
+
                         if(isShowDialog)loadingVisible.postValue(false)
+
                     }
                     isfinishRefresh.postValue(true)
                 }
@@ -65,6 +83,42 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
 
         }
 
+    }
+
+
+    /**
+     * 只要确保 newplusResult的首尾在本地范围 存在 就说明可以加载本地
+     */
+    fun isLoadCache(newplusResult:List<TransationHistoryEntity>):Boolean{
+        //始终获取集合第一个
+//        var firstBlockTime=plusResult.firstOrNull()?.blockTime?:0
+        //始终获取本地缓存第一个
+        var localfirst=WalletUtils.getLocalCacheTransationHistory(walletAddress.get()!!)
+//        val localFirstBlockTime = localfirst.firstOrNull()?.blockTime?:0
+
+        var isfindcache_start=localfirst.find { it.signature==newplusResult.firstOrNull()?.signature?:null }
+        var isfindcache_end=localfirst.find { it.signature==newplusResult.lastOrNull()?.signature?:null }
+        return  (isfindcache_start!=null)&&(isfindcache_end!=null)
+
+    }
+
+    fun getLocalTransactionsBeforeSignature(
+        wallet: String,
+        startSignature: String,
+        count: Int = 15
+    ): List<TransationHistoryEntity> {
+
+        val transactionHistoryList= WalletUtils.getLocalCacheTransationHistory(wallet)
+        val startIndex = transactionHistoryList.indexOfFirst { it.signature == startSignature }
+        return if (startIndex != -1) {
+            val endIndex = (startIndex + count).coerceAtMost(transactionHistoryList.size)
+            if(startIndex+1==endIndex){
+                return emptyList()
+            }
+            transactionHistoryList.subList(startIndex, endIndex)
+        } else {
+            emptyList() // 找不到签名返回空列表
+        }
     }
 
 

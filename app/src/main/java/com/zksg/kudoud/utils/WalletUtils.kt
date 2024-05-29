@@ -4,6 +4,7 @@ import android.os.Build
 import android.text.TextUtils
 import androidx.annotation.RequiresApi
 import com.netease.lib_common_ui.utils.GsonUtil
+import com.netease.lib_network.entitys.TransationHistoryEntity
 import com.paymennt.crypto.bip32.wallet.AbstractWallet
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.state.SharedViewModel
@@ -65,6 +66,16 @@ object WalletUtils {
         return lamports.toLong()
     }
 
+    fun getLocalCacheTransationHistory(wallet:String):List<TransationHistoryEntity>{
+        var key=wallet+"_history"
+        var transactionHistoryListbytes: ByteArray? = MMKV.mmkvWithID( wallet).decodeBytes(key) ?: return listOf()
+        var transationsResault=ObjectSerializationUtils.deserializeObject(transactionHistoryListbytes) as List<TransationHistoryEntity>
+        return transationsResault
+    }
+    fun saveLocalCacheTransationHistory(wallet:String,datas:List<TransationHistoryEntity> ){
+        var key=wallet+"_history"
+        MMKV.mmkvWithID(wallet).encode(key,ObjectSerializationUtils.serializeObject(datas))
 
+    }
 
 }

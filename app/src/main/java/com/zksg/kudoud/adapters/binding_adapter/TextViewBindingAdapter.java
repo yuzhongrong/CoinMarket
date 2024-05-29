@@ -199,15 +199,24 @@ public class TextViewBindingAdapter {
     }
 
 
-    @BindingAdapter(value = {"transation_amount"},requireAll = false)
-    public static void meme_trasantion_history_token_amount_decimal_tv(TextView tv, TransationHistoryEntity item) {
-        if(tv==null||item==null)return;
-        if(item.isIsSolTransfer()){
-           String result= DigitUtils.formatAmount(new BigDecimal(item.getAmount()).longValue(),item.getDecimals());
-            tv.setText(DigitUtils.formatNumberWithCommas(new BigDecimal(result).doubleValue(),item.getDecimals())+" "+item.getSymbol()+"SOL");
-        }else{
-            tv.setText(item.getAmount()+" "+item.getSymbol());
+    @BindingAdapter(value = {"transation_amount","transation_amount_direct"},requireAll = false)
+    public static void meme_trasantion_history_token_amount_decimal_tv(TextView tv, TransationHistoryEntity item,String wallet) {
+        if(tv==null||item==null||TextUtils.isEmpty(wallet))return;
+
+        String plusorminus=item.getSender().equals(wallet)?"-":"+";
+        String direct=item.getSender().equals(wallet)?tv.getContext().getString(R.string.str_send):tv.getContext().getString(R.string.str_receiver);
+        if(tv.getId()==R.id.show_amount){
+            if(item.isIsSolTransfer()){
+                String result= DigitUtils.formatAmount(new BigDecimal(item.getAmount()).longValue(),item.getDecimals());
+                tv.setText(plusorminus+DigitUtils.formatNumberWithCommas(new BigDecimal(result).doubleValue(),item.getDecimals())+" "+item.getSymbol()+"SOL");
+            }else{
+                tv.setText(plusorminus+item.getAmount()+" "+item.getSymbol());
+            }
+        }else if(tv.getId()==R.id.direct){
+
+            tv.setText(direct);
         }
+
     }
 
 

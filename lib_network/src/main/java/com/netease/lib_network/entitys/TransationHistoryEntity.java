@@ -2,7 +2,9 @@ package com.netease.lib_network.entitys;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TransationHistoryEntity {
+import java.io.Serializable;
+
+public class TransationHistoryEntity implements Serializable {
 
 
 

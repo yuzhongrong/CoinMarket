@@ -81,7 +81,8 @@
 
         <TextView
             android:id="@+id/direct"
-            txDirect="@{item.sender.equals(vm.walletAddress)}"
+            transation_amount="@{item}"
+            transation_amount_direct="@{vm.walletAddress}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_f_default_n_a"
@@ -110,7 +111,9 @@
 
 
     <TextView
+        android:id="@+id/show_amount"
         transation_amount="@{item}"
+        transation_amount_direct="@{vm.walletAddress}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
