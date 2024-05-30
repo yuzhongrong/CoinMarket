@@ -273,7 +273,38 @@
         </LinearLayout>
 
 
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginRight="@dimen/dp15"
+                android:padding="@dimen/dp5"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:textSize="@dimen/sp12"
+                    android:text="@string/str_transfor_time" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="@string/str_f_default_n_a"
+                    android:layout_marginLeft="@dimen/dp15"
+                    loadTime="@{vm.history.blockTime}"
+
+                    />
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
 
             <com.hjq.shape.layout.ShapeLinearLayout
                 android:layout_width="match_parent"

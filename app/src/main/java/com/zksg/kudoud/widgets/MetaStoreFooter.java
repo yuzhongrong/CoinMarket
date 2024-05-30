@@ -142,16 +142,14 @@ public class MetaStoreFooter extends LinearLayout implements RefreshFooter {
     @SuppressLint("RestrictedApi")
     @Override
     public boolean setNoMoreData(boolean noMoreData) {
-        if (noMoreData) {
-            tv_mlookonchain.setVisibility(VISIBLE);
-            mAVLoadingIndicatorView.setVisibility(GONE);
-        } else {
-            tv_mlookonchain.setVisibility(VISIBLE);
-            mAVLoadingIndicatorView.setVisibility(GONE);
-
-        }
-        return true;
-
-
+//        if (noMoreData) {
+//            tv_mlookonchain.setVisibility(VISIBLE);
+//            mAVLoadingIndicatorView.setVisibility(GONE);
+//        } else {
+//            tv_mlookonchain.setVisibility(VISIBLE);
+//            mAVLoadingIndicatorView.setVisibility(GONE);
+//
+//        }
+        return false;
     }
 }

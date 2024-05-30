@@ -372,7 +372,13 @@ public class TextViewBindingAdapter {
 //        }
 
 
+    @BindingAdapter(value = {"loadTime"},requireAll = false)
+    public static void loadTime(TextView tv, long value) {
+        if(tv==null)return;
+        String newDate=DateUtils.convertTimestampToDate(value);
+        tv.setText(newDate);
 
+    }
 
 
 

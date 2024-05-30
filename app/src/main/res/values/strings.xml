@@ -351,4 +351,5 @@
     <string name="str_look_onchain_historys">去链上看更多数据</string>
     <string name="str_finished">已完成</string>
     <string name="str_signer">交易签名</string>
+    <string name="str_transfor_time">交易时间</string>
 </resources>
