@@ -49,7 +49,7 @@
     <string name="str_model_light">亮灯模式</string>
     <string name="str_model_feel">感应亮</string>
     <string name="str_light_long">长亮</string>
-    <string name="str_light_close">关闭</string>
+    <string name="str_light_close">Close</string>
     <string name="str_model">模式</string>
     <string name="str_device_name">设备名称</string>
     <string name="str_setting_device">设置设备</string>
@@ -231,4 +231,6 @@
     <string name="str_finished">Finished</string>
     <string name="str_signer">TxId</string>
     <string name="str_transfor_time">Transaction Hour</string>
+    <string name="str_just_solana">Only supports addresses of Solana chain</string>
+    <string name="str_receiver_all">receive all tokens of Solana</string>
 </resources>

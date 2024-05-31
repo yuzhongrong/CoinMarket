@@ -234,6 +234,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:onClick="@{()->click.start2ReceiverDialog()}"
                 android:layout_marginLeft="@dimen/dp15"
                 >
                 <com.hjq.shape.view.ShapeImageView

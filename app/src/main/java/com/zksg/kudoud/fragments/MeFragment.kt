@@ -2,25 +2,22 @@ package com.zksg.kudoud.fragments
 
 
 import android.content.Intent
-import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.lxj.xpopup.XPopup
 import com.netease.lib_network.entitys.NewWalletToken
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
-import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.adapters.MemeWalletListdapter
-import com.zksg.kudoud.callback.WalletUpdateTokensBalanceCallback
+import com.zksg.kudoud.dialogs.ReceiverAllCoinDialog
+import com.zksg.kudoud.dialogs.ReceiverCoinDialog
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
@@ -38,6 +35,7 @@ class MeFragment : BaseDialogFragment() {
     private var meViewModel: MeFragmentViewModel? = null
     private var sharedViewModel:SharedViewModel?=null
     var mMemeWalletListdapter:MemeWalletListdapter?=null
+
 
 
 
@@ -110,6 +108,7 @@ class MeFragment : BaseDialogFragment() {
 
     fun initData(){
 //        JsonParser.parse2TokenInfo(JsonParser.jsonString)
+
 
 
 
@@ -250,6 +249,18 @@ class MeFragment : BaseDialogFragment() {
             IntentUtils.openIntent(requireContext(), Intent(requireContext(),CoinTransationHistorysActivity::class.java).putExtra("wallet",meViewModel!!.mSimpleWallet.get()!!.address))
 
         }
+
+        fun start2ReceiverDialog() {
+
+            //获取所有已经存在的urls
+            val imageUrls = meViewModel?.uitokenInfos?.value?.map { it.imageUrl } ?: emptyList()
+            XPopup.Builder(requireActivity())
+                .dismissOnTouchOutside(true)
+                .dismissOnBackPressed(true)
+                .asCustom(ReceiverAllCoinDialog(requireActivity(), meViewModel!!.mSimpleWallet.get()!!.address,imageUrls))
+                .show()
+        }
+
 
     }
 

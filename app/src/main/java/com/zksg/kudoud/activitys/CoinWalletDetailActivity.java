@@ -12,17 +12,20 @@ import com.lxj.xpopup.XPopup;
 import com.zksg.kudoud.BR;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.adapters.ExSwapListdapter;
+import com.zksg.kudoud.dialogs.ReceiverCoinDialog;
 import com.zksg.kudoud.dialogs.ResetFactoryDialog;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.state.AboutViewModel;
 import com.zksg.kudoud.state.CoinWalletDetailActivityViewModel;
 import com.zksg.kudoud.state.SharedViewModel;
 import com.zksg.kudoud.utils.IntentUtils;
+import com.zksg.lib_api.beans.UpgradeBean;
 
 public class CoinWalletDetailActivity extends BaseActivity {
     UiWalletToken sol;
     CoinWalletDetailActivityViewModel mCoinWalletDetailActivityViewModel;
     UiWalletToken item;
+    String wallet="";
     private SharedViewModel mSharedViewModel;
 
     @Override
@@ -55,6 +58,7 @@ public class CoinWalletDetailActivity extends BaseActivity {
         });
         item= (UiWalletToken) getIntent().getExtras().get("token");
         sol= (UiWalletToken) getIntent().getExtras().get("sol");
+        wallet= getIntent().getStringExtra("wallet");
         if(item!=null){
             mCoinWalletDetailActivityViewModel.currentToken.set(item);
         }
@@ -69,5 +73,15 @@ public class CoinWalletDetailActivity extends BaseActivity {
         public void startSendIntent(){
             IntentUtils.openIntent(CoinWalletDetailActivity.this,new Intent(CoinWalletDetailActivity.this,SendCoinActivity.class).putExtra("token",item).putExtra("sol",sol));
         }
+
+        public void start2ReceiverDialog(){
+            new XPopup.Builder(CoinWalletDetailActivity.this)
+                    .dismissOnTouchOutside(true)
+                    .dismissOnBackPressed(true)
+                    .asCustom(new ReceiverCoinDialog(CoinWalletDetailActivity.this,item,wallet))
+            .show();
+
+        }
+
     }
 }

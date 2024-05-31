@@ -188,6 +188,9 @@ dependencies {
     implementation 'com.github.ajalt.reprint:core:3.3.2@aar' // required: supports marshmallow devices
     implementation 'com.github.ajalt.reprint:reprint_spass:3.3.2@aar' // optional: deprecated support for pre-marshmallow Samsung devices
 
+    //qrcode
+    implementation 'com.github.kenglxn.QRGen:android:2.6.0'
+
 
 
 

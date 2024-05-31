@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.hjq.shape.layout.ShapeLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:shape_solidColor="@color/bg_layout_common"
+    app:shape_radius="@dimen/dp15"
+
+    >
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:shape_topLeftRadius="@dimen/dp15"
+        app:shape_topRightRadius="@dimen/dp15"
+        android:padding="@dimen/dp15"
+        >
+        <com.hjq.shape.view.ShapeImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp25"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_unlink"
+            app:shape_radius="@dimen/dp45"
+
+            />
+
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp18"
+            android:text="@string/str_f_default_n_a"
+            android:layout_marginLeft="@dimen/dp5"
+            />
+
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/c_29313d"
+
+        />
+
+
+
+
+
+
+    <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/scan_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp15"
+        app:shape_radius="@dimen/dp15"
+        app:shape_strokeColor="@color/c_29313d"
+        app:shape_strokeWidth="@dimen/dp1"
+        android:padding="@dimen/dp5"
+
+        />
+
+    <com.hjq.shape.layout.ShapeLinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp45"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:padding="@dimen/dp5"
+        android:layout_gravity="center"
+        app:shape_strokeColor="@color/c_29313d"
+        app:shape_strokeWidth="@dimen/dp0"
+        app:shape_radius="@dimen/dp10"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/dp5"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold"
+            android:text="@string/str_address" />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/address"
+            android:layout_width="@dimen/dp160"
+            android:layout_height="@dimen/dp45"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold"
+            android:textColor="@color/primaryTextGray"
+            android:paddingLeft="@dimen/dp10"
+            android:layout_weight="1"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:gravity="center_vertical"
+            android:layout_marginRight="@dimen/dp10"
+            />
+        <ImageView
+            android:id="@+id/copy"
+            android:layout_width="@dimen/dp15"
+            android:layout_height="@dimen/dp15"
+            android:src="@mipmap/ic_copy"
+            android:layout_marginRight="@dimen/dp10"
+            android:onClick="@{()->click.copyTxid()}"
+
+            />
+
+    </com.hjq.shape.layout.ShapeLinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/scrollview"
+        android:orientation="vertical"
+        android:layout_marginTop="@dimen/dp45"
+        >
+
+
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/bt_close"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp40"
+        android:text="@string/str_light_close"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="@dimen/sp16"
+        android:padding="@dimen/dp5"
+        app:shape_radius="@dimen/dp10"
+        app:shape_solidColor="@color/colorAccent"
+        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginLeft="@dimen/dp25"
+        android:layout_marginRight="@dimen/dp25"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/dp25"
+        />
+
+    </LinearLayout>
+
+
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>
