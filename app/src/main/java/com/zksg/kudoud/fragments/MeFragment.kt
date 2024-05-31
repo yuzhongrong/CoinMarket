@@ -1,6 +1,7 @@
 package com.zksg.kudoud.fragments
 
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.text.TextUtils
 import android.util.Log
@@ -8,6 +9,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.google.gson.Gson
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lxj.xpopup.XPopup
+import com.lxj.xpopup.core.BasePopupView
 import com.netease.lib_network.entitys.NewWalletToken
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener
@@ -15,9 +17,12 @@ import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
+import com.zksg.kudoud.adapters.MemeWalletListDialogdapter
 import com.zksg.kudoud.adapters.MemeWalletListdapter
+import com.zksg.kudoud.callback.DialogCloseCallback
 import com.zksg.kudoud.dialogs.ReceiverAllCoinDialog
 import com.zksg.kudoud.dialogs.ReceiverCoinDialog
+import com.zksg.kudoud.dialogs.SelectCoin2SendDialog
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
@@ -260,6 +265,26 @@ class MeFragment : BaseDialogFragment() {
                 .asCustom(ReceiverAllCoinDialog(requireActivity(), meViewModel!!.mSimpleWallet.get()!!.address,imageUrls))
                 .show()
         }
+
+
+        @SuppressLint("SuspiciousIndentation")
+        fun start2SelectCoin2SendDialog() {
+          var dialog:BasePopupView?=null
+          var  mMemeWalletListDialogdapter=MemeWalletListDialogdapter(
+                context,
+                meViewModel
+          ) {
+              dialog?.delayDismiss(1000)
+          }
+
+            dialog=XPopup.Builder(requireActivity())
+                .dismissOnTouchOutside(true)
+                .dismissOnBackPressed(true)
+                .asCustom(SelectCoin2SendDialog(requireActivity(),mMemeWalletListDialogdapter))
+                .show()
+
+        }
+
 
 
     }

@@ -205,6 +205,7 @@
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:onClick="@{()->click.start2SelectCoin2SendDialog()}"
                 >
                 <com.hjq.shape.view.ShapeImageView
                     android:layout_width="@dimen/dp45"

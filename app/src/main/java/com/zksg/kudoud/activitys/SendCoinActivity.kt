@@ -61,7 +61,6 @@ class SendCoinActivity : BaseDialogActivity() {
         token = intent.getSerializableExtra("token") as UiWalletToken?
         sol= intent.getSerializableExtra("sol") as UiWalletToken?
 
-
         mSendCoinActivityViewmodel!!.loadingVisible.observe(this){
             if(it)showDialog() else dismissDialog()
         }

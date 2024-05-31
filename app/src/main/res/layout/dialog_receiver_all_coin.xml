@@ -94,6 +94,7 @@
             android:ellipsize="middle"
             android:singleLine="true"
             android:gravity="center_vertical"
+            android:onClick="@{()->click.copyTxid()}"
 
             />
         <ImageView
@@ -103,6 +104,7 @@
             android:src="@mipmap/ic_copy"
             android:layout_marginRight="@dimen/dp20"
             android:onClick="@{()->click.copyTxid()}"
+            android:visibility="gone"
 
             />
 
