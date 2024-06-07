@@ -94,7 +94,6 @@
             android:ellipsize="middle"
             android:singleLine="true"
             android:gravity="center_vertical"
-            android:onClick="@{()->click.copyTxid()}"
 
             />
         <ImageView

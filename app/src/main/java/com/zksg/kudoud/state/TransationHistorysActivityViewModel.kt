@@ -111,18 +111,19 @@ class TransationHistorysActivityViewModel : BaseLoadingViewModel() {
 
     fun isTransationDiffHead(newplusResult:List<TransationHistoryEntity>):Boolean{
         //始终获取集合第一个
-//        var firstBlockTime=plusResult.firstOrNull()?.blockTime?:0
+        var firstBlockTime=newplusResult.firstOrNull()?.blockTime?:0
         //始终获取本地缓存第一个
         var localfirst=WalletUtils.getLocalCacheTransationHistory(walletAddress.get()!!)
-//        val localFirstBlockTime = localfirst.firstOrNull()?.blockTime?:0
-        if(localfirst!=null&&localfirst.size==0){
-            return false
-        }else{
-            var netTxHead=newplusResult.firstOrNull()?.signature
-            var isfindcache_start=localfirst.get(0).signature
-            return netTxHead.equals(isfindcache_start)
-
-        }
+        val localFirstBlockTime = localfirst.firstOrNull()?.blockTime?:0
+       return firstBlockTime==localFirstBlockTime
+//        if(localfirst!=null&&localfirst.size==0){
+//            return false
+//        }else{
+//            var netTxHead=newplusResult.firstOrNull()?.signature
+//            var isfindcache_start=localfirst.get(0).signature
+//            return netTxHead.equals(isfindcache_start)
+//
+//        }
 
 
 

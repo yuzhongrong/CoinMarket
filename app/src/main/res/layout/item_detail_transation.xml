@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="com.netease.lib_network.entitys.TransationHistoryEntity" />
+
+
+
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.TransDetailHistorysrdapter" />
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.CoinWalletDetailActivityViewModel" />
+
+
+    </data>
+
+<com.hjq.shape.layout.ShapeLinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:shape_solidColor="@color/bg_layout_common"
+    >
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/primaryTextGray"
+      android:text="@string/str_f_default_n_a"
+      android:layout_marginTop="@dimen/dp5"
+      android:layout_marginLeft="@dimen/dp15"
+      transation_detail_history_adapter="@{adapter}"
+      transation_detail_history_item="@{item}"
+      android:textStyle="bold"
+
+      />
+
+<com.hjq.shape.layout.ShapeRelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp15"
+    android:gravity="center_vertical"
+
+
+    >
+    <com.hjq.shape.layout.ShapeRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:shape_radius="@dimen/dp45"
+        app:shape_strokeColor="@color/c_29313d"
+        app:shape_strokeWidth="@dimen/dp0.5"
+        android:padding="@dimen/dp0.5"
+        >
+
+    <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/dp45"
+        android:layout_height="@dimen/dp45"
+        transfor_icon="@{item.logoURI}"
+        issystem="@{item.isSolTransfer}"
+        app:shape_radius="@dimen/dp45"
+        android:src="@mipmap/ic_unlink"
+        android:scaleType="centerCrop"
+        app:shape_strokeColor="@color/c_29313d"
+        app:shape_strokeWidth="@dimen/dp0"
+        />
+    </com.hjq.shape.layout.ShapeRelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp55"
+        android:layout_toRightOf="@+id/icon"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/direct"
+            transation_amount="@{item}"
+            transation_amount_direct="@{vm.walletAddress}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_f_default_n_a"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp15"
+            android:textStyle="bold"
+
+            />
+
+
+        <TextView
+            android:id="@+id/vol"
+            direct="@{item.sender.equals(vm.walletAddress)}"
+            history_item="@{item}"
+            android:layout_width="@dimen/dp140"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp4"
+            android:ellipsize="middle"
+            android:singleLine="true"
+            android:text="@string/str_f_default_n_a"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/show_amount"
+        transation_amount="@{item}"
+        transation_amount_direct="@{vm.walletAddress}"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:text="@string/str_f_default_n_a"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
+
+
+
+</com.hjq.shape.layout.ShapeRelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:background="@color/c_29313d"
+        android:layout_marginLeft="@dimen/dp15"
+        android:layout_marginRight="@dimen/dp15"
+        android:visibility="gone"
+        />
+</com.hjq.shape.layout.ShapeLinearLayout>
+</layout>

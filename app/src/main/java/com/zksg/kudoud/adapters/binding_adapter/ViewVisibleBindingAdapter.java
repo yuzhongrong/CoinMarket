@@ -61,6 +61,15 @@ public class ViewVisibleBindingAdapter {
             }
     }
 
+    @BindingAdapter(value = {"common_show_hide"},requireAll = false)
+    public static void common_show_hide(View view, boolean value) {
+        if(value){
+            view.setVisibility(View.VISIBLE);
+        }else{
+            view.setVisibility(View.GONE);
+        }
+    }
+
 
 
 

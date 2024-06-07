@@ -233,4 +233,5 @@
     <string name="str_transfor_time">Transaction Hour</string>
     <string name="str_just_solana">Only supports addresses of Solana chain</string>
     <string name="str_receiver_all">receive all tokens of Solana</string>
+    <string name="str_nodata">no data</string>
 </resources>

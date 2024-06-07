@@ -17,6 +17,7 @@ import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.adapters.TransDetailHistorysrdapter;
 import com.zksg.kudoud.adapters.TransHistorysrdapter;
 import com.zksg.kudoud.beans.Kline24ChangeChannelEnum;
 import com.zksg.kudoud.entitys.Base2QuoEntity;
@@ -363,6 +364,34 @@ public class TextViewBindingAdapter {
 
 
             }
+
+
+
+
+    @BindingAdapter(value = {"transation_detail_history_adapter","transation_detail_history_item"},requireAll = false)
+    public static void transation_detail_history_time(TextView tv, TransDetailHistorysrdapter adapter, TransationHistoryEntity item) {
+        if(tv==null||adapter==null||item==null)return;
+
+        int position= adapter.getCurrentList().indexOf(item);
+        if(position>0){
+            TransationHistoryEntity olditem=adapter.getCurrentList().get(position-1);
+
+            String newDate=DateUtils.convertTimestampToDate(item.getBlockTime());
+            String oldDate=DateUtils.convertTimestampToDate(olditem.getBlockTime());
+            if(newDate.equals(oldDate)){
+                tv.setVisibility(View.GONE);
+            }else{
+                tv.setVisibility(View.VISIBLE);
+                tv.setText(DateUtils.convertTimestampToDate(item.getBlockTime()));
+            }
+        }else{
+            tv.setVisibility(View.VISIBLE);
+            tv.setText(DateUtils.convertTimestampToDate(item.getBlockTime()));
+        }
+
+
+    }
+
 
 
 //        if(olditem.getBlockTime()==newitem.getBlockTime()){

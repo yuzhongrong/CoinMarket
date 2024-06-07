@@ -13,8 +13,9 @@
             type="com.zksg.kudoud.activitys.CoinWalletDetailActivity.ClickProxy" />
 
         <variable
-            name="adapter"
-            type="com.zksg.kudoud.adapters.ExSwapListdapter" />
+            name="historysAdaper"
+            type="com.zksg.kudoud.adapters.TransDetailHistorysrdapter"  />
+
         <variable
             name="listener"
             type="com.scwang.smart.refresh.layout.listener.OnRefreshListener" />
@@ -295,21 +296,60 @@
         </com.hjq.shape.layout.ShapeLinearLayout>
 
 
-
-            <com.hjq.shape.layout.ShapeRecyclerView
-
-                linearAdapter="@{adapter}"
-                cannotScrollVertically="@{false}"
-                itemspace="@{1}"
-                orientation="@{1}"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/dp8"
-                app:shape_radius="@dimen/dp10"
-                app:shape_strokeWidth="@dimen/dp0"
-                app:shape_strokeColor="@color/colorPrimaryLight"
-                android:padding="@dimen/dp1"
-                />
+                android:layout_height="match_parent">
+                <androidx.recyclerview.widget.RecyclerView
+
+                    linearAdapter="@{historysAdaper}"
+                    cannotScrollVertically="@{false}"
+                    itemspace="@{1}"
+                    orientation="@{1}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp8"
+                    app:shape_radius="@dimen/dp10"
+                    app:shape_strokeWidth="@dimen/dp0"
+                    app:shape_strokeColor="@color/colorPrimaryLight"
+                    android:padding="@dimen/dp1"
+                    submitList="@{vm.historys}"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/wallet_no"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@color/bg_layout_common"
+                    common_show_hide="@{vm.rv_empter}"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        >
+
+                        <ImageView
+                            android:layout_width="@dimen/dp45"
+                            android:layout_height="@dimen/dp45"
+                            android:src="@mipmap/ic_nothing" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp10"
+                            android:text="@string/str_nodata" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </FrameLayout>
+
+
 
 
         </LinearLayout>

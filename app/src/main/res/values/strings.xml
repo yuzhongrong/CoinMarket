@@ -354,4 +354,5 @@
     <string name="str_transfor_time">交易时间</string>
     <string name="str_just_solana">仅支持solana链的地址</string>
     <string name="str_receiver_all">可接收solana链所有代币</string>
+    <string name="str_nodata">没有数据</string>
 </resources>

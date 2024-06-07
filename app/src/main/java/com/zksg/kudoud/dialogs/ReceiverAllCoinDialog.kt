@@ -34,6 +34,10 @@ class ReceiverAllCoinDialog(context: Activity, wallet:String,iconUrls:List<Strin
         }
         tv_address.setText(mWallet)
         imv_scan.setImageBitmap(generateRoundedQRCode(mWallet))
+        tv_address.setOnClickListener {
+            CopyUtils.copyToClipboard(mcontext,mWallet)
+            ToastUtils.showShort(mcontext.getString(R.string.str_copy_success))
+        }
 
 
     }

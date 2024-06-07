@@ -716,4 +716,25 @@ public class DataRepository {
     }
 
 
+    public void getSplHistorys(String wallet,String mint,String before,DataResult.Result<CommonResponse<List<TransationHistoryEntity>>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getSplTransations(wallet,mint,before)
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .subscribe(new MySimpleObserver<CommonResponse<List<TransationHistoryEntity>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<List<TransationHistoryEntity>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
 }

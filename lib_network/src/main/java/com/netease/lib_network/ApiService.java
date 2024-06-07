@@ -35,7 +35,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.2:3000";
+      String BASE_URL=" http://192.168.10.3:3000";
 
 
     @GET("login/cellphone")
@@ -123,4 +123,8 @@ public interface ApiService {
 
     @GET("/api/wallet/getTransations")
     Single<CommonResponse<List<TransationHistoryEntity>>> getAllTransationHistory(@Query("wallet") String wallet,@Query("before") String before);
+
+    @GET("/api/wallet/getSplTransations")
+    Single<CommonResponse<List<TransationHistoryEntity>>> getSplTransations(@Query("wallet") String wallet,@Query("mint") String mint,@Query("before") String before);
+
 }
