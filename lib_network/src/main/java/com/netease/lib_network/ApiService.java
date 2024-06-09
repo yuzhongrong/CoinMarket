@@ -127,4 +127,9 @@ public interface ApiService {
     @GET("/api/wallet/getSplTransations")
     Single<CommonResponse<List<TransationHistoryEntity>>> getSplTransations(@Query("wallet") String wallet,@Query("mint") String mint,@Query("before") String before);
 
+
+    @GET("/api/wallet/getSolTransations")
+    Single<CommonResponse<List<TransationHistoryEntity>>> getSolTransations(@Query("wallet") String wallet,@Query("before") String before);
+
+
 }

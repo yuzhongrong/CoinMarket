@@ -61,8 +61,8 @@ class CoinWalletDetailActivity : BaseDialogActivity() {
         }
 
         //获取sol历史记录
-        if (wallet == Constants.TOKEN_SOL_CONTRACT) {
-            viewModel!!.getSolHistorys(wallet!!)
+        if (item!!.mint == Constants.TOKEN_SOL_CONTRACT) {
+            viewModel!!.getSolHistorys(wallet!!,"",true)
         } else { //获取spl历史记录
             viewModel!!.getSplHistorys(wallet!!, item!!.mint, "",true)
         }
