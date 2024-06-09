@@ -24,20 +24,23 @@ class CoinWalletDetailActivityViewModel : BaseLoadingViewModel() {
     var account = ObservableField<String>()
     @JvmField
     var rv_empter = ObservableField(true)
+    @JvmField
+    var nodata = ObservableField(false)
+    @JvmField
+    var isfinishRefresh=MutableResult(false)
+
     var account_show = State(View.GONE)
     @JvmField
     var walletAddress = ObservableField<String>()
     @JvmField
     var historys = MutableResult(listOf<TransationHistoryEntity>())
     @JvmField
-    var show_wallet = ObservableField(false)
+    var next = MutableResult("")
 
 
     @JvmField
     var currentToken = ObservableField<UiWalletToken>()
 
-    @JvmField
-    var mWalletAmountMoney=MutableResult("0.0")
 
 
 
@@ -55,20 +58,25 @@ class CoinWalletDetailActivityViewModel : BaseLoadingViewModel() {
 
 
 
-    fun getSplHistorys(wallet: String, mint: String,before:String){
+    fun getSplHistorys(wallet: String, mint: String,before:String,showloading:Boolean){
         viewModelScope.launch{
             withContext(Dispatchers.IO){
-                loadingVisible.postValue(true)
+                if(showloading)loadingVisible.postValue(true)
                 DataRepository.getInstance().getSplHistorys(wallet,mint,before){
                     if(it.responseStatus.isSuccess){
-                        if(it.result.data!=null){
+                        if(it.result.data!=null&&it.result.data.size>0){
                             //更新uitokenInfos列表第一个数据
                             Log.d("----apiinfo---->",GsonUtil.toJson(it.result.data))
                             var plusResult = historys.value?.plus(it.result.data)
                             historys.postValue(plusResult)
                             loadingVisible.postValue(false)
+                            nodata.set(false)
+                            next.postValue(plusResult!!.last().signature)
+                        }else{ //请求了没有，此时不让其继续再请求
+                            nodata.set(true)
                         }
                     }
+                    isfinishRefresh.postValue(true)
                 }
             }
         }
