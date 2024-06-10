@@ -68,7 +68,12 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
 
         mSendCoinConfirmActivityViewmodel!!.gas.observe(this){
             //如果余额-支出>=够网络费用+租金 就广播交易
-            var payamount= BigDecimal(number).add(BigDecimal(it)).add(BigDecimal(rent))
+            var payamount= BigDecimal(0)
+            if(token!!.mint.equals(Constants.TOKEN_SOL_CONTRACT)){
+                payamount=BigDecimal(number).add(BigDecimal(it)).add(BigDecimal(rent))
+            }else{
+                payamount=BigDecimal(it).add(BigDecimal(rent))
+            }
             var result= BigDecimal(sol!!.balance).subtract(payamount)
             if(result.toDouble()>=0){//可以转账
                 mSendCoinConfirmActivityViewmodel!!.issend.set(true)
@@ -91,11 +96,18 @@ class SendCoinConfirmActivity : BaseDialogActivity() {
         mSendCoinConfirmActivityViewmodel!!.sol.set(sol)
         mSendCoinConfirmActivityViewmodel!!.rent.set(rent)
 
-        if(token!!.mint.equals(Constants.TOKEN_SOL_CONTRACT)){
-            mSendCoinConfirmActivityViewmodel!!.isspl.set(true)
+
+
+
+
+        if(token!!.mint.equals(Constants.TOKEN_SOL_CONTRACT)) {
+            var lamports=WalletUtils.sol2lamports(number!!)
+            //获取sol转账gas
+            mSendCoinConfirmActivityViewmodel!!.getEstimatedFee(sender!!,receiver!!,lamports!!)
+        }else{
+            //获取spl转账gas
+            mSendCoinConfirmActivityViewmodel!!.getSplEstimatedFee(sender!!,receiver!!,token!!.mint,BigDecimal(number!!).toLong())
         }
-        var lamports=WalletUtils.sol2lamports(number!!)
-        mSendCoinConfirmActivityViewmodel!!.getEstimatedFee(sender!!,receiver!!,lamports!!)
     }
 
 

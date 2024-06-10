@@ -112,6 +112,9 @@ public interface ApiService {
 
     @GET("/api/wallet/getEstimatedFee")
     Single<CommonResponse<String>> getEstimatedFee(@Query("from") String from,@Query("to") String to,@Query("amount") long amount);
+
+    @GET("/api/wallet/getSplEstimatedFee")
+    Single<CommonResponse<String>> getSplEstimatedFee(@Query("from") String from,@Query("to") String to,@Query("mint") String mint,@Query("amount") long amount);
     @GET("/api/wallet/getRentForAccount")
     Single<CommonResponse<String>> getRentForAccount(@Query("wallet") String sign);
 

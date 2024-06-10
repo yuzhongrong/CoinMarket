@@ -599,6 +599,30 @@ public class DataRepository {
     }
 
 
+    public void getSplEstimatedFee(String from,String to,String mint,long amount,DataResult.Result<CommonResponse<String>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getSplEstimatedFee(from,to,mint,amount)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<String>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<String> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
     public void getRentForAccount(String wallet,DataResult.Result<CommonResponse<String>> result){
         ApiEngine.getInstance()
                 .getApiService()

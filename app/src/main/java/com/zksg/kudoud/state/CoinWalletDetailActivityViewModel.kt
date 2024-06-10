@@ -69,12 +69,13 @@ class CoinWalletDetailActivityViewModel : BaseLoadingViewModel() {
                             Log.d("----apiinfo---->",GsonUtil.toJson(it.result.data))
                             var plusResult = historys.value?.plus(it.result.data)
                             historys.postValue(plusResult)
-                            loadingVisible.postValue(false)
+
                             nodata.set(false)
                             next.postValue(plusResult!!.last().signature)
                         }else{ //请求了没有，此时不让其继续再请求
                             nodata.set(true)
                         }
+                        loadingVisible.postValue(false)
                     }
                     isfinishRefresh.postValue(true)
                 }

@@ -65,7 +65,7 @@ class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
     var number=ObservableField("0.0")
     var sol=ObservableField<UiWalletToken>()
     var issend=ObservableField(false)
-    var isspl=ObservableField(false)
+    var isspl=ObservableField(true)
     var commit=MutableResult(false)
 
     @JvmField
@@ -80,6 +80,26 @@ class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
             loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getEstimatedFee(from,to,amount){
+                    if(it.responseStatus.isSuccess){
+                        Log.d("----getEstimatedFee-->",it.result.data)
+                        if(it.result!=null){
+                            gas.postValue(it.result.data)
+                            loadingVisible.postValue(false)
+                        }
+
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    fun getSplEstimatedFee(from: String,to: String,mint:String,amount: Long){
+        viewModelScope.launch {
+            loadingVisible.postValue(true)
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().getSplEstimatedFee(from,to,mint,amount){
                     if(it.responseStatus.isSuccess){
                         Log.d("----getEstimatedFee-->",it.result.data)
                         if(it.result!=null){
