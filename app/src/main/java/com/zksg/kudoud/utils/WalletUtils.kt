@@ -7,9 +7,11 @@ import com.netease.lib_common_ui.utils.GsonUtil
 import com.netease.lib_network.entitys.TransationHistoryEntity
 import com.paymennt.crypto.bip32.wallet.AbstractWallet
 import com.tencent.mmkv.MMKV
+import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.utils.manager.SolanaWalletManager
+import com.zksg.kudoud.wallet.constants.Constants
 import com.zksg.kudoud.wallet.data.SolanaAccount
 import com.zksg.kudoud.wallet.keystore.KeystoreManager
 import com.zksg.kudoud.wallet.wallet.SolanaWallet
@@ -75,6 +77,35 @@ object WalletUtils {
     fun saveLocalCacheTransationHistory(wallet:String,datas:List<TransationHistoryEntity> ){
         var key=wallet+"_history"
         MMKV.mmkvWithID(wallet).encode(key,ObjectSerializationUtils.serializeObject(datas))
+
+    }
+
+    fun getWalletUiTokens(sharedViewModel: SharedViewModel):ArrayList<UiWalletToken>{
+        var keyAlias= sharedViewModel!!.getOneSelectWallet().value!!.keyAlias
+        var tokensbytes= MMKV.mmkvWithID(Constants.UI_TOKENS).decodeBytes(keyAlias)
+        var uitokens=ObjectSerializationUtils.deserializeObject(tokensbytes) as ArrayList<UiWalletToken>
+        return uitokens
+    }
+
+
+    fun getWalletUiTokenBalance(sharedViewModel: SharedViewModel,mint:String):UiWalletToken?{
+        try {
+            var keyAlias= sharedViewModel!!.getOneSelectWallet().value!!.keyAlias
+            var tokensbytes= MMKV.mmkvWithID(Constants.UI_TOKENS).decodeBytes(keyAlias)
+            var uitokens=ObjectSerializationUtils.deserializeObject(tokensbytes) as ArrayList<UiWalletToken>
+            return uitokens.find { it.mint.equals(mint) }
+
+        }catch(e:Exception){
+            return null
+        }
+
+    }
+
+    fun saveCurrentFromTo(sharedViewModel: SharedViewModel,from:UiWalletToken,to:UiWalletToken){
+        var keyAlias= sharedViewModel!!.getOneSelectWallet().value!!.keyAlias
+        MMKV.mmkvWithID(keyAlias+"_"+"swap").encode("from", ObjectSerializationUtils.serializeObject(from))
+        MMKV.mmkvWithID(keyAlias+"_"+"swap").encode("to", ObjectSerializationUtils.serializeObject(to))
+
 
     }
 

@@ -51,6 +51,7 @@ import com.netease.lib_common_ui.bannder.HolderCreator;
 import com.netease.lib_common_ui.widget.ArtistSortView;
 import com.netease.lib_common_ui.widget.CaptchaView;
 import com.netease.lib_image_loader.app.ImageLoaderManager;
+import com.netease.lib_network.entitys.QuoEntity;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
@@ -58,9 +59,11 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.entitys.SelectWalletEntity;
+import com.zksg.kudoud.state.ExchangeFragmentViewModel;
 import com.zksg.kudoud.utils.manager.SimpleWallet;
 import com.zksg.lib_api.beans.BannerBean;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -256,6 +259,12 @@ public class CommonBindingAdapter {
         editText.addTextChangedListener(listener);
     }
 
+    @BindingAdapter(value = {"textEditClickListener"})
+    public static void textfClickListener(EditText editText, View.OnClickListener listener) {
+        editText.setOnClickListener(listener);
+    }
+
+
     @BindingAdapter(value = {"textfocusChangedListener"})
     public static void textfocusChangedListener(EditText editText, View.OnFocusChangeListener listener) {
         editText.setOnFocusChangeListener(listener);
@@ -370,6 +379,36 @@ public class CommonBindingAdapter {
         if(view==null||listner==null)return;
         view.setOnRefreshListener(listner);
     }
+
+    @BindingAdapter(value = {"loadtext_quo","loadtext_quo_fromdecimal"}, requireAll = false)
+    public static void loadtext_quo(TextView view, String value,String fromdecimal) {
+        if(view==null||TextUtils.isEmpty(value)||TextUtils.isEmpty(fromdecimal))return;
+        BigDecimal outAmount=new BigDecimal(value);
+        BigDecimal result= outAmount.divide(new BigDecimal(Math.pow(10,Integer.parseInt(fromdecimal))));
+
+        if(view.getId()==R.id.outputAmount){
+            view.setText(result.toString());
+        }else{
+            view.setText("≈ "+result+" ");
+        }
+
+    }
+
+
+
+    @BindingAdapter(value = {"loadtext_slippageBps"}, requireAll = false)
+    public static void loadtext_slippageBps(TextView view,String str) {
+        if(view==null|| TextUtils.isEmpty(str)) return;
+        BigDecimal div=new BigDecimal(str).divide(new BigDecimal(100));
+        view.setText(div.toString()+"%");
+    }
+
+    @BindingAdapter(value = {"loadtext_router"}, requireAll = false)
+    public static void loadtext_router(TextView view,List<QuoEntity.RoutePlanDTO> router) {
+        if(view==null|| router==null) return;
+        view.setText(router.size()+">");
+    }
+
 
 
 

@@ -355,4 +355,13 @@
     <string name="str_just_solana">仅支持solana链的地址</string>
     <string name="str_receiver_all">可接收solana链所有代币</string>
     <string name="str_nodata">没有数据</string>
+    <string name="str_all">全部</string>
+    <string name="str_from">从</string>
+    <string name="str_swap">兑换</string>
+    <string name="str_to">到</string>
+    <string name="str_rate">参考汇率</string>
+    <string name="str_pre_gas">预估网络费用</string>
+    <string name="str_slippage">滑点</string>
+    <string name="str_router">报价路径</string>
+    <string name="str_number_zero"> ≈ 0.0 </string>
 </resources>

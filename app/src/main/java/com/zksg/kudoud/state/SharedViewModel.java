@@ -21,6 +21,16 @@ public class SharedViewModel extends ViewModel {
     private final UnPeekLiveData<EnvBean> addOneEnvNotify = new UnPeekLiveData<>();
 
     public final UnPeekLiveData<Boolean> addTokenNotify=new UnPeekLiveData<>();
+
+    public final UnPeekLiveData<Boolean> tokenlistUpdateNotify=new UnPeekLiveData<>();
+    public ProtectedUnPeekLiveData<Boolean> getTokenListUpdateNotify() {
+        return tokenlistUpdateNotify;
+    }
+    public void requestTokenListUpdateNotify(Boolean value) {
+        tokenlistUpdateNotify.setValue(value);
+    }
+
+
     private final UnPeekLiveData<SelectWalletEntity> selectWallet=new UnPeekLiveData<>(new SelectWalletEntity(CoinType.SOLANA.getKey(),""));
 
      public ProtectedUnPeekLiveData<EnvBean> getOneEnvNotify() {
@@ -31,9 +41,13 @@ public class SharedViewModel extends ViewModel {
     public ProtectedUnPeekLiveData<Boolean> getAddTokenNotify() {
         return addTokenNotify;
     }
+
+
     public void requestAddToken(Boolean value) {
         addTokenNotify.setValue(value);
     }
+
+
 
 
     public final UnPeekLiveData<Boolean> fristPageClose=new UnPeekLiveData<>();

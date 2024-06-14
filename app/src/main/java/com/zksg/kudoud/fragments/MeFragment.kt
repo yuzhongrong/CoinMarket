@@ -189,6 +189,7 @@ class MeFragment : BaseDialogFragment() {
                     mMemeWalletListdapter!!.notifyDataSetChanged()
                     calculateAmount(tokenlist)
                 }
+                sharedViewModel!!.requestTokenListUpdateNotify(true)
 
             }
             var tokenlist = meViewModel!!.uitokenInfos.value!!

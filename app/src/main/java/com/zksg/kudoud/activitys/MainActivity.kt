@@ -24,10 +24,7 @@ import com.zksg.kudoud.databinding.ActivityMainBinding
 import com.zksg.kudoud.dialogs.ConfirmTransationfingprintDialog
 import com.zksg.kudoud.entitys.SelectWalletEntity
 import com.zksg.kudoud.entitys.UiWalletToken
-import com.zksg.kudoud.fragments.CategoryFragment
-import com.zksg.kudoud.fragments.HomeFragment
-import com.zksg.kudoud.fragments.MeFragment
-import com.zksg.kudoud.fragments.RankingFragment
+import com.zksg.kudoud.fragments.*
 import com.zksg.kudoud.state.MainActivityViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
@@ -36,11 +33,13 @@ import com.zksg.kudoud.utils.TokenConverter
 import com.zksg.kudoud.wallet.keystore.KeystoreManager
 import com.zksg.kudoud.wallet.keystore.KeystoreManagerDebug
 import com.zksg.kudoud.widgets.NavigateTabBar
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
 
 class MainActivity : BaseActivity() {
     private var mMainActivityViewModel: MainActivityViewModel? = null
+
 
     var mSharedViewModel: SharedViewModel? = null
     override fun initViewModel() {
@@ -91,8 +90,8 @@ class MainActivity : BaseActivity() {
             )
         )
 
-        val CJ_PAGE = getString(R.string.str_markets)
-        mainBinding.homeNavigate!!.addTab(RankingFragment::class.java,
+        val CJ_PAGE = getString(R.string.str_ex_swap)
+        mainBinding.homeNavigate!!.addTab(ExchangeFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
                 R.mipmap.app_ranking_normal,
@@ -124,6 +123,7 @@ class MainActivity : BaseActivity() {
         mainBinding.homeNavigate!!.setTabSelectListener(object : NavigateTabBar.OnTabSelectedListener {
             override fun onTabSelected(holder: NavigateTabBar.ViewHolder) {
                 mainBinding.homeNavigate!!.showFragment(holder)
+
             }
         })
 

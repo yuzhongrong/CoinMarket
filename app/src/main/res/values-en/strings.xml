@@ -234,4 +234,13 @@
     <string name="str_just_solana">Only supports addresses of Solana chain</string>
     <string name="str_receiver_all">receive all tokens of Solana</string>
     <string name="str_nodata">no data</string>
+    <string name="str_all">All</string>
+    <string name="str_from">From</string>
+    <string name="str_swap">Swap</string>
+    <string name="str_to">To</string>
+    <string name="str_rate">Rate</string>
+    <string name="str_pre_gas">Estimated Gas</string>
+    <string name="str_slippage">Slippage</string>
+    <string name="str_router">Router</string>
+    <string name="str_number_zero"> ≈ 0.0 </string>
 </resources>

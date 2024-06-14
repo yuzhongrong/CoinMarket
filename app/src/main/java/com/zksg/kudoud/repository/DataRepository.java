@@ -30,6 +30,7 @@ import com.netease.lib_network.entitys.DexScreenTokenInfo;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.JupToken;
+import com.netease.lib_network.entitys.QuoEntity;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
@@ -585,6 +586,30 @@ public class DataRepository {
                 .subscribe(new MySimpleObserver<CommonResponse<String>>() {
                     @Override
                     protected void onSuccessed(CommonResponse<String> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
+    public void getQuo(String from,String to,String amount,int fromdecimal,DataResult.Result<CommonResponse<QuoEntity>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getQuo(from,to,amount,fromdecimal)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<QuoEntity>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<QuoEntity> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));
