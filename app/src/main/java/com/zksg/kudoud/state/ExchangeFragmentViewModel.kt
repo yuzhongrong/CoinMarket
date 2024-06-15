@@ -1,20 +1,22 @@
 package com.zksg.kudoud.state
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.kunminx.architecture.domain.message.MutableResult
 import com.netease.lib_common_ui.utils.GsonUtil
 import com.netease.lib_network.entitys.QuoEntity
-import com.zksg.kudoud.R
+import com.zksg.kudoud.callback.QuoGasCallback
+import com.zksg.kudoud.callback.TokenInfo
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
-import com.zksg.kudoud.wallet.constants.Constants
-import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
+import com.zksg.kudoud.utils.DigitUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.math.BigDecimal
 
 class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
@@ -39,6 +41,9 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
     var quo=MutableResult<QuoEntity>()
 
+    @JvmField
+    var quosolfee=MutableResult("0.0")
+
 
     fun getQuo(from: String,to: String,amount:String,fromdecimal: Int){
         viewModelScope.launch {
@@ -49,6 +54,7 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
                         Log.d("----getQuo-->",GsonUtil.toJson(it.result.data))
                         if(it.result!=null){
                             quo.postValue(it.result.data)
+                            postRouterFee(it.result.data)
 //                            loadingVisible.postValue(false)
                         }
 
@@ -60,4 +66,46 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     }
 
 
+    fun getNetworkGas(feeMints:String,callback:QuoGasCallback){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().getNetworkGas(feeMints){
+                    if(it.responseStatus.isSuccess){
+                        Log.d("----getNetworkGas-->",GsonUtil.toJson(it.result.data))
+                        val tokenData: Map<String, TokenInfo> = parseJson(it.result.data)
+                        callback.postQuoGas(tokenData)
+
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    fun postRouterFee(quo:QuoEntity){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().postRouterFee(quo){
+                    if(it.responseStatus.isSuccess){
+                        Log.d("----postRouterFee-->",BigDecimal(it.result.data).toPlainString())
+                        quosolfee.postValue(DigitUtils.formatNumberWithCommas(BigDecimal(it.result.data).toDouble(),9)+" sol")
+
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    fun parseJson(jsonString: String): Map<String, TokenInfo> {
+        val gson = Gson()
+        val type = object : TypeToken<Map<String, TokenInfo>>() {}.type
+        return gson.fromJson(jsonString, type)
+    }
+
+
 }
+
+

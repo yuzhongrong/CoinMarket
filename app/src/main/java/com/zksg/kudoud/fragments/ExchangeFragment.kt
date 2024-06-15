@@ -1,33 +1,37 @@
 package com.zksg.kudoud.fragments
 
-import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.adapters.CycMusicAdapter
+import com.zksg.kudoud.callback.QuoGasCallback
+import com.zksg.kudoud.callback.TokenInfo
 import com.zksg.kudoud.entitys.UiWalletToken
-import com.zksg.kudoud.state.CycMusicFragmentViewModel
 import com.zksg.kudoud.state.ExchangeFragmentViewModel
-import com.zksg.kudoud.state.MeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT
-import com.zksg.lib_api.playlist.BasicMusicInfo
 import kotlinx.android.synthetic.main.fragment_exchange.*
+import java.math.BigDecimal
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class ExchangeFragment:BaseFragment(){
+
+    var handler: Handler = Handler(Looper.getMainLooper())
+    val delayMillis = 1000L // 1秒
+    var runnable: Runnable? = null
+
+
     private var  meViewModel: ExchangeFragmentViewModel?=null
     private var sharedViewModel: SharedViewModel?=null
     //TODO:tip oncreate 时候调用
@@ -89,7 +93,6 @@ class ExchangeFragment:BaseFragment(){
     }
 
     fun  initData() {
-
         var keyAlias= sharedViewModel!!.getOneSelectWallet().value!!.keyAlias
         //去本地获取初始化数据 如果是null 表示第一次,给初始化数据，否则直接赋值
         var defaultfrom=UiWalletToken(TOKEN_SOL_CONTRACT,"0","9","0","SOL","Wrapped SOL","",R.mipmap.ic_solana_common)
@@ -138,18 +141,37 @@ class ExchangeFragment:BaseFragment(){
         override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
 
-            if(!TextUtils.isEmpty(s)){
-                Log.d("----onTextChanged11-->",s.toString())
-                var amount=s.toString().trim()
-                meViewModel!!.getQuo(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,amount,meViewModel!!.from.value!!.decimal.toInt())
-            }else{
+        }
+        override fun afterTextChanged(s: Editable) {
+
+            // 检查是否有前导零且长度大于1且不包含小数点
+            if (s.isNotEmpty() && s.startsWith("0") && s.length > 1 && !s.contains(".")) {
+                // 去掉前导零
+                editText.setText(s.toString().replaceFirst("^0+".toRegex(), ""))
+
+            }
+            //这里直接使用edittext的id了 不再用viewmodel知识了 这样方便
+            editText.setSelection(editText.text.length)
+
+
+            // 取消之前的任务（如果有）
+            runnable?.let { handler.removeCallbacks(it) }
+
+            // 创建一个新的任务
+            runnable = Runnable {
+                // 在这里发送网络请求
+                if(!TextUtils.isEmpty(s)){
+                    Log.d("----onTextChanged11-->",s.toString())
+                    var amount=s.toString().trim()
+                    meViewModel!!.getQuo(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,amount,meViewModel!!.from.value!!.decimal.toInt())
+                }
 
             }
 
-        }
-        override fun afterTextChanged(s: Editable) {
-            //这里直接使用edittext的id了 不再用viewmodel知识了 这样方便
-            editText.setSelection(s.length)
+            // 安排新的任务在指定延迟后执行
+            handler.postDelayed(runnable!!, delayMillis)
+
+
 
         }
     }

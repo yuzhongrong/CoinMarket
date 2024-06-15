@@ -125,6 +125,10 @@ public interface ApiService {
     @POST("/api/wallet/broadcast")
     Single<CommonResponse<CommitTransation>> BroadCastTx(@Body BroadcastRequest request );
 
+
+
+
+
     @GET("/api/wallet/getTransations")
     Single<CommonResponse<List<TransationHistoryEntity>>> getAllTransationHistory(@Query("wallet") String wallet,@Query("before") String before);
 
@@ -136,6 +140,10 @@ public interface ApiService {
     Single<CommonResponse<List<TransationHistoryEntity>>> getSolTransations(@Query("wallet") String wallet,@Query("before") String before);
     @GET("/api/swap/getQuo")
     Single<CommonResponse<QuoEntity>> getQuo(@Query("from") String from, @Query("to") String to, @Query("amount") String amount, @Query("fromdecimal") int fromdecimal);
+    @GET("/api/swap/getNetworkGas")
+    Single<CommonResponse<String>> getNetworkGas(@Query("feeMints") String feeMints);
+    @POST("/api/swap/postRouterFee")
+    Single<CommonResponse<String>> postRouterFee(@Body QuoEntity request );
 
 
 }
