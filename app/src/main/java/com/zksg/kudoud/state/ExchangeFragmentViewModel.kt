@@ -1,6 +1,7 @@
 package com.zksg.kudoud.state
 
 import android.util.Log
+import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -24,8 +25,10 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 
     @JvmField
     var to = MutableResult<UiWalletToken>()
+
+
     @JvmField
-    var from_amount = MutableResult(1) //默认from amount=1
+    var from_amount = MutableResult("0") //默认from amount=1
 
 
     @JvmField
@@ -43,6 +46,12 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 
     @JvmField
     var quosolfee=MutableResult("0.0")
+
+
+    //账号租金
+    @JvmField
+    var AccountRent= ObservableField("0.0")
+
 
 
     fun getQuo(from: String,to: String,amount:String,fromdecimal: Int){
@@ -103,6 +112,24 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
         val gson = Gson()
         val type = object : TypeToken<Map<String, TokenInfo>>() {}.type
         return gson.fromJson(jsonString, type)
+    }
+
+
+
+    fun getRentForAccount(wallet: String){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().getRentForAccount(wallet){
+                    if(it.result!=null){
+                        Log.d("----getRentForAccount---->",it.result.data)
+                        AccountRent.set(it.result.data)
+                    }
+                }
+
+            }
+
+        }
+
     }
 
 

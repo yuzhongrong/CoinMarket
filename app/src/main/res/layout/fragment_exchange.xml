@@ -13,6 +13,10 @@
             name="quoWatcher"
             type="android.text.TextWatcher" />
 
+        <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.ExchangeFragment.ClickProxy" />
+
 
     </data>
 
@@ -152,6 +156,7 @@
                            android:text="@string/str_all"
                            android:textColor="@color/c_0d45af"
                            android:layout_marginLeft="@dimen/dp5"
+                           android:onClick="@{()->click.allAction()}"
                            />
 
                    </LinearLayout>
@@ -214,7 +219,7 @@
 
                        <EditText
                            android:id="@+id/editText"
-                           edit_quo_input_amount="@{vm.from_amount.toString()}"
+                           edit_quo_input_amount="@{vm.from_amount}"
                            android:layout_width="@dimen/dp120"
                            android:layout_height="match_parent"
                            android:layout_alignParentRight="true"

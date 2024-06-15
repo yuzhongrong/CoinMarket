@@ -46,6 +46,7 @@ class ExchangeFragment:BaseFragment(){
     override fun getDataBindingConfig(): DataBindingConfig {
        return DataBindingConfig(R.layout.fragment_exchange,BR.vm,meViewModel!!)
            .addBindingParam(BR.quoWatcher, quoWatcher)
+           .addBindingParam(BR.click, ClickProxy())
 
     }
 
@@ -71,7 +72,7 @@ class ExchangeFragment:BaseFragment(){
         }
         //更新我的页面余额变化后 会更新这里
         sharedViewModel!!.tokenListUpdateNotify.observe(this){
-            if(it){initData()}
+
         }
 
 
@@ -100,13 +101,13 @@ class ExchangeFragment:BaseFragment(){
         if(from==null){
             meViewModel!!.from.value=defaultfrom
             //from_amount默认初始化是1
-            meViewModel!!.from_amount.value=1
+            meViewModel!!.from_amount.value="1"
 
 
         }else{
             meViewModel!!.from.value=ObjectSerializationUtils.deserializeObject(from) as UiWalletToken
             //from_amount默认初始化是1
-            meViewModel!!.from_amount.value=1
+            meViewModel!!.from_amount.value="1"
         }
 
 
@@ -177,11 +178,28 @@ class ExchangeFragment:BaseFragment(){
     }
 
 
+    inner class ClickProxy {
+        fun allAction(){//点击全部按钮
+            //spl-token
+            if(!meViewModel!!.from.value!!.mint.equals(TOKEN_SOL_CONTRACT)){
+                meViewModel!!.from_amount.value=meViewModel!!.from_wallet_amount.value
+            }else{//sol
+                //余额-(账号租金+转出的sol+gas) 必须大于0
+
+            }
+
+
+
+        }
+
+    }
 
 
 
 
     }
+
+
 
 
 

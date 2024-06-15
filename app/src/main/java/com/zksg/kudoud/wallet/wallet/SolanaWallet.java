@@ -7,7 +7,8 @@ package com.zksg.kudoud.wallet.wallet;
 import com.paymennt.crypto.CoinType;
 import com.paymennt.crypto.bip32.Network;
 import com.paymennt.crypto.bip32.wallet.AbstractWallet;
-import com.paymennt.crypto.lib.Base58;
+
+import org.bitcoinj.core.Base58;
 
 /**
  * @author paymennt
