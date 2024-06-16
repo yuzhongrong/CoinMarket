@@ -157,6 +157,7 @@
                            android:textColor="@color/c_0d45af"
                            android:layout_marginLeft="@dimen/dp5"
                            android:onClick="@{()->click.allAction()}"
+
                            />
 
                    </LinearLayout>
@@ -429,8 +430,9 @@
             app:shape_solidColor="@color/c_29313d"
             android:layout_marginLeft="@dimen/dp15"
             android:layout_marginRight="@dimen/dp15"
-            app:shape_solidPressedColor="@color/c_a0a0ab"
             android:layout_below="@+id/layout_top"
+            app:shape_solidPressedColor="@color/colorAccent"
+            exchange_show="@{vm.insufficient_sol_balance}"
             />
 
         <com.hjq.shape.layout.ShapeLinearLayout
@@ -531,9 +533,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/white"
-                        android:text="@string/str_f_default_n_a"
+                        android:text="0.0"
                         android:textSize="@dimen/sp12"
-                        loadtext="@{vm.quosolfee}"
+                        text_sol_show="@{vm.quosolfee}"
                         />
                 </LinearLayout>
 

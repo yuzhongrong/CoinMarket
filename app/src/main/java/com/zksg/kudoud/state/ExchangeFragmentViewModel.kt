@@ -21,6 +21,9 @@ import java.math.BigDecimal
 
 class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
+    var hasSelectWallet = MutableResult(false)
+
+    @JvmField
     var from = MutableResult<UiWalletToken>()
 
     @JvmField
@@ -52,7 +55,9 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
     var AccountRent= ObservableField("0.0")
 
-
+    //默认显示余额不足
+    @JvmField
+    var insufficient_sol_balance=MutableResult(false)
 
     fun getQuo(from: String,to: String,amount:String,fromdecimal: Int){
         viewModelScope.launch {
@@ -98,7 +103,7 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
                 DataRepository.getInstance().postRouterFee(quo){
                     if(it.responseStatus.isSuccess){
                         Log.d("----postRouterFee-->",BigDecimal(it.result.data).toPlainString())
-                        quosolfee.postValue(DigitUtils.formatNumberWithCommas(BigDecimal(it.result.data).toDouble(),9)+" sol")
+                        quosolfee.postValue(DigitUtils.formatNumberWithCommas(BigDecimal(it.result.data).toDouble(),9))
 
                     }
                 }

@@ -1,6 +1,7 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -105,7 +106,8 @@ public class ImageViewBindingAdapter {
         if(imv==null||token==null)return;
         if(token.getMint().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){
             imv.setImageResource(R.mipmap.ic_solana_common);
-        }else{
+        }
+        else{
             ImageLoaderManager.getInstance().displayImageForCircle(imv,token.getImageUrl());
         }
 

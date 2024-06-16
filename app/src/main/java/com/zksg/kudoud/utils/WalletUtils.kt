@@ -7,6 +7,7 @@ import com.netease.lib_common_ui.utils.GsonUtil
 import com.netease.lib_network.entitys.TransationHistoryEntity
 import com.paymennt.crypto.bip32.wallet.AbstractWallet
 import com.tencent.mmkv.MMKV
+import com.zksg.kudoud.entitys.SelectWalletEntity
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.manager.SimpleWallet
@@ -35,6 +36,11 @@ object WalletUtils {
         val network = selectWallet!!.netwrokgroup
         val keyAlias = selectWallet.keyAlias
         return SolanaWalletManager.getOneSimpleWalletFromMMKV(network, keyAlias)
+    }
+
+    fun getCurrentSelectWallet(sharedViewModel: SharedViewModel): SelectWalletEntity? {
+
+        return sharedViewModel.oneSelectWallet.value
     }
 
     fun getSolanaAccount(mSharedViewModel: SharedViewModel,pwd:String): SolanaAccount? {

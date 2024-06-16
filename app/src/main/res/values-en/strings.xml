@@ -243,4 +243,6 @@
     <string name="str_slippage">Slippage</string>
     <string name="str_router">Router</string>
     <string name="str_number_zero"> ≈ 0.0 </string>
+    <string name="str_createorselect_wallet">Please create and select a wallet</string>
+    <string name="str_balance_not_value">Insufficient SOL</string>
 </resources>

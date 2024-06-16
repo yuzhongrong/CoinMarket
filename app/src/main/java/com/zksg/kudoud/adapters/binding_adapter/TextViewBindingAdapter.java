@@ -717,7 +717,20 @@ public class TextViewBindingAdapter {
         }
     }
 
+    @BindingAdapter(value = {"exchange_show"},requireAll = false)
+    public static void exchange_show(ShapeButton bt, boolean exchangeeEnable){
+        if(bt==null)return;
+        if(exchangeeEnable){
+            bt.setText(R.string.str_swap);
+            bt.setEnabled(true);
 
+
+        }else{
+            bt.setText(R.string.str_balance_not_value);
+            bt.setEnabled(false);
+
+        }
+    }
 
 
 

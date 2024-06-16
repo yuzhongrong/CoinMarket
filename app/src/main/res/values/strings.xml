@@ -364,4 +364,6 @@
     <string name="str_slippage">滑点</string>
     <string name="str_router">报价路径</string>
     <string name="str_number_zero"> ≈ 0.0 </string>
+    <string name="str_createorselect_wallet">请去创建并选中一个钱包</string>
+    <string name="str_balance_not_value">SOL余额不足</string>
 </resources>

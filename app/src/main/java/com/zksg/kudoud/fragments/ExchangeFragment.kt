@@ -6,6 +6,8 @@ import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
+import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.tencent.mmkv.MMKV
@@ -74,6 +76,16 @@ class ExchangeFragment:BaseFragment(){
         sharedViewModel!!.tokenListUpdateNotify.observe(this){
 
         }
+        //select wallet event
+        sharedViewModel!!.oneSelectWallet.observe(this){
+            ToastUtils.showShort("选中钱包："+it.keyAlias)
+            //更新状态
+            meViewModel!!.hasSelectWallet.value=true
+            //更新from和to的钱包余额
+            meViewModel!!.from.value= meViewModel!!.from.value
+            meViewModel!!.to.value= meViewModel!!.to.value
+
+        }
 
 
 
@@ -84,10 +96,14 @@ class ExchangeFragment:BaseFragment(){
         if(isfrom){
             if(result!=null){
                 meViewModel!!.from_wallet_amount.value=result.balance
+            }else{//not create wallet
+
             }
         }else{
             if(result!=null){
                 meViewModel!!.to_wallet_amount.value=result.balance
+            }else{ //not create wallet
+
             }
         }
 
@@ -111,8 +127,6 @@ class ExchangeFragment:BaseFragment(){
         }
 
 
-
-
         var defaultto=UiWalletToken(TOKEN_WIF_CONTRACT,"0","6","0","WIF","dogwifhat","https://www.dextools.io/resources/tokens/logos/solana/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm.png",0)
         var to= MMKV.mmkvWithID(keyAlias+"_"+"swap").decodeBytes("to")
         if(to==null){
@@ -121,9 +135,27 @@ class ExchangeFragment:BaseFragment(){
             meViewModel!!.to.value=ObjectSerializationUtils.deserializeObject(to) as UiWalletToken
         }
 
+        //获取当前选中钱包
+       var select= WalletUtils.getCurrentSelectWallet(sharedViewModel!!)
+        if(select!=null){//not select any wallet
+            meViewModel!!.hasSelectWallet.value=true
+            //get rent for wallet
+            getRent()
+
+        }else{
+            meViewModel!!.hasSelectWallet.value=false
+            ToastUtils.showShort(getString(R.string.str_createorselect_wallet))
+        }
 
 
+    }
 
+
+    fun getRent(){
+        var wallet= WalletUtils.getCurrentSimpleWallet(sharedViewModel!!)
+        if(wallet!=null&&!TextUtils.isEmpty(wallet.address)){
+            meViewModel!!.getRentForAccount(wallet.address)
+        }
     }
 
 
@@ -133,6 +165,9 @@ class ExchangeFragment:BaseFragment(){
         //当这个fragment处于暂停状态我们要保存最后一次的from和to
         if(hidden){
             WalletUtils.saveCurrentFromTo(sharedViewModel!!,meViewModel!!.from.value!!,meViewModel!!.to.value!!)
+        }else{
+            meViewModel!!.from.value= meViewModel!!.from.value
+            meViewModel!!.to.value= meViewModel!!.to.value
         }
     }
 
@@ -180,11 +215,37 @@ class ExchangeFragment:BaseFragment(){
 
     inner class ClickProxy {
         fun allAction(){//点击全部按钮
+            //if has the select wallet
+            if(meViewModel!!.hasSelectWallet!!.value==false){
+                ToastUtils.showShort(getString(R.string.str_createorselect_wallet))
+                return
+            }
+
             //spl-token
             if(!meViewModel!!.from.value!!.mint.equals(TOKEN_SOL_CONTRACT)){
                 meViewModel!!.from_amount.value=meViewModel!!.from_wallet_amount.value
             }else{//sol
                 //余额-(账号租金+转出的sol+gas) 必须大于0
+                //获取租金
+                var rent=meViewModel!!.AccountRent.get()
+                //获取交易网络费用
+                var gas=meViewModel!!.quosolfee.value
+                // 钱包余额
+                var balance=meViewModel!!.from_wallet_amount.value
+                //计算支付所需sol
+                var minHolderBalance=BigDecimal(rent).add(BigDecimal(gas))
+                Log.d("-----holderbalance--->",minHolderBalance.toPlainString())
+                //计算最大可转出多少
+                var maxpay=BigDecimal(balance).subtract(minHolderBalance).toDouble()
+                if(maxpay<0.0){
+                    meViewModel!!.insufficient_sol_balance.value=false
+                    ToastUtils.showShort(getString(R.string.str_balance_not_value))
+                    return
+                }else{
+                    meViewModel!!.insufficient_sol_balance.value=true
+                    meViewModel!!.from_amount.value=maxpay.toString()
+                }
+
 
             }
 
