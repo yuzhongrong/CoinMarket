@@ -406,6 +406,8 @@
                     app:shape_radius="@dimen/dp45"
                     android:padding="@dimen/dp5"
                     app:shape_solidColor="@color/c_29313d"
+                    android:onClick="@{()->click.swapPlaces()}"
+                    imv_rotate="@{vm.startAnimation}"
                     />
             </com.hjq.shape.layout.ShapeRelativeLayout>
 

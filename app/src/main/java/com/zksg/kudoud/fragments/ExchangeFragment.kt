@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
+import androidx.core.os.postDelayed
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
@@ -32,6 +33,8 @@ class ExchangeFragment:BaseFragment(){
     var handler: Handler = Handler(Looper.getMainLooper())
     val delayMillis = 1000L // 1秒
     var runnable: Runnable? = null
+    val minInputAmount=0.01
+    var tempInputAmount="1"
 
 
     private var  meViewModel: ExchangeFragmentViewModel?=null
@@ -87,7 +90,10 @@ class ExchangeFragment:BaseFragment(){
 
         }
 
-
+        meViewModel!!.quosolfee.observe(this){
+            //每次获取报价后再去计算
+            calculaterSolBalanceAfterGuo()
+        }
 
     }
 
@@ -159,6 +165,62 @@ class ExchangeFragment:BaseFragment(){
     }
 
 
+
+    fun calculaterSolBalance(){
+        //spl-token
+        if(!meViewModel!!.from.value!!.mint.equals(TOKEN_SOL_CONTRACT)){
+            meViewModel!!.from_amount.value=meViewModel!!.from_wallet_amount.value
+        }else {//sol
+            //余额-(账号租金+转出的sol+gas) 必须大于0
+            //获取租金
+            var rent = meViewModel!!.AccountRent.get()
+            //因为是点击全部所以这里在一开始没有办法获取报价后的gas 所以这里只能给个 预留的比例 100个sol大概预留0.06个 阀值+- 0.02
+            var pregas = BigDecimal(meViewModel!!.from_wallet_amount.value).multiply(BigDecimal(0.0008))
+            Log.d("-----pregas--->", pregas.toPlainString())
+            // 钱包余额
+            var balance = meViewModel!!.from_wallet_amount.value
+
+            //计算支付所需sol
+            var minHolderBalance = BigDecimal(rent).add(pregas)
+            Log.d("-----holderbalance--->", minHolderBalance.toPlainString())
+            //计算最大可转出多少
+            var maxpay = BigDecimal(balance).subtract(minHolderBalance).toDouble()
+            Log.d("-----maxpay--->", maxpay.toString())
+            if (maxpay < 0.0) {
+                meViewModel!!.insufficient_sol_balance.value = false
+                ToastUtils.showShort(getString(R.string.str_balance_not_value))
+                return
+            }
+            else {
+
+                meViewModel!!.insufficient_sol_balance.value = true
+                meViewModel!!.from_amount.value = maxpay.toString()
+                tempInputAmount=maxpay.toString()
+
+            }
+        }
+
+
+    }
+
+    fun calculaterSolBalanceAfterGuo(){
+        //获取租金
+        var rent = meViewModel!!.AccountRent.get()
+        Log.d("---rent-->",rent.toString())
+        //获取交易网络费用
+        var gas = meViewModel!!.quosolfee.value
+        Log.d("---gas-->",gas.toString())
+        //输入框需要兑换多少sol
+        var needswap=if(meViewModel!!.from.value!!.mint.equals(TOKEN_SOL_CONTRACT)){tempInputAmount}else{"0"}
+        Log.d("---needswap-->",needswap.toString())
+        // 钱包余额
+        var balance = meViewModel!!.from_wallet_amount.value
+        Log.d("---balance-->",balance.toString())
+        var amount_sol=BigDecimal(rent).add(BigDecimal(gas)).add(BigDecimal(needswap))
+        Log.d("---amount_sol-->",amount_sol.toString())
+        meViewModel!!.insufficient_sol_balance.value = BigDecimal(balance).toDouble()>=amount_sol.toDouble()
+
+    }
     override fun onHiddenChanged(hidden: Boolean) {
         super.onHiddenChanged(hidden)
         Log.d("---onHiddenChanged()-->","onHiddenChanged")
@@ -186,6 +248,9 @@ class ExchangeFragment:BaseFragment(){
                 editText.setText(s.toString().replaceFirst("^0+".toRegex(), ""))
 
             }
+
+
+
             //这里直接使用edittext的id了 不再用viewmodel知识了 这样方便
             editText.setSelection(editText.text.length)
 
@@ -199,6 +264,7 @@ class ExchangeFragment:BaseFragment(){
                 if(!TextUtils.isEmpty(s)){
                     Log.d("----onTextChanged11-->",s.toString())
                     var amount=s.toString().trim()
+                    tempInputAmount=amount
                     meViewModel!!.getQuo(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,amount,meViewModel!!.from.value!!.decimal.toInt())
                 }
 
@@ -221,35 +287,28 @@ class ExchangeFragment:BaseFragment(){
                 return
             }
 
-            //spl-token
-            if(!meViewModel!!.from.value!!.mint.equals(TOKEN_SOL_CONTRACT)){
-                meViewModel!!.from_amount.value=meViewModel!!.from_wallet_amount.value
-            }else{//sol
-                //余额-(账号租金+转出的sol+gas) 必须大于0
-                //获取租金
-                var rent=meViewModel!!.AccountRent.get()
-                //获取交易网络费用
-                var gas=meViewModel!!.quosolfee.value
-                // 钱包余额
-                var balance=meViewModel!!.from_wallet_amount.value
-                //计算支付所需sol
-                var minHolderBalance=BigDecimal(rent).add(BigDecimal(gas))
-                Log.d("-----holderbalance--->",minHolderBalance.toPlainString())
-                //计算最大可转出多少
-                var maxpay=BigDecimal(balance).subtract(minHolderBalance).toDouble()
-                if(maxpay<0.0){
-                    meViewModel!!.insufficient_sol_balance.value=false
-                    ToastUtils.showShort(getString(R.string.str_balance_not_value))
-                    return
-                }else{
-                    meViewModel!!.insufficient_sol_balance.value=true
-                    meViewModel!!.from_amount.value=maxpay.toString()
-                }
+            calculaterSolBalance()
+
+
 
 
             }
 
 
+        fun swapPlaces(){
+            //1.先获取from 的uitoken
+            var from=meViewModel!!.from.value!!
+            //2.再获取to的uitoken
+            var to=meViewModel!!.to.value!!
+            //3.然后把 from 的值给to ，to的值给from
+            meViewModel!!.from.value=to
+            meViewModel!!.to.value=from
+            //4.最后把from_amount input输入框的值设置成初始化为1
+            meViewModel!!.from_amount.value="1"
+            meViewModel!!.startAnimation.set(true)
+            handler.postDelayed({ meViewModel!!.startAnimation.set(false)},1000)
+
+        }
 
         }
 
@@ -258,7 +317,7 @@ class ExchangeFragment:BaseFragment(){
 
 
 
-    }
+
 
 
 

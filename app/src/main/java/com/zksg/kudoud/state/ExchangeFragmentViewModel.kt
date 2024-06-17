@@ -51,13 +51,16 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     var quosolfee=MutableResult("0.0")
 
 
-    //账号租金
+    //账号租金 一般账号默认0.00089088 账号租金
     @JvmField
-    var AccountRent= ObservableField("0.0")
+    var AccountRent= ObservableField("0.00089088")
 
     //默认显示余额不足
     @JvmField
     var insufficient_sol_balance=MutableResult(false)
+
+    @JvmField
+    var startAnimation=ObservableField(false)
 
     fun getQuo(from: String,to: String,amount:String,fromdecimal: Int){
         viewModelScope.launch {
@@ -123,11 +126,13 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 
     fun getRentForAccount(wallet: String){
         viewModelScope.launch {
+
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().getRentForAccount(wallet){
                     if(it.result!=null){
                         Log.d("----getRentForAccount---->",it.result.data)
                         AccountRent.set(it.result.data)
+
                     }
                 }
 

@@ -13,6 +13,7 @@ import com.netease.lib_image_loader.app.ImageLoaderManager;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.DexEnum;
 import com.zksg.kudoud.entitys.UiWalletToken;
+import com.zksg.kudoud.utils.AnimationUtil;
 
 public class ImageViewBindingAdapter {
 
@@ -136,6 +137,13 @@ public class ImageViewBindingAdapter {
 
     }
 
+
+    @BindingAdapter(value = {"imv_rotate"},requireAll = false)
+    public static void imv_rotate(ImageView imv, boolean rotate) {
+        if(imv==null)return;
+        if(rotate)  AnimationUtil.rotateImageView(imv,  180f, 500);
+
+    }
 
 
 }

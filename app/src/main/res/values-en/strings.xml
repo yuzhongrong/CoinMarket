@@ -245,4 +245,5 @@
     <string name="str_number_zero"> ≈ 0.0 </string>
     <string name="str_createorselect_wallet">Please create and select a wallet</string>
     <string name="str_balance_not_value">Insufficient SOL</string>
+    <string name="str_exchange_amount_lower">The swap amount cannot be too small</string>
 </resources>
