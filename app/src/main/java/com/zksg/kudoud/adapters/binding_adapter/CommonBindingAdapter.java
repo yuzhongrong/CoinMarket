@@ -18,6 +18,7 @@ package com.zksg.kudoud.adapters.binding_adapter;
 
 import static com.blankj.utilcode.util.StringUtils.getStringArray;
 import static com.netease.lib_network.constants.config.ipfs_base_url;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
 
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -391,6 +392,23 @@ public class CommonBindingAdapter {
         }else{
             view.setText("≈ "+result+" ");
         }
+
+    }
+
+    @BindingAdapter(value = {"loadtext_quo_rate","loadtext_quo_fromdecimal_rate","loadtext_quo_todecimal_rate"}, requireAll = false)
+    public static void loadtext_quo(TextView view, QuoEntity value,String fromdecimal,String todecimal) {
+        if(view==null||value==null)return;
+        BigDecimal one=new BigDecimal(1);
+        BigDecimal inputAmount=null;
+        BigDecimal outputAmount=null;
+        inputAmount= new BigDecimal(value.getInAmount()).divide(new BigDecimal(Math.pow(10,Integer.parseInt(fromdecimal))));
+        Log.d("----inputAmount---->",inputAmount.toPlainString());
+        outputAmount= new BigDecimal(value.getOutAmount()).divide(new BigDecimal(Math.pow(10,Integer.parseInt(todecimal))));
+        Log.d("----outputAmount---->",outputAmount.toPlainString());
+
+        BigDecimal result= one.divide(inputAmount).multiply(outputAmount);
+        Log.d("----result---->",result.toPlainString());
+        view.setText("≈ "+ result.toPlainString()+" ");
 
     }
 

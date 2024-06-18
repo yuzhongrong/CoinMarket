@@ -495,8 +495,9 @@
                     android:textColor="@color/white"
                     android:text="@string/str_number_zero"
                     android:textSize="@dimen/sp12"
-                    loadtext_quo="@{vm.quo.outAmount}"
-                    loadtext_quo_fromdecimal="@{vm.to.decimal}"
+                    loadtext_quo_rate="@{vm.quo}"
+                    loadtext_quo_fromdecimal_rate="@{vm.from.decimal}"
+                    loadtext_quo_todecimal_rate="@{vm.to.decimal}"
                     />
 
                    <TextView
