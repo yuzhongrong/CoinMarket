@@ -22,7 +22,7 @@ public class CoinManagerSearchTokensdapter extends SimpleDataBindingAdapter<UiWa
     private Context mContex;
     private CoinManagerActivityViewModel mCoinManagerActivityViewModel;
     public CoinManagerSearchTokensdapter(Context context) {
-        super(context, R.layout.item_coin_search_manager, DiffUtils.getInstance().geTokenInfoEntityCallback());
+        super(context, R.layout.item_coin_search_manager, DiffUtils.getInstance().getSearchEntityCallback());
         this.mContex=context;
         this.mCoinManagerActivityViewModel=((CoinManagerActivity)mContex).getViewModel();
 

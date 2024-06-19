@@ -77,7 +77,8 @@ class CusAddCoinActivity : BaseDialogActivity() {
             var result=TokenConverter.convertJubTokensToUiWalletTokens(listOf(jupToken))
             //判断是不是已经加过了
             if(!localtokens.contains(result.get(0))){
-                localtokens.add(result.get(0))
+                var newItem=result.get(0).apply { isShow=true }
+                localtokens.add(newItem)
                 MMKV.mmkvWithID(Constants.UI_TOKENS).encode(keyAlias, ObjectSerializationUtils.serializeObject(localtokens))
                 mSharedViewModel!!.requestAddToken(true)
                 ToastUtils.showShort(getString(R.string.str_add_success))

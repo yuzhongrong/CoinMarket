@@ -56,6 +56,8 @@ public class DiffUtils {
 
     private DiffUtil.ItemCallback<String> sendCoinNumberCallback;
 
+    private DiffUtil.ItemCallback<UiWalletToken> mSearchEntityCallback;
+
 
 //    private DiffUtil.ItemCallback<MainRecommendPlayListBean.RecommendBean> mRecommendPlaylistItemCallback;
 //
@@ -140,6 +142,26 @@ public class DiffUtils {
             };
         }
         return mTokenInfoEntityCallback;
+    }
+
+
+    public DiffUtil.ItemCallback<UiWalletToken> getSearchEntityCallback() {
+        if (mSearchEntityCallback == null) {
+            mSearchEntityCallback = new DiffUtil.ItemCallback<UiWalletToken>() {
+                //区别2个item是否是同一个ite，一般用唯一的标识
+                @Override
+                public boolean areItemsTheSame(@NonNull UiWalletToken oldItem, @NonNull UiWalletToken newItem) {
+
+                    return oldItem.equals(newItem);
+                }
+                //区别2个item是内容否是相同，一般用item内的属性
+                @Override
+                public boolean areContentsTheSame(@NonNull UiWalletToken oldItem, @NonNull UiWalletToken newItem) {
+                    return oldItem.getMint().equals(newItem.getMint());
+                }
+            };
+        }
+        return mSearchEntityCallback;
     }
 
 
