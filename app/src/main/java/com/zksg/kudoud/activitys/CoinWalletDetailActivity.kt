@@ -16,6 +16,7 @@ import com.zksg.kudoud.state.CoinWalletDetailActivityViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.IntentUtils
 import com.zksg.kudoud.wallet.constants.Constants
+import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 
 class CoinWalletDetailActivity : BaseDialogActivity() {
     var sol: UiWalletToken? = null
@@ -96,7 +97,12 @@ class CoinWalletDetailActivity : BaseDialogActivity() {
     var loadmore=object: OnLoadMoreListener {
 
         override fun onLoadMore(refreshLayout: RefreshLayout) {
-            viewModel?.getSplHistorys(wallet!!,item!!.mint,viewModel!!.next.value!!,false)
+            if(item!!.mint.equals(TOKEN_SOL_CONTRACT)){
+                viewModel?.getSolHistorys(wallet!!,viewModel!!.next.value!!,false)
+            }else{
+                viewModel?.getSplHistorys(wallet!!,item!!.mint,viewModel!!.next.value!!,false)
+            }
+
         }
 
     }
