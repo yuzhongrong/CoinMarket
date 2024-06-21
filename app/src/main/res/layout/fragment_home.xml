@@ -632,7 +632,7 @@
         <net.lucode.hackware.magicindicator.MagicIndicator
             android:id="@+id/meme_magic_indicator_tab"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp35"
+            android:layout_height="@dimen/dp50"
             android:layout_marginLeft="@dimen/dp7"
             customIndicatorTitle="@{vm.indicatorTitle}"
 
@@ -645,7 +645,7 @@
         android:layout_height="match_parent"
         viewPagerAdapter="@{vm.memecategoryadapter}"
         viewPagerOffsetLimit="@{3}"
-        android:layout_marginTop="@dimen/dp5"
+        android:layout_marginTop="@dimen/dp15"
 
 
         />

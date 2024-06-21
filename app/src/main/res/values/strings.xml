@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">MeMe</string>
+    <string name="app_name">MemeGo</string>
     <string name="library_json">
         "[{\"title\":\"Lifecycle\",\"summary\":\"主要用于在软件工程的背景下，解决生命周期管理的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/3684721950\"},{\"title\":\"LiveData\",\"summary\":\"主要用于配合 “唯一可信源” 实现消息的读写分离，从而确保消息分发的可靠一致，避免收到不可预期的推送或脏数据\",\"url\":\"https://xiaozhuanlan.com/topic/0168753249\"},{\"title\":\"ViewModel\",\"summary\":\"主要用于托管页面状态、分治视图控制器重建时的状态恢复，从而提升状态恢复的效率和节省不必要的流量、电量开销\",\"url\":\"https://xiaozhuanlan.com/topic/6257931840\"},{\"title\":\"DataBinding\",\"summary\":\"主要用于在软件工程的背景下，解决 “视图实例 null 安全” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/9816742350\"},{\"title\":\"Navigation\",\"summary\":\"通过声明式编程来解决 “应用内路由导航” 和 “初值传参” 的一致性问题\",\"url\":\"https://xiaozhuanlan.com/topic/5860149732\"}]"
     </string>
@@ -136,6 +136,8 @@
     <string name="str_install">GET</string>
     <string name="str_home">首页</string>
     <string name="str_category">市场</string>
+    <string name="str_quo">行情</string>
+
     <string name="str_ranking">交易</string>
     <string name="str_last_updatetime">Last Update Time 6 Hours Ago!!</string>
     <string name="str_markets">交易</string>
@@ -367,4 +369,5 @@
     <string name="str_createorselect_wallet">请去创建并选中一个钱包</string>
     <string name="str_balance_not_value">SOL余额不足</string>
     <string name="str_exchange_amount_lower">兑换数量不能小于0.01</string>
+    <string name="str_search_contract">搜索币种名称 , 合约地址</string>
 </resources>

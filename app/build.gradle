@@ -190,7 +190,7 @@ dependencies {
 
     //qrcode
     implementation 'com.github.kenglxn.QRGen:android:2.6.0'
-
+    implementation 'androidx.viewpager:viewpager:1.0.0'
 
 
 

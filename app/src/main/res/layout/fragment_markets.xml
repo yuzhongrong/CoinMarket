@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.MarketsFragmentViewModel" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.MarketsFragment.ClickProxy" />
+
+        <variable
+            name="adapter"
+            type="com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_layout_common"
+
+        >
+        <com.hjq.shape.layout.ShapeLinearLayout
+            android:id="@+id/layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp40"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/logo"
+
+            app:shape_solidColor="@color/c_29313d"
+            app:shape_radius="@dimen/dp45"
+            android:layout_marginTop="@dimen/dp5"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+
+
+
+            >
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:src="@mipmap/ic_search1"
+                android:layout_marginLeft="@dimen/dp10"
+                android:padding="@dimen/dp1"
+
+
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_search_contract"
+                android:layout_marginLeft="@dimen/dp5"
+                android:textColor="@color/primaryTextGray"
+                android:textSize="@dimen/sp14"
+                />
+
+
+        </com.hjq.shape.layout.ShapeLinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                app:shape_solidColor="@color/c_29313d"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/dp2"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
+
+                />
+            <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/meme_magic_indicator_tab"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginTop="@dimen/dp10"
+            customIndicatorTitle_markets="@{vm.indicatorTitle}"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_marginRight="@dimen/dp5"
+            />
+
+        </FrameLayout>
+
+        <!-- ViewPager -->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/dp5"
+
+
+            />
+
+
+
+</LinearLayout>
+
+</layout>

@@ -3,17 +3,13 @@ package com.zksg.kudoud.activitys
 //import com.kunminx.architecture.ui.page.StateHolder
 //import com.kunminx.architecture.ui.state.State
 //import com.kunminx.architecture.utils.BarUtils
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
-import com.github.ajalt.reprint.core.Reprint
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.lxj.xpopup.XPopup
 import com.netease.lib_network.entitys.JupToken
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
@@ -21,7 +17,6 @@ import com.zksg.kudoud.R
 import com.zksg.kudoud.contants.CoinType
 import com.zksg.kudoud.contants.GlobalConstant.*
 import com.zksg.kudoud.databinding.ActivityMainBinding
-import com.zksg.kudoud.dialogs.ConfirmTransationfingprintDialog
 import com.zksg.kudoud.entitys.SelectWalletEntity
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.fragments.*
@@ -30,11 +25,7 @@ import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.StatusBarUtil
 import com.zksg.kudoud.utils.TokenConverter
-import com.zksg.kudoud.wallet.keystore.KeystoreManager
-import com.zksg.kudoud.wallet.keystore.KeystoreManagerDebug
 import com.zksg.kudoud.widgets.NavigateTabBar
-import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
 
 
 class MainActivity : BaseActivity() {
@@ -80,12 +71,12 @@ class MainActivity : BaseActivity() {
             )
         )
 
-        val CATEGORY_PAGE = getString(R.string.str_category)
-        mainBinding.homeNavigate!!.addTab(CategoryFragment::class.java,
+        val CATEGORY_PAGE = getString(R.string.str_quo)
+        mainBinding.homeNavigate!!.addTab(MarketsFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
-                R.mipmap.app_normal,
-                R.mipmap.app_select,
+                R.mipmap.app_ranking_normal,
+                R.mipmap.app_ranking_select,
                 CATEGORY_PAGE
             )
         )
@@ -94,8 +85,8 @@ class MainActivity : BaseActivity() {
         mainBinding.homeNavigate!!.addTab(ExchangeFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
-                R.mipmap.app_ranking_normal,
-                R.mipmap.app_ranking_select,
+                R.mipmap.ic_swap_normal,
+                R.mipmap.ic_swap_select,
                 CJ_PAGE
             )
         )
@@ -113,8 +104,8 @@ class MainActivity : BaseActivity() {
         mainBinding.homeNavigate!!.addTab(MeFragment::class.java,
             NavigateTabBar.TabParam(
                 resources.getColor(R.color.white),
-                R.mipmap.me_normal,
-                R.mipmap.me_select,
+                R.mipmap.ic_wallet_normal,
+                R.mipmap.ic_wallet_select,
                 ME_ASSET
             )
         )
