@@ -4,15 +4,16 @@
  */
 package com.zksg.kudoud.wallet.data;
 
+import android.util.Log;
+
+import com.zksg.kudoud.wallet.utils.TweetNaclFast;
 import com.paymennt.crypto.lib.Base58;
 import com.paymennt.crypto.lib.ShortvecEncoding;
-import com.zksg.kudoud.wallet.utils.TweetNaclFast;
 
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 
 /**
  * 
@@ -84,8 +85,11 @@ public class SolanaTransaction {
         for (SolanaAccount signer : signers) {
             TweetNaclFast.Signature signatureProvider = new TweetNaclFast.Signature(new byte[0], signer.getSecretKey());
             byte[] signature = signatureProvider.detached(serializedMessage);
-
+            Log.d("----tx-sign--->",Base58.encode(signature));
             signatures.add(Base58.encode(signature));
+
+
+
         }
     }
 

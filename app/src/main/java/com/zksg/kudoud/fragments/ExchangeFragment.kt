@@ -1,32 +1,33 @@
 package com.zksg.kudoud.fragments
 
+import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
-import android.widget.Toast
-import androidx.core.os.postDelayed
+import androidx.annotation.RequiresApi
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.callback.QuoGasCallback
-import com.zksg.kudoud.callback.TokenInfo
+import com.zksg.kudoud.entitys.TransationSwap
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.ExchangeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
+import com.zksg.kudoud.utils.SolanaTransationHelper
 import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT
 import kotlinx.android.synthetic.main.fragment_exchange.*
 import java.math.BigDecimal
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
 class ExchangeFragment:BaseFragment(){
 
@@ -56,6 +57,7 @@ class ExchangeFragment:BaseFragment(){
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun loadInitData() {
 
         initObserve()
@@ -63,6 +65,8 @@ class ExchangeFragment:BaseFragment(){
     }
 
 
+    @SuppressLint("SuspiciousIndentation")
+    @RequiresApi(Build.VERSION_CODES.O)
     fun initObserve(){
 
         meViewModel!!.from.observe(this){
@@ -75,6 +79,21 @@ class ExchangeFragment:BaseFragment(){
             updateBalance(it.mint,false)
 
         }
+        meViewModel!!.mTransaction.observe(this){
+         var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
+        //解析交易
+         var mTransationJson= it.tx
+            Log.d("---signer_result-->",mTransationJson)
+         var  mTransationSwap= GsonUtils.fromJson(mTransationJson,
+             TransationSwap::class.java)
+        //构造交易
+         var tx64=SolanaTransationHelper.CreateTransationForSwap(solanaAccount!!,mTransationSwap)
+
+        //提交交易
+         var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(tx64,it.lastValidBlockHeight)
+            meViewModel!!.submmitSwapTx(mSubmmitVerTxReqBodyEntity)
+        }
+
         //更新我的页面余额变化后 会更新这里
         sharedViewModel!!.tokenListUpdateNotify.observe(this){
 
@@ -152,6 +171,9 @@ class ExchangeFragment:BaseFragment(){
             meViewModel!!.hasSelectWallet.value=false
             ToastUtils.showShort(getString(R.string.str_createorselect_wallet))
         }
+
+
+
 
 
     }

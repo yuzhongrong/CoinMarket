@@ -175,11 +175,8 @@ dependencies {
      这里导入只是借用了这个库的依赖环境而已，因为我需要重写里面的节点代码
      */
 
-    //这个库的基础上开发solana钱包的，因为要修改所以自己写了个包wallet 其实就是copy这个库做修改的
-    implementation ('com.paymennt:solanaj:0.0.7') {
-        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
-    }
-    implementation 'org.bitcoinj:bitcoinj-core:0.16.2'
+
+
 
     //指纹认证
     implementation 'androidx.biometric:biometric:1.2.0-alpha04'
@@ -191,9 +188,12 @@ dependencies {
     //qrcode
     implementation 'com.github.kenglxn.QRGen:android:2.6.0'
     implementation 'androidx.viewpager:viewpager:1.0.0'
-
-
-
+    implementation "io.github.instantwebp2p:tweetnacl-java:1.1.2"
+    //这个库的基础上开发solana钱包的，因为要修改所以自己写了个包wallet 其实就是copy这个库做修改的
+    implementation ('com.paymennt:solanaj:0.0.7') {
+        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+    }
+    implementation 'org.bitcoinj:bitcoinj-core:0.16.2'
 
 
 

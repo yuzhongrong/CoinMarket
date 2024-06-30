@@ -25,6 +25,7 @@ import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.StatusBarUtil
 import com.zksg.kudoud.utils.TokenConverter
+import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.widgets.NavigateTabBar
 
 
@@ -129,6 +130,7 @@ class MainActivity : BaseActivity() {
 
 
     fun initData(){
+
         //获取保存的当前选中钱包 第一次默认solana网络
         var network=MMKV.mmkvWithID("currentWallet").decodeString("netwrokgroup",CoinType.SOLANA.key)
         var keyAlias= MMKV.mmkvWithID("currentWallet").decodeString("keyAlias","")

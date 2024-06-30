@@ -1,5 +1,8 @@
 package com.zksg.kudoud.state
 
+
+
+import android.text.TextUtils
 import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
@@ -8,12 +11,16 @@ import com.google.gson.reflect.TypeToken
 import com.kunminx.architecture.domain.message.MutableResult
 import com.netease.lib_common_ui.utils.GsonUtil
 import com.netease.lib_network.entitys.QuoEntity
+import com.netease.lib_network.entitys.QuoPubkey58Entity
+import com.netease.lib_network.entitys.ReqSwapTransation
+import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity
 import com.zksg.kudoud.callback.QuoGasCallback
 import com.zksg.kudoud.callback.TokenInfo
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.kudoud.utils.DigitUtils
+import com.zksg.kudoud.utils.WalletUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -50,7 +57,8 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
     var quosolfee=MutableResult("0.0")
 
-
+    @JvmField
+    var mTransaction=MutableResult<ReqSwapTransation>()
     //账号租金 一般账号默认0.00089088 账号租金
     @JvmField
     var AccountRent= ObservableField("0.00089088")
@@ -73,6 +81,8 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
                             quo.postValue(it.result.data)
                             postRouterFee(it.result.data)
 //                            loadingVisible.postValue(false)
+                            var mQuoPubkey58Entity= QuoPubkey58Entity(it.result.data,"2uhu96aU75jbiMzLoguvHmADY39rb3q84qBwJqyPhpzh")
+                            reqSwapTransation(mQuoPubkey58Entity)
                         }
 
                     }
@@ -114,6 +124,41 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 
         }
     }
+
+
+    fun reqSwapTransation(quopubkey58: QuoPubkey58Entity){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().reqSwapTransation(quopubkey58){
+                    if(it.responseStatus.isSuccess){
+                        if(it.result.data!=null){
+                            mTransaction.postValue(it.result.data)
+                        }
+
+                    }
+                }
+            }
+
+        }
+    }
+
+    fun submmitSwapTx(body: SubmmitVerTxReqBodyEntity){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().submmitSwapTx(body){
+                    if(it.responseStatus.isSuccess){
+//                        Log.d("----submmitSwapTx-->",it.result.data)
+//                        if(!TextUtils.isEmpty(it.result.data)){
+//
+//                        }
+
+                    }
+                }
+            }
+
+        }
+    }
+
 
 
     fun parseJson(jsonString: String): Map<String, TokenInfo> {

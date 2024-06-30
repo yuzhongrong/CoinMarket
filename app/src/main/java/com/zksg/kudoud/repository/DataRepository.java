@@ -31,6 +31,9 @@ import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.QuoEntity;
+import com.netease.lib_network.entitys.QuoPubkey58Entity;
+import com.netease.lib_network.entitys.ReqSwapTransation;
+import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
@@ -836,6 +839,53 @@ public class DataRepository {
         ApiEngine.getInstance()
                 .getApiService()
                 .postRouterFee(body)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<String>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<String> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+    public void reqSwapTransation(QuoPubkey58Entity body, DataResult.Result<CommonResponse<ReqSwapTransation>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .reqSwapTransation(body)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<ReqSwapTransation>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<ReqSwapTransation> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+
+    public void submmitSwapTx(SubmmitVerTxReqBodyEntity body, DataResult.Result<CommonResponse<String>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .submmitSwapTx(body)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
 //                .delay(1, TimeUnit.SECONDS)

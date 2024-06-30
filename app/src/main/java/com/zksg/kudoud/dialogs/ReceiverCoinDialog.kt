@@ -1,7 +1,6 @@
 package com.zksg.kudoud.dialogs
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.*
 import android.widget.Button
 import android.widget.ImageView

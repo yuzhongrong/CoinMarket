@@ -5,7 +5,6 @@
 package com.zksg.kudoud.wallet.api.ws;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.zksg.kudoud.wallet.utils.WebsocketClient.WebSocketHandler;
 import com.zksg.kudoud.wallet.api.rpc.Cluster;
 import com.zksg.kudoud.wallet.api.rpc.types.RpcConfig;
 import com.zksg.kudoud.wallet.api.rpc.types.RpcLogsConfig;
@@ -15,6 +14,7 @@ import com.zksg.kudoud.wallet.api.rpc.types.RpcResponse;
 import com.zksg.kudoud.wallet.api.rpc.types.SolanaCommitment;
 import com.zksg.kudoud.wallet.api.ws.listener.NotificationEventListener;
 import com.zksg.kudoud.wallet.api.ws.listener.TransactionEventListener;
+import com.zksg.kudoud.wallet.utils.WebsocketClient.WebSocketHandler;
 import com.zksg.kudoud.wallet.utils.JsonUtils;
 import com.zksg.kudoud.wallet.utils.WebsocketClient;
 

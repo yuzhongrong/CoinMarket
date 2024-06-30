@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
-import com.zksg.kudoud.activitys.CoinWalletDetailActivity;
 import com.zksg.kudoud.activitys.SendCoinActivity;
 import com.zksg.kudoud.callback.DialogCloseCallback;
 import com.zksg.kudoud.databinding.ItemMemeWalletBinding;

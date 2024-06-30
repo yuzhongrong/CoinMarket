@@ -1,7 +1,6 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
-import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT;
 
 import android.text.TextUtils;
 import android.view.View;

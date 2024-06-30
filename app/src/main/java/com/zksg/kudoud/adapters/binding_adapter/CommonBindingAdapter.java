@@ -18,7 +18,6 @@ package com.zksg.kudoud.adapters.binding_adapter;
 
 import static com.blankj.utilcode.util.StringUtils.getStringArray;
 import static com.netease.lib_network.constants.config.ipfs_base_url;
-import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
 
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
@@ -56,12 +55,8 @@ import com.netease.lib_network.entitys.QuoEntity;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
-import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener;
 import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
-import com.zksg.kudoud.entitys.SelectWalletEntity;
-import com.zksg.kudoud.state.ExchangeFragmentViewModel;
-import com.zksg.kudoud.utils.manager.SimpleWallet;
 import com.zksg.lib_api.beans.BannerBean;
 
 import java.math.BigDecimal;

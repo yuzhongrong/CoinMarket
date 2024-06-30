@@ -7,40 +7,15 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.ThreadUtils.runOnUiThread
-import com.blankj.utilcode.util.ToastUtils
-import com.google.gson.Gson
 import com.kunminx.architecture.domain.message.MutableResult
-import com.kunminx.architecture.utils.Utils
 import com.netease.lib_common_ui.utils.GsonUtil
-import com.paymennt.crypto.bip32.wallet.AbstractWallet
-import com.zksg.kudoud.wallet.api.rpc.Cluster
-import com.zksg.kudoud.wallet.api.rpc.SolanaRpcClient
 import com.zksg.kudoud.wallet.data.SolanaAccount
 import com.zksg.kudoud.wallet.data.SolanaPublicKey
-import com.zksg.kudoud.wallet.program.TokenProgram
-import com.tencent.mmkv.MMKV
-import com.zksg.kudoud.callback.WalletCreateCallback
-import com.zksg.kudoud.contants.CoinType
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
-import com.zksg.kudoud.utils.ObjectSerializationUtils
-import com.zksg.kudoud.utils.manager.SimpleWallet
-import com.zksg.kudoud.utils.manager.SolanaWalletManager
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.Filter
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.Memcmp
-import com.zksg.kudoud.wallet.api.rpc.types.DataSize
-import com.zksg.kudoud.wallet.api.rpc.types.RpcSendTransactionConfig
-import com.zksg.kudoud.wallet.constants.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.bitcoinj.core.Base58
-import com.kunminx.architecture.ui.state.State
 import com.netease.lib_network.entitys.BroadcastRequest
-import com.netease.lib_network.entitys.JupToken
-import com.zksg.kudoud.R
-import com.zksg.kudoud.callback.WalletCusTokenInfo
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.wallet.data.SolanaTransaction
@@ -164,11 +139,12 @@ class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun buildAndSignTransation(solanaAccount: SolanaAccount,lastblockhash:String):String{
+    fun buildAndSignTransation(solanaAccount: SolanaAccount, lastblockhash:String):String{
         // create new transaction
         var transaction = SolanaTransaction()
         var fromPublicKey=solanaAccount.getPublicKey()
-        var toPublickKey = SolanaPublicKey(receiver.get())
+        var toPublickKey =
+            SolanaPublicKey(receiver.get())
         // add instructions to the transaction (from, to, lamports)
         transaction.addInstruction(
             SystemProgram.transfer(fromPublicKey, toPublickKey,
@@ -179,6 +155,10 @@ class SendCoinConfirmActivityViewmodel : BaseLoadingViewModel() {
         transaction.setFeePayer(fromPublicKey)
         // sign the transaction
         transaction.sign(solanaAccount)
+
+
+
+
         val base64String = Base64.encodeToString(transaction.serialize(), Base64.DEFAULT)
         Log.d("---transation--->",base64String)
         return base64String

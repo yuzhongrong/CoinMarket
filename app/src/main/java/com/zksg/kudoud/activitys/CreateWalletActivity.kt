@@ -5,17 +5,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
-import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.biometric.BiometricManager
-import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
-import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.ToastUtils
-import com.github.ajalt.reprint.core.AuthenticationFailureReason
-import com.github.ajalt.reprint.core.AuthenticationListener
-import com.github.ajalt.reprint.core.Reprint
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
@@ -26,8 +19,6 @@ import com.zksg.kudoud.callback.WalletCreateFingPrintCallback
 import com.zksg.kudoud.dialogs.CreateWalletfingprintDialog
 import com.zksg.kudoud.state.CreateWalletActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
-import com.zksg.kudoud.wallet.keystore.KeystoreManager
-import java.util.concurrent.Executor
 
 
 class CreateWalletActivity : BaseDialogActivity() {

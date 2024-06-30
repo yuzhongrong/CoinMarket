@@ -1,6 +1,5 @@
 package com.zksg.kudoud.activitys
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -9,27 +8,12 @@ import android.text.TextWatcher
 import androidx.annotation.RequiresApi
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.netease.lib_common_ui.utils.GsonUtil
-import com.paymennt.crypto.bip32.wallet.AbstractWallet
-import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.SendVerifyActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
-import com.zksg.kudoud.utils.IntentUtils
-import com.zksg.kudoud.utils.WalletUtils
-import com.zksg.kudoud.utils.manager.SolanaWalletManager
-import com.zksg.kudoud.wallet.data.SolanaAccount
-import com.zksg.kudoud.wallet.data.SolanaPublicKey
-import com.zksg.kudoud.wallet.data.SolanaTransaction
-import com.zksg.kudoud.wallet.program.SystemProgram
-import com.zksg.kudoud.wallet.utils.SolanaConverter
-import com.zksg.kudoud.wallet.wallet.SolanaWallet
-import java.math.BigDecimal
 import java.util.*
-import android.util.Base64;
-import android.util.Log
 
 class SendVerifyPwdActivity : BaseDialogActivity() {
 

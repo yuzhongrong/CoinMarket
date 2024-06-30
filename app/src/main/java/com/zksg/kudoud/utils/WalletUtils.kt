@@ -1,8 +1,7 @@
 package com.zksg.kudoud.utils
 
-import android.os.Build
 import android.text.TextUtils
-import androidx.annotation.RequiresApi
+import android.util.Log
 import com.netease.lib_common_ui.utils.GsonUtil
 import com.netease.lib_network.entitys.TransationHistoryEntity
 import com.paymennt.crypto.bip32.wallet.AbstractWallet
@@ -14,7 +13,6 @@ import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.utils.manager.SolanaWalletManager
 import com.zksg.kudoud.wallet.constants.Constants
 import com.zksg.kudoud.wallet.data.SolanaAccount
-import com.zksg.kudoud.wallet.keystore.KeystoreManager
 import com.zksg.kudoud.wallet.wallet.SolanaWallet
 import java.math.BigDecimal
 
@@ -54,7 +52,14 @@ object WalletUtils {
 
             var decryptWallet=SolanaWalletManager.decrypt(encryptedWallet,wallet.keyAlias,pwd)
             var solwallet= GsonUtil.fromJSON(String(decryptWallet), SolanaWallet::class.java)
-            var solanaAccount= SolanaAccount(solwallet.getPrivateKey(0, AbstractWallet.Chain.EXTERNAL,null))
+            var solanaAccount= SolanaAccount(
+                solwallet.getPrivateKey(
+                    0,
+                    AbstractWallet.Chain.EXTERNAL,
+                    null
+                )
+            )
+            Log.d("---pubkey---",solanaAccount.publicKey.toBase58())
             return solanaAccount
         }catch (e:Exception){
             return null

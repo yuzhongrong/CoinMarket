@@ -10,11 +10,9 @@ import android.security.keystore.KeyProperties;
 import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
-import com.netease.lib_network.entitys.NewWalletToken;
 import com.paymennt.crypto.bip32.Network;
 import com.paymennt.crypto.bip32.wallet.AbstractWallet;
 import com.zksg.kudoud.entitys.UiWalletToken;
-import com.zksg.kudoud.wallet.keystore.KeystoreManager;
 import com.zksg.kudoud.wallet.wallet.SolanaWallet;
 import com.tencent.mmkv.MMKV;
 import com.zksg.kudoud.R;
@@ -39,7 +37,6 @@ import java.util.Enumeration;
 import java.util.List;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 

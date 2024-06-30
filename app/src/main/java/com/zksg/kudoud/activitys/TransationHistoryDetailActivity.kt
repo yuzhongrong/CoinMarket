@@ -2,23 +2,13 @@ package com.zksg.kudoud.activitys
 
 import android.os.Bundle
 import com.blankj.utilcode.util.ToastUtils
-import com.github.ajalt.reprint.core.Reprint
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.lxj.xpopup.XPopup
-import com.netease.lib_common_ui.utils.GsonUtil
 import com.netease.lib_network.entitys.TransationHistoryEntity
-import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.dialogs.ConfirmTransationfingprintDialog
-import com.zksg.kudoud.entitys.UiWalletToken
-import com.zksg.kudoud.state.SendCoinConfirmActivityViewmodel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.state.TransationHistoryDetailActivityViewmodel
 import com.zksg.kudoud.utils.CopyUtils
-import com.zksg.kudoud.utils.WalletUtils
-import com.zksg.kudoud.wallet.constants.Constants
-import java.math.BigDecimal
 
 
 class TransationHistoryDetailActivity : BaseDialogActivity() {

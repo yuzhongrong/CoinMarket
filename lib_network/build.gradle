@@ -42,4 +42,6 @@ dependencies {
     api this.rootProject.depsLibs.okhttp_log_interceptor
     implementation project(':architecture')
 	compileOnly project(':lib_api')
+
+
 }

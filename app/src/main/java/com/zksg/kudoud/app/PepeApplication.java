@@ -16,11 +16,8 @@
 
 package com.zksg.kudoud.app;
 
-import android.content.Context;
 import android.os.Build;
-import android.os.Handler;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -28,7 +25,6 @@ import com.github.ajalt.reprint.core.Reprint;
 import com.kunminx.architecture.BaseApplication;
 import com.kunminx.architecture.utils.Utils;
 import com.tencent.mmkv.MMKV;
-import com.zksg.kudoud.utils.BiometricUtil;
 import com.zksg.kudoud.wallet.keystore.KeystoreManager;
 //import com.netease.lib_audio.app.AudioHelper;
 //import com.netease.music.service.MusicService;

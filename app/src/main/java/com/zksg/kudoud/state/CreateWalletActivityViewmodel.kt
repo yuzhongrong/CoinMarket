@@ -1,36 +1,16 @@
 package com.zksg.kudoud.state
 
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
-import com.google.gson.Gson
 import com.kunminx.architecture.utils.Utils
-import com.netease.lib_common_ui.utils.GsonUtil
-import com.paymennt.crypto.bip32.wallet.AbstractWallet
-import com.zksg.kudoud.wallet.api.rpc.Cluster
-import com.zksg.kudoud.wallet.api.rpc.SolanaRpcClient
-import com.zksg.kudoud.wallet.data.SolanaAccount
-import com.zksg.kudoud.wallet.data.SolanaPublicKey
-import com.zksg.kudoud.wallet.program.TokenProgram
-import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.callback.WalletCreateCallback
-import com.zksg.kudoud.contants.CoinType
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
-import com.zksg.kudoud.utils.ObjectSerializationUtils
-import com.zksg.kudoud.utils.manager.SimpleWallet
 import com.zksg.kudoud.utils.manager.SolanaWalletManager
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.Filter
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.Memcmp
-import com.zksg.kudoud.wallet.api.rpc.types.DataSize
-import com.zksg.kudoud.wallet.api.rpc.types.RpcSendTransactionConfig
-import com.zksg.kudoud.wallet.constants.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.bitcoinj.core.Base58
 
 
 /**

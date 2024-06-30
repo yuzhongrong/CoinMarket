@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.CoinManagerActivity;
-import com.zksg.kudoud.databinding.ItemCoinLocalManagerBinding;
 import com.zksg.kudoud.databinding.ItemCoinSearchManagerBindingImpl;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.state.CoinManagerActivityViewModel;

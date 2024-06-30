@@ -8,21 +8,14 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
-import com.google.gson.Gson;
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects;
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.Filter;
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.Memcmp;
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.DataSize;
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.ProgramAccountConfig;
-import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects.SignaturesForAddress;
-import com.zksg.kudoud.wallet.api.rpc.types.RpcResultTypes.ValueLong;
-import com.zksg.kudoud.wallet.api.rpc.types.RpcSendTransactionConfig.Encoding;
 import com.zksg.kudoud.wallet.api.rpc.types.AccountInfo;
+import com.zksg.kudoud.wallet.api.rpc.types.ConfigObjects;
 import com.zksg.kudoud.wallet.api.rpc.types.ConfirmedTransaction;
 import com.zksg.kudoud.wallet.api.rpc.types.ProgramAccount;
 import com.zksg.kudoud.wallet.api.rpc.types.RecentBlockhash;
 import com.zksg.kudoud.wallet.api.rpc.types.RpcConfig;
 import com.zksg.kudoud.wallet.api.rpc.types.RpcFeesResult;
+import com.zksg.kudoud.wallet.api.rpc.types.RpcResultTypes;
 import com.zksg.kudoud.wallet.api.rpc.types.RpcSendTransactionConfig;
 import com.zksg.kudoud.wallet.api.rpc.types.RpcSignitureStatusResult;
 import com.zksg.kudoud.wallet.api.rpc.types.RpcStatusConfig;
@@ -41,9 +34,7 @@ import com.zksg.kudoud.wallet.program.TokenProgram;
 import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 
@@ -172,7 +163,7 @@ public class SolanaRpcApi {
     public long getBalance(String address) {
         List<Object> params = new ArrayList<>();
         params.add(address);
-        return client.call("getBalance", params, ValueLong.class).getValue();
+        return client.call("getBalance", params, RpcResultTypes.ValueLong.class).getValue();
     }
 
     /**
@@ -234,7 +225,7 @@ public class SolanaRpcApi {
         List<Object> params = new ArrayList<>();
 
         params.add(key);
-        params.add(new SignaturesForAddress(limit, SolanaCommitment.confirmed));
+        params.add(new ConfigObjects.SignaturesForAddress(limit, SolanaCommitment.confirmed));
 
         List<AbstractMap> rawResult = client.call("getSignaturesForAddress", params, List.class);
 
@@ -256,10 +247,10 @@ public class SolanaRpcApi {
      */
     public List<ProgramAccount> getProgramAccounts(SolanaPublicKey publicKey , long offset, String bytes) {
         List<Object> filters = new ArrayList<>();
-        filters.add(new Filter(new Memcmp(offset, bytes)));
+        filters.add(new ConfigObjects.Filter(new ConfigObjects.Memcmp(offset, bytes)));
 
 
-        ProgramAccountConfig programAccountConfig = new ProgramAccountConfig(filters);
+        ConfigObjects.ProgramAccountConfig programAccountConfig = new ConfigObjects.ProgramAccountConfig(filters);
         return getProgramAccounts(publicKey, programAccountConfig);
     }
 
@@ -270,7 +261,7 @@ public class SolanaRpcApi {
      * @return 
      */
     public List<ProgramAccount> getProgramAccounts(SolanaPublicKey account) {
-        return getProgramAccounts(account, new ProgramAccountConfig(Encoding.base64));
+        return getProgramAccounts(account, new ConfigObjects.ProgramAccountConfig(RpcSendTransactionConfig.Encoding.base64));
     }
 
     /**
@@ -281,7 +272,7 @@ public class SolanaRpcApi {
      * @return 
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    public List<ProgramAccount> getProgramAccounts(SolanaPublicKey account, ProgramAccountConfig programAccountConfig) {
+    public List<ProgramAccount> getProgramAccounts(SolanaPublicKey account, ConfigObjects.ProgramAccountConfig programAccountConfig) {
         List<Object> params = new ArrayList<>();
 
         params.add(account.toString());
@@ -302,7 +293,7 @@ public class SolanaRpcApi {
 
 
 
-    public List<ProgramAccount> getProgramAccounts1(String account,ProgramAccountConfig programAccountConfig) {
+    public List<ProgramAccount> getProgramAccounts1(String account, ConfigObjects.ProgramAccountConfig programAccountConfig) {
         List<Object> params = new ArrayList<>();
 
 

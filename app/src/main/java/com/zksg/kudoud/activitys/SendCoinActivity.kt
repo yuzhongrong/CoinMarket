@@ -7,7 +7,6 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.DataBindingConfig
-import com.lxj.xpopup.XPopup
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.SendCoinNumberdapter
@@ -28,7 +27,7 @@ class SendCoinActivity : BaseDialogActivity() {
     var mSendCoinActivityViewmodel: SendCoinActivityViewmodel? = null
     var mSharedViewModel:SharedViewModel?=null
     var adapter:SendCoinNumberdapter?=null
-    var solanaAccount:SolanaAccount?=null
+    var solanaAccount: SolanaAccount?=null
 
     override fun initViewModel() {
         mSendCoinActivityViewmodel = getActivityScopeViewModel(

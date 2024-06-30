@@ -4,8 +4,6 @@
  */
 package com.zksg.kudoud.wallet.api.rpc.types;
 
-import com.zksg.kudoud.wallet.api.rpc.types.RpcSendTransactionConfig.Encoding;
-
 import java.util.List;
 
 
@@ -277,7 +275,7 @@ public class ConfigObjects {
     public static class ProgramAccountConfig {
         
         /**  */
-        private Encoding encoding = null;
+        private RpcSendTransactionConfig.Encoding encoding = null;
         /**  */
         private List<Object> filters = null;
 
@@ -301,7 +299,7 @@ public class ConfigObjects {
          *
          * @param encoding 
          */
-        public ProgramAccountConfig(Encoding encoding) {
+        public ProgramAccountConfig(RpcSendTransactionConfig.Encoding encoding) {
             this.encoding = encoding;
         }
 
@@ -310,7 +308,7 @@ public class ConfigObjects {
          *
          * @return 
          */
-        public Encoding getEncoding() {
+        public RpcSendTransactionConfig.Encoding getEncoding() {
             return encoding;
         }
 
@@ -319,7 +317,7 @@ public class ConfigObjects {
          *
          * @param encoding 
          */
-        public void setEncoding(Encoding encoding) {
+        public void setEncoding(RpcSendTransactionConfig.Encoding encoding) {
             this.encoding = encoding;
         }
 

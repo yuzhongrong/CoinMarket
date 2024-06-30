@@ -10,6 +10,9 @@ import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.QuoEntity;
+import com.netease.lib_network.entitys.QuoPubkey58Entity;
+import com.netease.lib_network.entitys.ReqSwapTransation;
+import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -36,7 +39,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.3:3000";
+      String BASE_URL=" http://192.168.10.2:3000";
 
 
     @GET("login/cellphone")
@@ -144,6 +147,11 @@ public interface ApiService {
     Single<CommonResponse<String>> getNetworkGas(@Query("feeMints") String feeMints);
     @POST("/api/swap/postRouterFee")
     Single<CommonResponse<String>> postRouterFee(@Body QuoEntity request );
+    @POST("/api/swap/reqSwapTransation")
+    Single<CommonResponse<ReqSwapTransation>> reqSwapTransation(@Body QuoPubkey58Entity request );
+
+    @POST("/api/swap/submmitSwapTx")
+    Single<CommonResponse<String>> submmitSwapTx(@Body SubmmitVerTxReqBodyEntity request );
 
 
 }

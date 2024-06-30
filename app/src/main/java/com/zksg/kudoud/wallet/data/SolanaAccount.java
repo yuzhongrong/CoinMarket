@@ -4,8 +4,8 @@
  */
 package com.zksg.kudoud.wallet.data;
 
-import com.paymennt.crypto.bip32.wallet.key.HdPrivateKey;
 import com.zksg.kudoud.wallet.utils.TweetNaclFast;
+import com.paymennt.crypto.bip32.wallet.key.HdPrivateKey;
 
 import java.io.Serializable;
 

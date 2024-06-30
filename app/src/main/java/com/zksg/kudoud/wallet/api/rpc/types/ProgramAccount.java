@@ -5,8 +5,6 @@
 package com.zksg.kudoud.wallet.api.rpc.types;
 
 import com.blankj.utilcode.util.GsonUtils;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.netease.lib_common_ui.utils.GsonUtil;
 import com.zksg.kudoud.wallet.data.Parse;
 
