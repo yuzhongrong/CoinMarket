@@ -60,6 +60,7 @@ import com.zksg.kudoud.R;
 import com.zksg.lib_api.beans.BannerBean;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 /**
@@ -400,10 +401,16 @@ public class CommonBindingAdapter {
         Log.d("----inputAmount---->",inputAmount.toPlainString());
         outputAmount= new BigDecimal(value.getOutAmount()).divide(new BigDecimal(Math.pow(10,Integer.parseInt(todecimal))));
         Log.d("----outputAmount---->",outputAmount.toPlainString());
+        if(inputAmount.doubleValue()>=1){
+            BigDecimal result= one.divide(inputAmount, 10, RoundingMode.HALF_UP).multiply(outputAmount);
+            Log.d("----result---->",result.toPlainString());
+            view.setText("≈ "+ result.toPlainString()+" ");
+        }else{
+            BigDecimal result= inputAmount.divide(one, 10, RoundingMode.HALF_UP).multiply(outputAmount);
+            Log.d("----result---->",result.toPlainString());
+            view.setText("≈ "+ result.toPlainString()+" ");
+        }
 
-        BigDecimal result= one.divide(inputAmount).multiply(outputAmount);
-        Log.d("----result---->",result.toPlainString());
-        view.setText("≈ "+ result.toPlainString()+" ");
 
     }
 

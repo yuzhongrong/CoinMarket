@@ -26,8 +26,10 @@ import com.zksg.kudoud.utils.SolanaTransationHelper
 import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT
+import com.zksg.kudoud.widgets.CircularProgressBarCountDown
 import kotlinx.android.synthetic.main.fragment_exchange.*
 import java.math.BigDecimal
+import java.math.RoundingMode
 
 class ExchangeFragment:BaseFragment(){
 
@@ -53,6 +55,7 @@ class ExchangeFragment:BaseFragment(){
        return DataBindingConfig(R.layout.fragment_exchange,BR.vm,meViewModel!!)
            .addBindingParam(BR.quoWatcher, quoWatcher)
            .addBindingParam(BR.click, ClickProxy())
+//           .addBindingParam(BR.listener,listener)
 
     }
 
@@ -220,6 +223,7 @@ class ExchangeFragment:BaseFragment(){
                 tempInputAmount=maxpay.toString()
 
             }
+
         }
 
 
@@ -284,18 +288,21 @@ class ExchangeFragment:BaseFragment(){
             runnable = Runnable {
                 // 在这里发送网络请求
                 if(!TextUtils.isEmpty(s)){
-                    Log.d("----onTextChanged11-->",s.toString())
+
                     var amount=s.toString().trim()
+                    Log.d("----onTextChanged11-->",amount)
+                    // 将字符串转换为 BigDecimal 保留小数点后6位
+                    val decimalAmount = BigDecimal(amount)
+                    val roundedAmount = decimalAmount.setScale(6, RoundingMode.HALF_UP).toPlainString()
+                    Log.d("----roundedAmount-->",roundedAmount)
                     tempInputAmount=amount
-                    meViewModel!!.getQuo(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,amount,meViewModel!!.from.value!!.decimal.toInt())
+                    meViewModel!!.getQuo(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,roundedAmount,meViewModel!!.from.value!!.decimal.toInt())
                 }
 
             }
 
             // 安排新的任务在指定延迟后执行
             handler.postDelayed(runnable!!, delayMillis)
-
-
 
         }
     }
@@ -334,14 +341,13 @@ class ExchangeFragment:BaseFragment(){
 
         }
 
+
+    var listener= CircularProgressBarCountDown.OnCountDownFinishListener {
+        Log.d("----count down--->",tempInputAmount)
+        //还原标识
+//        meViewModel!!.startCirc.set(false)
+//        meViewModel!!.getQuo(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,tempInputAmount,meViewModel!!.from.value!!.decimal.toInt())
     }
 
 
-
-
-
-
-
-
-
-
+    }

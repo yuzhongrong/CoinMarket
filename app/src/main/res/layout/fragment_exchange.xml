@@ -13,6 +13,11 @@
             name="quoWatcher"
             type="android.text.TextWatcher" />
 
+
+        <variable
+            name="listener"
+            type="com.zksg.kudoud.widgets.CircularProgressBarCountDown.OnCountDownFinishListener" />
+
         <variable
             name="click"
             type="com.zksg.kudoud.fragments.ExchangeFragment.ClickProxy" />
@@ -471,6 +476,17 @@
                    android:orientation="horizontal"
                    android:layout_alignParentRight="true"
                    >
+
+                   <com.zksg.kudoud.widgets.CircularProgressBarCountDown
+                       android:id="@+id/mCircularProgressBarCountDown"
+                       android:layout_width="@dimen/dp20"
+                       android:layout_height="@dimen/dp20"
+                       android:layout_centerInParent="true"
+                       view_count_down="@{listener}"
+                       view_count_down_start="@{vm.startCirc}"
+                       android:visibility="gone"
+                       />
+
                    <TextView
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"

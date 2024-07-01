@@ -70,6 +70,10 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
     var startAnimation=ObservableField(false)
 
+
+    @JvmField
+    var startCirc=ObservableField(false)
+
     fun getQuo(from: String,to: String,amount:String,fromdecimal: Int){
         viewModelScope.launch {
 //            loadingVisible.postValue(true)
@@ -80,9 +84,11 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
                         if(it.result!=null){
                             quo.postValue(it.result.data)
                             postRouterFee(it.result.data)
+                            //开始倒计时循环
+//                            startCirc.set(true)
 //                            loadingVisible.postValue(false)
-                            var mQuoPubkey58Entity= QuoPubkey58Entity(it.result.data,"2uhu96aU75jbiMzLoguvHmADY39rb3q84qBwJqyPhpzh")
-                            reqSwapTransation(mQuoPubkey58Entity)
+//                            var mQuoPubkey58Entity= QuoPubkey58Entity(it.result.data,"2uhu96aU75jbiMzLoguvHmADY39rb3q84qBwJqyPhpzh")
+//                            reqSwapTransation(mQuoPubkey58Entity)
                         }
 
                     }

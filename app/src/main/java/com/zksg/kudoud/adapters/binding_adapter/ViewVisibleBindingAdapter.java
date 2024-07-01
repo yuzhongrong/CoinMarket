@@ -13,6 +13,7 @@ import com.zksg.kudoud.R;
 import com.zksg.kudoud.entitys.Base2QuoEntity;
 import com.zksg.kudoud.utils.DateUtils;
 import com.zksg.kudoud.utils.DigitUtils;
+import com.zksg.kudoud.widgets.CircularProgressBarCountDown;
 import com.zksg.kudoud.widgets.SettingBar;
 
 import java.math.BigDecimal;
@@ -71,7 +72,21 @@ public class ViewVisibleBindingAdapter {
     }
 
 
+    @BindingAdapter(value = {"view_count_down"},requireAll = false)
+    public static void view_count_down(CircularProgressBarCountDown view, CircularProgressBarCountDown.OnCountDownFinishListener listener) {
+            if(view==null||listener==null)return;
+            view.setOnCountDownFinishListener(listener);
+//            view.startCountDown();
+    }
 
+
+    @BindingAdapter(value = {"view_count_down_start"},requireAll = false)
+    public static void view_count_down_start(CircularProgressBarCountDown view, boolean start) {
+        if(view==null)return;
+        if(start){
+            view.startCountDown();
+        }
+    }
 
 
 }

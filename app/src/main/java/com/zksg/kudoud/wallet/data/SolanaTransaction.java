@@ -87,9 +87,6 @@ public class SolanaTransaction {
             byte[] signature = signatureProvider.detached(serializedMessage);
             Log.d("----tx-sign--->",Base58.encode(signature));
             signatures.add(Base58.encode(signature));
-
-
-
         }
     }
 
