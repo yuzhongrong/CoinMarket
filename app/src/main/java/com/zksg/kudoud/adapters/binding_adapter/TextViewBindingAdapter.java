@@ -688,7 +688,8 @@ public class TextViewBindingAdapter {
     @BindingAdapter(value = {"text_sol_show"},requireAll = false)
     public static void text_sol_show(TextView tv, String number){
         if(tv==null&&TextUtils.isEmpty(number))return;
-        tv.setText(number+" SOL");
+        BigDecimal result = new BigDecimal(number).setScale(6, RoundingMode.HALF_UP);
+        tv.setText(result.toPlainString()+" SOL");
     }
 
     @BindingAdapter(value = {"text_send_number"},requireAll = false)

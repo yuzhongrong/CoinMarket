@@ -10,11 +10,10 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kunminx.architecture.domain.message.MutableResult
 import com.netease.lib_common_ui.utils.GsonUtil
-import com.netease.lib_network.entitys.QuoEntity
-import com.netease.lib_network.entitys.QuoPubkey58Entity
-import com.netease.lib_network.entitys.ReqSwapTransation
-import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity
+import com.netease.lib_network.entitys.*
+import com.zksg.kudoud.callback.QuoCallback
 import com.zksg.kudoud.callback.QuoGasCallback
+import com.zksg.kudoud.callback.SwapTransationCallback
 import com.zksg.kudoud.callback.TokenInfo
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
@@ -74,6 +73,14 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
     var startCirc=ObservableField(false)
 
+
+    //最终返回的兑换链上交易id
+    @JvmField
+    var signatureOnChain=MutableResult("")
+
+    @JvmField
+    var commit=MutableResult(false)
+
     fun getQuo(from: String,to: String,amount:String,fromdecimal: Int){
         viewModelScope.launch {
 //            loadingVisible.postValue(true)
@@ -87,8 +94,7 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
                             //开始倒计时循环
 //                            startCirc.set(true)
 //                            loadingVisible.postValue(false)
-//                            var mQuoPubkey58Entity= QuoPubkey58Entity(it.result.data,"2uhu96aU75jbiMzLoguvHmADY39rb3q84qBwJqyPhpzh")
-//                            reqSwapTransation(mQuoPubkey58Entity)
+
                         }
 
                     }
@@ -96,6 +102,32 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
             }
 
         }
+    }
+
+
+    fun getQuoForCallback(from: String,to: String,amount:String,fromdecimal: Int,mQuoCallback: QuoCallback){
+        viewModelScope.launch {
+//            loadingVisible.postValue(true)
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().getQuo(from,to,amount,fromdecimal){
+                    if(it.responseStatus.isSuccess){
+                        Log.d("----getQuo-->",GsonUtil.toJson(it.result.data))
+                        if(it.result!=null){
+                            quo.postValue(it.result.data)
+                            postRouterFee(it.result.data)
+                            mQuoCallback.QuoCallbackResult(it.result.data)
+                            //开始倒计时循环
+//                            startCirc.set(true)
+//                            loadingVisible.postValue(false)
+
+                        }
+
+                    }
+                }
+            }
+
+        }
+
     }
 
 
@@ -148,6 +180,24 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
         }
     }
 
+
+    fun reqSwapTransationCallback(quopubkey58: QuoPubkey58Entity,mSwapTransationCallback: SwapTransationCallback){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().reqSwapTransation(quopubkey58){
+                    if(it.responseStatus.isSuccess){
+                        if(it.result.data!=null){
+                            mTransaction.postValue(it.result.data)
+                            mSwapTransationCallback.MSwapTransationCallback(it.result.data)
+                        }
+
+                    }
+                }
+            }
+
+        }
+    }
+
     fun submmitSwapTx(body: SubmmitVerTxReqBodyEntity){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
@@ -157,7 +207,31 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 //                        if(!TextUtils.isEmpty(it.result.data)){
 //
 //                        }
+                        if(!TextUtils.isEmpty(it.result.data)){
+                            signatureOnChain.value=it.result.data
+                        }
 
+                    }
+                }
+            }
+
+        }
+    }
+
+
+    fun broadcastTx(signTransation:String){
+        viewModelScope.launch {
+//            loadingVisible.postValue(true)
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().broadcastTx(BroadcastRequest(signTransation)){
+                    if(it.responseStatus.isSuccess){
+                        if(it.result!=null&&it.result.data!=null){
+                            Log.d("----broadcastTx-success-->",GsonUtil.toJson(it.result.data))
+                            loadingVisible.postValue(false)
+                        }
+
+                    }else{
+                        Log.d("----broadcastTx-err-->",it.responseStatus.msg)
                     }
                 }
             }

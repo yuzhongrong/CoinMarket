@@ -4,8 +4,9 @@
  */
 package com.zksg.kudoud.wallet.api.rpc.types;
 
+//import com.blankj.utilcode.util.GsonUtils;
+//import com.netease.lib_common_ui.utils.GsonUtil;
 import com.blankj.utilcode.util.GsonUtils;
-import com.netease.lib_common_ui.utils.GsonUtil;
 import com.zksg.kudoud.wallet.data.Parse;
 
 import java.math.BigDecimal;
@@ -128,7 +129,7 @@ public class ProgramAccount {
             } else if (rawData instanceof String) {
                 this.data = (String) rawData;
             }else if(rawData instanceof Map){
-               String json= GsonUtil.toJson(rawData);
+               String json= GsonUtils.toJson(rawData);
 
                this.parse= GsonUtils.fromJson(json,Parse.class);
             }

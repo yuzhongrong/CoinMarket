@@ -440,6 +440,8 @@
             android:layout_below="@+id/layout_top"
             app:shape_solidPressedColor="@color/colorAccent"
             exchange_show="@{vm.insufficient_sol_balance}"
+            android:onClick="@{()->click.VerfityUser()}"
+
             />
 
         <com.hjq.shape.layout.ShapeLinearLayout

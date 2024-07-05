@@ -4,9 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-import kotlin.UByteArray;
-
 public class TransationSwap {
+
 
     @SerializedName("recentBlockhash")
     private String recentBlockhash;

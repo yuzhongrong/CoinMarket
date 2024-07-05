@@ -4,9 +4,9 @@
  */
 package com.zksg.kudoud.wallet.program;
 
+import com.zksg.kudoud.wallet.data.SolanaTransactionInstruction;
 import com.zksg.kudoud.wallet.data.AccountMeta;
 import com.zksg.kudoud.wallet.data.SolanaPublicKey;
-import com.zksg.kudoud.wallet.data.SolanaTransactionInstruction;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

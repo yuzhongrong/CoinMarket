@@ -7,29 +7,36 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Base64
 import android.util.Log
 import androidx.annotation.RequiresApi
-import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
+import com.lxj.xpopup.XPopup
+import com.netease.lib_network.entitys.QuoPubkey58Entity
 import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity
+import com.paymennt.crypto.lib.Base58
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.entitys.TransationSwap
+import com.zksg.kudoud.activitys.MainActivity
+import com.zksg.kudoud.callback.WalletCreateFingPrintCallback
+import com.zksg.kudoud.dialogs.CreateWalletfingprintDialog
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.ExchangeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
-import com.zksg.kudoud.utils.SolanaTransationHelper
 import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT
+import com.zksg.kudoud.wallet.data.jupswap.SolanaTransactionSerializer.*
+import com.zksg.kudoud.wallet.utils.TweetNaclFast
 import com.zksg.kudoud.widgets.CircularProgressBarCountDown
 import kotlinx.android.synthetic.main.fragment_exchange.*
 import java.math.BigDecimal
 import java.math.RoundingMode
+
 
 class ExchangeFragment:BaseFragment(){
 
@@ -83,19 +90,9 @@ class ExchangeFragment:BaseFragment(){
 
         }
         meViewModel!!.mTransaction.observe(this){
-         var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
-        //解析交易
-         var mTransationJson= it.tx
-            Log.d("---signer_result-->",mTransationJson)
-         var  mTransationSwap= GsonUtils.fromJson(mTransationJson,
-             TransationSwap::class.java)
-        //构造交易
-         var tx64=SolanaTransationHelper.CreateTransationForSwap(solanaAccount!!,mTransationSwap)
 
-        //提交交易
-         var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(tx64,it.lastValidBlockHeight)
-            meViewModel!!.submmitSwapTx(mSubmmitVerTxReqBodyEntity)
         }
+
 
         //更新我的页面余额变化后 会更新这里
         sharedViewModel!!.tokenListUpdateNotify.observe(this){
@@ -115,6 +112,20 @@ class ExchangeFragment:BaseFragment(){
         meViewModel!!.quosolfee.observe(this){
             //每次获取报价后再去计算
             calculaterSolBalanceAfterGuo()
+        }
+
+
+
+        meViewModel!!.signatureOnChain.observe(this){
+            Log.d("----最终兑换链上txid---->",it)
+            if(!TextUtils.isEmpty(it)){
+
+                //获取兑换 把刚刚下单的拿笔交易构造出来 在页面下方显示
+
+
+                //创建socket 监控交易状态
+
+            }
         }
 
     }
@@ -338,6 +349,67 @@ class ExchangeFragment:BaseFragment(){
             handler.postDelayed({ meViewModel!!.startAnimation.set(false)},1000)
 
         }
+        
+        
+        //验证用户
+        fun VerfityUser(){
+            XPopup.Builder(this@ExchangeFragment.requireContext())
+                .autoOpenSoftInput(false)
+                .dismissOnTouchOutside(false)
+                .dismissOnBackPressed(false)
+                .moveUpToKeyboard(false)
+                .asCustom(CreateWalletfingprintDialog(this@ExchangeFragment.requireContext() as MainActivity,object:
+                    WalletCreateFingPrintCallback {
+                    @RequiresApi(Build.VERSION_CODES.O)
+                    override fun walletCreateComplete(success: Int) {
+                        startEx()
+                    }
+
+                    override fun walletCreateFingPrintFail(errcode: Int) {
+
+                    }
+
+
+                }))
+                .show()
+
+        }
+
+        fun startEx(){
+            //获取最新报价
+            meViewModel!!.getQuoForCallback(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,tempInputAmount,meViewModel!!.from.value!!.decimal.toInt()){
+                var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
+                var mQuoPubkey58Entity= QuoPubkey58Entity(it,solanaAccount!!.publicKey.toBase58())
+                meViewModel!!.reqSwapTransationCallback(mQuoPubkey58Entity){
+
+                    var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
+
+                    var signatureProvider = TweetNaclFast.Signature(ByteArray(0), solanaAccount!!.secretKey)
+                    var signature = signatureProvider.detached(Base58.decode(it.msgserialize))
+                    var signature58 = Base58.encode(signature)
+                    Log.d("----tx-sign--->", signature58)
+
+
+//                    var  mTransationSwap= GsonUtils.fromJson(mTransationJson,
+//                        TransationSwap::class.java)
+//                    //构造交易
+//                    var tx64=SolanaTransationHelper.CreateTransationForSwap(solanaAccount!!,mTransationSwap)
+//
+                    //提交交易
+                    var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(it.swap64,it.lastValidBlockHeight,solanaAccount.publicKey.toBase58(),signature58)
+                    meViewModel!!.submmitSwapTx(mSubmmitVerTxReqBodyEntity)
+
+
+
+                }
+            }
+            //获取swap交易并签名
+
+
+            //发送签名后的交易
+
+        }
+
 
         }
 

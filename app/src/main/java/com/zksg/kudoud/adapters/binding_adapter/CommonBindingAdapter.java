@@ -404,10 +404,15 @@ public class CommonBindingAdapter {
         if(inputAmount.doubleValue()>=1){
             BigDecimal result= one.divide(inputAmount, 10, RoundingMode.HALF_UP).multiply(outputAmount);
             Log.d("----result---->",result.toPlainString());
+            // 设置保留小数点后6位
+            result = result.setScale(6, RoundingMode.HALF_UP);
+
             view.setText("≈ "+ result.toPlainString()+" ");
         }else{
             BigDecimal result= inputAmount.divide(one, 10, RoundingMode.HALF_UP).multiply(outputAmount);
             Log.d("----result---->",result.toPlainString());
+            // 设置保留小数点后6位
+            result = result.setScale(6, RoundingMode.HALF_UP);
             view.setText("≈ "+ result.toPlainString()+" ");
         }
 

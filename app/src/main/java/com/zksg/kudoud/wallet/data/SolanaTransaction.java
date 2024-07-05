@@ -6,6 +6,7 @@ package com.zksg.kudoud.wallet.data;
 
 import android.util.Log;
 
+import com.google.gson.annotations.SerializedName;
 import com.zksg.kudoud.wallet.utils.TweetNaclFast;
 import com.paymennt.crypto.lib.Base58;
 import com.paymennt.crypto.lib.ShortvecEncoding;
@@ -26,7 +27,8 @@ public class SolanaTransaction {
     /**  */
     private SolanaMessage message;
     
-    /**  */
+    /**jupiter-signers  */
+    @SerializedName("signers")
     private List<String> signatures;
     
     /**  */
