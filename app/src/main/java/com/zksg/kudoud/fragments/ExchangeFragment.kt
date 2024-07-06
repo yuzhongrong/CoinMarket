@@ -7,9 +7,9 @@ import android.os.Looper
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Base64
 import android.util.Log
 import androidx.annotation.RequiresApi
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
@@ -28,6 +28,9 @@ import com.zksg.kudoud.state.ExchangeFragmentViewModel
 import com.zksg.kudoud.state.SharedViewModel
 import com.zksg.kudoud.utils.ObjectSerializationUtils
 import com.zksg.kudoud.utils.WalletUtils
+import com.zksg.kudoud.wallet.api.rpc.Cluster
+import com.zksg.kudoud.wallet.api.rpc.types.SolanaCommitment
+import com.zksg.kudoud.wallet.api.ws.SolanaWebSocketClient
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT
 import com.zksg.kudoud.wallet.data.jupswap.SolanaTransactionSerializer.*
@@ -45,6 +48,7 @@ class ExchangeFragment:BaseFragment(){
     var runnable: Runnable? = null
     val minInputAmount=0.01
     var tempInputAmount="1"
+    var mSolanaWebSocketClient: SolanaWebSocketClient?=null
 
 
     private var  meViewModel: ExchangeFragmentViewModel?=null
@@ -69,9 +73,26 @@ class ExchangeFragment:BaseFragment(){
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun loadInitData() {
-
+        initWebSorket()
         initObserve()
         initData()
+    }
+
+
+    fun initWebSorket(){
+        //订阅账号
+        var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
+         mSolanaWebSocketClient= SolanaWebSocketClient(Cluster.ALCHEMY)
+
+        mSolanaWebSocketClient?.accountSubscribe(
+            solanaAccount!!.publicKey.toBase58()
+
+            ){
+            Log.d("---accountSubscribe-->",GsonUtils.toJson(it))
+
+        }
+
+
     }
 
 
@@ -117,7 +138,7 @@ class ExchangeFragment:BaseFragment(){
 
 
         meViewModel!!.signatureOnChain.observe(this){
-            Log.d("----最终兑换链上txid---->",it)
+
             if(!TextUtils.isEmpty(it)){
 
                 //获取兑换 把刚刚下单的拿笔交易构造出来 在页面下方显示
@@ -384,22 +405,19 @@ class ExchangeFragment:BaseFragment(){
 
                     var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
 
+                    //签名
                     var signatureProvider = TweetNaclFast.Signature(ByteArray(0), solanaAccount!!.secretKey)
                     var signature = signatureProvider.detached(Base58.decode(it.msgserialize))
                     var signature58 = Base58.encode(signature)
                     Log.d("----tx-sign--->", signature58)
 
-
-//                    var  mTransationSwap= GsonUtils.fromJson(mTransationJson,
-//                        TransationSwap::class.java)
-//                    //构造交易
-//                    var tx64=SolanaTransationHelper.CreateTransationForSwap(solanaAccount!!,mTransationSwap)
-//
                     //提交交易
                     var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(it.swap64,it.lastValidBlockHeight,solanaAccount.publicKey.toBase58(),signature58)
                     meViewModel!!.submmitSwapTx(mSubmmitVerTxReqBodyEntity)
-
-
+                    //订阅交易
+                    mSolanaWebSocketClient?.signatureSubscribe(signature58){
+                        Log.d("----signatureSubscribe---->",GsonUtils.toJson(it))
+                    }
 
                 }
             }
@@ -419,6 +437,12 @@ class ExchangeFragment:BaseFragment(){
         //还原标识
 //        meViewModel!!.startCirc.set(false)
 //        meViewModel!!.getQuo(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,tempInputAmount,meViewModel!!.from.value!!.decimal.toInt())
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mSolanaWebSocketClient?.accountUnsubscribe( WalletUtils.getSolanaAccount(sharedViewModel!!,"")!!.publicKey.toBase58())
     }
 
 

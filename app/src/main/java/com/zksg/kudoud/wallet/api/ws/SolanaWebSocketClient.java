@@ -175,6 +175,11 @@ public class SolanaWebSocketClient implements WebSocketHandler {
         logsSubscribe(key, SolanaCommitment.confirmed, listener);
     }
 
+
+
+
+
+
     /**
      * 
      *
@@ -208,6 +213,12 @@ public class SolanaWebSocketClient implements WebSocketHandler {
     public void logsUnsubscribe(String key) {
         logsUnsubscribe(key, SolanaCommitment.finalized);
         logsUnsubscribe(key, SolanaCommitment.confirmed);
+    }
+
+
+    public void logsUnsubscribe1(String key) {
+        logsUnsubscribe(key, SolanaCommitment.finalized);
+        logsUnsubscribe(key, SolanaCommitment.processed);
     }
 
     /**

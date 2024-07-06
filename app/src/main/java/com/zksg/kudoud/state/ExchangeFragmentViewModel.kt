@@ -211,6 +211,8 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
                             signatureOnChain.value=it.result.data
                         }
 
+                    }else{
+                        Log.d("----tx fail-->",it.responseStatus.msg)
                     }
                 }
             }

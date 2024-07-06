@@ -19,7 +19,10 @@ public enum Cluster {
     /**  */
     MAINNET("https://api.mainnet-beta.solana.com"),
 
-    QUICKNODE("https://sleek-purple-darkness.solana-mainnet.quiknode.pro/39c7e391a14030cdbf8c2bffcafaebed460dd85c");
+    QUICKNODE("https://sleek-purple-darkness.solana-mainnet.quiknode.pro/39c7e391a14030cdbf8c2bffcafaebed460dd85c"),
+    ALCHEMY("https://solana-mainnet.g.alchemy.com/v2/2hnePJn18uVTg7FWp6sNWEZ7gF096WsK");
+
+
 
     /**  */
     private String endpoint;

@@ -203,11 +203,17 @@ class MeFragment : BaseDialogFragment() {
         if (uiWalletTokens.isNotEmpty()) {
             uiWalletTokens.forEach { uiToken ->
                 val matchingResult = results.find { it.mint == uiToken.mint } // 在 results 中查找与当前 uiToken 匹配的 NewWalletToken 对象
-                matchingResult?.let { result ->
-                    // 如果找到了匹配的结果，则更新 uiToken 的 balance 和 price 字段
-                    uiToken.balance = result.balance
-                    uiToken.price = result.price
-                }
+               if(matchingResult!=null){
+                   matchingResult.let { result ->
+                       // 如果找到了匹配的结果，则更新 uiToken 的 balance 和 price 字段
+                       uiToken.balance = result.balance
+                       uiToken.price = result.price
+                   }
+
+               }else{ //请求中没有uiToken的信息 -此时可能是这个uiToken余额已经是0了
+                   uiToken.balance="0"
+               }
+
             }
         }
        return uiWalletTokens;

@@ -900,6 +900,7 @@ public class DataRepository {
                     @Override
                     protected void onFailed(ExceptionHandle.ResponseThrowable err) {
                         ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        responseStatus.setMsg(err.getMessage());
                         result.onResult(new DataResult(null, responseStatus));
                     }
                 });
