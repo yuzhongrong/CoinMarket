@@ -254,6 +254,12 @@
 
             />
 
+        <activity android:name=".activitys.SwapDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+
+            />
+
 
 
 

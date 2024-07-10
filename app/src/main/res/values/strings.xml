@@ -370,4 +370,8 @@
     <string name="str_balance_not_value">SOL余额不足</string>
     <string name="str_exchange_amount_lower">兑换数量不能小于0.01</string>
     <string name="str_search_contract">搜索币种名称 , 合约地址</string>
+    <string name="str_input">输入</string>
+    <string name="str_output">输出</string>
+    <string name="str_quo_timeover">报价已过期,请重新获取</string>
+    <string name="str_fee_wallet">付费钱包</string>
 </resources>

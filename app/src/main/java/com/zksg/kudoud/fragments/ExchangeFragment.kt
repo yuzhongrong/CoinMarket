@@ -1,6 +1,7 @@
 package com.zksg.kudoud.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -21,6 +22,7 @@ import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.MainActivity
+import com.zksg.kudoud.activitys.SwapDetailActivity
 import com.zksg.kudoud.callback.WalletCreateFingPrintCallback
 import com.zksg.kudoud.dialogs.CreateWalletfingprintDialog
 import com.zksg.kudoud.entitys.UiWalletToken
@@ -138,17 +140,17 @@ class ExchangeFragment:BaseFragment(){
 
 
 
-        meViewModel!!.signatureOnChain.observe(this){
-
-            if(!TextUtils.isEmpty(it)){
-
-                //获取兑换 把刚刚下单的拿笔交易构造出来 在页面下方显示
-
-
-                //创建socket 监控交易状态
-
-            }
-        }
+//        meViewModel!!.signatureOnChain.observe(this){
+//
+//            if(!TextUtils.isEmpty(it)){
+//
+//                //获取兑换 把刚刚下单的拿笔交易构造出来 在页面下方显示
+//
+//
+//                //创建socket 监控交易状态
+//
+//            }
+//        }
 
     }
 
@@ -373,61 +375,14 @@ class ExchangeFragment:BaseFragment(){
         }
         
         
-        //验证用户
-        fun VerfityUser(){
-            XPopup.Builder(this@ExchangeFragment.requireContext())
-                .autoOpenSoftInput(false)
-                .dismissOnTouchOutside(false)
-                .dismissOnBackPressed(false)
-                .moveUpToKeyboard(false)
-                .asCustom(CreateWalletfingprintDialog(this@ExchangeFragment.requireContext() as MainActivity,object:
-                    WalletCreateFingPrintCallback {
-                    @RequiresApi(Build.VERSION_CODES.O)
-                    override fun walletCreateComplete(success: Int) {
-                        startEx()
-                    }
-
-                    override fun walletCreateFingPrintFail(errcode: Int) {
-
-                    }
 
 
-                }))
-                .show()
-
-        }
-
-        fun startEx(){
-            //获取最新报价
-            meViewModel!!.getQuoForCallback(meViewModel!!.from.value!!.mint,meViewModel!!.to.value!!.mint,tempInputAmount,meViewModel!!.from.value!!.decimal.toInt()){
-                var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
-                var mQuoPubkey58Entity= QuoPubkey58Entity(it,solanaAccount!!.publicKey.toBase58())
-                meViewModel!!.reqSwapTransationCallback(mQuoPubkey58Entity){
-
-                    var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
-
-                    //签名
-                    var signatureProvider = TweetNaclFast.Signature(ByteArray(0), solanaAccount!!.secretKey)
-                    var signature = signatureProvider.detached(Base58.decode(it.msgserialize))
-                    var signature58 = Base58.encode(signature)
-                    Log.d("----tx-sign--->", signature58)
-
-                    //提交交易
-                    var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(it.swap64,it.lastValidBlockHeight,solanaAccount.publicKey.toBase58(),signature58)
-                    meViewModel!!.submmitSwapTx(mSubmmitVerTxReqBodyEntity)
-                    //订阅交易
-                    mSolanaWebSocketClient!!.signatureSubscribe(signature58
-                    ) {
-                        Log.d("----signatureSubscribe---->",GsonUtils.toJson(it))
-                    }
-
-                }
-            }
-            //获取swap交易并签名
-
-
-            //发送签名后的交易
-
+        fun startExDetail(){
+            var intent= Intent(this@ExchangeFragment.requireActivity(),SwapDetailActivity::class.java)
+            intent.putExtra("from",meViewModel!!.from.value)
+            intent.putExtra("to",meViewModel!!.to.value)
+            intent.putExtra("fromamount",tempInputAmount)
+            startActivity(intent)
         }
 
 
@@ -444,7 +399,7 @@ class ExchangeFragment:BaseFragment(){
 
     override fun onDestroy() {
         super.onDestroy()
-        mSolanaWebSocketClient?.accountUnsubscribe( WalletUtils.getSolanaAccount(sharedViewModel!!,"")!!.publicKey.toBase58())
+//        mSolanaWebSocketClient?.accountUnsubscribe( WalletUtils.getSolanaAccount(sharedViewModel!!,"")!!.publicKey.toBase58())
     }
 
 

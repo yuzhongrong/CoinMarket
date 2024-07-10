@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zksg.kudoud.state.SwapDetailsViewModel" />
+
+
+
+
+        <variable
+            name="listener"
+            type="com.zksg.kudoud.widgets.CircularProgressBarCountDown.OnCountDownFinishListener" />
+
+        <variable
+            name="click"
+            type="com.zksg.kudoud.activitys.SwapDetailActivity.ClickProxy" />
+
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_layout_common"
+        >
+        <LinearLayout
+            android:id="@+id/layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <com.hjq.shape.layout.ShapeRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp45"
+                app:shape_radius="@dimen/sp30"
+                android:layout_marginLeft="@dimen/dp8"
+                android:layout_marginRight="@dimen/dp8"
+                >
+
+
+            <TextView
+                android:id="@+id/coinname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/dp5"
+                android:text="@string/str_swap"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp20"
+                android:textStyle="bold" />
+
+
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp28"
+                    android:layout_height="@dimen/dp28"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dp5"
+                    android:src="@mipmap/ic_solana_common"
+                    android:layout_centerVertical="true"
+                    app:shape_solidColor="@color/c_2e2e2e"
+                    app:shape_radius="@dimen/dp45"
+                    app:shape_solidPressedColor="@color/c_a0a0ab"
+                    android:clickable="true"
+                    android:visibility="gone"
+                    />
+            </com.hjq.shape.layout.ShapeRelativeLayout>
+
+
+
+            <FrameLayout
+    android:id="@+id/layout_frame"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp5"
+                app:shape_strokeColor="@color/c_29313d"
+
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                >
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="@dimen/dp5"
+                  >
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_input"
+                    android:textSize="@dimen/sp14"
+                    android:layout_marginLeft="@dimen/dp5"
+                    android:textColor="@color/white"
+                    />
+
+
+                </LinearLayout>
+
+
+
+               </RelativeLayout>
+
+               <RelativeLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="horizontal"
+                   android:layout_marginTop="@dimen/dp5"
+                   android:gravity="center_vertical"
+                   android:layout_marginRight="@dimen/dp5"
+                   >
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal"
+                       android:gravity="center_vertical"
+                       >
+
+                   <com.hjq.shape.view.ShapeImageView
+                       android:layout_width="@dimen/dp35"
+                       android:layout_height="@dimen/dp35"
+                       android:src="@mipmap/ic_unlink"
+                       app:shape_solidColor="@color/c_2e2e2e"
+                       app:shape_radius="@dimen/dp45"
+                       android:layout_marginLeft="@dimen/dp5"
+                       meme_imv_if_sol="@{vm.from}"
+                       />
+
+                       <TextView
+                           android:id="@+id/editText"
+                           android:layout_width="wrap_content"
+                           android:layout_height="match_parent"
+                           android:gravity="center"
+                           android:hint="0.0"
+                           android:layout_marginLeft="@dimen/dp10"
+                           android:singleLine="true"
+                           android:textColor="@color/white"
+                           android:textColorHint="@color/white"
+                           android:textSize="@dimen/sp20"
+                           android:textStyle="bold"
+                           loadtext="@{vm.from_amount}"
+
+                           />
+
+
+
+                      </LinearLayout>
+
+
+               </RelativeLayout>
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp5"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_output"
+                            android:textSize="@dimen/sp14"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:textColor="@color/white"
+                            />
+
+
+                    </LinearLayout>
+
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/dp5"
+                    android:gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dp5"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        >
+
+                        <com.hjq.shape.view.ShapeImageView
+                            android:layout_width="@dimen/dp35"
+                            android:layout_height="@dimen/dp35"
+                            android:src="@mipmap/ic_unlink"
+                            app:shape_solidColor="@color/c_2e2e2e"
+                            app:shape_radius="@dimen/dp45"
+                            android:layout_marginLeft="@dimen/dp5"
+                            meme_imv_if_sol="@{vm.to}"
+                            />
+
+                        <TextView
+                            android:id="@+id/outputAmount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="0.0"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:gravity="center"
+                            android:textSize="@dimen/sp20"
+                            android:layout_marginLeft="@dimen/dp10"
+                            loadtext_quo="@{vm.quo.outAmount}"
+                            loadtext_quo_fromdecimal="@{vm.to.decimal}"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+        </LinearLayout>
+
+   <com.hjq.shape.layout.ShapeRelativeLayout
+                android:layout_width="@dimen/dp38"
+                android:layout_height="@dimen/dp38"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp5"
+                app:shape_radius="@dimen/dp45"
+                android:gravity="center"
+
+                app:shape_solidColor="@color/bg_layout_common"
+                >
+                <com.hjq.shape.view.ShapeImageView
+                    android:layout_width="@dimen/dp30"
+                    android:layout_height="@dimen/dp30"
+                    android:src="@mipmap/ic_exchange_v"
+                    app:shape_strokeColor="@color/c_29313d"
+                    app:shape_strokeWidth="@dimen/dp1"
+                    app:shape_radius="@dimen/dp45"
+                    android:padding="@dimen/dp5"
+                    app:shape_solidColor="@color/c_29313d"
+                    />
+            </com.hjq.shape.layout.ShapeRelativeLayout>
+
+</FrameLayout>
+
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.hjq.shape.view.ShapeImageView
+                            android:layout_width="@dimen/dp15"
+                            android:layout_height="@dimen/dp15"
+                            android:src="@mipmap/ic_solana_common"
+                            app:shape_solidColor="@color/c_2e2e2e"
+                            app:shape_radius="@dimen/dp45"
+                            android:layout_marginLeft="@dimen/dp5"
+
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_gas"
+                            android:textSize="@dimen/sp12"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:textColor="@color/primaryTextGray"
+                            />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="0.0"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:textSize="@dimen/sp12"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp5"
+                        text_sol_show="@{vm.quosolfee}"
+                        />
+
+
+
+                </LinearLayout>
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+            <com.hjq.shape.layout.ShapeLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/dp10"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_marginLeft="@dimen/dp10"
+                app:shape_strokeColor="@color/c_29313d"
+                app:shape_strokeWidth="@dimen/dp1"
+                app:shape_radius="@dimen/dp10"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <com.hjq.shape.view.ShapeImageView
+                            android:layout_width="@dimen/dp15"
+                            android:layout_height="@dimen/dp15"
+                            android:src="@mipmap/ic_wallet1"
+                            app:shape_solidColor="@color/c_2e2e2e"
+                            app:shape_radius="@dimen/dp45"
+                            android:layout_marginLeft="@dimen/dp5"
+
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/str_fee_wallet"
+                            android:textSize="@dimen/sp12"
+                            android:layout_marginLeft="@dimen/dp5"
+                            android:textColor="@color/primaryTextGray"
+                            />
+
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/sp14"
+                        android:gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:ellipsize="middle"
+                        android:singleLine="true"
+                        android:text="@string/str_f_default_n_a"
+                        loadtext="@{vm.wallet}"
+                        android:textColor="@color/white"
+                        />
+
+
+
+                </LinearLayout>
+
+
+
+            </com.hjq.shape.layout.ShapeLinearLayout>
+
+
+
+     </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp65"
+            >
+
+            <com.zksg.kudoud.widgets.CircularProgressBarCountDown
+                android:layout_width="@dimen/dp20"
+                android:layout_height="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp5"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_quo_timeover"
+                android:textSize="@dimen/sp13"
+                android:layout_marginLeft="@dimen/dp5"
+                android:textColor="@color/white"
+                />
+
+
+        </LinearLayout>
+
+     <com.hjq.shape.view.ShapeButton
+            android:id="@+id/next"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/str_ok"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold"
+            app:shape_radius="@dimen/dp10"
+            app:shape_solidColor="@color/c_29313d"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginRight="@dimen/dp15"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp15"
+            app:shape_solidPressedColor="@color/colorAccent"
+            android:onClick="@{()->click.VerfityUser()}"
+            />
+
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+</layout>

@@ -248,4 +248,8 @@
     <string name="str_exchange_amount_lower">The swap amount cannot be too small</string>
     <string name="str_quo">Quotes</string>
     <string name="str_search_contract">Search the name or contract</string>
+    <string name="str_input">Input</string>
+    <string name="str_output">Output</string>
+    <string name="str_quo_timeover">Quo price has expired</string>
+    <string name="str_fee_wallet">Payer</string>
 </resources>

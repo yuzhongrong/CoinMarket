@@ -39,7 +39,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.3:3000";
+      String BASE_URL=" http://192.168.10.2:3000";
 
 
     @GET("login/cellphone")
@@ -48,8 +48,7 @@ public interface ApiService {
     Single<ResponsPublishApk> commitPublish(@Body RequestBody requestBody);
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoList(@Query("page") int page, @Query("pageSize") int pageSize);
-
-
+    
     @GET("/mst/getAppinfoList")
     Single<CommonResponse<DataResponse<ArrayList<AppInfoBean>>>> getAppinfoList(@Query("page") int page, @Query("pageSize") int pageSize,@Query("app_download_count") int app_download_count);
 

@@ -74,9 +74,7 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     var startCirc=ObservableField(false)
 
 
-    //最终返回的兑换链上交易id
-    @JvmField
-    var signatureOnChain=MutableResult("")
+
 
     @JvmField
     var commit=MutableResult(false)
@@ -105,30 +103,6 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     }
 
 
-    fun getQuoForCallback(from: String,to: String,amount:String,fromdecimal: Int,mQuoCallback: QuoCallback){
-        viewModelScope.launch {
-//            loadingVisible.postValue(true)
-            withContext(Dispatchers.IO){
-                DataRepository.getInstance().getQuo(from,to,amount,fromdecimal){
-                    if(it.responseStatus.isSuccess){
-                        Log.d("----getQuo-->",GsonUtil.toJson(it.result.data))
-                        if(it.result!=null){
-                            quo.postValue(it.result.data)
-                            postRouterFee(it.result.data)
-                            mQuoCallback.QuoCallbackResult(it.result.data)
-                            //开始倒计时循环
-//                            startCirc.set(true)
-//                            loadingVisible.postValue(false)
-
-                        }
-
-                    }
-                }
-            }
-
-        }
-
-    }
 
 
     fun getNetworkGas(feeMints:String,callback:QuoGasCallback){
@@ -181,45 +155,8 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     }
 
 
-    fun reqSwapTransationCallback(quopubkey58: QuoPubkey58Entity,mSwapTransationCallback: SwapTransationCallback){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                DataRepository.getInstance().reqSwapTransation(quopubkey58){
-                    if(it.responseStatus.isSuccess){
-                        if(it.result.data!=null){
-                            mTransaction.postValue(it.result.data)
-                            mSwapTransationCallback.MSwapTransationCallback(it.result.data)
-                        }
 
-                    }
-                }
-            }
 
-        }
-    }
-
-    fun submmitSwapTx(body: SubmmitVerTxReqBodyEntity){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                DataRepository.getInstance().submmitSwapTx(body){
-                    if(it.responseStatus.isSuccess){
-//                        Log.d("----submmitSwapTx-->",it.result.data)
-//                        if(!TextUtils.isEmpty(it.result.data)){
-//
-//                        }
-                        if(!TextUtils.isEmpty(it.result.data)){
-                            signatureOnChain.value=it.result.data
-                            Log.d("----tx success-->",it.result.data)
-                        }
-
-                    }else{
-                        Log.d("----tx fail-->",it.responseStatus.msg)
-                    }
-                }
-            }
-
-        }
-    }
 
 
     fun broadcastTx(signTransation:String){
