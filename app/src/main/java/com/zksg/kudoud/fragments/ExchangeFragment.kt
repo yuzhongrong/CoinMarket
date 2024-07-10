@@ -31,6 +31,7 @@ import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.api.rpc.Cluster
 import com.zksg.kudoud.wallet.api.rpc.types.SolanaCommitment
 import com.zksg.kudoud.wallet.api.ws.SolanaWebSocketClient
+import com.zksg.kudoud.wallet.api.ws.listener.NotificationEventListener
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT
 import com.zksg.kudoud.wallet.constants.Constants.TOKEN_WIF_CONTRACT
 import com.zksg.kudoud.wallet.data.jupswap.SolanaTransactionSerializer.*
@@ -44,7 +45,7 @@ import java.math.RoundingMode
 class ExchangeFragment:BaseFragment(){
 
     var handler: Handler = Handler(Looper.getMainLooper())
-    val delayMillis = 1000L // 1秒
+    val delayMillis = 800L // 1秒
     var runnable: Runnable? = null
     val minInputAmount=0.01
     var tempInputAmount="1"
@@ -82,7 +83,7 @@ class ExchangeFragment:BaseFragment(){
     fun initWebSorket(){
         //订阅账号
         var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
-         mSolanaWebSocketClient= SolanaWebSocketClient(Cluster.ALCHEMY)
+         mSolanaWebSocketClient= SolanaWebSocketClient(Cluster.QUICKNODE_ws)
 
         mSolanaWebSocketClient?.accountSubscribe(
             solanaAccount!!.publicKey.toBase58()
@@ -415,7 +416,8 @@ class ExchangeFragment:BaseFragment(){
                     var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(it.swap64,it.lastValidBlockHeight,solanaAccount.publicKey.toBase58(),signature58)
                     meViewModel!!.submmitSwapTx(mSubmmitVerTxReqBodyEntity)
                     //订阅交易
-                    mSolanaWebSocketClient?.signatureSubscribe(signature58){
+                    mSolanaWebSocketClient!!.signatureSubscribe(signature58
+                    ) {
                         Log.d("----signatureSubscribe---->",GsonUtils.toJson(it))
                     }
 

@@ -39,7 +39,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.2:3000";
+      String BASE_URL=" http://192.168.10.3:3000";
 
 
     @GET("login/cellphone")
@@ -152,6 +152,11 @@ public interface ApiService {
 
     @POST("/api/swap/submmitSwapTx")
     Single<CommonResponse<String>> submmitSwapTx(@Body SubmmitVerTxReqBodyEntity request );
+
+    @GET("/api/swap/getSwapTxState")
+    Single<CommonResponse<String>> getSwapTxState(@Query("txId") String txId);
+
+
 
 
 }

@@ -209,6 +209,7 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 //                        }
                         if(!TextUtils.isEmpty(it.result.data)){
                             signatureOnChain.value=it.result.data
+                            Log.d("----tx success-->",it.result.data)
                         }
 
                     }else{
