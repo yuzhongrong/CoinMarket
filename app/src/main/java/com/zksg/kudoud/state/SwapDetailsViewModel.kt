@@ -53,6 +53,14 @@ class SwapDetailsViewModel : BaseLoadingViewModel() {
     @JvmField
     var wallet=ObservableField("")
 
+    //控制倒计时是否开始
+    @JvmField
+    var countDown=ObservableField(false)
+
+
+    //控制倒计时完成后的ui
+    @JvmField
+    var countDownFinish=ObservableField(false)
 
     fun getQuoForCallback(from: String,to: String,amount:String,fromdecimal: Int,mQuoCallback: QuoCallback){
         viewModelScope.launch {
@@ -116,6 +124,7 @@ class SwapDetailsViewModel : BaseLoadingViewModel() {
 
     fun submmitSwapTx(body: SubmmitVerTxReqBodyEntity){
         viewModelScope.launch {
+            loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().submmitSwapTx(body){
                     if(it.responseStatus.isSuccess){
@@ -126,6 +135,7 @@ class SwapDetailsViewModel : BaseLoadingViewModel() {
                         if(!TextUtils.isEmpty(it.result.data)){
                             signatureOnChain.value=it.result.data
                             Log.d("----tx success-->",it.result.data)
+                            loadingVisible.postValue(false)
                         }
 
                     }else{

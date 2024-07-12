@@ -391,6 +391,22 @@ public class CommonBindingAdapter {
 
     }
 
+
+
+    @BindingAdapter(value = {"loadtext_quo_swap","loadtext_quo_fromdecimal_swap","loadtext_quo_symbol_swap"}, requireAll = false)
+    public static void loadtext_quo_swap(TextView view, String value,String fromdecimal,String symbol) {
+        if(view==null||TextUtils.isEmpty(value)||TextUtils.isEmpty(fromdecimal)||TextUtils.isEmpty(symbol))return;
+        BigDecimal outAmount=new BigDecimal(value);
+        BigDecimal result= outAmount.divide(new BigDecimal(Math.pow(10,Integer.parseInt(fromdecimal))));
+
+        if(view.getId()==R.id.outputAmount){
+            view.setText(result.toString()+" "+symbol);
+        }else{
+            view.setText("≈ "+result+" "+symbol);
+        }
+
+    }
+
     @BindingAdapter(value = {"loadtext_quo_rate","loadtext_quo_fromdecimal_rate","loadtext_quo_todecimal_rate"}, requireAll = false)
     public static void loadtext_quo(TextView view, QuoEntity value,String fromdecimal,String todecimal) {
         if(view==null||value==null)return;

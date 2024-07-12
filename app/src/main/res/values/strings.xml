@@ -374,4 +374,6 @@
     <string name="str_output">输出</string>
     <string name="str_quo_timeover">报价已过期,请重新获取</string>
     <string name="str_fee_wallet">付费钱包</string>
+    <string name="str_notget_quo">无法获取报价</string>
+    <string name="str_update_quo">更新</string>
 </resources>

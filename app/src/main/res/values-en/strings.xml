@@ -252,4 +252,6 @@
     <string name="str_output">Output</string>
     <string name="str_quo_timeover">Quo price has expired</string>
     <string name="str_fee_wallet">Payer</string>
+    <string name="str_notget_quo">Unable to get quote</string>
+    <string name="str_update_quo">Update</string>
 </resources>

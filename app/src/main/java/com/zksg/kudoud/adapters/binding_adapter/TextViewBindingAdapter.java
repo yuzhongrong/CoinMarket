@@ -734,5 +734,12 @@ public class TextViewBindingAdapter {
     }
 
 
+    @BindingAdapter(value = {"meme_amount","meme_symbol"},requireAll = false)
+    public static void meme_amount(TextView tv,String amount,String symbol) {
+        if(tv==null||TextUtils.isEmpty(symbol))return;
+        tv.setText(amount+" "+symbol);
+    }
+
+
 
 }

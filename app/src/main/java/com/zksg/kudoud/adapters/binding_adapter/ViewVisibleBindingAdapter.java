@@ -1,6 +1,8 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -86,6 +88,18 @@ public class ViewVisibleBindingAdapter {
         if(start){
             view.startCountDown();
         }
+    }
+
+    @BindingAdapter(value = {"view_count_down_botton_show"},requireAll = false)
+    public static void view_count_down_botton_show(Button view, boolean isupdate) {
+        if(view==null)return;
+        if(isupdate){
+            view.setText(view.getResources().getText(R.string.str_update_quo));
+        }else{
+            view.setText(view.getResources().getText(R.string.str_ok));
+
+        }
+
     }
 
 
