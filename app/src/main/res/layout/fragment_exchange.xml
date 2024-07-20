@@ -629,7 +629,174 @@
 
         </com.hjq.shape.layout.ShapeLinearLayout>
 
+        <com.hjq.shape.layout.ShapeRelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp10"
+            android:layout_alignParentBottom="true"
+            android:gravity="center_vertical"
+            app:shape_strokeColor="@color/c_29313d"
+            app:shape_strokeWidth="@dimen/dp1"
+            app:shape_radius="@dimen/dp15"
+            android:layout_marginLeft="@dimen/dp10"
+            android:layout_marginRight="@dimen/dp10"
+            common_show_hide="@{vm.mSwapStateEntityShow}"
+            >
 
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:orientation="horizontal"
+
+                >
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:id="@+id/icon_from"
+                    android:layout_width="@dimen/dp28"
+                    android:layout_height="@dimen/dp28"
+
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_solana_common"
+                    app:shape_radius="@dimen/dp45"
+                    meme_imv_if_sol="@{vm.mSwapStateEntity.from}"
+
+                    />
+
+
+                <com.hjq.shape.view.ShapeImageView
+                    android:id="@+id/icon_to"
+                    android:layout_width="@dimen/dp28"
+                    android:layout_height="@dimen/dp28"
+
+                    android:layout_marginLeft="-15dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_solana_common"
+                    app:shape_radius="@dimen/dp45"
+                    meme_imv_if_sol="@{vm.mSwapStateEntity.to}"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_f_default_n_a"
+                    android:textColor="@color/whitesmoke"
+                    android:textSize="@dimen/sp12"
+                    android:textStyle="bold"
+                    loadtext="@{vm.mSwapStateEntity.from.symbol}"
+
+                    />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="->"
+                    android:textColor="@color/whitesmoke"
+                    android:textSize="@dimen/sp12"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="@dimen/dp5"
+
+                    />
+
+                     <TextView
+
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="@string/str_f_default_n_a"
+                         android:textColor="@color/whitesmoke"
+                         android:textSize="@dimen/sp12"
+                         android:textStyle="bold"
+                         android:layout_marginLeft="@dimen/dp5"
+                         loadtext="@{vm.mSwapStateEntity.to.symbol}"
+
+                         />
+
+
+                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp4"
+                    android:text="@string/str_solana"
+                    android:textColor="@color/primaryTextGray"
+                    android:textSize="@dimen/sp10"
+
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="@dimen/dp25"
+                >
+
+
+                <ProgressBar
+                    android:layout_width="@dimen/dp12"
+                    android:layout_height="@dimen/dp12"
+                    android:layout_gravity="center_vertical"
+                    />
+
+
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/str_swaping"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/sp10"
+                    android:textStyle="bold"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="@dimen/dp2"
+
+                    />
+
+<!--                <TextView-->
+<!--                    android:id="@+id/number_allprice"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerHorizontal="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_gravity="right"-->
+<!--                    android:layout_marginTop="@dimen/dp5"-->
+<!--                    android:text="@string/str_f_default_n_a"-->
+<!--                    android:textColor="@color/primaryTextGray"-->
+<!--                    android:textSize="@dimen/sp12"-->
+<!--                    android:textStyle="bold"-->
+<!--                    app:shape_radius="@dimen/dp5"-->
+<!--                    calculateTokenDallor="@{uiwallettoken}"-->
+<!--                    />-->
+
+
+            </LinearLayout>
+
+        </com.hjq.shape.layout.ShapeRelativeLayout>
 
 
     </RelativeLayout>

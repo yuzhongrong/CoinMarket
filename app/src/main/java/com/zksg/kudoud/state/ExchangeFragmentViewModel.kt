@@ -15,6 +15,7 @@ import com.zksg.kudoud.callback.QuoCallback
 import com.zksg.kudoud.callback.QuoGasCallback
 import com.zksg.kudoud.callback.SwapTransationCallback
 import com.zksg.kudoud.callback.TokenInfo
+import com.zksg.kudoud.entitys.SwapStateEntity
 import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
@@ -73,6 +74,16 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
     @JvmField
     var startCirc=ObservableField(false)
 
+
+    @JvmField
+    var mSwapStateEntity=ObservableField<SwapStateEntity>()
+    //控制布局显示
+    @JvmField
+    var mSwapStateEntityShow=ObservableField(false)
+
+    //兑换是否成功
+    @JvmField
+    var mSwapGetStateSuccess=MutableResult(false)
 
 
 

@@ -886,6 +886,7 @@ public class DataRepository {
         ApiEngine.getInstance()
                 .getApiService()
                 .submmitSwapTx(body)
+                .delay(800,TimeUnit.MILLISECONDS)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
 //                .delay(1, TimeUnit.SECONDS)

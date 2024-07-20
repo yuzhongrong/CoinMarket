@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.GsonUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
@@ -20,10 +21,14 @@ import com.zksg.kudoud.state.SwapDetailsViewModel
 import com.zksg.kudoud.utils.WalletUtils
 import com.zksg.kudoud.wallet.utils.TweetNaclFast
 import com.paymennt.crypto.lib.Base58
+import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.callback.SwapTransationCallback
 import com.zksg.kudoud.callback.WalletCreateFingPrintCallback
+import com.zksg.kudoud.contants.GlobalConstant.MMKV_SWAP_STATE
 import com.zksg.kudoud.dialogs.CreateWalletfingprintDialog
+import com.zksg.kudoud.entitys.SwapStateEntity
 import com.zksg.kudoud.repository.DataRepository
+import com.zksg.kudoud.utils.GsonUtil
 import com.zksg.kudoud.widgets.CircularProgressBarCountDown
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -60,9 +65,13 @@ class SwapDetailActivity :BaseDialogActivity() {
         }
 
         mSwapDetailsViewModel!!.signatureOnChain.observe(this){
-            //ui显示页面提交的订单
+            //提交完成,获取tx 并且打印出来
+            Log.d("------submit tx complete---->",it)
+            var mSwapStateEntity= SwapStateEntity(mSwapDetailsViewModel!!.from.value,mSwapDetailsViewModel!!.to.value,it,"processed")
+            //保存最新交易到本地缓存
+            MMKV.mmkvWithID(MMKV_SWAP_STATE+"_"+pubkey58).encode(MMKV_SWAP_STATE,GsonUtils.toJson(mSwapStateEntity))
+            this.finish()
         }
-
 
     }
 
