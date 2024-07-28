@@ -377,4 +377,6 @@
     <string name="str_notget_quo">无法获取报价</string>
     <string name="str_update_quo">更新</string>
     <string name="str_swaping">兑换中</string>
+    <string name="str_swap_fail">兑换失败</string>
+    <string name="str_swap_success">兑换成功</string>
 </resources>

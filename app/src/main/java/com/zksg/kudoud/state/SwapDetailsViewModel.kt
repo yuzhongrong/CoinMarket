@@ -124,7 +124,7 @@ class SwapDetailsViewModel : BaseLoadingViewModel() {
 
     fun submmitSwapTx(body: SubmmitVerTxReqBodyEntity){
         viewModelScope.launch {
-            loadingVisible.postValue(true)
+//            loadingVisible.postValue(true)
             withContext(Dispatchers.IO){
                 DataRepository.getInstance().submmitSwapTx(body){
                     if(it.responseStatus.isSuccess){

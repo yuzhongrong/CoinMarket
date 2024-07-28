@@ -35,6 +35,7 @@ import com.netease.lib_network.entitys.QuoPubkey58Entity;
 import com.netease.lib_network.entitys.ReqSwapTransation;
 import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
+import com.netease.lib_network.entitys.SwapQueryStateResult;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -886,7 +887,6 @@ public class DataRepository {
         ApiEngine.getInstance()
                 .getApiService()
                 .submmitSwapTx(body)
-                .delay(800,TimeUnit.MILLISECONDS)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
 //                .delay(1, TimeUnit.SECONDS)
@@ -910,16 +910,16 @@ public class DataRepository {
 
 
     }
-    public void getSwapTxState(String txId, DataResult.Result<CommonResponse<String>> result){
+    public void getSwapTxState(String txId, DataResult.Result<CommonResponse<List<SwapQueryStateResult>>> result){
         ApiEngine.getInstance()
                 .getApiService()
                 .getSwapTxState(txId)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
 //                .delay(1, TimeUnit.SECONDS)
-                .subscribe(new MySimpleObserver<CommonResponse<String>>() {
+                .subscribe(new MySimpleObserver<CommonResponse<List<SwapQueryStateResult>>>() {
                     @Override
-                    protected void onSuccessed(CommonResponse<String> bean) {
+                    protected void onSuccessed(CommonResponse<List<SwapQueryStateResult>> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));

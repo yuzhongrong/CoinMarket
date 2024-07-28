@@ -255,4 +255,6 @@
     <string name="str_notget_quo">Unable to get quote</string>
     <string name="str_update_quo">Update</string>
     <string name="str_swaping">Proccess</string>
+    <string name="str_swap_fail">Fail</string>
+    <string name="str_swap_success">Success</string>
 </resources>

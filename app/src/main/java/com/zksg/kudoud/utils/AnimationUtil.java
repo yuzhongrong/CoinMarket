@@ -1,5 +1,9 @@
 package com.zksg.kudoud.utils;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
@@ -29,6 +33,24 @@ public class AnimationUtil {
         imageView.startAnimation(rotateAnimation);
         // 更新当前旋转角度
         currentRotation = toDegrees % 360; // 保持角度在 0 到 360 度之间
+    }
+
+
+    public static void fadeOutAndHideView(final View view) {
+        // 设置渐变动画
+        ObjectAnimator fadeOut = ObjectAnimator.ofFloat(view, "alpha", 1f, 0f);
+        fadeOut.setDuration(1000); // 动画持续时间（毫秒）
+
+        // 设置动画结束后隐藏View
+        fadeOut.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                view.setVisibility(View.GONE);
+            }
+        });
+
+        // 开始动画
+        fadeOut.start();
     }
 }
 

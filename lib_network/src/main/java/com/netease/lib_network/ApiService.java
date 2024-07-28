@@ -13,6 +13,7 @@ import com.netease.lib_network.entitys.QuoEntity;
 import com.netease.lib_network.entitys.QuoPubkey58Entity;
 import com.netease.lib_network.entitys.ReqSwapTransation;
 import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity;
+import com.netease.lib_network.entitys.SwapQueryStateResult;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -39,7 +40,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.5:3000";
+      String BASE_URL=" http://192.168.10.3:3000";
 
 
     @GET("login/cellphone")
@@ -153,7 +154,7 @@ public interface ApiService {
     Single<CommonResponse<String>> submmitSwapTx(@Body SubmmitVerTxReqBodyEntity request );
 
     @GET("/api/swap/getSwapTxState")
-    Single<CommonResponse<String>> getSwapTxState(@Query("txId") String txId);
+    Single<CommonResponse<List<SwapQueryStateResult>>> getSwapTxState(@Query("txId") String txId);
 
 
 

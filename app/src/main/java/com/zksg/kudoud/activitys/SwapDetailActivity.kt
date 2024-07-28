@@ -29,6 +29,7 @@ import com.zksg.kudoud.dialogs.CreateWalletfingprintDialog
 import com.zksg.kudoud.entitys.SwapStateEntity
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.utils.GsonUtil
+import com.zksg.kudoud.wallet.data.SolanaAccount
 import com.zksg.kudoud.widgets.CircularProgressBarCountDown
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -37,7 +38,7 @@ import kotlinx.coroutines.withContext
 class SwapDetailActivity :BaseDialogActivity() {
     var mSwapDetailsViewModel: SwapDetailsViewModel? = null
     var sharedViewModel: SharedViewModel?=null
-    var pubkey58:String?=null
+    var mSolanaAccount:SolanaAccount?=null
     var from:UiWalletToken?=null
     var to:UiWalletToken?=null
     var fromamount:String?=null
@@ -69,14 +70,14 @@ class SwapDetailActivity :BaseDialogActivity() {
             Log.d("------submit tx complete---->",it)
             var mSwapStateEntity= SwapStateEntity(mSwapDetailsViewModel!!.from.value,mSwapDetailsViewModel!!.to.value,it,"processed")
             //保存最新交易到本地缓存
-            MMKV.mmkvWithID(MMKV_SWAP_STATE+"_"+pubkey58).encode(MMKV_SWAP_STATE,GsonUtils.toJson(mSwapStateEntity))
+            MMKV.mmkvWithID(MMKV_SWAP_STATE+"_"+mSolanaAccount!!.publicKey.toBase58()).encode(MMKV_SWAP_STATE,GsonUtils.toJson(mSwapStateEntity))
             this.finish()
         }
 
     }
 
     private fun InitData() {
-        pubkey58= WalletUtils.getSolanaAccount(sharedViewModel!!,"")?.publicKey?.toBase58()
+        mSolanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
          from=intent.extras?.get("from") as UiWalletToken
          to=intent.extras?.get("to") as UiWalletToken
         fromamount=intent.extras?.getString("fromamount")
@@ -84,7 +85,7 @@ class SwapDetailActivity :BaseDialogActivity() {
         mSwapDetailsViewModel!!.from.value=from
         mSwapDetailsViewModel!!.to.value=to
         mSwapDetailsViewModel!!.from_amount.value=fromamount
-        mSwapDetailsViewModel!!.wallet.set(pubkey58)
+        mSwapDetailsViewModel!!.wallet.set(mSolanaAccount!!.publicKey.toBase58())
         getQuo(from!!.mint,to!!.mint,fromamount!!,from!!.decimal.toInt())
     }
 
@@ -98,19 +99,18 @@ class SwapDetailActivity :BaseDialogActivity() {
     }
 
 
-    public fun signAndSubmitTx(mQuoEntity: QuoEntity){
-        var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
-        var mQuoPubkey58Entity= QuoPubkey58Entity(mQuoEntity,solanaAccount!!.publicKey.toBase58())
+     fun signAndSubmitTx(mQuoEntity: QuoEntity){
+         mSwapDetailsViewModel!!.loadingVisible.postValue(true)
+        var mQuoPubkey58Entity= QuoPubkey58Entity(mQuoEntity,mSolanaAccount!!.publicKey.toBase58())
         mSwapDetailsViewModel!!.reqSwapTransationCallback(mQuoPubkey58Entity){
-            var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
             //签名
-            var signatureProvider = TweetNaclFast.Signature(ByteArray(0), solanaAccount!!.secretKey)
+            var signatureProvider = TweetNaclFast.Signature(ByteArray(0), mSolanaAccount!!.secretKey)
             var signature = signatureProvider.detached(Base58.decode(it.msgserialize))
             var signature58 = Base58.encode(signature)
             Log.d("----tx-sign--->", signature58)
 
             //提交交易
-            var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(it.swap64,it.lastValidBlockHeight,solanaAccount.publicKey.toBase58(),signature58)
+            var mSubmmitVerTxReqBodyEntity= SubmmitVerTxReqBodyEntity(it.swap64,it.lastValidBlockHeight,mSolanaAccount!!.publicKey.toBase58(),signature58)
             mSwapDetailsViewModel!!.submmitSwapTx(mSubmmitVerTxReqBodyEntity)
         }
 

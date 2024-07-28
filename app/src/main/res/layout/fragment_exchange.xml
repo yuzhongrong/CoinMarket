@@ -641,11 +641,12 @@
             app:shape_radius="@dimen/dp15"
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginRight="@dimen/dp10"
-            common_show_hide="@{vm.mSwapStateEntityShow}"
+            swap_state_layout_show_hide="@{vm.mSwapStateEntityShow}"
             >
 
 
             <LinearLayout
+                android:id="@+id/left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -684,54 +685,55 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_toRightOf="@+id/left"
+                android:layout_marginLeft="@dimen/dp15"
                 android:orientation="vertical">
 
 
-                 <LinearLayout
-                     android:layout_width="wrap_content"
-                     android:layout_height="wrap_content"
-                     android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/name"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/str_f_default_n_a"
-                    android:textColor="@color/whitesmoke"
-                    android:textSize="@dimen/sp12"
-                    android:textStyle="bold"
-                    loadtext="@{vm.mSwapStateEntity.from.symbol}"
+                    android:orientation="horizontal">
 
-                    />
+                    <TextView
+                        android:id="@+id/name"
+                        loadtext="@{vm.mSwapStateEntity.from.symbol}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/str_f_default_n_a"
+                        android:textColor="@color/whitesmoke"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold"
 
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="->"
-                    android:textColor="@color/whitesmoke"
-                    android:textSize="@dimen/sp12"
-                    android:textStyle="bold"
-                    android:layout_marginLeft="@dimen/dp5"
-
-                    />
-
-                     <TextView
-
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="@string/str_f_default_n_a"
-                         android:textColor="@color/whitesmoke"
-                         android:textSize="@dimen/sp12"
-                         android:textStyle="bold"
-                         android:layout_marginLeft="@dimen/dp5"
-                         loadtext="@{vm.mSwapStateEntity.to.symbol}"
-
-                         />
+                        />
 
 
-                 </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:text="->"
+                        android:textColor="@color/whitesmoke"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold"
+
+                        />
+
+                    <TextView
+
+                        loadtext="@{vm.mSwapStateEntity.to.symbol}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dp5"
+                        android:text="@string/str_f_default_n_a"
+                        android:textColor="@color/whitesmoke"
+                        android:textSize="@dimen/sp12"
+                        android:textStyle="bold"
+
+                        />
+
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/price"
@@ -739,7 +741,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp4"
                     android:text="@string/str_solana"
-                    android:textColor="@color/primaryTextGray"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/sp10"
 
                     />
@@ -761,19 +763,22 @@
                     android:layout_width="@dimen/dp12"
                     android:layout_height="@dimen/dp12"
                     android:layout_gravity="center_vertical"
+                    swap_state_progressbar_show="@{vm.mSwapStateEntity.state}"
                     />
 
 
                 <TextView
                     android:id="@+id/number"
+                    swap_state_text_show="@{vm.mSwapStateEntity.state}"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/str_swaping"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/sp10"
-                    android:textStyle="bold"
+                    android:layout_height="13dp"
                     android:layout_gravity="right"
                     android:layout_marginLeft="@dimen/dp2"
+                    android:text="@string/str_swaping"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/sp11"
+                    android:textStyle="bold"
+
 
                     />
 

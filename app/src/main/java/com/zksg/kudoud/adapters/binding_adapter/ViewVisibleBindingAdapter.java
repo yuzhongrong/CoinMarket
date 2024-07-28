@@ -74,6 +74,8 @@ public class ViewVisibleBindingAdapter {
     }
 
 
+
+
     @BindingAdapter(value = {"view_count_down"},requireAll = false)
     public static void view_count_down(CircularProgressBarCountDown view, CircularProgressBarCountDown.OnCountDownFinishListener listener) {
             if(view==null||listener==null)return;

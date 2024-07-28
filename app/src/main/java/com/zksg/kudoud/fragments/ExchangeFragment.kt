@@ -84,6 +84,14 @@ class ExchangeFragment:BaseFragment(){
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        //init swap state
+        initSwapstate()
+
+    }
+
+
     fun initWebSorket(){
         //订阅账号
         var solanaAccount= WalletUtils.getSolanaAccount(sharedViewModel!!,"")
@@ -154,12 +162,19 @@ class ExchangeFragment:BaseFragment(){
 //            }
 //        }
 
-        exViewModel!!.mSwapGetStateSuccess.observe(this){
+        exViewModel!!.mSwapGetState.observe(this){
+            var pubkey58= WalletUtils.getSolanaAccount(sharedViewModel!!,"")?.publicKey?.toBase58()
+            if(!TextUtils.isEmpty(pubkey58)){
+                var swapJson= MMKV.mmkvWithID(GlobalConstant.MMKV_SWAP_STATE +"_"+pubkey58).decodeString(GlobalConstant.MMKV_SWAP_STATE)
+                if(!TextUtils.isEmpty(swapJson)){
+                    var mSwapStateEntity=GsonUtils.fromJson(swapJson, SwapStateEntity::class.java)
+                    mSwapStateEntity.state=it.state
+                    var newGson= GsonUtils.toJson(mSwapStateEntity)
+                    MMKV.mmkvWithID(GlobalConstant.MMKV_SWAP_STATE +"_"+pubkey58).encode(GlobalConstant.MMKV_SWAP_STATE,newGson)
+                    exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
+                }
+            }
 
-            //首先更新uI布局
-
-            //隐藏整个布局
-            exViewModel!!.mSwapStateEntityShow.set(false)
         }
 
     }
@@ -303,8 +318,19 @@ class ExchangeFragment:BaseFragment(){
             exViewModel!!.to.value= exViewModel!!.to.value
         }
 
+
+
+    }
+
+
+
+    private fun initSwapstate(){
+
         //根据swap的txid获取状态如何是process则显示,相反不显示
         var pubkey58= WalletUtils.getSolanaAccount(sharedViewModel!!,"")?.publicKey?.toBase58()
+        if(TextUtils.isEmpty(pubkey58)){
+            return
+        }
         var swapJson= MMKV.mmkvWithID(GlobalConstant.MMKV_SWAP_STATE +"_"+pubkey58).decodeString(GlobalConstant.MMKV_SWAP_STATE)
         if(swapJson!=null&&!TextUtils.isEmpty(swapJson)){//如果存在 就分3种情况processed|confirmed|fail
             var mSwapStateEntity=GsonUtils.fromJson(swapJson, SwapStateEntity::class.java)
@@ -312,16 +338,19 @@ class ExchangeFragment:BaseFragment(){
 
                 //显示布局
                 exViewModel!!.mSwapStateEntityShow.set(true)
-                //每隔10秒去请求下状态,请求完成设置mSwapGetStateSuccess=true|false
+                exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
+                //初始化需要请求一次
+                exViewModel!!.getSwapstate(mSwapStateEntity.txId)
 
             }else{
                 exViewModel!!.mSwapStateEntityShow.set(false)
+                exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
+
             }
 //            exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
         }else{//初始第一次没有
             exViewModel!!.mSwapStateEntityShow.set(false)
         }
-
 
     }
 

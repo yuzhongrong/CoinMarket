@@ -83,7 +83,10 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 
     //兑换是否成功
     @JvmField
-    var mSwapGetStateSuccess=MutableResult(false)
+    var mSwapGetState=MutableResult<SwapQueryStateResult>()
+
+
+
 
 
 
@@ -105,6 +108,25 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 //                            loadingVisible.postValue(false)
 
                         }
+
+                    }
+                }
+            }
+
+        }
+    }
+
+
+
+    fun getSwapstate(txId:String){
+        viewModelScope.launch {
+//            loadingVisible.postValue(true)
+            withContext(Dispatchers.IO){
+                DataRepository.getInstance().getSwapTxState(txId){
+                    if(it.responseStatus.isSuccess){
+                        Log.d("----getSwapstate-->",it.result.data.size.toString())
+                       var result= it.result.data[0]
+                        if(result!=null)mSwapGetState.postValue(result)
 
                     }
                 }

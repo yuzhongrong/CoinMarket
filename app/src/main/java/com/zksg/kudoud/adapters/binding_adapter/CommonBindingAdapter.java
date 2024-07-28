@@ -19,6 +19,7 @@ package com.zksg.kudoud.adapters.binding_adapter;
 import static com.blankj.utilcode.util.StringUtils.getStringArray;
 import static com.netease.lib_network.constants.config.ipfs_base_url;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
@@ -57,6 +58,7 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.utils.AnimationUtil;
 import com.zksg.lib_api.beans.BannerBean;
 
 import java.math.BigDecimal;
@@ -448,6 +450,48 @@ public class CommonBindingAdapter {
     public static void loadtext_router(TextView view,List<QuoEntity.RoutePlanDTO> router) {
         if(view==null|| router==null) return;
         view.setText(router.size()+">");
+    }
+
+
+    @BindingAdapter(value = {"swap_state_progressbar_show"}, requireAll = false)
+    public static void swap_state_progressbar_show(View view,String state) {
+        if(view==null|| TextUtils.isEmpty(state)) return;
+        if(state.equals("fail")){
+            view.setVisibility(View.GONE);
+        }else if(state.equals("confirmed")){
+            view.setVisibility(View.GONE);
+        }else if(state.equals("process")){
+            view.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @SuppressLint("ResourceAsColor")
+    @BindingAdapter(value = {"swap_state_text_show"}, requireAll = false)
+    public static void swap_state_text_show(TextView view,String state) {
+        if(view==null|| TextUtils.isEmpty(state)) return;
+
+        if(state.equals("fail")){
+            view.setText(R.string.str_swap_fail);
+            view.setTextColor(view.getContext().getColor(R.color.typeRed));
+        }else if(state.equals("confirmed")){
+            view.setText(R.string.str_swap_success);
+            view.setTextColor(view.getContext().getColor(R.color.c_1bc89e));
+        }else if(state.equals("process")){
+            view.setText(R.string.str_swaping);
+            view.setTextColor(view.getContext().getColor(R.color.colorAccent));
+
+        }
+    }
+
+
+    @BindingAdapter(value = {"swap_state_layout_show_hide"},requireAll = false)
+    public static void swap_state_layout_show_hide(View myView, boolean value) {
+        if(myView==null)return;
+//        if(value){
+//            myView.setVisibility(View.VISIBLE);
+//        }else{
+//            AnimationUtil.fadeOutAndHideView(myView);
+//        }
     }
 
 
