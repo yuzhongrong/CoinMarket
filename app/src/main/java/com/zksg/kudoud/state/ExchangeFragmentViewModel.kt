@@ -76,10 +76,8 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
 
 
     @JvmField
-    var mSwapStateEntity=ObservableField<SwapStateEntity>()
-    //控制布局显示
-    @JvmField
-    var mSwapStateEntityShow=ObservableField(false)
+    var mSwapStateEntity=MutableResult<SwapStateEntity>()
+
 
     //兑换是否成功
     @JvmField
@@ -126,7 +124,7 @@ class ExchangeFragmentViewModel : BaseLoadingViewModel() {
                     if(it.responseStatus.isSuccess){
                         Log.d("----getSwapstate-->",it.result.data.size.toString())
                        var result= it.result.data[0]
-                        if(result!=null)mSwapGetState.postValue(result)
+                        if(result!=null){ mSwapGetState.postValue(result) }
 
                     }
                 }

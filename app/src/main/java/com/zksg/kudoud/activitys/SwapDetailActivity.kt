@@ -71,6 +71,7 @@ class SwapDetailActivity :BaseDialogActivity() {
             var mSwapStateEntity= SwapStateEntity(mSwapDetailsViewModel!!.from.value,mSwapDetailsViewModel!!.to.value,it,"processed")
             //保存最新交易到本地缓存
             MMKV.mmkvWithID(MMKV_SWAP_STATE+"_"+mSolanaAccount!!.publicKey.toBase58()).encode(MMKV_SWAP_STATE,GsonUtils.toJson(mSwapStateEntity))
+            ToastUtils.showShort(R.string.str_transation_pendding)
             this.finish()
         }
 

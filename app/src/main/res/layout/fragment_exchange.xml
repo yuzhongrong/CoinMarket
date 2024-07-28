@@ -641,10 +641,8 @@
             app:shape_radius="@dimen/dp15"
             android:layout_marginLeft="@dimen/dp10"
             android:layout_marginRight="@dimen/dp10"
-            swap_state_layout_show_hide="@{vm.mSwapStateEntityShow}"
+
             >
-
-
             <LinearLayout
                 android:id="@+id/left"
                 android:layout_width="wrap_content"
@@ -771,7 +769,7 @@
                     android:id="@+id/number"
                     swap_state_text_show="@{vm.mSwapStateEntity.state}"
                     android:layout_width="wrap_content"
-                    android:layout_height="13dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_marginLeft="@dimen/dp2"
                     android:text="@string/str_swaping"

@@ -162,20 +162,24 @@ class ExchangeFragment:BaseFragment(){
 //            }
 //        }
 
+        //动态获取swap 最近一次订单状态
         exViewModel!!.mSwapGetState.observe(this){
+
             var pubkey58= WalletUtils.getSolanaAccount(sharedViewModel!!,"")?.publicKey?.toBase58()
             if(!TextUtils.isEmpty(pubkey58)){
                 var swapJson= MMKV.mmkvWithID(GlobalConstant.MMKV_SWAP_STATE +"_"+pubkey58).decodeString(GlobalConstant.MMKV_SWAP_STATE)
                 if(!TextUtils.isEmpty(swapJson)){
                     var mSwapStateEntity=GsonUtils.fromJson(swapJson, SwapStateEntity::class.java)
                     mSwapStateEntity.state=it.state
-                    var newGson= GsonUtils.toJson(mSwapStateEntity)
-                    MMKV.mmkvWithID(GlobalConstant.MMKV_SWAP_STATE +"_"+pubkey58).encode(GlobalConstant.MMKV_SWAP_STATE,newGson)
-                    exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
+                    MMKV.mmkvWithID(GlobalConstant.MMKV_SWAP_STATE +"_"+pubkey58).encode(GlobalConstant.MMKV_SWAP_STATE, GsonUtils.toJson(mSwapStateEntity))
+                    exViewModel!!.mSwapStateEntity.postValue(mSwapStateEntity)
                 }
             }
 
         }
+
+
+
 
     }
 
@@ -334,22 +338,22 @@ class ExchangeFragment:BaseFragment(){
         var swapJson= MMKV.mmkvWithID(GlobalConstant.MMKV_SWAP_STATE +"_"+pubkey58).decodeString(GlobalConstant.MMKV_SWAP_STATE)
         if(swapJson!=null&&!TextUtils.isEmpty(swapJson)){//如果存在 就分3种情况processed|confirmed|fail
             var mSwapStateEntity=GsonUtils.fromJson(swapJson, SwapStateEntity::class.java)
+            Log.d("-----mSwapStateEntity---->",swapJson)
             if(mSwapStateEntity.state.equals("processed")){
 
                 //显示布局
-                exViewModel!!.mSwapStateEntityShow.set(true)
-                exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
+//                exViewModel!!.mSwapStateEntityShow.set(true)
+                exViewModel!!.mSwapStateEntity.postValue(mSwapStateEntity)
                 //初始化需要请求一次
                 exViewModel!!.getSwapstate(mSwapStateEntity.txId)
 
             }else{
-                exViewModel!!.mSwapStateEntityShow.set(false)
-                exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
+//                exViewModel!!.mSwapStateEntityShow.set(false)
+                exViewModel!!.mSwapStateEntity.postValue(mSwapStateEntity)
 
             }
-//            exViewModel!!.mSwapStateEntity.set(mSwapStateEntity)
         }else{//初始第一次没有
-            exViewModel!!.mSwapStateEntityShow.set(false)
+
         }
 
     }

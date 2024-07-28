@@ -427,7 +427,7 @@ public class CommonBindingAdapter {
 
             view.setText("≈ "+ result.toPlainString()+" ");
         }else{
-            BigDecimal result= inputAmount.divide(one, 10, RoundingMode.HALF_UP).multiply(outputAmount);
+            BigDecimal result= one.divide(inputAmount, 10, RoundingMode.HALF_UP).multiply(outputAmount);
             Log.d("----result---->",result.toPlainString());
             // 设置保留小数点后6位
             result = result.setScale(6, RoundingMode.HALF_UP);
@@ -460,7 +460,7 @@ public class CommonBindingAdapter {
             view.setVisibility(View.GONE);
         }else if(state.equals("confirmed")){
             view.setVisibility(View.GONE);
-        }else if(state.equals("process")){
+        }else if(state.equals("processed")){
             view.setVisibility(View.VISIBLE);
         }
     }
@@ -476,7 +476,7 @@ public class CommonBindingAdapter {
         }else if(state.equals("confirmed")){
             view.setText(R.string.str_swap_success);
             view.setTextColor(view.getContext().getColor(R.color.c_1bc89e));
-        }else if(state.equals("process")){
+        }else if(state.equals("processed")){
             view.setText(R.string.str_swaping);
             view.setTextColor(view.getContext().getColor(R.color.colorAccent));
 
@@ -484,15 +484,15 @@ public class CommonBindingAdapter {
     }
 
 
-    @BindingAdapter(value = {"swap_state_layout_show_hide"},requireAll = false)
-    public static void swap_state_layout_show_hide(View myView, boolean value) {
-        if(myView==null)return;
+//    @BindingAdapter(value = {"swap_state_layout_show_hide"},requireAll = false)
+//    public static void swap_state_layout_show_hide(View myView, boolean value) {
+//        if(myView==null)return;
 //        if(value){
 //            myView.setVisibility(View.VISIBLE);
 //        }else{
 //            AnimationUtil.fadeOutAndHideView(myView);
 //        }
-    }
+//    }
 
 
 
