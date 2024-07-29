@@ -18,6 +18,7 @@
      android:layout_height="match_parent"
      android:orientation="vertical"
      android:background="@color/c_131722"
+
      >
      <com.hjq.shape.layout.ShapeRelativeLayout
          android:layout_width="match_parent"
@@ -29,8 +30,8 @@
 
 
          <com.hjq.shape.view.ShapeImageView
-             android:layout_width="@dimen/dp30"
-             android:layout_height="@dimen/dp30"
+             android:layout_width="@dimen/dp27"
+             android:layout_height="@dimen/dp27"
              android:layout_alignParentLeft="true"
              android:src="@mipmap/ic_back_left"
              android:layout_centerVertical="true"
@@ -64,32 +65,65 @@
              android:layout_centerVertical="true"
              app:shape_solidColor="@color/c_2e2e2e"
              app:shape_radius="@dimen/dp45"
-             android:visibility="gone"
              app:shape_solidPressedColor="@color/c_a0a0ab"
              android:clickable="true"
              />
 
      </com.hjq.shape.layout.ShapeRelativeLayout>
 
-   <RelativeLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+     <LinearLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:orientation="vertical"
+         >
 
 
        <WebView
            android:id="@+id/webView"
            android:layout_width="match_parent"
-           android:layout_height="match_parent"
+           android:layout_height="@dimen/dp410"
            meme_web_dexscreen="@{vm.htmlStr}"
-           web_progress_callback="@{vm.callback}"
-           android:background="@color/bg_layout_common"
 
            />
 
 
-   </RelativeLayout>
+     <FrameLayout
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content">
+         <com.hjq.shape.view.ShapeImageView
+             android:layout_width="match_parent"
+             android:layout_height="0.2dp"
+             app:shape_solidColor="@color/c_29313d"
+             android:layout_gravity="bottom"
+             android:layout_marginBottom="@dimen/dp2"
+             android:layout_marginLeft="@dimen/dp5"
+             android:layout_marginRight="@dimen/dp5"
+
+             />
+         <net.lucode.hackware.magicindicator.MagicIndicator
+             android:id="@+id/meme_magic_indicator_tab"
+             android:layout_width="match_parent"
+             android:layout_height="@dimen/dp50"
+             android:layout_marginTop="@dimen/dp10"
+             customIndicator_titles="@{vm.indicatorTitle}"
+             customIndicator_viewpagerid="@{vm.viewpagerid}"
+             customIndicator_tabAdapter="@{vm.tabAdapter}"
+             android:layout_marginLeft="@dimen/dp5"
+             android:layout_marginRight="@dimen/dp5"
+             />
+
+     </FrameLayout>
+
+     <!-- ViewPager -->
+     <androidx.viewpager.widget.ViewPager
+         android:id="@+id/view_pager_kline"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_marginTop="@dimen/dp5"
 
 
+         />
+   </LinearLayout>
 
  </LinearLayout>
 

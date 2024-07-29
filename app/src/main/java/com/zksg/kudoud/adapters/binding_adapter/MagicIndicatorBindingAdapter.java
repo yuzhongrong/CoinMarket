@@ -14,6 +14,7 @@ import com.kunminx.architecture.utils.Utils;
 import com.netease.lib_common_ui.navigator.CommonNavigatorCreater;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.adapters.MyPagerAdapter;
+import com.zksg.kudoud.adapters.SimpleFragmentPagerAdapter;
 import com.zksg.kudoud.beans.DiscoveryChannelEnum;
 import com.zksg.kudoud.widgets.ScaleTransitionPagerTitleView;
 
@@ -248,6 +249,84 @@ public class MagicIndicatorBindingAdapter {
 //            commonNavigator.setAdjustMode(true);
             ViewPager mViewPager = magicIndicator.getRootView().findViewById(R.id.view_pager1);
             mViewPager.setAdapter(new MyPagerAdapter());
+            commonNavigator.setAdapter(new CommonNavigatorAdapter() {
+                @Override
+                public int getCount() {
+                    return channels.length;
+                }
+
+                @Override
+                public IPagerTitleView getTitleView(Context context, final int index) {
+                    SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
+                    simplePagerTitleView.setText(channels[index]);
+                    simplePagerTitleView.setTextSize(14f);
+                    simplePagerTitleView.setTypeface(null, Typeface.BOLD);
+                    simplePagerTitleView.setNormalColor(Color.parseColor("#aeaeb0"));
+                    simplePagerTitleView.setSelectedColor(Color.parseColor("#FFFFFF"));
+                    simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            mViewPager.setCurrentItem(index);
+                        }
+                    });
+                    return simplePagerTitleView;
+
+                }
+
+                @Override
+                public IPagerIndicator getIndicator(Context context) {
+//                    WrapPagerIndicator indicator = new WrapPagerIndicator(context);
+//                    indicator.setFillColor(Color.parseColor("#00FFFFFF"));
+//                    indicator.setRoundRadius(18);
+//                    return indicator;
+
+
+                    LinePagerIndicator indicator = new LinePagerIndicator(context);
+                    float navigatorHeight = context.getResources().getDimension(R.dimen.dp2);
+//                    float lineWidth = UIUtil.dip2px(context, 60);
+                    float lineHeight = navigatorHeight;
+                    indicator.setLineHeight(lineHeight);
+//                    indicator.setLineWidth(lineWidth);
+                    indicator.setRoundRadius(lineHeight / 2);
+//                    indicator.setYOffset(borderWidth);
+                    indicator.setMode(LinePagerIndicator.MODE_WRAP_CONTENT);
+
+                    indicator.setColors(Color.parseColor("#ffffff"));
+                    indicator.setYOffset(6f);
+
+                    return indicator;
+
+                }
+            });
+
+            magicIndicator.setNavigator(commonNavigator);
+            ViewPagerHelper.bind(magicIndicator, mViewPager);
+
+
+        }
+    }
+
+
+    @BindingAdapter(value = {"customIndicator_titles","customIndicator_viewpagerid","customIndicator_tabAdapter"}, requireAll = false)
+    public static void customIndicatorTitle_common(MagicIndicator magicIndicator, String[] channels, int viewpagerId, SimpleFragmentPagerAdapter tabAdapter) {
+        if(magicIndicator==null||viewpagerId==0||tabAdapter==null)return;
+        if (channels != null) {
+//            ViewPager viewPager = magicIndicator.getRootView().findViewById(R.id.view_pager);
+//            magicIndicator.setBackgroundColor(Color.WHITE);
+//            CommonNavigator commonNavigator = CommonNavigatorCreater.setDefaultNavigator(magicIndicator.getContext(), channels, viewPager);
+//            // 自适应模式
+//            commonNavigator.setAdjustMode(true);
+//            magicIndicator.setNavigator(commonNavigator);
+//            ViewPagerHelper.bind(magicIndicator, viewPager);
+
+//            magicIndicator.setBackgroundColor(Color.TRANSPARENT);
+            // 设置ViewPager的适配器
+
+            CommonNavigator commonNavigator = new CommonNavigator(magicIndicator.getContext());
+//            commonNavigator.setScrollPivotX(0.35f);
+//            commonNavigator.setAdjustMode(true);
+            ViewPager mViewPager = magicIndicator.getRootView().findViewById(viewpagerId);
+            mViewPager.setAdapter(tabAdapter);
             commonNavigator.setAdapter(new CommonNavigatorAdapter() {
                 @Override
                 public int getCount() {
