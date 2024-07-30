@@ -12,123 +12,149 @@
             type="com.zksg.kudoud.activitys.Kline2OrderActivity.ClickProxy" />
 
     </data>
-
- <LinearLayout
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:orientation="vertical"
+ <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
      android:background="@color/c_131722"
+        >
 
-     >
-     <com.hjq.shape.layout.ShapeRelativeLayout
+     <!-- AppBarLayout -->
+     <com.google.android.material.appbar.AppBarLayout
          android:layout_width="match_parent"
-         android:layout_height="@dimen/dp45"
-         app:shape_radius="@dimen/sp30"
-         android:layout_marginLeft="@dimen/dp8"
-         android:layout_marginRight="@dimen/dp8"
+         android:layout_height="wrap_content"
+         android:background="@color/c_131722"
          >
 
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             app:layout_scrollFlags="scroll|enterAlways|snap"
+             >
 
-         <com.hjq.shape.view.ShapeImageView
-             android:layout_width="@dimen/dp27"
-             android:layout_height="@dimen/dp27"
-             android:layout_alignParentLeft="true"
-             android:src="@mipmap/ic_back_left"
-             android:layout_centerVertical="true"
-             android:layout_marginLeft="@dimen/dp5"
-             app:shape_solidColor="@color/c_29313d"
-             app:shape_radius="@dimen/dp45"
-             android:padding="@dimen/dp3"
-             app:shape_solidPressedColor="@color/c_a0a0ab"
-             android:clickable="true"
-             android:onClick="@{()->click.close()}"
-             />
+                 <com.hjq.shape.layout.ShapeRelativeLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/dp45"
+                     app:shape_radius="@dimen/sp30"
+                     android:layout_marginLeft="@dimen/dp8"
+                     android:layout_marginRight="@dimen/dp8"
+                     app:layout_scrollFlags="scroll|enterAlways|snap"
+                     >
 
-         <TextView
 
-             bindTextViewContent="@{vm.symbol}"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:layout_centerInParent="true"
-             android:text="@string/str_f_default_n_a"
-             android:textColor="@color/white"
-             android:textSize="@dimen/sp20"
+                     <com.hjq.shape.view.ShapeImageView
+                         android:layout_width="@dimen/dp27"
+                         android:layout_height="@dimen/dp27"
+                         android:layout_alignParentLeft="true"
+                         android:src="@mipmap/ic_back_left"
+                         android:layout_centerVertical="true"
+                         android:layout_marginLeft="@dimen/dp5"
+                         app:shape_solidColor="@color/c_29313d"
+                         app:shape_radius="@dimen/dp45"
+                         android:padding="@dimen/dp3"
+                         app:shape_solidPressedColor="@color/c_a0a0ab"
+                         android:clickable="true"
+                         android:onClick="@{()->click.close()}"
+                         />
 
-             android:textStyle="bold" />
+                     <TextView
 
-         <com.hjq.shape.view.ShapeImageView
-             android:layout_width="@dimen/dp25"
-             android:layout_height="@dimen/dp25"
-             android:layout_alignParentRight="true"
-             android:layout_marginRight="@dimen/dp10"
-             android:src="@mipmap/ic_star"
-             android:layout_centerVertical="true"
-             app:shape_solidColor="@color/c_2e2e2e"
-             app:shape_radius="@dimen/dp45"
-             app:shape_solidPressedColor="@color/c_a0a0ab"
-             android:clickable="true"
-             />
+                         bindTextViewContent="@{vm.symbol}"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_centerInParent="true"
+                         android:text="@string/str_f_default_n_a"
+                         android:textColor="@color/white"
+                         android:textSize="@dimen/sp20"
 
-     </com.hjq.shape.layout.ShapeRelativeLayout>
+                         android:textStyle="bold" />
+
+                     <com.hjq.shape.view.ShapeImageView
+                         android:layout_width="@dimen/dp25"
+                         android:layout_height="@dimen/dp25"
+                         android:layout_alignParentRight="true"
+                         android:layout_marginRight="@dimen/dp10"
+                         android:src="@mipmap/ic_star"
+                         android:layout_centerVertical="true"
+                         app:shape_solidColor="@color/c_2e2e2e"
+                         app:shape_radius="@dimen/dp45"
+                         app:shape_solidPressedColor="@color/c_a0a0ab"
+                         android:clickable="true"
+                         />
+
+                 </com.hjq.shape.layout.ShapeRelativeLayout>
+                 <com.google.android.material.appbar.CollapsingToolbarLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="@dimen/dp410"
+                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:id="@+id/content"
+                         app:layout_collapseMode="parallax"
+                         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                         >
+                         <WebView
+                             android:id="@+id/webView"
+                             android:layout_width="match_parent"
+                             android:layout_height="@dimen/dp410"
+                             meme_web_dexscreen="@{vm.htmlStr}"
+
+                         />
+
+                     </LinearLayout>
+
+                 </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+         </LinearLayout>
+     </com.google.android.material.appbar.AppBarLayout>
 
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          android:orientation="vertical"
+         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+         app:layout_scrollFlags="scroll|enterAlways|snap"
+
          >
 
-
-       <WebView
-           android:id="@+id/webView"
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/dp410"
-           meme_web_dexscreen="@{vm.htmlStr}"
-
-           />
-
-
-     <FrameLayout
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content">
-         <com.hjq.shape.view.ShapeImageView
+         <FrameLayout
              android:layout_width="match_parent"
-             android:layout_height="0.2dp"
-             app:shape_solidColor="@color/c_29313d"
-             android:layout_gravity="bottom"
-             android:layout_marginBottom="@dimen/dp2"
-             android:layout_marginLeft="@dimen/dp5"
-             android:layout_marginRight="@dimen/dp5"
+             android:layout_height="wrap_content">
+             <com.hjq.shape.view.ShapeImageView
+                 android:layout_width="match_parent"
+                 android:layout_height="0.2dp"
+                 app:shape_solidColor="@color/c_29313d"
+                 android:layout_gravity="bottom"
+                 android:layout_marginBottom="@dimen/dp2"
+                 android:layout_marginLeft="@dimen/dp5"
+                 android:layout_marginRight="@dimen/dp5"
 
-             />
-         <net.lucode.hackware.magicindicator.MagicIndicator
-             android:id="@+id/meme_magic_indicator_tab"
+                 />
+             <net.lucode.hackware.magicindicator.MagicIndicator
+                 android:id="@+id/meme_magic_indicator_tab"
+                 android:layout_width="match_parent"
+                 android:layout_height="@dimen/dp50"
+                 customIndicator_titles="@{vm.indicatorTitle}"
+                 customIndicator_viewpagerid="@{vm.viewpagerid}"
+                 customIndicator_tabAdapter="@{vm.tabAdapter}"
+                 android:layout_marginLeft="@dimen/dp5"
+                 android:layout_marginRight="@dimen/dp5"
+                 />
+
+         </FrameLayout>
+
+         <!-- ViewPager -->
+         <androidx.viewpager.widget.ViewPager
+             android:id="@+id/view_pager_kline"
              android:layout_width="match_parent"
-             android:layout_height="@dimen/dp50"
-             android:layout_marginTop="@dimen/dp10"
-             customIndicator_titles="@{vm.indicatorTitle}"
-             customIndicator_viewpagerid="@{vm.viewpagerid}"
-             customIndicator_tabAdapter="@{vm.tabAdapter}"
-             android:layout_marginLeft="@dimen/dp5"
-             android:layout_marginRight="@dimen/dp5"
+             android:layout_height="match_parent"
+             android:layout_marginTop="@dimen/dp5"
              />
 
-     </FrameLayout>
-
-     <!-- ViewPager -->
-     <androidx.viewpager.widget.ViewPager
-         android:id="@+id/view_pager_kline"
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:layout_marginTop="@dimen/dp5"
-
-
-         />
-   </LinearLayout>
-
-
- </LinearLayout>
-
-
+     </LinearLayout>
+ </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
 

@@ -28,7 +28,7 @@
         itemspace="@{1}"
         orientation="@{1}"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp346"
+        android:layout_height="match_parent"
         android:layout_marginTop="@dimen/dp8"
         submitList="@{vm.tokenInfo.pairs}"
         app:shape_radius="@dimen/dp10"
