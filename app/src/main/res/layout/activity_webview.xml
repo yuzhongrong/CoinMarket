@@ -76,7 +76,7 @@
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/dp410"
+                    android:layout_height="@dimen/dp390"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                     <LinearLayout
@@ -90,7 +90,7 @@
                         <WebView
                             android:id="@+id/webView"
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/dp410"
+                            android:layout_height="@dimen/dp390"
                             meme_web_dexscreen="@{vm.htmlStr}"
                             android:overScrollMode="always" />
                     </LinearLayout>
@@ -100,23 +100,16 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_scrollFlags="scroll|enterAlways|snap">
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            android:layout_marginTop="-40dp"
+            >
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
 
-                <com.hjq.shape.view.ShapeImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.2dp"
-                    app:shape_solidColor="@color/c_29313d"
-                    android:layout_gravity="bottom"
-                    android:layout_marginBottom="@dimen/dp2"
-                    android:layout_marginLeft="@dimen/dp5"
-                    android:layout_marginRight="@dimen/dp5" />
+
+
 
                 <net.lucode.hackware.magicindicator.MagicIndicator
                     android:id="@+id/meme_magic_indicator_tab"
@@ -127,7 +120,17 @@
                     customIndicator_tabAdapter="@{vm.tabAdapter}"
                     android:layout_marginLeft="@dimen/dp5"
                     android:layout_marginRight="@dimen/dp5" />
-            </FrameLayout>
+
+            <com.hjq.shape.view.ShapeImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                app:shape_solidColor="@color/c_29313d"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="@dimen/dp2"
+                android:layout_marginLeft="@dimen/dp5"
+                android:layout_marginRight="@dimen/dp5"
+                android:layout_marginTop="-1dp"
+                />
 
             <!-- ViewPager -->
             <androidx.viewpager.widget.ViewPager
