@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.databinding.ItemMemePoolListBinding;
 import com.zksg.kudoud.databinding.ItemWalletNetworkBinding;

@@ -14,7 +14,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.kunminx.architecture.ui.page.BaseActivity;
 import com.kunminx.architecture.ui.page.DataBindingConfig;
 import com.lxj.xpopup.XPopup;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.BR;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.adapters.CommonKlineDataPagerAdapter;
@@ -68,8 +68,8 @@ public class CoinsDetailActivity extends BaseDialogActivity {
             if(it){showDialog();}else{dismissDialog();}
         });
 
-        mCoinsDetailViewModel.tokenInfo.observe(this, dexScreenTokenInfo -> {
-            mCoinsDetailViewModel.mPairsDTO.postValue(dexScreenTokenInfo.getPairs().get(0));
+        mCoinsDetailViewModel.tokenInfo.observe(this, DexScreenTokenInfo1 -> {
+            mCoinsDetailViewModel.mPairsDTO.postValue(DexScreenTokenInfo1.getPairs().get(0));
         });
         mCoinsDetailViewModel.getTokenInfo(contract);
 
@@ -82,13 +82,13 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startTwitter(){
             String username="";
-            DexScreenTokenInfo.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
+            DexScreenTokenInfo1.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
             if(info==null){
                 ToastUtils.showShort(R.string.str_Invalid_twitter);
                 return;
             }
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=info.getSocials();
-            for(DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO item:socials){
+            List<DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO> socials=info.getSocials();
+            for(DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO item:socials){
                 if(item.getType().equals("twitter")){
                     username= StringUtils.extractUsernameFromUrl(item.getUrl());
                 }
@@ -103,13 +103,13 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startTelegram(){
             String username="";
-           DexScreenTokenInfo.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
+           DexScreenTokenInfo1.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
            if(info==null){
                ToastUtils.showShort(R.string.str_Invalid_telegram);
                return;
            }
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO> socials=info.getSocials();
-            for(DexScreenTokenInfo.PairsDTO.InfoDTO.SocialsDTO item:socials){
+            List<DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO> socials=info.getSocials();
+            for(DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO item:socials){
                 if(item.getType().equals("telegram")){
                     username= StringUtils.extractUsernameFromUrlTG(item.getUrl());
                 }
@@ -124,18 +124,18 @@ public class CoinsDetailActivity extends BaseDialogActivity {
 
         public void startWeb(){
             String url="";
-            DexScreenTokenInfo.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
+            DexScreenTokenInfo1.PairsDTO.InfoDTO info= mCoinsDetailViewModel.mPairsDTO.getValue().getInfo();
             if(info==null){
                 ToastUtils.showShort(R.string.str_Invalid_website);
                 return;
             }
-            List<DexScreenTokenInfo.PairsDTO.InfoDTO.WebsitesDTO> webs=info.getWebsites();
+            List<DexScreenTokenInfo1.PairsDTO.InfoDTO.WebsitesDTO> webs=info.getWebsites();
 
             if(webs==null||webs.size()==0){
                 ToastUtils.showShort(R.string.str_Invalid_website);
                 return;
             }
-            for(DexScreenTokenInfo.PairsDTO.InfoDTO.WebsitesDTO item:webs){
+            for(DexScreenTokenInfo1.PairsDTO.InfoDTO.WebsitesDTO item:webs){
                 if(item.getLabel().equals("Website")){
                     url=item.getUrl();
                 }

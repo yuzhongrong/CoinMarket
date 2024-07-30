@@ -2,9 +2,10 @@ package com.netease.lib_network.entitys;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class DexScreenTokenInfo {
+public class DexScreenTokenInfo1 implements Serializable {
 
 
     @SerializedName("schemaVersion")
@@ -28,7 +29,7 @@ public class DexScreenTokenInfo {
         this.pairs = pairs;
     }
 
-    public static class PairsDTO {
+    public static class PairsDTO implements Serializable{
         @SerializedName("chainId")
         private String chainId;
         @SerializedName("dexId")
@@ -54,7 +55,7 @@ public class DexScreenTokenInfo {
         @SerializedName("liquidity")
         private LiquidityDTO liquidity;
         @SerializedName("fdv")
-        private long fdv;
+        private int fdv;
         @SerializedName("pairCreatedAt")
         private long pairCreatedAt;
         @SerializedName("info")
@@ -156,11 +157,11 @@ public class DexScreenTokenInfo {
             this.liquidity = liquidity;
         }
 
-        public long getFdv() {
+        public int getFdv() {
             return fdv;
         }
 
-        public void setFdv(long fdv) {
+        public void setFdv(int fdv) {
             this.fdv = fdv;
         }
 

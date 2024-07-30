@@ -1,21 +1,21 @@
 package com.zksg.kudoud.entitys;
 
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 
 public class BindingParams_BS {
-    private DexScreenTokenInfo.PairsDTO mPairsDTO;
+    private DexScreenTokenInfo1.PairsDTO mPairsDTO;
     private int mType;
 
-    public BindingParams_BS(DexScreenTokenInfo.PairsDTO mPairsDTO, int mType) {
+    public BindingParams_BS(DexScreenTokenInfo1.PairsDTO mPairsDTO, int mType) {
         this.mPairsDTO = mPairsDTO;
         this.mType = mType;
     }
 
-    public DexScreenTokenInfo.PairsDTO getmPairsDTO() {
+    public DexScreenTokenInfo1.PairsDTO getmPairsDTO() {
         return mPairsDTO;
     }
 
-    public void setmPairsDTO(DexScreenTokenInfo.PairsDTO mPairsDTO) {
+    public void setmPairsDTO(DexScreenTokenInfo1.PairsDTO mPairsDTO) {
         this.mPairsDTO = mPairsDTO;
     }
 

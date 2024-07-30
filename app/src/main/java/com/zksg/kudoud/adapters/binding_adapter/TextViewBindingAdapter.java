@@ -13,7 +13,9 @@ import androidx.databinding.BindingAdapter;
 
 import com.hjq.shape.view.ShapeButton;
 import com.kunminx.architecture.domain.message.MutableResult;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.R;
@@ -48,7 +50,7 @@ public class TextViewBindingAdapter {
 
 
     @BindingAdapter(value = {"meme_suplly_tv"},requireAll = false)
-    public static void memesupllyTv(TextView tv, DexScreenTokenInfo.PairsDTO value) {
+    public static void memesupllyTv(TextView tv, DexScreenTokenInfo1.PairsDTO value) {
         if(value==null)return;
         BigDecimal fdv=new BigDecimal(value.getFdv());
         BigDecimal priceusdValue = new BigDecimal(value.getPriceUsd());
@@ -57,7 +59,7 @@ public class TextViewBindingAdapter {
     }
 
     @BindingAdapter(value = {"meme_suplly_tip_tv"},requireAll = false)
-    public static void memesuplly_tipTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
+    public static void memesuplly_tipTv(TextView tv,DexScreenTokenInfo1.PairsDTO value) {
         if(tv==null)return;
         tv.setText(DigitUtils.formatAmountTip());
     }
@@ -65,7 +67,7 @@ public class TextViewBindingAdapter {
 
     //24小时涨跌幅
     @BindingAdapter(value = {"meme_24hprice_change_tv"},requireAll = false)
-    public static void meme24hprice_changeTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
+    public static void meme24hprice_changeTv(TextView tv,DexScreenTokenInfo1.PairsDTO value) {
         if(tv==null||value==null)return;
         double price_24h=value.getPriceChange().getH24();
         if(price_24h>=0.0){
@@ -94,7 +96,7 @@ public class TextViewBindingAdapter {
 
     //设置quo 单位
     @BindingAdapter(value = {"meme_base_tag_tv"},requireAll = false)
-    public static void memebaseTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
+    public static void memebaseTv(TextView tv,DexScreenTokenInfo1.PairsDTO value) {
         if(tv==null||value==null)return;
         tv.setText("("+value.getBaseToken().getSymbol()+")");
 
@@ -102,7 +104,7 @@ public class TextViewBindingAdapter {
 
     //设置quo 单位
     @BindingAdapter(value = {"meme_quo_tag_tv"},requireAll = false)
-    public static void memequoTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
+    public static void memequoTv(TextView tv,DexScreenTokenInfo1.PairsDTO value) {
         if(tv==null||value==null)return;
         tv.setText("("+value.getQuoteToken().getSymbol()+")");
 
@@ -110,9 +112,9 @@ public class TextViewBindingAdapter {
 
     //设置quo value
     @BindingAdapter(value = {"meme_quo_value_tv"},requireAll = false)
-    public static void memequovalueTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
+    public static void memequovalueTv(TextView tv,DexScreenTokenInfo1.PairsDTO value) {
         if(tv==null||value==null)return;
-        DexScreenTokenInfo.PairsDTO.LiquidityDTO mliq=value.getLiquidity();
+        DexScreenTokenInfo1.PairsDTO.LiquidityDTO mliq=value.getLiquidity();
         if(mliq==null)return;
         BigDecimal que=new BigDecimal(value.getLiquidity().getQuote());
         tv.setText(DigitUtils.formatAmount(que.doubleValue()));
@@ -121,7 +123,7 @@ public class TextViewBindingAdapter {
 
     //设置base value
     @BindingAdapter(value = {"meme_base_value_tv"},requireAll = false)
-    public static void memebasevalueTv(TextView tv,DexScreenTokenInfo.PairsDTO value) {
+    public static void memebasevalueTv(TextView tv,DexScreenTokenInfo1.PairsDTO value) {
         if(tv==null||value==null||value.getLiquidity()==null)return;
         BigDecimal base=new BigDecimal(value.getLiquidity().getBase());
         tv.setText(DigitUtils.formatAmount(base.doubleValue()));
@@ -168,7 +170,7 @@ public class TextViewBindingAdapter {
 
     //展示base/quo
     @BindingAdapter(value = {"meme_base2quo_tv"},requireAll = false)
-    public static void memebase2quoTv(TextView tv, DexScreenTokenInfo.PairsDTO.LiquidityDTO value) {
+    public static void memebase2quoTv(TextView tv, DexScreenTokenInfo1.PairsDTO.LiquidityDTO value) {
         if(tv==null||value==null)return;
         BigDecimal basenumber=new BigDecimal(value.getBase());
         BigDecimal quonumber=new BigDecimal(value.getQuote());
@@ -179,7 +181,7 @@ public class TextViewBindingAdapter {
 
     //计算流动性
     @BindingAdapter(value = {"meme_liq_tv"},requireAll = false)
-    public static void memeliqTv(TextView tv, DexScreenTokenInfo.PairsDTO.LiquidityDTO value) {
+    public static void memeliqTv(TextView tv, DexScreenTokenInfo1.PairsDTO.LiquidityDTO value) {
         if(tv==null||value==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
         tv.setText(dollar+DigitUtils.formatAmount(value.getUsd()));
@@ -225,11 +227,11 @@ public class TextViewBindingAdapter {
 
     //计算所有池子总流动性
     @BindingAdapter(value = {"meme_all_liq_tv"},requireAll = false)
-    public static void memeallliqTv(TextView tv, List<DexScreenTokenInfo.PairsDTO> lists) {
+    public static void memeallliqTv(TextView tv, List<DexScreenTokenInfo1.PairsDTO> lists) {
         if(tv==null|lists==null||lists.size()==0)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
         BigDecimal result=new BigDecimal(0.0);
-        for(DexScreenTokenInfo.PairsDTO item:lists){
+        for(DexScreenTokenInfo1.PairsDTO item:lists){
             if(item.getLiquidity()==null)break;
             BigDecimal itemliq=new BigDecimal(item.getLiquidity().getUsd());
             result=result.add(itemliq);
@@ -241,11 +243,11 @@ public class TextViewBindingAdapter {
 
     //计算所有池子总流动性
     @BindingAdapter(value = {"meme_all_mc_tv"},requireAll = false)
-    public static void meme_all_mc_tv(TextView tv, List<DexScreenTokenInfo.PairsDTO> lists) {
+    public static void meme_all_mc_tv(TextView tv, List<DexScreenTokenInfo1.PairsDTO> lists) {
         if(tv==null|lists==null||lists.size()==0)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
         BigDecimal result=new BigDecimal(0.0);
-        for(DexScreenTokenInfo.PairsDTO item:lists){
+        for(DexScreenTokenInfo1.PairsDTO item:lists){
             BigDecimal itemfdv=new BigDecimal(item.getFdv());
             result=result.add(itemfdv);
         }
@@ -265,7 +267,7 @@ public class TextViewBindingAdapter {
             //获取当前池子的base币个数 这里的base 有可能不是nub 代币 例如 sin/nub
             String base_address=datas.getmPairsDTO().get(i).getBaseToken().getAddress();
             //获取当前pool的liq流动性
-            DexScreenTokenInfo.PairsDTO.LiquidityDTO mliq=datas.getmPairsDTO().get(i).getLiquidity();
+            DexScreenTokenInfo1.PairsDTO.LiquidityDTO mliq=datas.getmPairsDTO().get(i).getLiquidity();
             if(mliq==null)break;
             if(base_address.equalsIgnoreCase(base_origin)){
                BigDecimal basenumber=new BigDecimal(mliq.getBase());
@@ -298,7 +300,7 @@ public class TextViewBindingAdapter {
             //获取当前池子的base币个数 这里的base 有可能不是nub 代币 例如 sin/nub
             String base_address=datas.getmPairsDTO().get(i).getBaseToken().getAddress();
             //获取当前pool的liq流动性
-            DexScreenTokenInfo.PairsDTO.LiquidityDTO mliq=datas.getmPairsDTO().get(i).getLiquidity();
+            DexScreenTokenInfo1.PairsDTO.LiquidityDTO mliq=datas.getmPairsDTO().get(i).getLiquidity();
             if(mliq==null)break;
             if(base_address.equalsIgnoreCase(base_origin)){
                 BigDecimal basenumber=new BigDecimal(mliq.getBase());
@@ -321,7 +323,7 @@ public class TextViewBindingAdapter {
     }
 
 
-    private static BigDecimal callculatememesupllyTv(DexScreenTokenInfo.PairsDTO value) {
+    private static BigDecimal callculatememesupllyTv(DexScreenTokenInfo1.PairsDTO value) {
         if(value==null)return new BigDecimal(0.0);
         BigDecimal fdv=new BigDecimal(value.getFdv());
         BigDecimal priceusdValue = new BigDecimal(value.getPriceUsd());
@@ -333,7 +335,7 @@ public class TextViewBindingAdapter {
 
 
     @BindingAdapter(value = {"meme_create_tv"},requireAll = false)
-    public static void timestampToDateString(TextView tv, DexScreenTokenInfo.PairsDTO value) {
+    public static void timestampToDateString(TextView tv, DexScreenTokenInfo1.PairsDTO value) {
         if(value==null)return;
         String dollar=tv.getContext().getString(R.string.str_daller);
         String result=DateUtils.timestampToDateString(value.getPairCreatedAt());
@@ -413,7 +415,7 @@ public class TextViewBindingAdapter {
 
     //计算5m交易数比例
     @BindingAdapter(value = {"meme_tx_number_tv"},requireAll = false)
-    public static void memetxnumberTv(ProgressBar pb, DexScreenTokenInfo.PairsDTO value) {
+    public static void memetxnumberTv(ProgressBar pb, DexScreenTokenInfo1.PairsDTO value) {
         if(value==null)return;
         BigDecimal buys=new BigDecimal(value.getTxns().getM5().getBuys());
         BigDecimal sells=new BigDecimal(value.getTxns().getM5().getSells());
@@ -431,7 +433,7 @@ public class TextViewBindingAdapter {
 
     //计算1h交易数比例
     @BindingAdapter(value = {"meme_tx_1h_number_tv"},requireAll = false)
-    public static void memetx1hnumberTv(ProgressBar pb, DexScreenTokenInfo.PairsDTO value) {
+    public static void memetx1hnumberTv(ProgressBar pb, DexScreenTokenInfo1.PairsDTO value) {
         if(value==null)return;
         BigDecimal buys=new BigDecimal(value.getTxns().getH1().getBuys());
         BigDecimal sells=new BigDecimal(value.getTxns().getH1().getSells());
@@ -449,7 +451,7 @@ public class TextViewBindingAdapter {
 
     //计算6h交易数比例
     @BindingAdapter(value = {"meme_tx_6h_number_tv"},requireAll = false)
-    public static void memetx6hnumberTv(ProgressBar pb, DexScreenTokenInfo.PairsDTO value) {
+    public static void memetx6hnumberTv(ProgressBar pb, DexScreenTokenInfo1.PairsDTO value) {
         if(value==null)return;
         BigDecimal buys=new BigDecimal(value.getTxns().getH6().getBuys());
         BigDecimal sells=new BigDecimal(value.getTxns().getH6().getSells());
@@ -467,7 +469,7 @@ public class TextViewBindingAdapter {
 
     //计算24h交易数比例
     @BindingAdapter(value = {"meme_tx_24h_number_tv"},requireAll = false)
-    public static void memetx24hnumberTv(ProgressBar pb, DexScreenTokenInfo.PairsDTO value) {
+    public static void memetx24hnumberTv(ProgressBar pb, DexScreenTokenInfo1.PairsDTO value) {
         if(value==null)return;
         BigDecimal buys=new BigDecimal(value.getTxns().getH24().getBuys());
         BigDecimal sells=new BigDecimal(value.getTxns().getH24().getSells());
@@ -515,7 +517,7 @@ public class TextViewBindingAdapter {
 
 
     @BindingAdapter(value = {"memeviewpager_5m"},requireAll = false)
-    public static void meme_5m(TextView tv, DexScreenTokenInfo.PairsDTO mPairsDTO) {
+    public static void meme_5m(TextView tv, DexScreenTokenInfo1.PairsDTO mPairsDTO) {
         if(tv==null||mPairsDTO==null)return;
         int buys=mPairsDTO.getTxns().getM5().getBuys();
         int sells=mPairsDTO.getTxns().getM5().getSells();
@@ -535,7 +537,7 @@ public class TextViewBindingAdapter {
     }
 
     @BindingAdapter(value = {"memeviewpager_1h"},requireAll = false)
-    public static void meme_1h(TextView tv, DexScreenTokenInfo.PairsDTO mPairsDTO) {
+    public static void meme_1h(TextView tv, DexScreenTokenInfo1.PairsDTO mPairsDTO) {
         if(tv==null||mPairsDTO==null)return;
         int buys=mPairsDTO.getTxns().getH1().getBuys();
         int sells=mPairsDTO.getTxns().getH1().getSells();
@@ -556,7 +558,7 @@ public class TextViewBindingAdapter {
 
 
     @BindingAdapter(value = {"memeviewpager_6h"},requireAll = false)
-    public static void meme_6h(TextView tv, DexScreenTokenInfo.PairsDTO mPairsDTO) {
+    public static void meme_6h(TextView tv, DexScreenTokenInfo1.PairsDTO mPairsDTO) {
         if(tv==null||mPairsDTO==null)return;
         int buys=mPairsDTO.getTxns().getH6().getBuys();
         int sells=mPairsDTO.getTxns().getH6().getSells();
@@ -576,7 +578,7 @@ public class TextViewBindingAdapter {
 
 
     @BindingAdapter(value = {"memeviewpager_24h"},requireAll = false)
-    public static void meme24h(TextView tv, DexScreenTokenInfo.PairsDTO mPairsDTO) {
+    public static void meme24h(TextView tv, DexScreenTokenInfo1.PairsDTO mPairsDTO) {
         if(tv==null||mPairsDTO==null)return;
         int buys=mPairsDTO.getTxns().getH24().getBuys();
         int sells=mPairsDTO.getTxns().getH24().getSells();

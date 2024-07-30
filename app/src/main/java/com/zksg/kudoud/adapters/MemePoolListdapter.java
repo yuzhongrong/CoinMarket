@@ -6,7 +6,8 @@ import android.content.Intent;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.CoinsDetailActivity;
 import com.zksg.kudoud.databinding.ItemMemeListBinding;
@@ -14,7 +15,7 @@ import com.zksg.kudoud.databinding.ItemMemePoolListBinding;
 import com.zksg.kudoud.utils.DiffUtils;
 import com.zksg.lib_api.beans.MemeBaseEntry;
 
-public class MemePoolListdapter extends SimpleDataBindingAdapter<DexScreenTokenInfo.PairsDTO, ItemMemePoolListBinding> {
+public class MemePoolListdapter extends SimpleDataBindingAdapter<DexScreenTokenInfo1.PairsDTO, ItemMemePoolListBinding> {
 
     private Context mContex;
     public MemePoolListdapter(Context context) {
@@ -29,7 +30,7 @@ public class MemePoolListdapter extends SimpleDataBindingAdapter<DexScreenTokenI
     }
 
     @Override
-    protected void onBindItem(ItemMemePoolListBinding binding, DexScreenTokenInfo.PairsDTO item, RecyclerView.ViewHolder holder) {
+    protected void onBindItem(ItemMemePoolListBinding binding, DexScreenTokenInfo1.PairsDTO item, RecyclerView.ViewHolder holder) {
         binding.setMeme(item);
     }
 }

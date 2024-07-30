@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 
 import com.hjq.shape.view.ShapeButton;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.entitys.Base2QuoEntity;
 import com.zksg.kudoud.utils.DateUtils;

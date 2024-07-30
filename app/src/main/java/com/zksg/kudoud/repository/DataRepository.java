@@ -26,7 +26,8 @@ import com.netease.lib_network.MySimpleObserver;
 import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.BroadcastRequest;
 import com.netease.lib_network.entitys.CommitTransation;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.JupToken;
@@ -438,14 +439,13 @@ public class DataRepository {
 
 
 
-    public void getTokenInfoForDexScreen(String address,DataResult.Result<DexScreenTokenInfo> result){
+    public void getTokenInfoForDexScreen(String address,DataResult.Result<CommonResponse<DexScreenTokenInfo1>> result){
         ApiEngine.getInstance().getApiService().getTokenInfoForDexscreen(address)
                 .compose(ApiEngine.getInstance().applySchedulers())
-
                 .delay(1, TimeUnit.SECONDS)
-                .subscribe(new MySimpleObserver<DexScreenTokenInfo>() {
+                .subscribe(new MySimpleObserver<CommonResponse<DexScreenTokenInfo1>>() {
                     @Override
-                    protected void onSuccessed(DexScreenTokenInfo bean) {
+                    protected void onSuccessed(CommonResponse<DexScreenTokenInfo1> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));
@@ -460,16 +460,16 @@ public class DataRepository {
     }
 
 
-    public void getTokenInfoForJup(String arr_address,DataResult.Result<DexScreenTokenInfo> result){
+    public void getTokenInfoForJup(String arr_address,DataResult.Result<DexScreenTokenInfo1> result){
         ApiEngine.getInstance()
                 .getApiService()
                 .getTokenInfoForJupSwap(arr_address)
                 .compose(ApiEngine.getInstance().applySchedulers())
 
                 .delay(1, TimeUnit.SECONDS)
-                .subscribe(new MySimpleObserver<DexScreenTokenInfo>() {
+                .subscribe(new MySimpleObserver<DexScreenTokenInfo1>() {
                     @Override
-                    protected void onSuccessed(DexScreenTokenInfo bean) {
+                    protected void onSuccessed(DexScreenTokenInfo1 bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));
@@ -483,29 +483,6 @@ public class DataRepository {
                 });
     }
 
-
-    public void getWalletTokensFromRepository(String wallet,DataResult.Result<CommonResponse<List<NewWalletToken>>> result){
-        ApiEngine.getInstance()
-                .getApiService()
-                .getWalletTokens(wallet)
-                .compose(ApiEngine.getInstance().applySchedulers())
-
-//                .delay(1, TimeUnit.SECONDS)
-                .subscribe(new MySimpleObserver<CommonResponse<List<NewWalletToken>>>() {
-                    @Override
-                    protected void onSuccessed(CommonResponse<List<NewWalletToken>> bean) {
-                        ResponseStatus responseStatus = new ResponseStatus(
-                                String.valueOf("200"), true, ResultSource.NETWORK);
-                        result.onResult(new DataResult(bean, responseStatus));
-                    }
-
-                    @Override
-                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
-                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
-                        result.onResult(new DataResult(null, responseStatus));
-                    }
-                });
-    }
 
     public void getWalletSolBalanceFromRepository(String wallet,String mint,DataResult.Result<CommonResponse<ApiTokenInfo>> result){
         ApiEngine.getInstance()

@@ -20,7 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.netease.lib_network.entitys.ApiTokenInfo;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.entitys.UiWalletToken;
@@ -45,7 +46,7 @@ public class DiffUtils {
     private DiffUtil.ItemCallback<BabyInfo> mBabyItemCallback;
 
     private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
-    private DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO> mMemePoolCallback;
+    private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO> mMemePoolCallback;
     private DiffUtil.ItemCallback<WalletNetworkEntity> mWalletNetworkEntityCallback;
     private DiffUtil.ItemCallback<SimpleWallet> mMyWalletEntityCallback;
 
@@ -208,16 +209,16 @@ public class DiffUtils {
 
 
 
-    public DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO> getMemePooltemCallback() {
+    public DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO> getMemePooltemCallback() {
         if (mMemePoolCallback == null) {
-            mMemePoolCallback = new DiffUtil.ItemCallback<DexScreenTokenInfo.PairsDTO>() {
+            mMemePoolCallback = new DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO>() {
                 @Override
-                public boolean areItemsTheSame(@NonNull DexScreenTokenInfo.PairsDTO oldItem, @NonNull DexScreenTokenInfo.PairsDTO newItem) {
+                public boolean areItemsTheSame(@NonNull DexScreenTokenInfo1.PairsDTO oldItem, @NonNull DexScreenTokenInfo1.PairsDTO newItem) {
                     return oldItem.equals(newItem);
                 }
 
                 @Override
-                public boolean areContentsTheSame(@NonNull DexScreenTokenInfo.PairsDTO oldItem, @NonNull DexScreenTokenInfo.PairsDTO newItem) {
+                public boolean areContentsTheSame(@NonNull DexScreenTokenInfo1.PairsDTO oldItem, @NonNull DexScreenTokenInfo1.PairsDTO newItem) {
                     return oldItem.getPairAddress().equals(newItem.getPairAddress());
                 }
             };

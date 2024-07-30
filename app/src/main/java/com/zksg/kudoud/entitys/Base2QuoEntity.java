@@ -1,14 +1,15 @@
 package com.zksg.kudoud.entitys;
 
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 
 import java.util.List;
 
 public class Base2QuoEntity {
     private String contract;
-    private List<DexScreenTokenInfo.PairsDTO> mPairsDTO;
+    private List<DexScreenTokenInfo1.PairsDTO> mPairsDTO;
 
-    public Base2QuoEntity(String contract, List<DexScreenTokenInfo.PairsDTO> mPairsDTO) {
+    public Base2QuoEntity(String contract, List<DexScreenTokenInfo1.PairsDTO> mPairsDTO) {
         this.contract = contract;
         this.mPairsDTO = mPairsDTO;
     }
@@ -21,11 +22,11 @@ public class Base2QuoEntity {
         this.contract = contract;
     }
 
-    public List<DexScreenTokenInfo.PairsDTO> getmPairsDTO() {
+    public List<DexScreenTokenInfo1.PairsDTO> getmPairsDTO() {
         return mPairsDTO;
     }
 
-    public void setmPairsDTO(List<DexScreenTokenInfo.PairsDTO> mPairsDTO) {
+    public void setmPairsDTO(List<DexScreenTokenInfo1.PairsDTO> mPairsDTO) {
         this.mPairsDTO = mPairsDTO;
     }
 }

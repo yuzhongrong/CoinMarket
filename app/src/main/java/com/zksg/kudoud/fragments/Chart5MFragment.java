@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer;
 
 import com.kunminx.architecture.ui.page.BaseFragment;
 import com.kunminx.architecture.ui.page.DataBindingConfig;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.BR;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.CoinsDetailActivity;

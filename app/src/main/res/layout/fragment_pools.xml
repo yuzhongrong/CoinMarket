@@ -9,7 +9,9 @@
             name="vm"
             type="com.zksg.kudoud.state.PoolsFragmentViewModel" />
 
-
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.MemePoolListdapter" />
 
     </data>
 <LinearLayout
@@ -17,6 +19,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+
+
+    <com.hjq.shape.layout.ShapeRecyclerView
+
+        linearAdapter="@{adapter}"
+        cannotScrollVertically="@{false}"
+        itemspace="@{1}"
+        orientation="@{1}"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp346"
+        android:layout_marginTop="@dimen/dp8"
+        submitList="@{vm.tokenInfo.pairs}"
+        app:shape_radius="@dimen/dp10"
+
+        android:padding="@dimen/dp1"
+
+        />
+
 
 </LinearLayout>
 </layout>

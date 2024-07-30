@@ -5,7 +5,8 @@ import com.netease.lib_network.entitys.ApiTokenInfo;
 
 import com.netease.lib_network.entitys.BroadcastRequest;
 import com.netease.lib_network.entitys.CommitTransation;
-import com.netease.lib_network.entitys.DexScreenTokenInfo;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
+import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
@@ -40,7 +41,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.3:3000";
+      String BASE_URL=" http://192.168.10.2:3000";
 
 
     @GET("login/cellphone")
@@ -93,12 +94,12 @@ public interface ApiService {
     Single<CommonResponse<UpgradeBean>> getUpgradeInfo();
 
 
-    @GET("/latest/dex/tokens/{tokenAddresses}")
-    Single<DexScreenTokenInfo> getTokenInfoForDexscreen(@Path("tokenAddresses") String address);
+    @GET("/api/wallet/getDexScreenTokenInfo")
+    Single<CommonResponse<DexScreenTokenInfo1>> getTokenInfoForDexscreen(@Query("contract") String address);
 
 
     @GET("/v4/price/{ids}")
-    Single<DexScreenTokenInfo> getTokenInfoForJupSwap(@Path("ids") String address);
+    Single<DexScreenTokenInfo1> getTokenInfoForJupSwap(@Path("ids") String address);
     @GET("/api/wallet/getTokenList")
     Single<CommonResponse<List<NewWalletToken>>> getWalletTokens(@Query("wallet") String wallet);
 

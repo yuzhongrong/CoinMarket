@@ -326,6 +326,7 @@ public class MagicIndicatorBindingAdapter {
 //            commonNavigator.setScrollPivotX(0.35f);
 //            commonNavigator.setAdjustMode(true);
             ViewPager mViewPager = magicIndicator.getRootView().findViewById(viewpagerId);
+            mViewPager.setOffscreenPageLimit(3);
             mViewPager.setAdapter(tabAdapter);
             commonNavigator.setAdapter(new CommonNavigatorAdapter() {
                 @Override

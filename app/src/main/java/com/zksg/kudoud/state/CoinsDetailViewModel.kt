@@ -3,8 +3,8 @@ package com.zksg.kudoud.state
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.kunminx.architecture.domain.message.MutableResult
-import com.netease.lib_network.entitys.DexScreenTokenInfo
-import com.netease.lib_network.entitys.DexScreenTokenInfo.PairsDTO
+import com.netease.lib_network.entitys.DexScreenTokenInfo1
+import com.netease.lib_network.entitys.DexScreenTokenInfo1.PairsDTO
 import com.zksg.kudoud.adapters.CommonKlineDataPagerAdapter
 import com.zksg.kudoud.customviews.NoTouchScrollViewpager
 import com.zksg.kudoud.entitys.Base2QuoEntity
@@ -33,7 +33,7 @@ class CoinsDetailViewModel : BaseLoadingViewModel() {
 
     //总的数据
     @JvmField
-    var tokenInfo= MutableResult<DexScreenTokenInfo>()
+    var tokenInfo= MutableResult<DexScreenTokenInfo1>()
 
     @JvmField
     var tabAdapter = ObservableField<CommonKlineDataPagerAdapter>()
@@ -51,34 +51,34 @@ class CoinsDetailViewModel : BaseLoadingViewModel() {
 
 
     fun getTokenInfo(address:String){
-        viewModelScope.launch{
-            loadingVisible.postValue(true)
-            withContext(Dispatchers.IO){
-
-                DataRepository.getInstance().getTokenInfoForDexScreen(address){
-                    if(it.responseStatus.isSuccess){
-
-                        var filter_result=it.result.pairs.stream()
-                            .filter { item->item.liquidity!=null }
-                            .sorted(compareByDescending { dao -> dao.liquidity?.usd })
-                            .collect(Collectors.toList())
-                        //覆盖原有集合位过滤后的集合
-                        it.result.pairs=filter_result
-
-                        //推送数据出去
-                        tokenInfo.postValue(it.result)
-                        mBase2QuoEntity.set(Base2QuoEntity(address,it.result.pairs))
-
-                    }
-                    loadingVisible.postValue(false)
-                    isshow.set(true)
-                }
-
-            }
-
-
-
-        }
+//        viewModelScope.launch{
+//            loadingVisible.postValue(true)
+//            withContext(Dispatchers.IO){
+//
+//                DataRepository.getInstance().getTokenInfoForDexScreen(address){
+//                    if(it.responseStatus.isSuccess){
+//
+//                        var filter_result=it.result.pairs.stream()
+//                            .filter { item->item.liquidity!=null }
+//                            .sorted(compareByDescending { dao -> dao.liquidity?.usd })
+//                            .collect(Collectors.toList())
+//                        //覆盖原有集合位过滤后的集合
+//                        it.result.pairs=filter_result
+//
+//                        //推送数据出去
+//                        tokenInfo.postValue(it.result)
+//                        mBase2QuoEntity.set(Base2QuoEntity(address,it.result.pairs))
+//
+//                    }
+//                    loadingVisible.postValue(false)
+//                    isshow.set(true)
+//                }
+//
+//            }
+//
+//
+//
+//        }
 
     }
 
