@@ -110,7 +110,7 @@
             android:id="@+id/tv_liq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LIQ"
+            android:text="@string/str_liqu"
             android:textSize="@dimen/sp11"
             android:textColor="@color/primaryTextGray"
             />
@@ -133,7 +133,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_liq_value"
-            android:text="VOL"
+            android:text="@string/str_volume"
             android:textSize="@dimen/sp11"
             android:textColor="@color/primaryTextGray"
             android:layout_marginLeft="@dimen/dp15"
@@ -157,10 +157,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/tv_vol_value"
-            android:text="FDV"
+            android:text="@string/str_release"
             android:textSize="@dimen/sp11"
             android:textColor="@color/primaryTextGray"
             android:layout_marginLeft="@dimen/dp15"
+            android:visibility="gone"
             />
 
         <com.hjq.shape.view.ShapeTextView
@@ -173,6 +174,7 @@
             android:layout_marginLeft="@dimen/dp5"
             android:text="@string/str_f_default_n_a"
             meme_mc_tv="@{meme.fdv}"
+            android:visibility="gone"
             />
 
 

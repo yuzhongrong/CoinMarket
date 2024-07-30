@@ -379,4 +379,7 @@
     <string name="str_swaping">兑换中</string>
     <string name="str_swap_fail">兑换失败</string>
     <string name="str_swap_success">兑换成功</string>
+    <string name="str_liqu">流动性</string>
+    <string name="str_volume">交易量</string>
+    <string name="str_release">稀释</string>
 </resources>

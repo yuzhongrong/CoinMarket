@@ -257,4 +257,7 @@
     <string name="str_swaping">Proccess</string>
     <string name="str_swap_fail">Fail</string>
     <string name="str_swap_success">Success</string>
+    <string name="str_liqu">LIQ</string>
+    <string name="str_volume">VOL</string>
+    <string name="str_release">FDV</string>
 </resources>
