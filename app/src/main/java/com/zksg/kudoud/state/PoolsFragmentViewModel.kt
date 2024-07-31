@@ -16,7 +16,7 @@ import java.util.stream.Collectors
 class PoolsFragmentViewModel : BaseLoadingViewModel(){
     //总的数据
     @JvmField
-    var tokenInfo= ObservableField<DexScreenTokenInfo1>()
+    var tokenInfo= MutableResult<DexScreenTokenInfo1>()
 
 
     //计算总的base币个数的时候需要用到
@@ -40,7 +40,7 @@ class PoolsFragmentViewModel : BaseLoadingViewModel(){
                         it.result.data.pairs=filter_result
 
                         //推送数据出去
-                        tokenInfo.set(it.result.data)
+                        tokenInfo.postValue(it.result.data)
                         mBase2QuoEntity.set(Base2QuoEntity(address,it.result.data.pairs))
 
                     }

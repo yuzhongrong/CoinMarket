@@ -33,47 +33,10 @@ class Kline2OrderActivity : BaseDialogActivity() {
         var symbol = intent.getStringExtra("symbol")
         mKline2OrderActivityViewModel!!.symbol.set(symbol)
         //       String html= HtmlUtils.loadHTMLFromAssets(this,"kline_widget.html");
-        val localHtml = """<!DOCTYPE html>
-                <html>
-                <head>
-                    <style>
-                        html, body {
-                            margin: 0;
-                            padding: 0;
-                            width: 100%;
-                            height: 100%;
-                            background-color: transparent;
-                        }
-                
-                        .iframe-container {
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%; /* 设置为父容器高度 */
-                            overflow: hidden; /* 禁用滚动 */
-                        }
-                
-                        .iframe-container iframe {
-                            width: 100%;
-                            height: 100%;
-                            border: 0;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="iframe-container">
-                        <iframe id="dextools-widget"
-                                title="DEXTools Trading Chart"
-                                src="https://www.dextools.io/widget-chart/cn/solana/pe-light/$pair_address?theme=dark&chartType=1&headerColor=131722&chartResolution=1D&drawingToolbars=false">
-                        </iframe>
-                    </div>
-                </body>
-                </html>
-                """
-        mKline2OrderActivityViewModel!!.htmlStr.set(localHtml)
 
-        val fragments = arrayOf<Fragment>(PoolFragment(contract),CheckFragment(),IntroduceFragment())
+//        mKline2OrderActivityViewModel!!.htmlStr.set(localHtml)
+
+        val fragments = arrayOf<Fragment>(PoolFragment(contract,mKline2OrderActivityViewModel),CheckFragment(),IntroduceFragment())
         val adapter = SimpleFragmentPagerAdapter(supportFragmentManager, fragments)
         mKline2OrderActivityViewModel!!.tabAdapter.set(adapter)
 
