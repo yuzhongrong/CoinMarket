@@ -48,7 +48,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/dp15"
             android:gravity="center"
             android:text="低风险"
             android:textColor="@color/c_1bc89e"
@@ -59,13 +58,11 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_into1"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/dp3"
-
-
-            />
+            android:src="@mipmap/ic_into1" />
 
     </RelativeLayout>
 
@@ -141,7 +138,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/dp15"
             android:gravity="center"
             android:text="10亿"
 
@@ -152,13 +148,11 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_into1"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/dp3"
-
-
-            />
+            android:visibility="gone"
+            android:src="@mipmap/ic_into1" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -186,12 +180,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/dp5"
             android:gravity="center"
             android:text="$9773223"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp12"
-          />
+            android:textSize="@dimen/sp12" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -233,7 +225,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/dp15"
             android:gravity="center"
 
             android:text="Solana"
@@ -244,13 +235,11 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_into1"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_marginTop="@dimen/dp3"
-
-
-            />
+            android:visibility="gone"
+            android:src="@mipmap/ic_into1" />
 
     </RelativeLayout>
 

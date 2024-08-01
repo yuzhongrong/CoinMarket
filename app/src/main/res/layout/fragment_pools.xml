@@ -14,10 +14,9 @@
             type="com.zksg.kudoud.adapters.MemePoolListdapter" />
 
     </data>
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     >
 
 
@@ -37,6 +36,29 @@
 
         />
 
+    <com.hjq.shape.view.ShapeButton
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp45"
+        android:gravity="center"
+        android:text="@string/str_ex_swap"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp12"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        app:shape_radius="@dimen/dp45"
+        app:shape_solidColor="@color/c_131722"
+        app:shape_strokeWidth="0.2dp"
+        app:shape_strokeColor="@color/c_29313d"
+        app:shape_solidPressedColor="@color/c_29313d"
+        android:clickable="true"
+        android:layout_marginLeft="@dimen/dp10"
+        android:layout_marginRight="@dimen/dp10"
+        android:layout_marginBottom="@dimen/dp5"
 
-</LinearLayout>
+        />
+
+
+</RelativeLayout>
 </layout>

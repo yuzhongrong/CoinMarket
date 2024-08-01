@@ -422,25 +422,26 @@
 
 
      </LinearLayout>
+
         <com.hjq.shape.view.ShapeButton
             android:id="@+id/next"
+            exchange_show="@{vm.insufficient_sol_balance}"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp45"
+            android:layout_below="@+id/layout_top"
+            android:layout_marginLeft="@dimen/dp15"
+            android:layout_marginTop="18dp"
+            android:layout_marginRight="@dimen/dp15"
             android:clickable="true"
             android:gravity="center"
+            android:onClick="@{()->click.startExDetail()}"
             android:text="@string/str_ex_swap"
             android:textColor="@color/white"
             android:textSize="@dimen/sp12"
             android:textStyle="bold"
             app:shape_radius="@dimen/dp10"
-            android:layout_marginTop="@dimen/dp15"
             app:shape_solidColor="@color/c_29313d"
-            android:layout_marginLeft="@dimen/dp15"
-            android:layout_marginRight="@dimen/dp15"
-            android:layout_below="@+id/layout_top"
             app:shape_solidPressedColor="@color/colorAccent"
-            exchange_show="@{vm.insufficient_sol_balance}"
-            android:onClick="@{()->click.startExDetail()}"
 
             />
 
