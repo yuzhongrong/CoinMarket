@@ -9,8 +9,8 @@ import com.zksg.kudoud.entitys.InitParamsEntity
 import com.zksg.kudoud.state.IntroduceFragmentViewModel
 import com.zksg.kudoud.state.PoolsFragmentViewModel
 
-class IntroduceFragment : BaseFragment() {
-
+class IntroduceFragment(contract:String?) : BaseFragment() {
+    var mContract=contract
     var mIntroduceFragmentViewModel: IntroduceFragmentViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

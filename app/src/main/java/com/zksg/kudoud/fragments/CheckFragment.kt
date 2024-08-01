@@ -9,8 +9,8 @@ import com.zksg.kudoud.entitys.InitParamsEntity
 import com.zksg.kudoud.state.CheckFragmentViewModel
 import com.zksg.kudoud.state.PoolsFragmentViewModel
 
-class CheckFragment : BaseFragment() {
-
+class CheckFragment(contract:String?) : BaseFragment() {
+    var mContract=contract
     var mCheckFragmentViewModel: CheckFragmentViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
