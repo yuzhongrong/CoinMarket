@@ -47,6 +47,7 @@ public class DiffUtils {
 
     private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO> mMemePoolCallback;
+    private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO> mSocials;
     private DiffUtil.ItemCallback<WalletNetworkEntity> mWalletNetworkEntityCallback;
     private DiffUtil.ItemCallback<SimpleWallet> mMyWalletEntityCallback;
 
@@ -224,6 +225,24 @@ public class DiffUtils {
             };
         }
         return mMemePoolCallback;
+    }
+
+
+    public DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO> getSocialsItemCallback() {
+        if (mSocials == null) {
+            mSocials = new DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO oldItem, @NonNull DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO oldItem, @NonNull DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO newItem) {
+                    return oldItem.getType().equals(newItem.getType());
+                }
+            };
+        }
+        return mSocials;
     }
 
 

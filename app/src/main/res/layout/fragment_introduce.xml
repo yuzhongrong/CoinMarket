@@ -9,7 +9,9 @@
             name="vm"
             type="com.zksg.kudoud.state.IntroduceFragmentViewModel" />
 
-
+        <variable
+            name="adapter"
+            type="com.zksg.kudoud.adapters.SocialAdapter" />
 
     </data>
 <androidx.core.widget.NestedScrollView
@@ -139,10 +141,10 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="10亿"
-
+            android:text="@string/str_f_default_n_a"
             android:textColor="@color/white"
             android:textSize="@dimen/sp12"
+            meme_suplly_tv="@{vm.pairs[0]}"
             />
 
         <ImageView
@@ -176,12 +178,13 @@
             android:textStyle="bold" />
 
         <TextView
+            meme_all_liq_tv="@{vm.pairs}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:text="$9773223"
+            android:text="@string/str_f_default_n_a"
             android:textColor="@color/white"
             android:textSize="@dimen/sp12" />
 
@@ -293,8 +296,9 @@
                 android:ellipsize="middle"
                 android:gravity="center_horizontal"
                 android:singleLine="true"
-                android:text="ep5fsaf9sf0af7sa0f0sa987fa907"
+                loadtext="@{vm.contract}"
                 android:textColor="@color/colorTextNormal"
+
                 android:textSize="@dimen/sp14" />
         <ImageView
             android:layout_width="@dimen/dp15"
@@ -335,21 +339,18 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_marginTop="@dimen/dp15"
 
             >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="官网"
+            android:text="@string/str_website"
+            loadtextfromhtml="@{vm.website}"
             android:textColor="@color/white"
             />
 
-          <com.hjq.shape.view.ShapeImageView
-              android:layout_width="@dimen/dp20"
-              android:layout_height="@dimen/dp20"
-              android:src="@mipmap/ic_unlink" />
         </LinearLayout>
 
     </LinearLayout>
@@ -366,7 +367,7 @@
         />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/dp15"
@@ -386,17 +387,16 @@
             android:layout_marginTop="@dimen/dp15"
 
             >
+            <androidx.recyclerview.widget.RecyclerView
+                linearAdapter="@{adapter}"
+                cannotScrollVertically="@{false}"
+                itemspace="@{15}"
+                orientation="@{0}"
+                submitList="@{vm.socials}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp8"
 
-            <com.hjq.shape.view.ShapeImageView
-                android:layout_width="@dimen/dp20"
-                android:layout_height="@dimen/dp20"
-                android:src="@mipmap/ic_tt" />
-
-            <com.hjq.shape.view.ShapeImageView
-                android:layout_width="@dimen/dp20"
-                android:layout_height="@dimen/dp20"
-                android:src="@mipmap/ic_tg"
-                android:layout_marginLeft="@dimen/dp5"
                 />
         </LinearLayout>
 

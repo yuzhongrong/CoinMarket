@@ -23,6 +23,20 @@ public class ImageViewBindingAdapter {
 
     }
 
+    @BindingAdapter(value = {"memeImvType"},requireAll = false)
+    public static void memeImvType(ImageView imv, String type) {
+        if(type.equals("twitter")){
+            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_twitter,0);
+        }else if(type.equals("telegram")){
+            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_telegram1,0);
+        }else if(type.equals("discord")){
+            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_discord,0);
+        }
+
+
+    }
+
+
     @BindingAdapter(value = {"transfor_icon","issystem"},requireAll = false)
     public static void transfor_icon(ImageView imv, String url,boolean issystem) {
         if(imv==null)return;

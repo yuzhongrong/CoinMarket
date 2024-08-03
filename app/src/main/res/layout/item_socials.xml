@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="item"
+            type="com.netease.lib_network.entitys.DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO" />
+
+    </data>
+    <com.hjq.shape.view.ShapeImageView
+        android:id="@+id/imv"
+        android:layout_width="@dimen/dp35"
+        android:layout_height="@dimen/dp35"
+        memeImvType="@{item.type}"
+        android:scaleType="centerCrop"
+        />
+
+</layout>
+
+
+

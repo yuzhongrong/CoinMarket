@@ -34,6 +34,9 @@ public class DigitUtils {
     }
 
 
+
+
+
     public static String formatPriceAmount(double amount) {
         // 如果金额小于 1000，直接返回金额的字符串形式，保留实际的小数位数
         if (amount < 1000) {
@@ -59,6 +62,20 @@ public class DigitUtils {
         // 如果金额大于等于 1000000000，使用 b 后缀表示
         return String.format("%.10fb", amount / 1000000000);
     }
+
+
+    public static String formatNumber(double value) {
+        if (value < 1_000_000) {
+            return String.valueOf(value);
+        } else if (value < 10_000_000) {
+            return String.format("%.2f百万", value / 1_000_000.0);
+        } else if (value < 100_000_000) {
+            return String.format("%.2f千万", value / 10_000_000.0);
+        } else {
+            return String.format("%.3f亿", value / 100_000_000.0);
+        }
+    }
+
 
     public static String formatAmountTip() {
         return "1m=1百万,1b=10亿";

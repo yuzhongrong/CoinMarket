@@ -274,7 +274,7 @@
     <string name="str_Invalid_telegram">无效的电报！！</string>
     <string name="str_twitter">推特</string>
     <string name="str_telegram">电报</string>
-    <string name="str_website">官网</string>
+    <string name="str_website"><![CDATA[<u>官网</u>]]></string>
     <string name="str_Invalid_website">无效网站!!</string>
     <string name="str_base_number">基础币数量</string>
     <string name="str_ex_data">交易数据</string>

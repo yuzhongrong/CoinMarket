@@ -1,6 +1,8 @@
 package com.zksg.kudoud.state
 
 import androidx.databinding.ObservableField
+import com.kunminx.architecture.domain.message.MutableResult
+import com.netease.lib_network.entitys.DexScreenTokenInfo1
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.SimpleFragmentPagerAdapter
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
@@ -27,6 +29,8 @@ class Kline2OrderActivityViewModel : BaseLoadingViewModel() {
     var indicatorTitle = ObservableField(arrayOf("池子", "安全", "简介"))
     @JvmField
     var viewpagerid = ObservableField(R.id.view_pager_kline)
+
+    var pairs=MutableResult<List<DexScreenTokenInfo1.PairsDTO>>()
 
 
 

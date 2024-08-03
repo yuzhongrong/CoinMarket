@@ -77,6 +77,7 @@ class PoolFragment(contract: String?,mKline2OrderActivityViewModel: Kline2OrderA
                 </html>
                 """
             mKline2OrderViewModel!!.htmlStr.set(localHtml)
+            mKline2OrderViewModel!!.pairs.postValue(it.pairs)
         }
 
     }

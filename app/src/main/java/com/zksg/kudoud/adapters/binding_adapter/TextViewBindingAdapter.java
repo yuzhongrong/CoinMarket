@@ -2,6 +2,7 @@ package com.zksg.kudoud.adapters.binding_adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.text.Html;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -19,6 +20,7 @@ import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.activitys.CoinsDetailActivity;
 import com.zksg.kudoud.adapters.TransDetailHistorysrdapter;
 import com.zksg.kudoud.adapters.TransHistorysrdapter;
 import com.zksg.kudoud.beans.Kline24ChangeChannelEnum;
@@ -31,6 +33,7 @@ import com.zksg.kudoud.state.Chart6HLineFragmentViewModel;
 import com.zksg.kudoud.state.MeFragmentViewModel;
 import com.zksg.kudoud.utils.DateUtils;
 import com.zksg.kudoud.utils.DigitUtils;
+import com.zksg.kudoud.utils.IntentUtils;
 import com.zksg.kudoud.utils.TimeUtils;
 import com.zksg.kudoud.widgets.CircularProgressBar;
 import com.zksg.kudoud.widgets.SettingBar;
@@ -48,6 +51,13 @@ public class TextViewBindingAdapter {
             tv.setText(flat+DigitUtils.formatAmount((double)value));
     }
 
+    @BindingAdapter(value = {"loadtextfromhtml"},requireAll = false)
+    public static void loadtextfromhtml(TextView tv,String link) {
+        if(TextUtils.isEmpty(link))return;
+        tv.setText(Html.fromHtml(tv.getContext().getString(R.string.str_website)));
+        tv.setOnClickListener(v->{ IntentUtils.openWebsite(tv.getContext(),link);});
+    }
+
 
     @BindingAdapter(value = {"meme_suplly_tv"},requireAll = false)
     public static void memesupllyTv(TextView tv, DexScreenTokenInfo1.PairsDTO value) {
@@ -55,7 +65,7 @@ public class TextViewBindingAdapter {
         BigDecimal fdv=new BigDecimal(value.getFdv());
         BigDecimal priceusdValue = new BigDecimal(value.getPriceUsd());
         double supply=fdv.divide(priceusdValue,RoundingMode.HALF_UP).doubleValue();
-        tv.setText(DigitUtils.formatAmount(supply));
+        tv.setText(DigitUtils.formatNumber(supply));
     }
 
     @BindingAdapter(value = {"meme_suplly_tip_tv"},requireAll = false)
