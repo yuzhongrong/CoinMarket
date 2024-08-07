@@ -35,13 +35,11 @@ class MarketsFragment:BaseFragment(){
         //meme category
         mMarketsFragmentViewModel?.indicatorTitle?.set(
             arrayOf(
-
-                "自选",
-                "涨幅榜",
-                getString(R.string.str_24down),
-                getString(R.string.str_24ex),
                 "筹码集中",
-                "聪明钱"
+                "金狗",
+                "pump内盘",
+                "pump外盘",
+                "大鲸鱼钱包",
             )
         )
 

@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
@@ -112,31 +113,20 @@ public class CommonBindingAdapter {
 
 
 
-    @BindingAdapter(value = {"webviewload","progressBar"}, requireAll = false)
-    public static void webload(WebView webView, String url, ProgressBar progressBar) {
-        if(webView==null||TextUtils.isEmpty(url)||progressBar==null)return;
-        webView.getSettings().setJavaScriptEnabled(true);// Enable JavaScript in WebView (optional)
-        // Set a WebViewClient to handle the webpage navigation within the WebView
+    @BindingAdapter(value = {"webviewload"}, requireAll = false)
+    public static void webload(WebView webView, String url) {
+        if(webView==null||TextUtils.isEmpty(url))return;
+        // 启用JavaScript（如果需要）
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
 
-        // Set a WebViewClient to handle the webpage navigation within the WebView
+        // 设置WebViewClient以便在WebView中打开链接而不是默认浏览器
         webView.setWebViewClient(new WebViewClient());
+        // 加载指定的URL
+        webView.loadUrl("https://ave.ai/check/DtR4D9FtVoTX2569gaL837ZgrB6wNjj6tkmnX9Rdk9B2-solana");
 
-        webView.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                progressBar.setProgress(newProgress);
-                if (newProgress == 100) {
-                    progressBar.setVisibility(android.view.View.GONE);
-                } else {
-                    progressBar.setVisibility(android.view.View.VISIBLE);
-                }
-            }
-        });
-        // Load the webpage
 
-        // Load the webpage
-        webView.loadUrl(url);
+
 
     }
 

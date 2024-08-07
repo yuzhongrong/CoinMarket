@@ -27,5 +27,9 @@ class CheckFragment(contract:String?) : BaseFragment() {
 //            .addBindingParam(BR.iEntity, InitParamsEntity(mType, land))
     }
 
+    override fun loadInitData() {
+        mCheckFragmentViewModel!!.url.set("https://ave.ai/check/DtR4D9FtVoTX2569gaL837ZgrB6wNjj6tkmnX9Rdk9B2-solana")
+    }
+
 
 }
