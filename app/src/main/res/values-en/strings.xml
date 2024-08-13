@@ -260,4 +260,21 @@
     <string name="str_liqu">LIQ</string>
     <string name="str_volume">VOL</string>
     <string name="str_release">FDV</string>
+    <string name="str_collect_coin">Chips</string>
+    <string name="str_golddoge">GoldDoge</string>
+    <string name="str_pumpin">PumpIn</string>
+    <string name="str_pumpout">PumpOut</string>
+    <string name="str_whalewallet">Whales</string>
+    <string name="str_black_function">No black list</string>
+    <string name="str_owner">Admin rights abandoned</string>
+    <string name="str_burn_pool">The pool has been burned and locked</string>
+    <string name="str_addition">No additional </string>
+    <string name="str_top10_30">Top 10 address holdings exceed 30%</string>
+    <string name="str_top10_holding">Currency holding address</string>
+    <string name="str_low_level">Low risk</string>
+    <string name="str_export">Export</string>
+    <string name="str_trade_gas">Trade Gas</string>
+    <string name="str_buy_gas">Buy Gas</string>
+    <string name="str_sell_gas">Sell Gas</string>
+    <string name="str_check_items">Security Check</string>
 </resources>

@@ -382,4 +382,23 @@
     <string name="str_liqu">流动性</string>
     <string name="str_volume">交易量</string>
     <string name="str_release">稀释</string>
+    <string name="str_collect_coin">筹码集中</string>
+    <string name="str_golddoge">金狗</string>
+    <string name="str_pumpin">pump内盘</string>
+    <string name="str_pumpout">pump外盘</string>
+    <string name="str_whalewallet">鲸鱼钱包</string>
+    <string name="str_black_function">无黑名单功能</string>
+    <string name="str_owner">已抛弃管理员权限</string>
+    <string name="str_burn_pool">池子已燃烧并锁仓</string>
+    <string name="str_addition">不可增发</string>
+    <string name="str_top10_30">Top10持币超过30%</string>
+    <string name="str_top10_holding">Top10持币地址</string>
+    <string name="str_low_level">低风险</string>
+    <string name="str_hight_level">高风险</string>
+    <string name="str_export">查看</string>
+    <string name="str_trade_gas">交易税</string>
+    <string name="str_buy_gas">买入税率</string>
+    <string name="str_sell_gas">卖出税率</string>
+    <string name="str_check_items">安全检测项</string>
+
 </resources>

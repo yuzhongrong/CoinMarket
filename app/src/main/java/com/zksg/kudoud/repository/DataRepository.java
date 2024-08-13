@@ -25,6 +25,7 @@ import com.netease.lib_network.ExceptionHandle;
 import com.netease.lib_network.MySimpleObserver;
 import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.BroadcastRequest;
+import com.netease.lib_network.entitys.CheckToken;
 import com.netease.lib_network.entitys.CommitTransation;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
@@ -914,6 +915,36 @@ public class DataRepository {
 
 
     }
+
+
+    public void getCheckToken(String contract, DataResult.Result<CommonResponse<CheckToken>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getCheckTokenInfo(contract)
+                .compose(ApiEngine.getInstance().applySchedulers())
+
+//                .delay(1, TimeUnit.SECONDS)
+                .subscribe(new MySimpleObserver<CommonResponse<CheckToken>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<CheckToken> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        responseStatus.setMsg(err.getMessage());
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+
+
+
+
+    }
+
 
 
 }

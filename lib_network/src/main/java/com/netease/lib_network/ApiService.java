@@ -4,6 +4,7 @@ package com.netease.lib_network;
 import com.netease.lib_network.entitys.ApiTokenInfo;
 
 import com.netease.lib_network.entitys.BroadcastRequest;
+import com.netease.lib_network.entitys.CheckToken;
 import com.netease.lib_network.entitys.CommitTransation;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
@@ -41,7 +42,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-      String BASE_URL=" http://192.168.10.2:3000";
+      String BASE_URL=" http://192.168.10.3:3000";
 
 
     @GET("login/cellphone")
@@ -97,6 +98,10 @@ public interface ApiService {
     @GET("/api/wallet/getDexScreenTokenInfo")
     Single<CommonResponse<DexScreenTokenInfo1>> getTokenInfoForDexscreen(@Query("contract") String address);
 
+
+
+    @GET("/api/wallet/getCheckTokenInfo")
+    Single<CommonResponse<CheckToken>> getCheckTokenInfo(@Query("contract") String address);
 
     @GET("/v4/price/{ids}")
     Single<DexScreenTokenInfo1> getTokenInfoForJupSwap(@Path("ids") String address);
@@ -156,6 +161,7 @@ public interface ApiService {
 
     @GET("/api/swap/getSwapTxState")
     Single<CommonResponse<List<SwapQueryStateResult>>> getSwapTxState(@Query("txId") String txId);
+
 
 
 

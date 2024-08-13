@@ -34,8 +34,50 @@ public class DigitUtils {
     }
 
 
+    public static String formatNumber_zh(String numberStr) {
+        // Parse the string to a double
+        double number;
+        try {
+            number = Double.parseDouble(numberStr);
+        } catch (NumberFormatException e) {
+            // Handle the case where the input string is not a valid number
+            return "Invalid number";
+        }
+
+        // Define the units and their thresholds
+        String[] units = {"", "万", "亿"};
+        double[] thresholds = {1, 10_000, 100_000_000};
+
+        String formattedNumber = "";
+
+        for (int i = units.length - 1; i >= 0; i--) {
+            if (number >= thresholds[i]) {
+                formattedNumber = new DecimalFormat("#,##0.##").format(number / thresholds[i]) + units[i];
+                break;
+            }
+        }
+
+        return formattedNumber;
+    }
 
 
+    public static String formatAsPercentage(String numberStr) {
+        // Parse the string to a double
+        double number;
+        try {
+            number = Double.parseDouble(numberStr);
+        } catch (NumberFormatException e) {
+            // Handle the case where the input string is not a valid number
+            return "Invalid number";
+        }
+
+        // Multiply by 100 to convert to percentage
+        double percentage = number * 100;
+
+        // Format the percentage with two decimal places
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(percentage) + "%";
+    }
 
     public static String formatPriceAmount(double amount) {
         // 如果金额小于 1000，直接返回金额的字符串形式，保留实际的小数位数

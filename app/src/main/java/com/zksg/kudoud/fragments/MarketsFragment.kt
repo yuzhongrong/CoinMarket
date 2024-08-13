@@ -35,11 +35,11 @@ class MarketsFragment:BaseFragment(){
         //meme category
         mMarketsFragmentViewModel?.indicatorTitle?.set(
             arrayOf(
-                "筹码集中",
-                "金狗",
-                "pump内盘",
-                "pump外盘",
-                "大鲸鱼钱包",
+                getString(R.string.str_collect_coin),
+                getString(R.string.str_golddoge),
+                getString(R.string.str_pumpin),
+                getString(R.string.str_pumpout),
+                getString(R.string.str_whalewallet),
             )
         )
 

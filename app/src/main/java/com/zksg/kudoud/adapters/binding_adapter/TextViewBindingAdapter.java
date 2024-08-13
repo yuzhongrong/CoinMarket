@@ -15,6 +15,7 @@ import androidx.databinding.BindingAdapter;
 import com.hjq.shape.view.ShapeButton;
 import com.kunminx.architecture.domain.message.MutableResult;
 
+import com.netease.lib_network.entitys.CheckToken;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.NewWalletToken;
@@ -750,6 +751,40 @@ public class TextViewBindingAdapter {
     public static void meme_amount(TextView tv,String amount,String symbol) {
         if(tv==null||TextUtils.isEmpty(symbol))return;
         tv.setText(amount+" "+symbol);
+    }
+
+    @BindingAdapter(value = {"meme_top10_holder","meme_top10_index"},requireAll = false)
+    public static void meme_top10_holder(TextView tv, CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO value,int index) {
+        if(tv==null||value==null)return;
+         tv.setText(index+1+". "+value.getAddress());
+    }
+
+
+    @BindingAdapter(value = {"meme_top10_holder_number"},requireAll = false)
+    public static void meme_top10_holder_number(TextView tv, CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO value) {
+        if(tv==null||value==null)return;
+        tv.setText(DigitUtils.formatNumber_zh(value.getQuantity())+"("+DigitUtils.formatAsPercentage(value.getPercent())+")");
+    }
+
+
+    @BindingAdapter(value = {"meme_safe_level"},requireAll = false)
+    public static void meme_safe_level(TextView tv, int value) {
+        if(tv==null)return;
+        if(value>=0&&value<=40){
+            tv.setText(tv.getContext().getString(R.string.str_low_level));
+            tv.setTextColor(tv.getContext().getColor(R.color.c_1bc89e));
+        }else{
+            tv.setText(tv.getContext().getString(R.string.str_hight_level));
+            tv.setTextColor(tv.getContext().getColor(R.color.c_f71816));
+        }
+
+
+    }
+
+    @BindingAdapter(value = {"meme_safe_5_items"},requireAll = false)
+    public static void meme_safe_5_items(TextView tv, int value) {
+        if(tv==null)return;
+        tv.setText(value+"/"+"5");
     }
 
 

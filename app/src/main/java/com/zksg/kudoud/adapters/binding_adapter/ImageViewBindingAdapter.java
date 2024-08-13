@@ -159,4 +159,29 @@ public class ImageViewBindingAdapter {
     }
 
 
+    @BindingAdapter(value = {"meme_check_token_items"},requireAll = false)
+    public static void meme_check_token_items(ImageView imv, int type) {
+        if(type==0){
+            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_safe,0);
+        }else{
+            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_warning,0);
+
+        }
+
+
+    }
+
+    @BindingAdapter(value = {"meme_is_contract"},requireAll = false)
+    public static void meme_is_contract(ImageView imv, int type) {
+        if(type==1){
+            imv.setVisibility(View.VISIBLE);
+            ImageLoaderManager.getInstance().displayLocalImageForCorner(imv,R.mipmap.ic_contract,0);
+        }else{
+            imv.setVisibility(View.GONE);
+        }
+
+
+    }
+
+
 }

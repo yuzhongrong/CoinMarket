@@ -5,6 +5,8 @@ import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
+import com.zksg.kudoud.adapters.MemeCheckListdapter
+import com.zksg.kudoud.adapters.SocialAdapter
 import com.zksg.kudoud.entitys.InitParamsEntity
 import com.zksg.kudoud.state.CheckFragmentViewModel
 import com.zksg.kudoud.state.PoolsFragmentViewModel
@@ -24,11 +26,12 @@ class CheckFragment(contract:String?) : BaseFragment() {
 
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_checks, BR.vm, mCheckFragmentViewModel!!)
-//            .addBindingParam(BR.iEntity, InitParamsEntity(mType, land))
+            .addBindingParam(BR.adapter, MemeCheckListdapter(requireContext()))
     }
 
     override fun loadInitData() {
-        mCheckFragmentViewModel!!.url.set("https://ave.ai/check/DtR4D9FtVoTX2569gaL837ZgrB6wNjj6tkmnX9Rdk9B2-solana")
+        //请求加载检测数据
+        mCheckFragmentViewModel!!.getCheckTokenInfo(mContract!!)
     }
 
 

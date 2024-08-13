@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
 import com.netease.lib_network.entitys.ApiTokenInfo;
+import com.netease.lib_network.entitys.CheckToken;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.JupToken;
@@ -47,6 +48,8 @@ public class DiffUtils {
 
     private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO> mMemePoolCallback;
+
+    private DiffUtil.ItemCallback<CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO> mMemeCheckCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO> mSocials;
     private DiffUtil.ItemCallback<WalletNetworkEntity> mWalletNetworkEntityCallback;
     private DiffUtil.ItemCallback<SimpleWallet> mMyWalletEntityCallback;
@@ -225,6 +228,25 @@ public class DiffUtils {
             };
         }
         return mMemePoolCallback;
+    }
+
+
+
+    public DiffUtil.ItemCallback<CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO> getMemeChecktemCallback() {
+        if (mMemeCheckCallback == null) {
+            mMemeCheckCallback = new DiffUtil.ItemCallback<CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO oldItem, @NonNull CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO oldItem, @NonNull CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO newItem) {
+                    return oldItem.getAddress().equals(newItem.getAddress());
+                }
+            };
+        }
+        return mMemeCheckCallback;
     }
 
 

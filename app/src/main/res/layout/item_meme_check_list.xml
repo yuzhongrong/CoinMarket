@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="meme"
+            type="com.netease.lib_network.entitys.CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO" />
+
+        <variable
+            name="index"
+            type="java.lang.Integer" />
+
+    </data>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp35"
+        android:background="@color/c_131722"
+
+        >
+     <TextView
+         android:layout_width="@dimen/dp120"
+         android:layout_height="wrap_content"
+         meme_top10_holder="@{meme}"
+         meme_top10_index="@{index}"
+         android:textColor="@color/primaryTextGray"
+         android:layout_centerVertical="true"
+         android:textSize="@dimen/sp12"
+         android:ellipsize="middle"
+         android:singleLine="true"
+         />
+
+        <ImageView
+            android:layout_width="@dimen/dp15"
+            android:layout_height="@dimen/dp15"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp120"
+            android:src="@mipmap/ic_contract"
+            meme_is_contract="@{meme.isContract}"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_f_default_n_a"
+            meme_top10_holder_number="@{meme}"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dp165"
+
+            />
+
+
+        <ImageView
+            android:id="@+id/holder_look"
+            android:layout_width="@dimen/dp18"
+            android:layout_height="@dimen/dp18"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_export"
+            />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+</layout>
