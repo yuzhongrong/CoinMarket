@@ -767,6 +767,26 @@ public class TextViewBindingAdapter {
     }
 
 
+    @BindingAdapter(value = {"meme_contract_buysell_gas"},requireAll = false)
+    public static void meme_top10_holder_number(TextView tv, String value) {
+        if(tv==null||TextUtils.isEmpty(value))return;
+        tv.setText(DigitUtils.formatAsPercentage(value));
+    }
+
+
+    @BindingAdapter(value = {"meme_contract_mark"},requireAll = false)
+    public static void meme_contract_mark(TextView tv, String value) {
+        if(tv==null)return;
+        if(TextUtils.isEmpty(value)){
+            tv.setVisibility(View.GONE);
+        }else{
+            tv.setVisibility(View.VISIBLE);
+            tv.setText(value);
+        }
+
+    }
+
+
     @BindingAdapter(value = {"meme_safe_level"},requireAll = false)
     public static void meme_safe_level(TextView tv, int value) {
         if(tv==null)return;

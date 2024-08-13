@@ -26,7 +26,7 @@
 
         >
      <TextView
-         android:layout_width="@dimen/dp120"
+         android:layout_width="@dimen/dp90"
          android:layout_height="wrap_content"
          meme_top10_holder="@{meme}"
          meme_top10_index="@{index}"
@@ -38,13 +38,25 @@
          />
 
         <ImageView
-            android:layout_width="@dimen/dp15"
-            android:layout_height="@dimen/dp15"
+            android:layout_width="@dimen/dp12"
+            android:layout_height="@dimen/dp12"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp120"
+            android:layout_marginLeft="@dimen/dp86"
             android:src="@mipmap/ic_contract"
             meme_is_contract="@{meme.isContract}"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_f_default_n_a"
+            android:layout_marginLeft="@dimen/dp100"
+            android:layout_centerVertical="true"
+            meme_contract_mark="@{meme.mark}"
+            android:textSize="@dimen/sp12"
+            android:textColor="@color/primaryTextGray"
+            />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +66,8 @@
             android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/dp165"
+            android:layout_alignParentRight="true"
+            android:gravity="left"
 
             />
 
@@ -66,6 +79,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:src="@mipmap/ic_export"
+            android:visibility="gone"
             />
 
 

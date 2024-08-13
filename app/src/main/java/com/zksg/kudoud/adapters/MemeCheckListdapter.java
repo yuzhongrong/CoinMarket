@@ -23,7 +23,14 @@ public class MemeCheckListdapter extends SimpleDataBindingAdapter<CheckToken.Tok
         super(context, R.layout.item_meme_check_list, DiffUtils.getInstance().getMemeChecktemCallback());
         this.mContext=context;
 
-        setOnItemClickViewListener((item, position, view) -> {
+//        setOnItemClickViewListener((item, position, view) -> {
+//
+//
+//
+//         },R.id.holder_look);
+
+
+        setOnItemClickListener((item,position)->{
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             String url="https://solscan.io/account/"+item.getAddress();
@@ -32,10 +39,7 @@ public class MemeCheckListdapter extends SimpleDataBindingAdapter<CheckToken.Tok
             // Start the activity
             mContext.startActivity(intent);
 
-         },R.id.holder_look);
-
-
-
+        });
 
 
     }

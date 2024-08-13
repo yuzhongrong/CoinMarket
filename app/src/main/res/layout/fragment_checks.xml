@@ -376,6 +376,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
                     android:text="0%"
+                    meme_contract_buysell_gas="@{vm.buygas}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp12" />
 
@@ -402,6 +403,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0%"
+                    meme_contract_buysell_gas="@{vm.sellgas}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp12"
                     android:layout_marginTop="@dimen/dp5"

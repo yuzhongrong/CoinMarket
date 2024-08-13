@@ -25,6 +25,9 @@ class CheckFragmentViewModel : ViewModel(){
     var has_not_burned_lp=ObservableField<Int>() //池子燃烧
     var has_top10_holder_amount_over_30=ObservableField<Int>() //top10持币超过30%
     var unsafeamount=ObservableField(0) //统计危险总数
+    var buygas=ObservableField<String>()
+    var sellgas=ObservableField<String>()
+
 
     fun getCheckTokenInfo(contract:String){
         viewModelScope.launch{
@@ -33,9 +36,11 @@ class CheckFragmentViewModel : ViewModel(){
 
                 DataRepository.getInstance().getCheckToken(contract){
                     if(it.responseStatus.isSuccess){
-
                         top10hold.set(it.result.data.tokenContract.contractData.tokenHoldersRank)
                         riskScore.set(it.result.data.tokenContract.contractData.riskScore)
+                        buygas.set(it.result.data.tokenContract.contractData.buyGas)
+                        sellgas.set(it.result.data.tokenContract.contractData.sellGas)
+
 
                         if(it.result.data.tokenContract.contractData.hasBlackMethod==1){
                             unsafeamount.set(unsafeamount.get()!!+1)
