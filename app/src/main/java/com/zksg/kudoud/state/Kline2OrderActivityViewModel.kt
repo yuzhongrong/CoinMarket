@@ -31,6 +31,8 @@ class Kline2OrderActivityViewModel : BaseLoadingViewModel() {
     var viewpagerid = ObservableField(R.id.view_pager_kline)
 
     var pairs=MutableResult<List<DexScreenTokenInfo1.PairsDTO>>()
+    @JvmField
+    var loadFinish=ObservableField(false)
 
 
 

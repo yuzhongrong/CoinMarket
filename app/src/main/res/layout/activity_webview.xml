@@ -10,6 +10,11 @@
         <variable
             name="click"
             type="com.zksg.kudoud.activitys.Kline2OrderActivity.ClickProxy" />
+        <variable
+            name="callback"
+            type="com.zksg.kudoud.callback.WebViewClientCallback" />
+
+
     </data>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -90,13 +95,38 @@
                         android:id="@+id/content"
                         app:layout_collapseMode="parallax"
                         app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
                         <WebView
                             android:id="@+id/webView"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/dp390"
                             meme_web_dexscreen="@{vm.htmlStr}"
+                            meme_web_loadfinish="@{callback}"
                             android:overScrollMode="always" />
+
+                            <com.hjq.shape.layout.ShapeRelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/dp390"
+                                android:gravity="center"
+                                app:shape_solidColor="@color/c_131722"
+                                common_show_hide="@{!vm.loadFinish}"
+                                >
+                                <com.wang.avi.AVLoadingIndicatorView
+                                    android:id="@+id/avi"
+                                    android:layout_width="@dimen/dp30"
+                                    android:layout_height="@dimen/dp30"
+                                    style="@style/AVLoadingIndicatorView"
+                                    android:visibility="visible"
+                                    app:indicatorName="BallSpinFadeLoaderIndicator"
+                                    app:indicatorColor="@color/colorAccent"
+                                    />
+
+
+                            </com.hjq.shape.layout.ShapeRelativeLayout>
+
+                        </FrameLayout>
                     </LinearLayout>
                 </com.google.android.material.appbar.CollapsingToolbarLayout>
             </LinearLayout>

@@ -1,6 +1,12 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
+import android.graphics.Bitmap;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
+import android.util.Log;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -23,9 +29,9 @@ import com.zksg.kudoud.widgets.SettingBar;
 public class WebViewBindingAdapter {
 
 
-    @BindingAdapter(value = {"meme_web_dexscreen"},requireAll = false)
-    public static void meme_web_progress_dexscreen(WebView web, String html) {
-        if(web==null||html==null||html.equals(""))return;
+    @BindingAdapter(value = {"meme_web_dexscreen","meme_web_loadfinish"},requireAll = false)
+    public static void meme_web_progress_dexscreen(WebView web, String html,WebViewClientCallback callback) {
+        if(web==null|| TextUtils.isEmpty(html) ||callback==null)return;
         // 启用 JavaScript 支持
         WebSettings webSettings = web.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -33,7 +39,50 @@ public class WebViewBindingAdapter {
         // 设置WebView的WebChromeClient
         web.setWebChromeClient(new MyWebChromeClient());
         // 设置WebViewClient以确保在WebView中加载链接而不是默认的浏览器
-        web.setWebViewClient(new WebViewClient());
+        web.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                // 页面开始加载时执行的操作
+                Log.d("WebView", "Page started loading: " + url);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+
+                // 注入 JavaScript 来监听 window.onload 事件
+                view.evaluateJavascript(
+                        "(function() { window.onload = function() { return 'All resources finished loading'; }})();",
+                        new ValueCallback<String>() {
+                            @Override
+                            public void onReceiveValue(String value) {
+                                Log.d("WebView", "All resources finished loading");
+
+                                // 增加3秒延迟
+                                new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        // 3秒后执行的代码
+//                                        Log.d("WebView", "Page finished loading and 3 seconds have passed: " + url);
+                                        if(callback!=null) callback.onLoadFinish(true);
+                                    }
+                                }, 3000); // 3000ms = 3秒
+
+
+                            }
+                        }
+                );
+
+
+                // 页面加载完成时执行的操作
+                Log.d("WebView", "Page finished loading: " + url);
+
+
+
+
+            }
+        });
         web.loadDataWithBaseURL(null,html, "text/html", "utf-8", null);
     }
 

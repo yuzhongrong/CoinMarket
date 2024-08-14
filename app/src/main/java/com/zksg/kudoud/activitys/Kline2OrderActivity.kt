@@ -1,12 +1,14 @@
 package com.zksg.kudoud.activitys
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.MemePoolListdapter
 import com.zksg.kudoud.adapters.SimpleFragmentPagerAdapter
+import com.zksg.kudoud.callback.WebViewClientCallback
 import com.zksg.kudoud.fragments.CheckFragment
 import com.zksg.kudoud.fragments.IntroduceFragment
 import com.zksg.kudoud.fragments.PoolFragment
@@ -18,11 +20,13 @@ class Kline2OrderActivity : BaseDialogActivity() {
         mKline2OrderActivityViewModel = getActivityScopeViewModel(
             Kline2OrderActivityViewModel::class.java
         )
+
     }
 
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.activity_webview, BR.vm, mKline2OrderActivityViewModel!!)
             .addBindingParam(BR.click, ClickProxy())
+            .addBindingParam(BR.callback,this.callback)
 
     }
 
@@ -46,6 +50,14 @@ class Kline2OrderActivity : BaseDialogActivity() {
         fun close() {
             finish()
 
+        }
+    }
+
+    var callback=object: WebViewClientCallback{
+        override fun onLoadFinish(finish: Boolean) {
+
+            Log.d("webview 加载完成",finish.toString())
+            mKline2OrderActivityViewModel!!.loadFinish.set(finish)
         }
     }
 }
