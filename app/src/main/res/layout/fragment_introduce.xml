@@ -1,5 +1,4 @@
 
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -32,7 +31,7 @@
         android:layout_marginLeft="@dimen/dp12"
         android:layout_marginRight="@dimen/dp10"
         android:layout_marginTop="@dimen/dp15"
-        android:visibility="gone"
+
 
         >
 
@@ -40,36 +39,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-
             android:layout_centerInParent="true"
-            android:text="持币地址"
-            android:textColor="@color/primaryTextGray"
-            android:textSize="@dimen/sp12"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="@dimen/dp15"
-            android:gravity="center"
-            android:text="TOP10"
-
+            android:text="基本信息"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp12"
-             />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_into1"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="@dimen/dp3"
-
-
-            />
+            android:textSize="@dimen/sp16" />
 
     </RelativeLayout>
     <RelativeLayout
@@ -78,7 +51,7 @@
         android:padding="@dimen/dp5"
         android:layout_marginLeft="@dimen/dp12"
         android:layout_marginRight="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp5"
 
         >
 
@@ -87,22 +60,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:text="总大发行量"
+            android:text="@string/str_max_supply"
             android:textColor="@color/primaryTextGray"
-            android:textSize="@dimen/sp12"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp12" />
 
         <TextView
+            meme_suplly_tv="@{vm.pairs[0]}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/str_f_default_n_a"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp12"
-            meme_suplly_tv="@{vm.pairs[0]}"
-            />
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -120,7 +91,7 @@
         android:padding="@dimen/dp5"
         android:layout_marginLeft="@dimen/dp12"
         android:layout_marginRight="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp5"
 
         >
 
@@ -129,10 +100,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:text="总的流动性"
+            android:text="@string/str_total_liq"
             android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12"
-            android:textStyle="bold" />
+            />
 
         <TextView
             meme_all_liq_tv="@{vm.pairs}"
@@ -142,7 +113,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/str_f_default_n_a"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12" />
 
         <ImageView
@@ -164,7 +135,7 @@
         android:padding="@dimen/dp5"
         android:layout_marginLeft="@dimen/dp12"
         android:layout_marginRight="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp5"
 
         >
 
@@ -174,10 +145,9 @@
             android:layout_alignParentLeft="true"
 
             android:layout_centerInParent="true"
-            android:text="所属公链"
+            android:text="@string/str_include_chain"
             android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12"
-            android:textStyle="bold"
             />
 
         <TextView
@@ -185,12 +155,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
-            android:gravity="center"
 
+            android:gravity="center"
             android:text="Solana"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp12"
-            />
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -212,7 +181,7 @@
         android:layout_marginBottom="@dimen/dp2"
         android:layout_marginLeft="@dimen/dp5"
         android:layout_marginRight="@dimen/dp5"
-        android:layout_marginTop="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp15"
         />
 
     <RelativeLayout
@@ -221,7 +190,7 @@
         android:padding="@dimen/dp5"
         android:layout_marginLeft="@dimen/dp12"
         android:layout_marginRight="@dimen/dp10"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
 
         >
 
@@ -231,10 +200,9 @@
             android:layout_alignParentLeft="true"
 
             android:layout_centerInParent="true"
-            android:text="合约地址"
+            android:text="@string/str_contract_address"
             android:textColor="@color/primaryTextGray"
-            android:textSize="@dimen/sp12"
-            android:textStyle="bold" />
+            android:textSize="@dimen/sp12" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -245,18 +213,17 @@
 
             <TextView
                 android:id="@+id/address"
-                android:layout_width="@dimen/dp150"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/dp5"
                 android:ellipsize="middle"
                 android:gravity="center_horizontal"
                 android:singleLine="true"
+                android:ems="10"
                 loadtext="@{vm.contract}"
                 android:textColor="@color/colorTextNormal"
-
-                android:textSize="@dimen/sp14" />
+                android:textSize="@dimen/sp12" />
         <ImageView
             android:layout_width="@dimen/dp15"
             android:layout_height="@dimen/dp15"
@@ -276,7 +243,7 @@
         android:layout_marginBottom="@dimen/dp2"
         android:layout_marginLeft="@dimen/dp5"
         android:layout_marginRight="@dimen/dp5"
-        android:layout_marginTop="@dimen/dp25"
+        android:layout_marginTop="@dimen/dp10"
         />
 
     <LinearLayout
@@ -289,7 +256,7 @@
      <TextView
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
-         android:text="官方链接"
+         android:text="@string/str_token_official"
          android:textColor="@color/white"
          android:textSize="@dimen/sp16"
          />
@@ -298,14 +265,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="@dimen/dp15"
-
             >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_website"
             loadtextfromhtml="@{vm.website}"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12"
             />
 
         </LinearLayout>
@@ -352,7 +319,6 @@
                 submitList="@{vm.socials}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp8"
 
                 />
         </LinearLayout>

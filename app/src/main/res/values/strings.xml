@@ -400,5 +400,10 @@
     <string name="str_buy_gas">买入税率</string>
     <string name="str_sell_gas">卖出税率</string>
     <string name="str_check_items">安全检测项</string>
+    <string name="str_token_official">官方链接</string>
+    <string name="str_max_supply">总发行量</string>
+    <string name="str_total_liq">总流动性</string>
+    <string name="str_include_chain">所属公链</string>
+    <string name="str_contract_address">合约地址</string>
 
 </resources>

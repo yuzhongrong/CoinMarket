@@ -9,8 +9,8 @@
     </data>
     <com.hjq.shape.view.ShapeImageView
         android:id="@+id/imv"
-        android:layout_width="@dimen/dp35"
-        android:layout_height="@dimen/dp35"
+        android:layout_width="@dimen/dp33"
+        android:layout_height="@dimen/dp33"
         memeImvType="@{item.type}"
         android:scaleType="centerCrop"
         />

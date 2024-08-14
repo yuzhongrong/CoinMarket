@@ -79,7 +79,7 @@
         android:orientation="vertical"
         android:layout_marginLeft="@dimen/dp15"
         android:layout_marginRight="@dimen/dp15"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp15"
         >
 <RelativeLayout
     android:layout_width="match_parent"
@@ -88,7 +88,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/str_check_items"
-        android:textSize="@dimen/sp14"
+        android:textSize="@dimen/sp16"
         android:textColor="@color/white"
         />
     <TextView
@@ -343,7 +343,7 @@
             android:layout_height="wrap_content"
             android:text="@string/str_trade_gas"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp14"
+            android:textSize="@dimen/sp16"
             />
 
 
@@ -436,7 +436,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_top10_holding"
-            android:textSize="@dimen/sp14"
+            android:textSize="@dimen/sp16"
             android:textColor="@color/white"
             />
 

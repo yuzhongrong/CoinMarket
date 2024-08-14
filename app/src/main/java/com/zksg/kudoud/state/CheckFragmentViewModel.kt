@@ -36,6 +36,7 @@ class CheckFragmentViewModel : ViewModel(){
 
                 DataRepository.getInstance().getCheckToken(contract){
                     if(it.responseStatus.isSuccess){
+                        if(it.result.data==null)return@getCheckToken
                         top10hold.set(it.result.data.tokenContract.contractData.tokenHoldersRank)
                         riskScore.set(it.result.data.tokenContract.contractData.riskScore)
                         buygas.set(it.result.data.tokenContract.contractData.buyGas)

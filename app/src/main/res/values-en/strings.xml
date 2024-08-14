@@ -277,4 +277,9 @@
     <string name="str_buy_gas">Buy Gas</string>
     <string name="str_sell_gas">Sell Gas</string>
     <string name="str_check_items">Security Check</string>
+    <string name="str_token_official">Official Link</string>
+    <string name="str_max_supply">Total Supply</string>
+    <string name="str_total_liq">Total Liquidity</string>
+    <string name="str_include_chain">ChainId</string>
+    <string name="str_contract_address">Contract</string>
 </resources>
