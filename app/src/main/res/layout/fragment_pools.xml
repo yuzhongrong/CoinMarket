@@ -14,12 +14,66 @@
             type="com.zksg.kudoud.adapters.MemePoolListdapter" />
 
     </data>
-<RelativeLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp35"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:text="@string/str_coin_pairs"
+            android:textColor="@color/white"
+            android:layout_weight="1"
 
+            android:layout_marginLeft="@dimen/dp15"
+
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:text="@string/str_coin_number"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:text="@string/str_tip_dex"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp12"
+            android:text="@string/str_total_liq"
+            android:textColor="@color/white"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp15"
+            />
+
+
+    </LinearLayout>
     <com.hjq.shape.layout.ShapeRecyclerView
 
         linearAdapter="@{adapter}"
@@ -28,7 +82,6 @@
         orientation="@{1}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/dp8"
         submitList="@{vm.tokenInfo.pairs}"
         app:shape_radius="@dimen/dp10"
 
@@ -60,5 +113,5 @@
         />
 
 
-</RelativeLayout>
+</LinearLayout>
 </layout>

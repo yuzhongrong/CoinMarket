@@ -405,5 +405,8 @@
     <string name="str_total_liq">总流动性</string>
     <string name="str_include_chain">所属公链</string>
     <string name="str_contract_address">合约地址</string>
+    <string name="str_coin_pairs">交易对</string>
+    <string name="str_coin_number">币种数量</string>
+    <string name="str_tip_dex">DEX</string>
 
 </resources>

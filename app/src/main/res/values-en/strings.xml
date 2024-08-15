@@ -282,4 +282,7 @@
     <string name="str_total_liq">Total Liquidity</string>
     <string name="str_include_chain">ChainId</string>
     <string name="str_contract_address">Contract</string>
+    <string name="str_coin_pairs">Pairs</string>
+    <string name="str_coin_number">Number</string>
+    <string name="str_tip_dex">DEX</string>
 </resources>

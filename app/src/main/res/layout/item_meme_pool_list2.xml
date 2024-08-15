@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="meme"
+            type="com.netease.lib_network.entitys.DexScreenTokenInfo1.PairsDTO" />
+
+    </data>
+<com.hjq.shape.layout.ShapeLinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/dp10"
+
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        >
+
+        <com.hjq.shape.view.ShapeImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/dp20"
+            android:layout_height="@dimen/dp20"
+            android:src="@mipmap/ic_solana_common"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/dp2"
+            android:visibility="gone"
+            />
+
+        <com.hjq.shape.view.ShapeImageView
+            android:id="@+id/icon_dex"
+            android:layout_width="@dimen/dp22"
+            android:layout_height="@dimen/dp22"
+            android:src="@mipmap/ic_raydium"
+            android:layout_toRightOf="@+id/icon"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="@dimen/dp1"
+            meme_dex_imv="@{meme.dexId}"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{meme.baseToken.symbol}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+
+            android:layout_marginTop="@dimen/dp4"
+            android:layout_toRightOf="@+id/icon_dex"
+            />
+
+
+        <com.hjq.shape.view.ShapeImageView
+            android:id="@+id/coin_img"
+            android:layout_width="@dimen/dp18"
+            android:layout_height="@dimen/dp18"
+            app:shape_radius="@dimen/dp45"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_toRightOf="@+id/name"
+            meme_imv="@{meme.info.imageUrl}"
+            android:layout_marginTop="@dimen/dp3"
+            android:scaleType="centerCrop"
+            />
+
+
+        <TextView
+            android:id="@+id/tag_sol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{'/'+meme.quoteToken.symbol}"
+            android:layout_marginTop="@dimen/dp4"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12"
+            android:layout_marginLeft="@dimen/dp5"
+            android:layout_toRightOf="@+id/coin_img"
+            />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/dp5"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:text="@string/str_f_default_n_a"
+            meme_base2quo_tv="@{meme.liquidity}"
+
+
+           />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp8"
+        android:layout_marginLeft="@dimen/dp5"
+        >
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_liq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_liqu"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/primaryTextGray"
+            />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_liq_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_liq"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/white"
+            android:text="@string/str_f_default_n_a"
+            android:layout_marginLeft="@dimen/dp5"
+            meme_liq_tv="@{meme.liquidity}"
+            />
+
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_vol_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_liq_value"
+            android:text="@string/str_volume"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/primaryTextGray"
+            android:layout_marginLeft="@dimen/dp15"
+            />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_vol_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_vol_tag"
+            android:text="@string/str_f_default_n_a"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/dp5"
+            meme_vol_tv="@{meme.volume.h24}"
+            />
+
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_fdv_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_vol_value"
+            android:text="@string/str_release"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/primaryTextGray"
+            android:layout_marginLeft="@dimen/dp15"
+            android:visibility="gone"
+            />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_fdv_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_fdv_tag"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/dp5"
+            android:text="@string/str_f_default_n_a"
+            meme_mc_tv="@{meme.fdv}"
+            android:visibility="gone"
+            />
+
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_1h_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_fdv_value"
+            android:text="1H"
+            android:textSize="@dimen/sp10"
+            android:layout_marginLeft="@dimen/dp5"
+            android:textColor="@color/primaryTextGray"
+            android:visibility="gone"
+            />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_1h_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_1h_tag"
+            memeprice_common_changeTv="@{meme.priceChange.h1}"
+            android:textSize="@dimen/sp10"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/dp5"
+            android:visibility="gone"
+            />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_24h_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_24h_value"
+            android:text="24H"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/primaryTextGray"
+            android:layout_marginLeft="@dimen/dp15"
+            />
+
+        <com.hjq.shape.view.ShapeTextView
+            android:id="@+id/tv_24h_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/str_f_default_n_a"
+            android:textSize="@dimen/sp11"
+            android:textColor="@color/white"
+            android:layout_marginLeft="@dimen/dp5"
+            memeprice_common_changeTv="@{meme.priceChange.h24}"
+            />
+
+
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp0.5"
+        android:background="@color/c_1f2023"
+        android:layout_marginTop="@dimen/dp25"
+        />
+
+
+</com.hjq.shape.layout.ShapeLinearLayout>
+</layout>

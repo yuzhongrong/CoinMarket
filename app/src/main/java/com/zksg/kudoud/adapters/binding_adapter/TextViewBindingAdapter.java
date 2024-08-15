@@ -189,6 +189,14 @@ public class TextViewBindingAdapter {
         tv.setText(result);
     }
 
+    @BindingAdapter(value = {"meme_base2quo_tv1"},requireAll = false)
+    public static void meme_base2quo_tv1(TextView tv, double value) {
+        if(tv==null)return;
+        BigDecimal vd=new BigDecimal(value);
+        String result= DigitUtils.formatAmount(vd.doubleValue());
+        tv.setText(result);
+    }
+
 
     //计算流动性
     @BindingAdapter(value = {"meme_liq_tv"},requireAll = false)

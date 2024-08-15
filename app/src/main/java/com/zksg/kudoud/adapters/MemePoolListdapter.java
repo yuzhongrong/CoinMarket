@@ -1,19 +1,14 @@
 package com.zksg.kudoud.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
-import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.R;
-import com.zksg.kudoud.activitys.CoinsDetailActivity;
-import com.zksg.kudoud.databinding.ItemMemeListBinding;
 import com.zksg.kudoud.databinding.ItemMemePoolListBinding;
 import com.zksg.kudoud.utils.DiffUtils;
-import com.zksg.lib_api.beans.MemeBaseEntry;
 
 public class MemePoolListdapter extends SimpleDataBindingAdapter<DexScreenTokenInfo1.PairsDTO, ItemMemePoolListBinding> {
 
