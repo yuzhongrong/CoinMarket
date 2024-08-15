@@ -70,7 +70,7 @@ class PoolFragment(contract: String?,mKline2OrderActivityViewModel: Kline2OrderA
                     <div class="iframe-container">
                         <iframe id="dextools-widget"
                                 title="DEXTools Trading Chart"
-                                src="https://www.dextools.io/widget-chart/cn/solana/pe-light/$pair_address?theme=dark&chartType=1&headerColor=131722&tvPlatformColor=131722&tvPaneColor=131722&chartResolution=1D&drawingToolbars=false">
+                                src="https://www.dextools.io/widget-chart/cn/solana/pe-light/$pair_address?theme=dark&chartType=1&headerColor=202630&tvPlatformColor=202630&tvPaneColor=202630&chartResolution=1D&drawingToolbars=false">
                         </iframe>
                     </div>
                 </body>

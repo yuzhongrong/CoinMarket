@@ -1,8 +1,10 @@
 package com.zksg.kudoud.state
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.GsonUtils
 import com.netease.lib_network.entitys.CheckToken
 import com.netease.lib_network.entitys.DexScreenTokenInfo1
 import com.zksg.kudoud.entitys.Base2QuoEntity
@@ -37,6 +39,7 @@ class CheckFragmentViewModel : ViewModel(){
                 DataRepository.getInstance().getCheckToken(contract){
                     if(it.responseStatus.isSuccess){
                         if(it.result.data==null)return@getCheckToken
+                        Log.d("----getCheckToken--->",GsonUtils.toJson(it.result.data.tokenContract))
                         top10hold.set(it.result.data.tokenContract.contractData.tokenHoldersRank)
                         riskScore.set(it.result.data.tokenContract.contractData.riskScore)
                         buygas.set(it.result.data.tokenContract.contractData.buyGas)

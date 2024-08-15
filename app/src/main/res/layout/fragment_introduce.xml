@@ -5,6 +5,11 @@
     <data>
 
         <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.IntroduceFragment.ClickProxy" />
+
+
+        <variable
             name="vm"
             type="com.zksg.kudoud.state.IntroduceFragmentViewModel" />
 
@@ -20,7 +25,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/c_131722"
+    android:background="@color/bg_root_common"
     >
 
 
@@ -229,6 +234,7 @@
             android:layout_height="@dimen/dp15"
             android:src="@mipmap/ic_copy"
             android:layout_marginLeft="@dimen/dp5"
+            android:onClick="@{()->click.copyAddress()}"
 
             />
         </LinearLayout>

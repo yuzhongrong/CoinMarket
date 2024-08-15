@@ -35,4 +35,12 @@ class CheckFragment(contract:String?) : BaseFragment() {
     }
 
 
+
+    inner class ClickProxy {
+
+
+
+    }
+
+
 }

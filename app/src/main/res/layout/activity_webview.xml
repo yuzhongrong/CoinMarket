@@ -19,7 +19,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/c_131722"
+        android:background="@color/bg_root_common"
         >
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -30,7 +30,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/c_131722">
+            android:background="@color/bg_root_common">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -110,7 +110,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/dp390"
                                 android:gravity="center"
-                                app:shape_solidColor="@color/c_131722"
+                                app:shape_solidColor="@color/bg_root_common"
                                 common_show_hide="@{!vm.loadFinish}"
                                 >
                                 <com.wang.avi.AVLoadingIndicatorView

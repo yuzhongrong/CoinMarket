@@ -22,7 +22,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp35"
-        android:background="@color/c_131722"
 
         >
      <TextView
