@@ -285,4 +285,8 @@
     <string name="str_coin_pairs">Pairs</string>
     <string name="str_coin_number">Number</string>
     <string name="str_tip_dex">DEX</string>
+    <string name="str_new_pair">New</string>
+    <string name="str_collect">Collect</string>
+    <string name="str_meme_trending">#Trending</string>
+    <string name="str_meme_last">#Ranking</string>
 </resources>

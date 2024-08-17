@@ -123,9 +123,9 @@
     <string name="str_new">最新</string>
     <string name="str_once_normal">一键校准</string>
     <string name="str_weight_sub">校准时请勿将baby放在称重计上</string>
-    <string name="str_meme_trending">#筹码集中meme</string>
-    <string name="str_meme_base_data">统计数据</string>
+    <string name="str_meme_trending">#热门榜</string>
     <string name="str_meme_last">#实时排行榜</string>
+    <string name="str_meme_base_data">统计数据</string>
     <string name="str_device">设备</string>
     <string name="str_today_hot_wallet">热门钱包</string>
     <string name="str_coin_hot">Hotapps</string>
@@ -150,6 +150,7 @@
     <string name="str_24ex">成交榜</string>
     <string name="str_24up">涨幅榜</string>
     <string name="str_24down">跌幅榜</string>
+
     <string name="str_other">Other</string>
     <string name="str_like">Like</string>
     <string name="str_acccount">Account</string>
@@ -408,5 +409,7 @@
     <string name="str_coin_pairs">交易对</string>
     <string name="str_coin_number">币种数量</string>
     <string name="str_tip_dex">DEX</string>
+    <string name="str_new_pair">新开盘</string>
+    <string name="str_collect">收录榜</string>
 
 </resources>

@@ -12,13 +12,17 @@ import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
-import com.zksg.kudoud.adapters.HomeRecentAdapter
+import com.zksg.kudoud.adapters.HomeHotAdapter
 import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
+import com.zksg.kudoud.adapters.MemeTreadingListdapter
 import com.zksg.kudoud.beans.CommonCategoryDataEnum
 import com.zksg.kudoud.dialogs.TipVpnDialog
 import com.zksg.kudoud.dialogs.UpgradeVersionDialog
+import com.zksg.kudoud.entitys.CommonCategory
 import com.zksg.kudoud.state.HomeFragmentViewModel
+import com.zksg.kudoud.utils.LocalJsonResolutionUtils
 import com.zksg.lib_api.beans.AppInfoBean
+import com.zksg.lib_api.beans.MemeCommonEntry
 import com.zksg.lib_api.beans.UpgradeBean
 
 
@@ -32,12 +36,11 @@ class HomeFragment:BaseDialogFragment(){
     override fun getDataBindingConfig(): DataBindingConfig {
        return DataBindingConfig(R.layout.fragment_home,BR.vm,homeViewModel!!)
            .addBindingParam(BR.click,ClickProxy()!!)
+           .addBindingParam(BR.trendingadapter,MemeTreadingListdapter(requireContext()))
+
     }
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,11 +86,7 @@ class HomeFragment:BaseDialogFragment(){
 
         }
 
-        homeViewModel?.mPublishApks?.observe(this){
-            Log.d("----mPublishApks-->",it?.size.toString())
-           var dapter= homeViewModel?.todayHealthAdapter?.get() as HomeRecentAdapter
-            dapter.setList(it)
-        }
+
 
         homeViewModel?.mHotApks?.observe(this){
             Log.d("----mHotApks-->",it?.size.toString())
@@ -99,28 +98,22 @@ class HomeFragment:BaseDialogFragment(){
             if(it) showDialog() else dismissDialog()
         }
 
-        homeViewModel?.mUpgradeBean?.observe(this){
-            if(it!=null){
-               var versionCode= AppUtils.getAppVersionCode()
-                var remoteVersionCode=it.versioncode
-                if(remoteVersionCode> versionCode){
-                    showUpgradeTip(it)
-                }else{
-
-
-                }
-
-            }
-        }
-
-
-
+//        homeViewModel?.mUpgradeBean?.observe(this){
+//            if(it!=null){
+//               var versionCode= AppUtils.getAppVersionCode()
+//                var remoteVersionCode=it.versioncode
+//                if(remoteVersionCode> versionCode){
+//                    showUpgradeTip(it)
+//                }else{
+//
+//
+//                }
+//
+//            }
+//        }
 
 
 
-        homeViewModel?.todayHealthAdapter?.set(
-            HomeRecentAdapter(R.layout.item_meme_trending,null)
-        )
 
 
 //        val categorys = resources.getStringArray(R.array.category_str)
@@ -146,23 +139,19 @@ class HomeFragment:BaseDialogFragment(){
 
 
 
-        //simulate data
-        var dapter= homeViewModel?.todayHealthAdapter?.get() as HomeRecentAdapter
-        var hotmmdata= arrayListOf<AppInfoBean>()
-        hotmmdata.add(AppInfoBean())
-        hotmmdata.add(AppInfoBean())
-        hotmmdata.add(AppInfoBean())
-        dapter.setList(hotmmdata)
-
+        //treadinig data
+        var json= LocalJsonResolutionUtils.getJson(context,"trending.json")
+        var treadings= LocalJsonResolutionUtils.JsonToObject(json, CommonCategory::class.java)
+        homeViewModel!!.mTrendings.postValue(treadings.data)
 
         //meme category
         homeViewModel?.indicatorTitle?.set(
             arrayOf(
 
                 getString(R.string.str_zx),
+                getString(R.string.str_new_pair),
                 getString(R.string.str_24up),
-                getString(R.string.str_24down),
-                getString(R.string.str_24ex)
+                getString(R.string.str_collect)
             )
         )
 
@@ -171,9 +160,9 @@ class HomeFragment:BaseDialogFragment(){
                 childFragmentManager,
                 arrayOf(
                     CommonCategoryDataEnum.ZX,
+                    CommonCategoryDataEnum.NEW_PAIR,
                     CommonCategoryDataEnum.UP24,
-                    CommonCategoryDataEnum.DOWN24,
-                    CommonCategoryDataEnum.EX24
+                    CommonCategoryDataEnum.COLLECT
                 )
             )
         )

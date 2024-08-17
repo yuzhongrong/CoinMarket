@@ -25,6 +25,7 @@ import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
+import com.zksg.kudoud.entitys.CommonCategory;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.entitys.WalletNetworkEntity;
 import com.zksg.kudoud.utils.manager.SimpleWallet;
@@ -48,7 +49,7 @@ public class DiffUtils {
 
     private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO> mMemePoolCallback;
-
+    private DiffUtil.ItemCallback<CommonCategory.DataDTO> mMemeTrendingCallback;
     private DiffUtil.ItemCallback<CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO> mMemeCheckCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO> mSocials;
     private DiffUtil.ItemCallback<WalletNetworkEntity> mWalletNetworkEntityCallback;
@@ -229,6 +230,25 @@ public class DiffUtils {
         }
         return mMemePoolCallback;
     }
+
+
+    public DiffUtil.ItemCallback<CommonCategory.DataDTO> getMemeTrendingtemCallback() {
+        if (mMemeTrendingCallback == null) {
+            mMemeTrendingCallback = new DiffUtil.ItemCallback<CommonCategory.DataDTO>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull CommonCategory.DataDTO oldItem, @NonNull CommonCategory.DataDTO newItem) {
+                    return oldItem.equals(newItem);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull CommonCategory.DataDTO oldItem, @NonNull CommonCategory.DataDTO newItem) {
+                    return oldItem.getPair().equals(newItem.getPair());
+                }
+            };
+        }
+        return mMemeTrendingCallback;
+    }
+
 
 
 

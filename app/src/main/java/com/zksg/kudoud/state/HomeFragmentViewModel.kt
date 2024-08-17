@@ -4,8 +4,10 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.kunminx.architecture.domain.message.MutableResult
+import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter
 import com.zksg.kudoud.adapters.CategoryPagerAdapter
 import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
+import com.zksg.kudoud.entitys.CommonCategory
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.lib_api.beans.AppInfoBean
@@ -23,15 +25,14 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
     var memecategoryadapter = ObservableField<MemeCategoryPagerAdapter?>()
 
     @JvmField
-    var todayHealthAdapter = ObservableField<BaseQuickAdapter<*, *>>()
-    var todayhotAdapter = ObservableField<BaseQuickAdapter<*, *>>()
-    @JvmField
     var coininstallAdapter = ObservableField<BaseQuickAdapter<*, *>>()
     @JvmField
     var banner_datas = MutableResult<List<BannerBean>>()
 
     /*----------------------Respons result----------------------------*/
-    val mPublishApks = MutableResult<List<AppInfoBean>>()
+    @JvmField
+    val mTrendings = MutableResult<List<CommonCategory.DataDTO>>()
+
     val mBannerClickAppinfo=MutableResult<List<AppInfoBean>>()
     val mLastNotify = MutableResult<List<NotifyBean>>()
 
@@ -85,9 +86,6 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
                   if(it.responseStatus.isSuccess) banner_datas.postValue(it.result.data.list)
               }
 
-              DataRepository.getInstance().getAppinfoListForOrder(1,20,"created_at","descending"){
-                  if(it.responseStatus.isSuccess) mPublishApks.postValue(it.result.data.list)
-              }
 
               DataRepository.getInstance().getLastNoticeForOrder(1,50,"created_at","descending"){
                   if(it.responseStatus.isSuccess) mLastNotify.postValue(it.result.data.list)

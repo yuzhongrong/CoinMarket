@@ -1,22 +1,17 @@
 package com.zksg.kudoud.adapters
 
-import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.google.gson.Gson
-import com.netease.lib_image_loader.app.ImageLoaderManager
-import com.netease.lib_network.constants.config
-import com.zksg.kudoud.R
-import com.zksg.kudoud.activitys.AppDetailActivity
+import com.zksg.kudoud.entitys.CommonCategory
 import com.zksg.lib_api.beans.AppInfoBean
 
-class HomeRecentAdapter : BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
+class HomeHotAdapter : BaseQuickAdapter<CommonCategory.DataDTO, BaseViewHolder> {
     constructor(layoutResId: Int) : super(layoutResId) {}
-    constructor(layoutResId: Int, data: List<AppInfoBean?>?) : super(layoutResId,
-        data as MutableList<AppInfoBean>?
+    constructor(layoutResId: Int, data: List<CommonCategory.DataDTO?>?) : super(layoutResId,
+        data as MutableList<CommonCategory.DataDTO>?
     ) {
         setOnItemClickListener { adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int ->
 //            val i = Intent(context, AppDetailActivity::class.java)
@@ -35,7 +30,7 @@ class HomeRecentAdapter : BaseQuickAdapter<AppInfoBean, BaseViewHolder> {
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return super.onCreateDefViewHolder(parent, viewType)
     }
-    override fun convert(baseViewHolder: BaseViewHolder, homeItem: AppInfoBean) {
+    override fun convert(baseViewHolder: BaseViewHolder, homeItem: CommonCategory.DataDTO) {
         Log.d("convert", "convert: ")
 //        var  url = config.ipfs_base_url + homeItem.app_icon
 //        ImageLoaderManager.getInstance().displayImageForView(baseViewHolder.getView(R.id.icon), url)

@@ -12,6 +12,13 @@
             name="click"
             type="com.zksg.kudoud.fragments.HomeFragment.ClickProxy" />
 
+        <variable
+            name="trendingadapter"
+            type="com.zksg.kudoud.adapters.MemeTreadingListdapter" />
+
+
+
+
     </data>
 
 
@@ -550,10 +557,11 @@
                         </RelativeLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
-                            linearAdapter="@{vm.todayHealthAdapter}"
+                            linearAdapter="@{trendingadapter}"
                             cannotScrollVertically="@{false}"
                             itemspace="@{15}"
                             orientation="@{0}"
+                            submitList="@{vm.mTrendings}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp8"

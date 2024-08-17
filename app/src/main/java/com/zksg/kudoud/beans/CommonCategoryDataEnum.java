@@ -15,6 +15,9 @@ public enum CommonCategoryDataEnum {
 	DOWN24(getString(R.string.str_24down), 7),
 
 	EX24(getString(R.string.str_24ex), 8),
+	NEW_PAIR(getString(R.string.str_new_pair), 9),
+	COLLECT(getString(R.string.str_collect), 10),
+
 	OTHER(getString(R.string.str_category), -1);
 	//所有类型标识
 	public static final int WALLET_ID = 0;
@@ -25,6 +28,10 @@ public enum CommonCategoryDataEnum {
 	public static final int CHAT_DOWN_24 = 7;
 
 	public static final int CHAT_EX_24 = 8;
+
+	public static final int NEW_PAIR_ID = 9;
+	public static final int COLLECT_ID = 10;
+
 
 	public static final int OTHER_ID = -1;
 
