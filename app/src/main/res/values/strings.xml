@@ -411,5 +411,8 @@
     <string name="str_tip_dex">DEX</string>
     <string name="str_new_pair">新开盘</string>
     <string name="str_collect">收录榜</string>
+    <string name="str_price">价格</string>
+    <string name="str_vol">24h成交量</string>
+    <string name="str_trade_now">立即交易</string>
 
 </resources>

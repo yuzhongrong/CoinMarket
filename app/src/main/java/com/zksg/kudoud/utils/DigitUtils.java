@@ -23,13 +23,13 @@ public class DigitUtils {
             return String.format("%.2f", amount);
         } else if (amount < 1000000) {
             // 如果金额在 1000 到 1000000 之间，使用 k 后缀表示
-            return String.format("%.2fK", amount / 1000);
+            return String.format("%.2fk", amount / 1000);
         } else if (amount < 1000000000) {
             // 如果金额在 1000000 到 1000000000 之间，使用 m 后缀表示
-            return String.format("%.2fM", amount / 1000000);
+            return String.format("%.2fm", amount / 1000000);
         } else {
             // 如果金额大于等于 1000000000，使用 b 后缀表示
-            return String.format("%.2fB", amount / 1000000000);
+            return String.format("%.2fb", amount / 1000000000);
         }
     }
 
@@ -159,18 +159,29 @@ public class DigitUtils {
         // Convert String to BigDecimal
         BigDecimal bigDecimal = new BigDecimal(price);
 
-        // Create a DecimalFormat instance with the specified precision
-        StringBuilder pattern = new StringBuilder("0.");
-        for (int i = 0; i < precision; i++) {
-            pattern.append('#');
+        // Convert BigDecimal to plain string to avoid scientific notation
+        String plainString = bigDecimal.toPlainString();
+
+        // Find the decimal point
+        int decimalPointIndex = plainString.indexOf('.');
+
+        // Check if there is a decimal part
+        if (decimalPointIndex != -1) {
+            // Split the integer and decimal parts
+            String integerPart = plainString.substring(0, decimalPointIndex);
+            String decimalPart = plainString.substring(decimalPointIndex + 1);
+
+            // Truncate the decimal part based on the specified precision
+            if (decimalPart.length() > precision) {
+                decimalPart = decimalPart.substring(0, precision);
+            }
+
+            // Reconstruct the number with the truncated decimal part
+            return integerPart + "." + decimalPart;
         }
 
-        DecimalFormat df = new DecimalFormat(pattern.toString());
-        df.setMinimumFractionDigits(0); // Ensure it doesn't pad with zeros
-        df.setGroupingUsed(false); // Avoid grouping (e.g., 1,000)
-
-        // Format BigDecimal value to plain string
-        return df.format(bigDecimal);
+        // If there's no decimal part, return the integer part as is
+        return plainString;
     }
 
 

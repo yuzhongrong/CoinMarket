@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 
 import com.hjq.shape.view.ShapeButton;
+import com.hjq.shape.view.ShapeTextView;
 import com.kunminx.architecture.domain.message.MutableResult;
 
 import com.netease.lib_network.entitys.CheckToken;
@@ -35,6 +37,7 @@ import com.zksg.kudoud.state.MeFragmentViewModel;
 import com.zksg.kudoud.utils.DateUtils;
 import com.zksg.kudoud.utils.DigitUtils;
 import com.zksg.kudoud.utils.IntentUtils;
+import com.zksg.kudoud.utils.StringUtils;
 import com.zksg.kudoud.utils.TimeUtils;
 import com.zksg.kudoud.widgets.CircularProgressBar;
 import com.zksg.kudoud.widgets.SettingBar;
@@ -214,6 +217,17 @@ public class TextViewBindingAdapter {
 //        if(decimal<6){decimal=6;}
         tv.setText(dollar+DigitUtils.formatPriceWithoutScientificNotation(token.getPrice(),decimal));
     }
+
+
+    @BindingAdapter(value = {"meme_common_price_tv"},requireAll = false)
+    public static void meme_common_price_tv(TextView tv, String value) {
+        if(tv==null||TextUtils.isEmpty(value))return;
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        int decimal=6;
+//        if(decimal<6){decimal=6;}
+        tv.setText(dollar+DigitUtils.formatPriceWithoutScientificNotation(value,decimal));
+    }
+
 
 
     @BindingAdapter(value = {"meme_wallet_token_amount_tv"},requireAll = false)
@@ -505,18 +519,34 @@ public class TextViewBindingAdapter {
 
 
     @BindingAdapter(value = {"meme_percent_tv"},requireAll = false)
-    public static void memeVolTv(ShapeButton bt, Object value) {
-        if(value==null)return;
-        double d_result=(double)value;
-        boolean result=DigitUtils.isNegative(d_result);
+    public static void meme_percent_tv(ShapeTextView tv, double value) {
+        if(tv==null)return;
+        boolean result=DigitUtils.isNegative(value);
+        String flat=tv.getContext().getString(R.string.str_precent);
+
+        if(result){
+            tv.setText(DigitUtils.formatAmountPercentChange(value)+flat);
+            tv.getShapeDrawableBuilder().setSolidColor(tv.getContext().getColor(R.color.c_f71816)).intoBackground();
+        }else{
+            tv.getShapeDrawableBuilder().setSolidColor(tv.getContext().getColor(R.color.c_1bc89e)).intoBackground();
+            tv.setText("+"+DigitUtils.formatAmountPercentChange(value)+flat);
+        }
+
+
+    }
+
+    @BindingAdapter(value = {"meme_percent_trending_tv"},requireAll = false)
+    public static void meme_percent_trending_tv(ShapeTextView bt, double value) {
+        if(bt==null)return;
+        boolean result=DigitUtils.isNegative(value);
         String flat=bt.getContext().getString(R.string.str_precent);
 
         if(result){
-            bt.setText(DigitUtils.formatAmountPercentChange(d_result)+flat);
-            bt.getShapeDrawableBuilder().setSolidColor(bt.getContext().getColor(R.color.c_f71816)).intoBackground();
+            bt.setText(DigitUtils.formatAmountPercentChange(value)+flat);
+            bt.setTextColor(bt.getContext().getColor(R.color.c_f71816));
         }else{
-            bt.getShapeDrawableBuilder().setSolidColor(bt.getContext().getColor(R.color.c_1bc89e)).intoBackground();
-            bt.setText("+"+DigitUtils.formatAmountPercentChange(d_result)+flat);
+            bt.setTextColor(bt.getContext().getColor(R.color.c_1bc89e));
+            bt.setText("+"+DigitUtils.formatAmountPercentChange(value)+flat);
         }
 
 
@@ -815,6 +845,13 @@ public class TextViewBindingAdapter {
         tv.setText(value+"/"+"5");
     }
 
+
+    @BindingAdapter(value = {"meme_money_show"},requireAll = false)
+    public static void meme_money_show(TextView tv, double value) {
+        if(tv==null)return;
+        Log.d("----price---->",value+"");
+        tv.setText("$"+ StringUtils.formatNumberPointZero(value));
+    }
 
 
 }

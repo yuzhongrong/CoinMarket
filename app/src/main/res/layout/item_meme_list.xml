@@ -79,21 +79,21 @@
         android:textStyle="bold" />
 
 
-    <com.hjq.shape.view.ShapeButton
+    <com.hjq.shape.view.ShapeTextView
         android:id="@+id/change"
         meme_percent_tv="@{meme.v24hChangePercent}"
         android:layout_width="@dimen/dp80"
         android:layout_height="@dimen/dp30"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
+        android:ellipsize="end"
         android:gravity="center"
+        android:maxLength="15"
+        android:maxLines="1"
         android:text="@string/str_precent_1"
         android:textColor="@color/white"
         android:textSize="@dimen/sp12"
         android:textStyle="bold"
-        android:maxLength="15"
-        android:maxLines="1"
-        android:ellipsize="end"
         app:shape_radius="@dimen/dp5" />
 
 

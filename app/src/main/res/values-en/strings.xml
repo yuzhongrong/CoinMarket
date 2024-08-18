@@ -289,4 +289,7 @@
     <string name="str_collect">Collect</string>
     <string name="str_meme_trending">#Trending</string>
     <string name="str_meme_last">#Ranking</string>
+    <string name="str_price">Price</string>
+    <string name="str_vol">Vol</string>
+    <string name="str_trade_now">Trade</string>
 </resources>

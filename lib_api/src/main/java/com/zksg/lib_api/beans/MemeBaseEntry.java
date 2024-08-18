@@ -19,7 +19,7 @@ public class MemeBaseEntry implements Serializable {
     @SerializedName("mc")
     private double mc;
     @SerializedName("v24hChangePercent")
-    private Object v24hChangePercent;
+    private double v24hChangePercent;
     @SerializedName("name")
     private String name;
     @SerializedName("symbol")
@@ -97,11 +97,11 @@ public class MemeBaseEntry implements Serializable {
         this.symbol = symbol;
     }
 
-    public Object getV24hChangePercent() {
+    public double getV24hChangePercent() {
         return v24hChangePercent;
     }
 
-    public void setV24hChangePercent(Object v24hChangePercent) {
+    public void setV24hChangePercent(double v24hChangePercent) {
         this.v24hChangePercent = v24hChangePercent;
     }
 

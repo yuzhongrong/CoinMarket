@@ -33,11 +33,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ordi"
+            android:text="----"
+            loadtext="@{item.token0Symbol}"
             android:textColor="@color/white"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/sp15"
+            android:textSize="@dimen/sp14"
             android:textStyle="bold"
             />
 
@@ -53,19 +54,20 @@
     <ImageView
         android:layout_width="@dimen/dp25"
         android:layout_height="@dimen/dp25"
-        android:src="@mipmap/ic_solana"
+        meme_imv="@{item.token0LogoUrl}"
         />
 
     </com.hjq.shape.layout.ShapeLinearLayout>
 
 
     </RelativeLayout>
-    <TextView
+    <com.hjq.shape.view.ShapeTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+8.25%"
-        android:textColor="@color/c_1bc89e"
+        android:text="--.--%"
+        meme_percent_trending_tv="@{item.priceChange24h}"
         android:layout_marginTop="@dimen/dp15"
+        android:textStyle="bold"
         />
 
 
@@ -79,8 +81,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="价格"
-            android:textColor="@color/primaryText"
+            android:text="@string/str_price"
+            android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp10"
             />
 
@@ -88,10 +90,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="$73.4"
-            android:textColor="@color/white"
+            android:text="$-.--"
+            meme_money_show="@{item.currentPriceUsd}"
+            android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp13"
-            android:textStyle="bold" />
+         />
 
 
 
@@ -106,19 +109,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="24h交易量"
-            android:textColor="@color/primaryText"
+            android:text="@string/str_vol"
+            android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp10"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$67.91k"
-            android:textColor="@color/white"
             android:layout_alignParentRight="true"
+            android:text="$--.--"
+            android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp13"
-            android:textStyle="bold"
+
             />
 
 
@@ -129,7 +132,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp35"
         android:textColor="@color/black"
-        android:text="立即交易"
+        android:text="@string/str_trade_now"
         app:shape_solidColor="@color/colorAccent"
         app:shape_radius="@dimen/dp5"
         android:gravity="center"
