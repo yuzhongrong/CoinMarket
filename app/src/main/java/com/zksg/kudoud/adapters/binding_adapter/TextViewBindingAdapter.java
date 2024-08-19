@@ -853,5 +853,17 @@ public class TextViewBindingAdapter {
         tv.setText("$"+ StringUtils.formatNumberPointZero(value));
     }
 
+    @BindingAdapter(value = {"meme_sol_show"},requireAll = false)
+    public static void meme_sol_show(TextView tv, double value) {
+        if(tv==null)return;
+        tv.setText(StringUtils.num2thousand00(new BigDecimal(value).toPlainString())+"sol");
+    }
+
+    @BindingAdapter(value = {"meme_mcap_show"},requireAll = false)
+    public static void meme_mcap_show(TextView tv, double value) {
+        if(tv==null)return;
+        tv.setText(DigitUtils.formatAmount(value));
+    }
+
 
 }

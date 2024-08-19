@@ -12,7 +12,7 @@
 
 <com.hjq.shape.layout.ShapeLinearLayout
 
-    android:layout_width="@dimen/dp140"
+    android:layout_width="@dimen/dp135"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="@dimen/dp10"
@@ -35,10 +35,10 @@
             android:layout_height="wrap_content"
             android:text="----"
             loadtext="@{item.token0Symbol}"
-            android:textColor="@color/white"
+            android:textColor="@color/primaryText"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:textSize="@dimen/sp14"
+            android:textSize="@dimen/sp13"
             android:textStyle="bold"
             />
 
@@ -66,10 +66,10 @@
         android:layout_height="wrap_content"
         android:text="--.--%"
         meme_percent_trending_tv="@{item.priceChange24h}"
-        android:layout_marginTop="@dimen/dp15"
+        android:layout_marginTop="@dimen/dp10"
         android:textStyle="bold"
+        android:textColor="@color/white"
         />
-
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -81,8 +81,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_price"
-            android:textColor="@color/primaryTextGray"
+            android:text="@string/str_mc"
+            android:textColor="@color/primaryText"
             android:textSize="@dimen/sp10"
             />
 
@@ -90,28 +90,92 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="$-.--"
+            meme_mcap_show="@{item.marketCap}"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/sp10"
+            />
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp5"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_price"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/sp10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
             android:text="$-.--"
             meme_money_show="@{item.currentPriceUsd}"
-            android:textColor="@color/primaryTextGray"
-            android:textSize="@dimen/sp13"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/sp10"
          />
 
 
 
     </RelativeLayout>
 
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp5"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/str_simple_pool"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/sp10"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="--.--"
+            meme_sol_show="@{item.reserve1}"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/sp10"
+            />
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp5"
+        android:visibility="gone"
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_vol"
-            android:textColor="@color/primaryTextGray"
+            android:textColor="@color/primaryText"
             android:textSize="@dimen/sp10"
+            android:gravity="center"
             />
 
         <TextView
@@ -119,25 +183,30 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="$--.--"
-            android:textColor="@color/primaryTextGray"
-            android:textSize="@dimen/sp13"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/sp10"
+            android:gravity="center"
 
             />
 
 
 
     </RelativeLayout>
-
     <com.hjq.shape.view.ShapeButton
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp35"
-        android:textColor="@color/black"
+        android:textColor="@color/primaryText"
         android:text="@string/str_trade_now"
-        app:shape_solidColor="@color/colorAccent"
+        android:textSize="@dimen/sp12"
+        app:shape_solidColor="@color/bg_layout_common"
+        app:shape_strokeWidth="0.2dp"
+        app:shape_strokeColor="@color/c_29313d"
+        app:shape_solidPressedColor="@color/c_29313d"
+        android:clickable="true"
         app:shape_radius="@dimen/dp5"
         android:gravity="center"
         android:textStyle="bold"
-        android:layout_marginTop="@dimen/dp12"
+        android:layout_marginTop="@dimen/dp15"
 
 
         />

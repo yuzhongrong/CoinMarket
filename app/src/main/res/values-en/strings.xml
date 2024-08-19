@@ -292,4 +292,6 @@
     <string name="str_price">Price</string>
     <string name="str_vol">Vol</string>
     <string name="str_trade_now">Trade</string>
+    <string name="str_liq_tip">Liquidity</string>
+    <string name="str_simple_pool">pool</string>
 </resources>

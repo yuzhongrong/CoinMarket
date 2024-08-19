@@ -265,7 +265,7 @@
     <string name="str_24h">(24h):</string>
     <string name="str_price_change_time">实时涨跌幅 </string>
     <string name="str_quo_number">计价币数量</string>
-    <string name="str_mc">总市值</string>
+    <string name="str_mc">市值</string>
     <string name="str_not_add">不可增发</string>
     <string name="str_contract">合约地址</string>
     <string name="str_pool_createat">创建时间</string>
@@ -414,5 +414,7 @@
     <string name="str_price">价格</string>
     <string name="str_vol">24h成交量</string>
     <string name="str_trade_now">立即交易</string>
+    <string name="str_liq_tip">流动性</string>
+    <string name="str_simple_pool">池子</string>
 
 </resources>
