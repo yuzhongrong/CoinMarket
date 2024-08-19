@@ -28,13 +28,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -59,7 +57,6 @@ import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 import com.suke.widget.SwitchButton;
 import com.zksg.kudoud.R;
-import com.zksg.kudoud.utils.AnimationUtil;
 import com.zksg.lib_api.beans.BannerBean;
 
 import java.math.BigDecimal;
@@ -133,7 +130,7 @@ public class CommonBindingAdapter {
 
     @BindingAdapter(value = {"loadimage"}, requireAll = false)
     public static void loadImage(ImageView view,String ipfsurl) {
-        Log.d("---loadimagexxx---->","xxx");
+        Log.d("---loadimagexxx---->", "xxx.js");
         if(view==null|| TextUtils.isEmpty(ipfsurl))return;
         String murl=ipfs_base_url+ipfsurl;
         ImageLoaderManager.getInstance().displayImageForView(view,murl);

@@ -27,7 +27,7 @@ public class WeightWeekFragment extends BaseFragment {
     @Override
     protected void loadInitData() {
 
-        Log.d("---xxx->loadInitData", "loadInitData: ");
+        Log.d("---xxx.js->loadInitData", "loadInitData: ");
 
 
     }

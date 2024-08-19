@@ -70,7 +70,7 @@ class MemeCategoryCommonFragment : BaseFragment() {
             }
         }
 
-//        Log.d("---xxx-loadmemejson", json)
+//        Log.d("---xxx.js-loadmemejson", json)
 
         //这里在交易量降序的数据集合中最好是请求前150个数据  对期进行涨跌幅排序,市值排序 这样才有意义
 

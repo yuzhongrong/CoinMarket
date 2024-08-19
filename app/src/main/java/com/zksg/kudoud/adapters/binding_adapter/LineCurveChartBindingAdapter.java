@@ -58,7 +58,7 @@
 //            LineChart lineChart,
 //            List<LineChartBean.GRID0DTO.ResultDTO.ClientAccumulativeRateDTO> datas,
 //            TimeUtils.Interval mSlot) {
-//        Log.d("---xxx->initCurveChart", "initCurveChart");
+//        Log.d("---xxx.js->initCurveChart", "initCurveChart");
 //        if(lineChart==null)return;
 //         XAxis xAxis;                //X轴
 //         YAxis leftYAxis;            //左侧Y轴
@@ -248,7 +248,7 @@
 //    public static void showCurveLineChart(LineChart lineChart,List<LineChartBean.GRID0DTO.ResultDTO.ClientAccumulativeRateDTO> dataList,TimeUtils.Interval mSlot) {
 //        if(dataList==null||dataList.size()==0)return;
 //        initCurveChart(lineChart,dataList,mSlot);
-//        Log.d("---xxx->showCurveLineChart", "showCurveLineChart: ");
+//        Log.d("---xxx.js->showCurveLineChart", "showCurveLineChart: ");
 //        List<Entry> entries = new ArrayList<>();
 //        for (int i = 0; i < dataList.size(); i++) {
 //            LineChartBean.GRID0DTO.ResultDTO.ClientAccumulativeRateDTO data = dataList.get(i);

@@ -25,7 +25,7 @@ class WalletFragment(id: Int) : BaseFragment() {
     }
 
     override fun loadInitData() {
-        Log.d("---xxx->loadInitData", "loadInitData: ")
+        Log.d("---xxx.js->loadInitData", "loadInitData: ")
         val categorys = resources.getStringArray(R.array.category_str)
 
        var adapter= HomeCWAdapter_V(
