@@ -160,5 +160,30 @@ public class StringUtils {
     }
 
 
+    /**
+     * 检查字符串是否在数组中
+     *
+     * @param array  需要搜索的字符串数组
+     * @param target 需要匹配的字符串
+     * @return 如果字符串存在于数组中，返回 true；否则返回 false
+     */
+    public static boolean contains(String[] array, String target) {
+        if (array == null || target == null) {
+            return false;
+        }
+
+        // 遍历数组，检查是否有与目标字符串匹配的元素
+        for (String s : array) {
+            if (target.equals(s)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+
 
 }

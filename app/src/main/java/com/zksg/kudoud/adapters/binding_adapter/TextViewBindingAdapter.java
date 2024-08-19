@@ -1,5 +1,7 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
+import static com.zksg.kudoud.utils.GsonUtil.parseJsonArray;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.text.Html;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 
 import com.hjq.shape.view.ShapeButton;
+import com.hjq.shape.view.ShapeImageView;
 import com.hjq.shape.view.ShapeTextView;
 import com.kunminx.architecture.domain.message.MutableResult;
 
@@ -863,6 +866,54 @@ public class TextViewBindingAdapter {
     public static void meme_mcap_show(TextView tv, double value) {
         if(tv==null)return;
         tv.setText(DigitUtils.formatAmount(value));
+    }
+
+    @BindingAdapter(value = {"meme_tag_show"},requireAll = false)
+    public static void meme_tag_show(ShapeImageView imv, String tag) {
+        if(imv==null)return;
+        if(TextUtils.isEmpty(tag)){
+            imv.setVisibility(View.GONE);
+        }else{
+            imv.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+
+    @BindingAdapter(value = {"meme_dynamic_tag_show"},requireAll = false)
+    public static void meme_dynamic_tag_show(ShapeImageView imv, String json_dynamic_tag) {
+        if(imv==null||TextUtils.isEmpty(json_dynamic_tag))return;
+        try{
+            String[] arrays= parseJsonArray(json_dynamic_tag);
+            if(arrays.length>0) {
+                if (imv.getId() == R.id.tag_gen_doge) {//潜力狗
+                    matchImvDoge(imv,arrays,"dynamic-alpha");
+                } else if (imv.getId() == R.id.tag_gold_doge) {//金狗
+                    matchImvDoge(imv,arrays,"dynamic-gem");
+                } else if (imv.getId() == R.id.tag_rug_doge) {//跑路
+                    matchImvDoge(imv,arrays,"dynamic-rug_pull");
+                } else if (imv.getId() == R.id.tag_shit) {//流水盘
+                    matchImvDoge(imv,arrays,"dynamic-shitcoin");
+
+                } else if (imv.getId() == R.id.tag_hard_dump) {//暴跌
+                    matchImvDoge(imv,arrays,"dynamic-hard_dump");
+                }
+            }
+            }catch (Exception e){
+                Log.e("----matchImvDoge-err-----",e.getMessage());
+               }
+
+
+    }
+
+    private static void matchImvDoge(ShapeImageView imv,String[] arrays,String target){
+        boolean result= StringUtils.contains(arrays,target);
+        if(result){
+            imv.setVisibility(View.VISIBLE);
+        }else{
+            imv.setVisibility(View.GONE);
+        }
+
     }
 
 
