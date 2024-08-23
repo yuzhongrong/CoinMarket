@@ -6,7 +6,7 @@
     <data>
         <variable
             name="item"
-            type="com.zksg.kudoud.entitys.CommonCategory.DataDTO" />
+            type="com.netease.lib_network.entitys.CommonCategory.DataDTO" />
 
     </data>
 
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="----"
-            loadtext="@{item.token0Symbol}"
+            meme_name_show="@{item}"
             android:textColor="@color/primaryText"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
@@ -170,7 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginTop="@dimen/dp5"
         >
 
         <TextView

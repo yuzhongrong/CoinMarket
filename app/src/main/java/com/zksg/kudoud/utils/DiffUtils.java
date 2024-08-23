@@ -19,13 +19,11 @@ package com.zksg.kudoud.utils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.CheckToken;
-import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.JupToken;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
-import com.zksg.kudoud.entitys.CommonCategory;
+import com.netease.lib_network.entitys.CommonCategory;
 import com.zksg.kudoud.entitys.UiWalletToken;
 import com.zksg.kudoud.entitys.WalletNetworkEntity;
 import com.zksg.kudoud.utils.manager.SimpleWallet;

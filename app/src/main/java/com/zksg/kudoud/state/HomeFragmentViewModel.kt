@@ -1,15 +1,16 @@
 package com.zksg.kudoud.state
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.GsonUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.kunminx.architecture.domain.message.MutableResult
-import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter
-import com.zksg.kudoud.adapters.CategoryPagerAdapter
 import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
-import com.zksg.kudoud.entitys.CommonCategory
+import com.netease.lib_network.entitys.CommonCategory
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
+import com.zksg.kudoud.utils.GsonUtil
 import com.zksg.lib_api.beans.AppInfoBean
 import com.zksg.lib_api.beans.BannerBean
 import com.zksg.lib_api.beans.NotifyBean
@@ -47,16 +48,23 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 //        )
 //    }
 
-    fun getOnePublishApp(app_file:String){
+    fun getTrendingTokens(){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
-                loadingVisible.postValue(true)
-                DataRepository.getInstance().getAppinfoOneSearch(1,1,app_file){
+//                loadingVisible.postValue(true)
+                DataRepository.getInstance().getTrendingTokens{
 
-                  if(it.responseStatus.isSuccess) mBannerClickAppinfo.postValue(it.result.data.list)
+                  if(it.responseStatus.isSuccess){
+                      if(it.result!=null&&it.result.data!=null){
+                        Log.d("---getTrendingTokens--->", GsonUtils.toJson(it.result.data))
+                          mTrendings.postValue(it.result.data)
+
+                      }
+                  }
+
 
                 }
-                loadingVisible.postValue(false)
+//                loadingVisible.postValue(false)
             }
 
 

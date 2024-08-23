@@ -21,6 +21,7 @@ import com.hjq.shape.view.ShapeTextView;
 import com.kunminx.architecture.domain.message.MutableResult;
 
 import com.netease.lib_network.entitys.CheckToken;
+import com.netease.lib_network.entitys.CommonCategory;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.NewWalletToken;
@@ -880,6 +881,7 @@ public class TextViewBindingAdapter {
     }
 
 
+
     @BindingAdapter(value = {"meme_dynamic_tag_show"},requireAll = false)
     public static void meme_dynamic_tag_show(ShapeImageView imv, String json_dynamic_tag) {
         if(imv==null||TextUtils.isEmpty(json_dynamic_tag))return;
@@ -906,6 +908,19 @@ public class TextViewBindingAdapter {
 
     }
 
+
+
+    @BindingAdapter(value = {"meme_name_show"},requireAll = false)
+    public static void meme_name_show(TextView tv, CommonCategory.DataDTO value) {
+        if(tv==null||value==null)return;
+        if(value.getToken0Address().equalsIgnoreCase("So11111111111111111111111111111111111111112")){
+            tv.setText(value.getToken1Symbol());
+        }else{
+            tv.setText(value.getToken0Symbol());
+        }
+
+    }
+
     private static void matchImvDoge(ShapeImageView imv,String[] arrays,String target){
         boolean result= StringUtils.contains(arrays,target);
         if(result){
@@ -915,6 +930,9 @@ public class TextViewBindingAdapter {
         }
 
     }
+
+
+
 
 
 }

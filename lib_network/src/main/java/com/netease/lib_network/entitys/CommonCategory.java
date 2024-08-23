@@ -1,4 +1,4 @@
-package com.zksg.kudoud.entitys;
+package com.netease.lib_network.entitys;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -6,6 +6,7 @@ import com.netease.lib_network.entitys.ApiTokenInfo;
 import com.netease.lib_network.entitys.BroadcastRequest;
 import com.netease.lib_network.entitys.CheckToken;
 import com.netease.lib_network.entitys.CommitTransation;
+import com.netease.lib_network.entitys.CommonCategory;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.JupToken;
@@ -42,7 +43,7 @@ public interface ApiService {
 
 
 //    String BASE_URL = "https://api.dexscreener.com";
-    String BASE_URL=" http://192.168.10.2:3000";
+    String BASE_URL=" http://43.130.227.153:3000";
 
     @GET("login/cellphone")
     Single<LoginBean>  login(@Query("phone") String phone, @Query("password") String password);
@@ -146,6 +147,11 @@ public interface ApiService {
 
     @GET("/api/wallet/getSolTransations")
     Single<CommonResponse<List<TransationHistoryEntity>>> getSolTransations(@Query("wallet") String wallet,@Query("before") String before);
+
+
+    @GET("/api/wallet/getTrendingTokens")
+    Single<CommonResponse<List<CommonCategory.DataDTO>>> getTrendingTokens();
+
     @GET("/api/swap/getQuo")
     Single<CommonResponse<QuoEntity>> getQuo(@Query("from") String from, @Query("to") String to, @Query("amount") String amount, @Query("fromdecimal") int fromdecimal);
     @GET("/api/swap/getNetworkGas")

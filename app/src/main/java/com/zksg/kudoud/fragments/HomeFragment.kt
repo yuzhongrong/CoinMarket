@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import com.blankj.utilcode.util.AppUtils
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.lxj.xpopup.XPopup
 import com.tencent.mmkv.MMKV
@@ -12,17 +11,14 @@ import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.activitys.*
 import com.zksg.kudoud.adapters.HomeCWAdapter_V
-import com.zksg.kudoud.adapters.HomeHotAdapter
 import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
 import com.zksg.kudoud.adapters.MemeTreadingListdapter
 import com.zksg.kudoud.beans.CommonCategoryDataEnum
 import com.zksg.kudoud.dialogs.TipVpnDialog
 import com.zksg.kudoud.dialogs.UpgradeVersionDialog
-import com.zksg.kudoud.entitys.CommonCategory
+import com.netease.lib_network.entitys.CommonCategory
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.kudoud.utils.LocalJsonResolutionUtils
-import com.zksg.lib_api.beans.AppInfoBean
-import com.zksg.lib_api.beans.MemeCommonEntry
 import com.zksg.lib_api.beans.UpgradeBean
 
 
@@ -139,10 +135,10 @@ class HomeFragment:BaseDialogFragment(){
 
 
 
-        //treadinig data
-        var json= LocalJsonResolutionUtils.getJson(context,"trending.json")
-        var treadings= LocalJsonResolutionUtils.JsonToObject(json, CommonCategory::class.java)
-        homeViewModel!!.mTrendings.postValue(treadings.data)
+//        //treadinig data
+//        var json= LocalJsonResolutionUtils.getJson(context,"trending.json")
+//        var treadings= LocalJsonResolutionUtils.JsonToObject(json, CommonCategory::class.java)
+//        homeViewModel!!.mTrendings.postValue(treadings.data)
 
         //meme category
         homeViewModel?.indicatorTitle?.set(
@@ -168,8 +164,7 @@ class HomeFragment:BaseDialogFragment(){
         )
 
 
-
-
+        homeViewModel!!.getTrendingTokens()
 
     }
 

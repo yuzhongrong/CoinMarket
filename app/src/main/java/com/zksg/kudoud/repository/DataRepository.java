@@ -28,7 +28,6 @@ import com.netease.lib_network.entitys.BroadcastRequest;
 import com.netease.lib_network.entitys.CheckToken;
 import com.netease.lib_network.entitys.CommitTransation;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
-import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.netease.lib_network.entitys.KlineOriginDataEntity;
 import com.netease.lib_network.entitys.NewWalletToken;
 import com.netease.lib_network.entitys.JupToken;
@@ -38,6 +37,7 @@ import com.netease.lib_network.entitys.ReqSwapTransation;
 import com.netease.lib_network.entitys.SubmmitVerTxReqBodyEntity;
 import com.netease.lib_network.entitys.TransationHistoryEntity;
 import com.netease.lib_network.entitys.SwapQueryStateResult;
+import com.netease.lib_network.entitys.CommonCategory;
 import com.zksg.kudoud.repository.example.User;
 import com.zksg.lib_api.beans.AppInfoBean;
 import com.zksg.lib_api.beans.BannerBean;
@@ -251,6 +251,27 @@ public class DataRepository {
                     protected void onSuccessed(CommonResponse<DataResponse<ArrayList<AppInfoBean>>> bean) {
                         ResponseStatus responseStatus = new ResponseStatus(
                                 String.valueOf(bean.getCode()), bean.getCode() == 0, ResultSource.NETWORK);
+                        result.onResult(new DataResult(bean, responseStatus));
+                    }
+
+                    @Override
+                    protected void onFailed(ExceptionHandle.ResponseThrowable err) {
+                        ResponseStatus responseStatus = new ResponseStatus(String.valueOf(err.code), err.getMessage(),false,ResultSource.NETWORK);
+                        result.onResult(new DataResult(null, responseStatus));
+                    }
+                });
+    }
+
+    public void getTrendingTokens(DataResult.Result<CommonResponse<List<CommonCategory.DataDTO>>> result){
+        ApiEngine.getInstance()
+                .getApiService()
+                .getTrendingTokens()
+                .compose(ApiEngine.getInstance().applySchedulers())
+                .subscribe(new MySimpleObserver<CommonResponse<List<CommonCategory.DataDTO>>>() {
+                    @Override
+                    protected void onSuccessed(CommonResponse<List<CommonCategory.DataDTO>> bean) {
+                        ResponseStatus responseStatus = new ResponseStatus(
+                                String.valueOf("200"), true, ResultSource.NETWORK);
                         result.onResult(new DataResult(bean, responseStatus));
                     }
 

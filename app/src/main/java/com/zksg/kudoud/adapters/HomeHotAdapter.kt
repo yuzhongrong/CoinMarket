@@ -5,8 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.zksg.kudoud.entitys.CommonCategory
-import com.zksg.lib_api.beans.AppInfoBean
+import com.netease.lib_network.entitys.CommonCategory
 
 class HomeHotAdapter : BaseQuickAdapter<CommonCategory.DataDTO, BaseViewHolder> {
     constructor(layoutResId: Int) : super(layoutResId) {}

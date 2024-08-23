@@ -5,11 +5,9 @@ import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
-import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.R;
-import com.zksg.kudoud.databinding.ItemMemePoolListBinding;
 import com.zksg.kudoud.databinding.ItemMemeTrendingBinding;
-import com.zksg.kudoud.entitys.CommonCategory;
+import com.netease.lib_network.entitys.CommonCategory;
 import com.zksg.kudoud.utils.DiffUtils;
 
 public class MemeTreadingListdapter extends SimpleDataBindingAdapter<CommonCategory.DataDTO, ItemMemeTrendingBinding> {
