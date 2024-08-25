@@ -151,11 +151,11 @@ public class TextViewBindingAdapter {
 
     //计算mc
     @BindingAdapter(value = {"meme_mc_tv"},requireAll = false)
-    public static void mememcTv(TextView tv,long value) {
+    public static void mememcTv(TextView tv,double value) {
         if(tv==null)return;
-        double fdv=new BigDecimal(value).doubleValue();
+//        double fdv=new BigDecimal(value).doubleValue();
         String dollar=tv.getContext().getString(R.string.str_daller);
-        tv.setText(dollar+DigitUtils.formatAmount(fdv));
+        tv.setText(dollar+DigitUtils.formatAmount(value));
     }
 
 

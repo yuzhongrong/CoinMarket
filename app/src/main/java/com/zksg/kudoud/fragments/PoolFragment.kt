@@ -9,8 +9,9 @@ import com.zksg.kudoud.adapters.MemePoolListdapter
 import com.zksg.kudoud.state.Kline2OrderActivityViewModel
 import com.zksg.kudoud.state.PoolsFragmentViewModel
 
-class PoolFragment(contract: String?,mKline2OrderActivityViewModel: Kline2OrderActivityViewModel?) : BaseFragment() {
+class PoolFragment(contract: String?,pair: String?,mKline2OrderActivityViewModel: Kline2OrderActivityViewModel?) : BaseFragment() {
     var mContract=contract
+    var mpair=pair
     var mKline2OrderViewModel=mKline2OrderActivityViewModel
     var mPoolsFragmentViewModel: PoolsFragmentViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,15 +31,23 @@ class PoolFragment(contract: String?,mKline2OrderActivityViewModel: Kline2OrderA
 
 
     override fun loadInitData() {
+        initWebView(mpair!!)
         initObsever()
         mContract?.let { mPoolsFragmentViewModel!!.getTokenInfo(it) }
+
     }
 
     fun initObsever(){
 
         mPoolsFragmentViewModel!!.tokenInfo.observe(this){
-            var pair_address=it.pairs.get(0).pairAddress
-            val localHtml = """<!DOCTYPE html>
+            mKline2OrderViewModel!!.pairs.postValue(it.pairs)
+        }
+
+    }
+
+    fun initWebView(mpair:String){
+
+        val localHtml = """<!DOCTYPE html>
                 <html>
                 <head>
                     <style>
@@ -70,15 +79,13 @@ class PoolFragment(contract: String?,mKline2OrderActivityViewModel: Kline2OrderA
                     <div class="iframe-container">
                         <iframe id="dextools-widget"
                                 title="DEXTools Trading Chart"
-                                src="https://www.dextools.io/widget-chart/cn/solana/pe-light/$pair_address?theme=dark&chartType=1&headerColor=202630&tvPlatformColor=202630&tvPaneColor=202630&chartResolution=1D&drawingToolbars=false">
+                                src="https://www.dextools.io/widget-chart/cn/solana/pe-light/$mpair?theme=dark&chartType=1&headerColor=202630&tvPlatformColor=202630&tvPaneColor=202630&chartResolution=1D&drawingToolbars=false">
                         </iframe>
                     </div>
                 </body>
                 </html>
                 """
-            mKline2OrderViewModel!!.htmlStr.set(localHtml)
-            mKline2OrderViewModel!!.pairs.postValue(it.pairs)
-        }
+        mKline2OrderViewModel!!.htmlStr.set(localHtml)
 
     }
 

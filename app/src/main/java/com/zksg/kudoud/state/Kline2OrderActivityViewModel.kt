@@ -20,6 +20,8 @@ class Kline2OrderActivityViewModel : BaseLoadingViewModel() {
     @JvmField
     var htmlStr = ObservableField<String>()
     @JvmField
+    var url = ObservableField<String>()
+    @JvmField
     var progress=ObservableField<Int>()
     @JvmField
     var symbol=ObservableField<String>()

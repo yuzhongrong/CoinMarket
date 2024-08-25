@@ -28,7 +28,7 @@ public class MemeCommonListdapter extends SimpleDataBindingAdapter<MemeBaseEntry
         setOnItemClickListener((item, position) -> {
 
 
-            start2DexscreenKline(context,item.getAddress(),item.getSymbol());
+            start2DexscreenKline(context,item.getAddress(),item.getSymbol(),"");
 
         });
     }
@@ -39,8 +39,12 @@ public class MemeCommonListdapter extends SimpleDataBindingAdapter<MemeBaseEntry
         binding.setMeme(item);
     }
 
-    public void start2DexscreenKline(Context context,String contract,String symbol){
-        Intent i= new Intent(context, Kline2OrderActivity.class).putExtra("contract",contract).putExtra("symbol",symbol);
+    public void start2DexscreenKline(Context context,String contract,String symbol,String pair){
+        Intent i= new Intent(context, Kline2OrderActivity.class)
+                .putExtra("contract",contract)
+                .putExtra("symbol",symbol)
+                .putExtra("pair",pair)
+                ;
         IntentUtils.openIntent(context,i);
     }
 

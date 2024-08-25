@@ -1,14 +1,20 @@
 package com.zksg.kudoud.adapters;
 
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.activitys.Kline2OrderActivity;
 import com.zksg.kudoud.databinding.ItemMemeTrendingBinding;
 import com.netease.lib_network.entitys.CommonCategory;
 import com.zksg.kudoud.utils.DiffUtils;
+import com.zksg.kudoud.utils.IntentUtils;
 
 public class MemeTreadingListdapter extends SimpleDataBindingAdapter<CommonCategory.DataDTO, ItemMemeTrendingBinding> {
 
@@ -17,12 +23,25 @@ public class MemeTreadingListdapter extends SimpleDataBindingAdapter<CommonCateg
         super(context, R.layout.item_meme_trending, DiffUtils.getInstance().getMemeTrendingtemCallback());
         this.mContex=context;
         this.setHasStableIds(true);
-        setOnItemClickListener((item, position) -> {
-//            Intent intent=new Intent(context, CoinsDetailActivity.class);
-//            intent.putExtra("contract",item.getAddress());
-//            context.startActivity(intent);
+        setOnItemClickViewListener((item, position, viewId) -> {
 
-        });
+            String contract="";
+            String symbol="";
+            if(!item.getToken0Address().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){
+                contract=item.getToken0Address();
+                symbol=item.getToken0Symbol();
+            }else{
+                contract=item.getToken1Address();
+                symbol=item.getToken1Symbol();
+            }
+            Intent i= new Intent(context, Kline2OrderActivity.class)
+                    .putExtra("contract",contract)
+                    .putExtra("symbol",symbol)
+                    .putExtra("pair",item.getPair());
+            IntentUtils.openIntent(context,i);
+
+        },R.id.action);
+
     }
 
     @Override
@@ -34,4 +53,6 @@ public class MemeTreadingListdapter extends SimpleDataBindingAdapter<CommonCateg
     public long getItemId(int position) {
        return getCurrentList().get(position).getPair().hashCode();
     }
+
+
 }

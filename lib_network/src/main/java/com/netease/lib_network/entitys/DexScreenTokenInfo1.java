@@ -55,7 +55,7 @@ public class DexScreenTokenInfo1 implements Serializable {
         @SerializedName("liquidity")
         private LiquidityDTO liquidity;
         @SerializedName("fdv")
-        private int fdv;
+        private double fdv;
         @SerializedName("pairCreatedAt")
         private long pairCreatedAt;
         @SerializedName("info")
@@ -157,11 +157,11 @@ public class DexScreenTokenInfo1 implements Serializable {
             this.liquidity = liquidity;
         }
 
-        public int getFdv() {
+        public double getFdv() {
             return fdv;
         }
 
-        public void setFdv(int fdv) {
+        public void setFdv(double fdv) {
             this.fdv = fdv;
         }
 
