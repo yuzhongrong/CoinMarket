@@ -135,10 +135,10 @@ class HomeFragment:BaseDialogFragment(){
 
 
 
-//        //treadinig data
+//        // request-->local-->showdata  treadinig data
 //        var json= LocalJsonResolutionUtils.getJson(context,"trending.json")
-//        var treadings= LocalJsonResolutionUtils.JsonToObject(json, CommonCategory::class.java)
-//        homeViewModel!!.mTrendings.postValue(treadings.data)
+ //       var treadings= LocalJsonResolutionUtils.JsonToObject(json, CommonCategory::class.java)
+ //       homeViewModel!!.mTrendings.postValue(treadings.data)
 
         //meme category
         homeViewModel?.indicatorTitle?.set(
@@ -164,8 +164,14 @@ class HomeFragment:BaseDialogFragment(){
         )
 
 
-        homeViewModel!!.getTrendingTokens()
 
+
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        homeViewModel!!.startFetchingTrendingTokens()
     }
 
 
@@ -208,6 +214,12 @@ class HomeFragment:BaseDialogFragment(){
 
 
 
+    }
+
+
+    override fun onStop() {
+        super.onStop()
+        homeViewModel!!.stopFetchingTrendingTokens()
     }
 
 

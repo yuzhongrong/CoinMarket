@@ -248,7 +248,7 @@
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:text="--.--"
-            meme_sol_show="@{item.reserve1}"
+            meme_sol_show="@{item}"
             android:textColor="@color/primaryText"
             android:textSize="@dimen/sp10"
             />

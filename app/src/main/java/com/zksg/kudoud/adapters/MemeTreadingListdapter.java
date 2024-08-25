@@ -16,6 +16,7 @@ public class MemeTreadingListdapter extends SimpleDataBindingAdapter<CommonCateg
     public MemeTreadingListdapter(Context context) {
         super(context, R.layout.item_meme_trending, DiffUtils.getInstance().getMemeTrendingtemCallback());
         this.mContex=context;
+        this.setHasStableIds(true);
         setOnItemClickListener((item, position) -> {
 //            Intent intent=new Intent(context, CoinsDetailActivity.class);
 //            intent.putExtra("contract",item.getAddress());
@@ -27,5 +28,10 @@ public class MemeTreadingListdapter extends SimpleDataBindingAdapter<CommonCateg
     @Override
     protected void onBindItem(ItemMemeTrendingBinding binding, CommonCategory.DataDTO item, RecyclerView.ViewHolder holder) {
         binding.setItem(item);
+    }
+
+    @Override
+    public long getItemId(int position) {
+       return getCurrentList().get(position).getPair().hashCode();
     }
 }

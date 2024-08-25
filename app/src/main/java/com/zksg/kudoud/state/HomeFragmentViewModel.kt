@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.kunminx.architecture.domain.message.MutableResult
 import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
 import com.netease.lib_network.entitys.CommonCategory
+import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.kudoud.utils.GsonUtil
@@ -15,12 +16,10 @@ import com.zksg.lib_api.beans.AppInfoBean
 import com.zksg.lib_api.beans.BannerBean
 import com.zksg.lib_api.beans.NotifyBean
 import com.zksg.lib_api.beans.UpgradeBean
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class HomeFragmentViewModel : BaseLoadingViewModel() {
-
+    private var trendingJob: Job? = null
 
     var indicatorTitle = ObservableField<Array<String>>()
     var memecategoryadapter = ObservableField<MemeCategoryPagerAdapter?>()
@@ -57,7 +56,9 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
                   if(it.responseStatus.isSuccess){
                       if(it.result!=null&&it.result.data!=null){
                         Log.d("---getTrendingTokens--->", GsonUtils.toJson(it.result.data))
-                          mTrendings.postValue(it.result.data)
+                          mTrendings.postValue(it.result.data.take(10))
+                          //下面这个操作是为了全局提供热门数据
+                          MMKV.mmkvWithID("request_data_share").encode("trending",GsonUtils.toJson(it.result.data))
 
                       }
                   }
@@ -116,7 +117,19 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 
     }
 
+    fun startFetchingTrendingTokens() {
+        trendingJob?.cancel() // 取消之前的任务，避免重复创建
+        trendingJob = viewModelScope.launch {
+            while (isActive) {
+                getTrendingTokens()
+                delay(60 * 1000) // 1分钟
+            }
+        }
+    }
 
+    fun stopFetchingTrendingTokens() {
+        trendingJob?.cancel()
+    }
 
 
 

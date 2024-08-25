@@ -1,5 +1,7 @@
 package com.netease.lib_network.entitys;
 
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
@@ -49,7 +51,7 @@ public class CommonCategory implements Serializable {
         this.data = data;
     }
 
-    public static class DataDTO {
+    public static class DataDTO  {
         @SerializedName("pair")
         private String pair;
         @SerializedName("chain")

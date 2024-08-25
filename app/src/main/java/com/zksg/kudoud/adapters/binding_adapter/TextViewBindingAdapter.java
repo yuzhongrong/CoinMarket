@@ -858,9 +858,15 @@ public class TextViewBindingAdapter {
     }
 
     @BindingAdapter(value = {"meme_sol_show"},requireAll = false)
-    public static void meme_sol_show(TextView tv, double value) {
-        if(tv==null)return;
-        tv.setText(StringUtils.num2thousand00(new BigDecimal(value).toPlainString())+"sol");
+    public static void meme_sol_show(TextView tv, CommonCategory.DataDTO value) {
+        if(tv==null||value==null)return;
+        if(value.getToken0Address().equalsIgnoreCase("So11111111111111111111111111111111111111112")){
+            tv.setText(StringUtils.num2thousand00(new BigDecimal(value.getReserve0()).toPlainString())+"sol");
+        }else{
+            tv.setText(StringUtils.num2thousand00(new BigDecimal(value.getReserve1()).toPlainString())+"sol");
+
+        }
+
     }
 
     @BindingAdapter(value = {"meme_mcap_show"},requireAll = false)

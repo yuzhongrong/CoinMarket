@@ -235,12 +235,12 @@ public class DiffUtils {
             mMemeTrendingCallback = new DiffUtil.ItemCallback<CommonCategory.DataDTO>() {
                 @Override
                 public boolean areItemsTheSame(@NonNull CommonCategory.DataDTO oldItem, @NonNull CommonCategory.DataDTO newItem) {
-                    return oldItem.equals(newItem);
+                    return oldItem.getPair().hashCode()==newItem.getPair().hashCode();
                 }
 
                 @Override
                 public boolean areContentsTheSame(@NonNull CommonCategory.DataDTO oldItem, @NonNull CommonCategory.DataDTO newItem) {
-                    return oldItem.getPair().equals(newItem.getPair());
+                    return oldItem.getCurrentPriceUsd()==newItem.getCurrentPriceUsd();
                 }
             };
         }

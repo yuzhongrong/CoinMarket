@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kunminx.architecture.ui.adapter.SimpleDataBindingAdapter;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.adapters.decorations.SpacesItemDecoration;
+import com.zksg.kudoud.anims.FadeInItemAnimator;
 
 import java.util.List;
 
@@ -167,4 +168,15 @@ public class RecyclerViewBindingAdapter {
 //            adapter.submitList(list);
 //        }
 //    }
+
+
+    @BindingAdapter(value = {"recycleview_anims_fade"}, requireAll = false)
+    public static void recycleview_anims_fade(RecyclerView rv, boolean value) {
+        if(rv==null)return;
+        if(value){
+            rv.setItemAnimator(new FadeInItemAnimator());
+        }
+
+    }
+
 }
