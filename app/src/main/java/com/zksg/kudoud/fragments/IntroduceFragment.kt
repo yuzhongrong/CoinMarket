@@ -36,14 +36,12 @@ class IntroduceFragment(contract:String?,mKline2OrderActivityViewModel: Kline2Or
         super.loadInitData()
         mKline2OrderViewModel!!.pairs.observe(this){
             mIntroduceFragmentViewModel!!.pairs.set(it)
-            if(it[0]?.info.socials.size>0){
-                mIntroduceFragmentViewModel!!.socials.set(it[0]?.info.socials)
+            if(it[0]!=null&&it[0].info!=null&&it[0].info.socials!=null&&it[0].info.socials.size>0){
+                mIntroduceFragmentViewModel!!.socials.set(it[0].info.socials)
             }
-            if(it[0]?.info.websites.size>0){
-                mIntroduceFragmentViewModel!!.website.set(it[0]?.info.websites[0].url)
+            if(it[0]!=null&&it[0].info!=null&&it[0].info.websites!=null&&it[0].info.websites.size>0){
+                mIntroduceFragmentViewModel!!.website.set(it[0].info.websites[0].url)
             }
-
-
 
         }
 
