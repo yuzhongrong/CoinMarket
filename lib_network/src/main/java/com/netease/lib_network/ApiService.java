@@ -149,8 +149,8 @@ public interface ApiService {
     Single<CommonResponse<List<TransationHistoryEntity>>> getSolTransations(@Query("wallet") String wallet,@Query("before") String before);
 
 
-    @GET("/api/wallet/getTrendingTokens")
-    Single<CommonResponse<List<CommonCategory.DataDTO>>> getTrendingTokens();
+    @GET("/api/wallet/getCategoryDatas")
+    Single<CommonResponse<List<CommonCategory.DataDTO>>> getCategoryDatas(@Query("category") String category);
 
     @GET("/api/swap/getQuo")
     Single<CommonResponse<QuoEntity>> getQuo(@Query("from") String from, @Query("to") String to, @Query("amount") String amount, @Query("fromdecimal") int fromdecimal);

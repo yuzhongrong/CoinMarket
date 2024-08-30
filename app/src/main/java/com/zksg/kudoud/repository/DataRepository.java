@@ -262,10 +262,10 @@ public class DataRepository {
                 });
     }
 
-    public void getTrendingTokens(DataResult.Result<CommonResponse<List<CommonCategory.DataDTO>>> result){
+    public void getCategoryDatas(String category,DataResult.Result<CommonResponse<List<CommonCategory.DataDTO>>> result){
         ApiEngine.getInstance()
                 .getApiService()
-                .getTrendingTokens()
+                .getCategoryDatas(category)
                 .compose(ApiEngine.getInstance().applySchedulers())
                 .subscribe(new MySimpleObserver<CommonResponse<List<CommonCategory.DataDTO>>>() {
                     @Override

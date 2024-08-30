@@ -16,15 +16,15 @@ import com.zksg.lib_api.beans.MemeCommonEntry
 class MemeCategoryCommonFragment : BaseFragment() {
 
 
-    var mType=0
+    var mCategory=""
     var mCategoryCommonFragmentViewModel: MemeCategoryCommonFragmentViewModel? = null
 
 
     companion object {
-        fun newInstance(type: Int): MemeCategoryCommonFragment {
+        fun newInstance(category: String): MemeCategoryCommonFragment {
             val fragment = MemeCategoryCommonFragment()
             val args = Bundle()
-            args.putInt("type", type)
+            args.putString("category", category)
             fragment.arguments = args
             return fragment
         }
@@ -33,7 +33,7 @@ class MemeCategoryCommonFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mType = arguments?.getInt("type") ?: 0
+        mCategory = arguments?.getString("category") ?: ""
         // 在此处使用传入的参数
     }
 
@@ -44,7 +44,10 @@ class MemeCategoryCommonFragment : BaseFragment() {
         Log.e("HeartRateDayFragment", "initViewModel:$mCategoryCommonFragmentViewModel")
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        mCategoryCommonFragmentViewModel!!.startFetchingTrendingTokens(mCategory,30)
+    }
 
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.list_meme_coins, BR.vm, mCategoryCommonFragmentViewModel!!)
@@ -52,33 +55,22 @@ class MemeCategoryCommonFragment : BaseFragment() {
     }
 
     override fun loadInitData() {
-        var json=LocalJsonResolutionUtils.getJson(context,"memevolsimulator.json")
-        var simulators= LocalJsonResolutionUtils.JsonToObject(json, MemeCommonEntry::class.java)
-        var results=DataFilterUtils.filterNonNullName(simulators.tokens)
-        when(mType){
-            CommonCategoryDataEnum.CHAT_ZX ->{
+//        var json=LocalJsonResolutionUtils.getJson(context,"memevolsimulator.json")
+//        var simulators= LocalJsonResolutionUtils.JsonToObject(json, MemeCommonEntry::class.java)
+//        var results=DataFilterUtils.filterNonNullName(simulators.tokens)
 
-            }
-            CommonCategoryDataEnum.CHAT_UP_24 -> {
-
-            }
-            CommonCategoryDataEnum.CHAT_DOWN_24 -> {
-
-            }
-            CommonCategoryDataEnum.CHAT_EX_24 -> {
-
-            }
-        }
 
 //        Log.d("---xxx.js-loadmemejson", json)
 
         //这里在交易量降序的数据集合中最好是请求前150个数据  对期进行涨跌幅排序,市值排序 这样才有意义
 
-        mCategoryCommonFragmentViewModel?.mHotMeme?.value=results
-
-
-
-
+//        mCategoryCommonFragmentViewModel?.mHotMeme?.value=results
 
     }
+
+    override fun onStop() {
+        super.onStop()
+        mCategoryCommonFragmentViewModel!!.stopFetchingTrendingTokens()
+    }
+
 }

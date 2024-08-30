@@ -561,7 +561,7 @@
                             cannotScrollVertically="@{false}"
                             itemspace="@{15}"
                             orientation="@{0}"
-                            submitList="@{vm.mTrendings}"
+                            submitList="@{vm.categorys}"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp8"

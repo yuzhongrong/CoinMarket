@@ -45,7 +45,7 @@ public class DiffUtils {
     private DiffUtil.ItemCallback<FeedTip> mFeedTipItemCallback;
     private DiffUtil.ItemCallback<BabyInfo> mBabyItemCallback;
 
-    private DiffUtil.ItemCallback<MemeBaseEntry> mMemeBaseCallback;
+    private DiffUtil.ItemCallback<CommonCategory.DataDTO> mMemeBaseCallback;
     private DiffUtil.ItemCallback<DexScreenTokenInfo1.PairsDTO> mMemePoolCallback;
     private DiffUtil.ItemCallback<CommonCategory.DataDTO> mMemeTrendingCallback;
     private DiffUtil.ItemCallback<CheckToken.TokenContractDTO.ContractDataDTO.TokenHoldersRankDTO> mMemeCheckCallback;
@@ -111,17 +111,17 @@ public class DiffUtils {
     }
 
 
-    public DiffUtil.ItemCallback<MemeBaseEntry> getMemeBaseItemCallback() {
+    public DiffUtil.ItemCallback<CommonCategory.DataDTO> getMemeBaseItemCallback() {
         if (mMemeBaseCallback == null) {
-            mMemeBaseCallback = new DiffUtil.ItemCallback<MemeBaseEntry>() {
+            mMemeBaseCallback = new DiffUtil.ItemCallback<CommonCategory.DataDTO>() {
                 @Override
-                public boolean areItemsTheSame(@NonNull MemeBaseEntry oldItem, @NonNull MemeBaseEntry newItem) {
-                    return oldItem.equals(newItem);
+                public boolean areItemsTheSame(@NonNull CommonCategory.DataDTO oldItem, @NonNull CommonCategory.DataDTO newItem) {
+                    return oldItem.getPair().equalsIgnoreCase(newItem.getPair());
                 }
 
                 @Override
-                public boolean areContentsTheSame(@NonNull MemeBaseEntry oldItem, @NonNull MemeBaseEntry newItem) {
-                    return oldItem.getSymbol().equals(newItem.getSymbol());
+                public boolean areContentsTheSame(@NonNull CommonCategory.DataDTO oldItem, @NonNull CommonCategory.DataDTO newItem) {
+                    return oldItem.getCurrentPriceUsd()==newItem.getCurrentPriceUsd();
                 }
             };
         }

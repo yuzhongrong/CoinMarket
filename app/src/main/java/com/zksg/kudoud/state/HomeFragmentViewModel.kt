@@ -10,6 +10,7 @@ import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
 import com.netease.lib_network.entitys.CommonCategory
 import com.tencent.mmkv.MMKV
 import com.zksg.kudoud.repository.DataRepository
+import com.zksg.kudoud.state.load.BaseJobLoadingViewModel
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.kudoud.utils.GsonUtil
 import com.zksg.lib_api.beans.AppInfoBean
@@ -18,8 +19,8 @@ import com.zksg.lib_api.beans.NotifyBean
 import com.zksg.lib_api.beans.UpgradeBean
 import kotlinx.coroutines.*
 
-class HomeFragmentViewModel : BaseLoadingViewModel() {
-    private var trendingJob: Job? = null
+class HomeFragmentViewModel : BaseJobLoadingViewModel() {
+//    private var trendingJob: Job? = null
 
     var indicatorTitle = ObservableField<Array<String>>()
     var memecategoryadapter = ObservableField<MemeCategoryPagerAdapter?>()
@@ -30,8 +31,8 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
     var banner_datas = MutableResult<List<BannerBean>>()
 
     /*----------------------Respons result----------------------------*/
-    @JvmField
-    val mTrendings = MutableResult<List<CommonCategory.DataDTO>>()
+//    @JvmField
+//    val mTrendings = MutableResult<List<CommonCategory.DataDTO>>()
 
     val mBannerClickAppinfo=MutableResult<List<AppInfoBean>>()
     val mLastNotify = MutableResult<List<NotifyBean>>()
@@ -47,30 +48,30 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 //        )
 //    }
 
-    fun getTrendingTokens(){
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-//                loadingVisible.postValue(true)
-                DataRepository.getInstance().getTrendingTokens{
-
-                  if(it.responseStatus.isSuccess){
-                      if(it.result!=null&&it.result.data!=null){
-                        Log.d("---getTrendingTokens--->", GsonUtils.toJson(it.result.data))
-                          mTrendings.postValue(it.result.data.take(10))
-                          //下面这个操作是为了全局提供热门数据
-                          MMKV.mmkvWithID("request_data_share").encode("trending",GsonUtils.toJson(it.result.data))
-
-                      }
-                  }
-
-
-                }
-//                loadingVisible.postValue(false)
-            }
-
-
-        }
-    }
+//    fun getTrendingTokens(category:String){
+//        viewModelScope.launch {
+//            withContext(Dispatchers.IO){
+////                loadingVisible.postValue(true)
+//                DataRepository.getInstance().getCategoryDatas(category){
+//
+//                  if(it.responseStatus.isSuccess){
+//                      if(it.result!=null&&it.result.data!=null){
+//                        Log.d("---getTrendingTokens--->", GsonUtils.toJson(it.result.data))
+//                          mTrendings.postValue(it.result.data.take(10))
+//                          //下面这个操作是为了全局提供热门数据
+//                          MMKV.mmkvWithID("request_data_share").encode("trending",GsonUtils.toJson(it.result.data))
+//
+//                      }
+//                  }
+//
+//
+//                }
+////                loadingVisible.postValue(false)
+//            }
+//
+//
+//        }
+//    }
 
     fun getCwApps(page:Int,pageSize:Int,downloadCount:Int){
         viewModelScope.launch {
@@ -95,7 +96,6 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
                   if(it.responseStatus.isSuccess) banner_datas.postValue(it.result.data.list)
               }
 
-
               DataRepository.getInstance().getLastNoticeForOrder(1,50,"created_at","descending"){
                   if(it.responseStatus.isSuccess) mLastNotify.postValue(it.result.data.list)
               }
@@ -117,19 +117,19 @@ class HomeFragmentViewModel : BaseLoadingViewModel() {
 
     }
 
-    fun startFetchingTrendingTokens() {
-        trendingJob?.cancel() // 取消之前的任务，避免重复创建
-        trendingJob = viewModelScope.launch {
-            while (isActive) {
-                getTrendingTokens()
-                delay(60 * 1000) // 1分钟
-            }
-        }
-    }
+//    fun startFetchingTrendingTokens() {
+//        trendingJob?.cancel() // 取消之前的任务，避免重复创建
+//        trendingJob = viewModelScope.launch {
+//            while (isActive) {
+//                getTrendingTokens("hot")
+//                delay(60 * 1000) // 1分钟
+//            }
+//        }
+//    }
 
-    fun stopFetchingTrendingTokens() {
-        trendingJob?.cancel()
-    }
+//    fun stopFetchingTrendingTokens() {
+//        trendingJob?.cancel()
+//    }
 
 
 

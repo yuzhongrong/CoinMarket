@@ -11,6 +11,7 @@ import com.kunminx.architecture.utils.Utils
 import com.zksg.kudoud.beans.LineChartBean
 import com.zksg.kudoud.beans.LineChartBean.GRID0DTO.ResultDTO.ClientAccumulativeRateDTO
 import com.zksg.kudoud.repository.DataRepository
+import com.zksg.kudoud.state.load.BaseJobLoadingViewModel
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import com.zksg.kudoud.utils.LocalJsonResolutionUtils
 import com.zksg.kudoud.utils.TimeUtils
@@ -20,7 +21,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MemeCategoryCommonFragmentViewModel : BaseLoadingViewModel() {
+class MemeCategoryCommonFragmentViewModel : BaseJobLoadingViewModel() {
     var datas = ObservableField<List<ClientAccumulativeRateDTO>>()
 //    var memeTypeCategoryAdapter = ObservableField<BaseQuickAdapter<*, *>>()
     var spot = State(TimeUtils.Interval.HOUR)

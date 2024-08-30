@@ -5,8 +5,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="meme"
-            type="com.zksg.lib_api.beans.MemeBaseEntry" />
+            name="item"
+            type="com.netease.lib_network.entitys.CommonCategory.DataDTO" />
 
     </data>
 <com.hjq.shape.layout.ShapeRelativeLayout
@@ -24,7 +24,7 @@
         android:id="@+id/icon"
         android:layout_width="@dimen/dp45"
         android:layout_height="@dimen/dp45"
-        meme_imv="@{meme.logoURI}"
+        meme_imv="@{item.token0LogoUrl}"
         app:shape_radius="@dimen/dp45"
         android:src="@mipmap/ic_solana"
         android:scaleType="fitXY"
@@ -41,9 +41,9 @@
 
         <TextView
             android:id="@+id/name"
+            meme_name_show="@{item}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{meme.symbol}"
             android:textColor="@color/whitesmoke"
             android:textSize="@dimen/sp12"
             android:textStyle="bold"
@@ -53,7 +53,7 @@
 
         <TextView
             android:id="@+id/vol"
-            meme_vol_tv="@{meme.v24hUSD}"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp4"
@@ -69,19 +69,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        meme_money_show="@{item.currentPriceUsd}"
         android:layout_marginRight="@dimen/dp25"
         android:layout_toLeftOf="@+id/change"
-        android:text="$197.21"
+        android:text="$--.--"
         android:textColor="@color/white"
         android:textSize="@dimen/sp12"
-
-
         android:textStyle="bold" />
 
 
     <com.hjq.shape.view.ShapeTextView
         android:id="@+id/change"
-        meme_percent_tv="@{meme.v24hChangePercent}"
+        meme_percent_trending_tv="@{item.priceChange24h}"
         android:layout_width="@dimen/dp80"
         android:layout_height="@dimen/dp30"
         android:layout_alignParentRight="true"

@@ -26,20 +26,21 @@ public class MemeMarketsPagerAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        int type=channels[position].getValue();
-        switch (type){
-            case CommonCategoryDataEnum.CHAT_ZX:
-                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_ZX);
-            case CommonCategoryDataEnum.CHAT_UP_24:
-                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_UP_24);
-            case CommonCategoryDataEnum.CHAT_DOWN_24:
-                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_DOWN_24);
-            case CommonCategoryDataEnum.CHAT_EX_24:
-                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_EX_24);
-            default:
-                break;
-        }
-        throw new IllegalArgumentException("cannot find fragment");
+//        int type=channels[position].getValue();
+//        switch (type){
+//            case CommonCategoryDataEnum.CHAT_ZX:
+//                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_ZX);
+//            case CommonCategoryDataEnum.CHAT_UP_24:
+//                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_UP_24);
+//            case CommonCategoryDataEnum.CHAT_DOWN_24:
+//                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_DOWN_24);
+//            case CommonCategoryDataEnum.CHAT_EX_24:
+//                return MemeCategoryCommonFragment.Companion.newInstance(CommonCategoryDataEnum.CHAT_EX_24);
+//            default:
+//                break;
+//        }
+//        throw new IllegalArgumentException("cannot find fragment");
+        return null;
     }
 
     @Override

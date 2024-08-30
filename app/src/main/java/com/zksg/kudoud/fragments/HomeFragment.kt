@@ -17,6 +17,7 @@ import com.zksg.kudoud.beans.CommonCategoryDataEnum
 import com.zksg.kudoud.dialogs.TipVpnDialog
 import com.zksg.kudoud.dialogs.UpgradeVersionDialog
 import com.netease.lib_network.entitys.CommonCategory
+import com.zksg.kudoud.beans.CategoryEnum
 import com.zksg.kudoud.state.HomeFragmentViewModel
 import com.zksg.kudoud.utils.LocalJsonResolutionUtils
 import com.zksg.lib_api.beans.UpgradeBean
@@ -143,8 +144,6 @@ class HomeFragment:BaseDialogFragment(){
         //meme category
         homeViewModel?.indicatorTitle?.set(
             arrayOf(
-
-                getString(R.string.str_zx),
                 getString(R.string.str_new_pair),
                 getString(R.string.str_24up),
                 getString(R.string.str_collect)
@@ -155,10 +154,9 @@ class HomeFragment:BaseDialogFragment(){
             MemeCategoryPagerAdapter(
                 childFragmentManager,
                 arrayOf(
-                    CommonCategoryDataEnum.ZX,
-                    CommonCategoryDataEnum.NEW_PAIR,
-                    CommonCategoryDataEnum.UP24,
-                    CommonCategoryDataEnum.COLLECT
+                    CategoryEnum.NEW,
+                    CategoryEnum.GAINER,
+                    CategoryEnum.INCLUSION
                 )
             )
         )
@@ -171,7 +169,7 @@ class HomeFragment:BaseDialogFragment(){
 
     override fun onStart() {
         super.onStart()
-        homeViewModel!!.startFetchingTrendingTokens()
+        homeViewModel!!.startFetchingTrendingTokens("hot",10)
     }
 
 

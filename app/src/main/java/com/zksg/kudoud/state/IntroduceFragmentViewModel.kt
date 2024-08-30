@@ -24,5 +24,4 @@ class IntroduceFragmentViewModel : ViewModel(){
     var socialsAdapter = ObservableField<BaseQuickAdapter<*, *>>()
 
 
-
 }
