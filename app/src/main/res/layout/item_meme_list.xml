@@ -95,20 +95,22 @@
 
     <com.hjq.shape.view.ShapeTextView
         android:id="@+id/change"
-        meme_percent_trending_tv="@{item.priceChange24h}"
-        android:layout_width="@dimen/dp80"
-        android:layout_height="@dimen/dp30"
+        meme_percent_bt="@{item.priceChange24h}"
+        android:layout_width="@dimen/dp75"
+        android:layout_height="@dimen/dp25"
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:ellipsize="end"
-        android:gravity="right|center"
+        android:gravity="center"
         android:maxLength="12"
         android:maxLines="1"
         android:text="--.--%"
         android:textColor="@color/white"
-        android:textSize="@dimen/sp12"
+        android:textSize="@dimen/sp11"
         android:textStyle="bold"
-        app:shape_radius="@dimen/dp5" />
+        app:shape_radius="@dimen/dp5"
+        android:padding="@dimen/dp5"
+        />
 
 
 

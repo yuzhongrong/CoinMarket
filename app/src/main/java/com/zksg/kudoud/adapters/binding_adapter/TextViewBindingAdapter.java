@@ -559,6 +559,24 @@ public class TextViewBindingAdapter {
 
     }
 
+
+    @BindingAdapter(value = {"meme_percent_bt"},requireAll = false)
+    public static void meme_percent_bt(ShapeTextView bt, double value) {
+        if(bt==null)return;
+        boolean result=DigitUtils.isNegative(value);
+        if(result){
+            bt.setText(DigitUtils.formatLargePercentage(value));
+            bt.getShapeDrawableBuilder().setSolidColor(bt.getContext().getColor(R.color.c_f71816)).intoBackground();
+//            bt.setTextColor(bt.getContext().getColor(R.color.c_f71816));
+        }else{
+//            bt.setTextColor(bt.getContext().getColor(R.color.c_1bc89e));
+            bt.getShapeDrawableBuilder().setSolidColor(bt.getContext().getColor(R.color.c_1bc89e)).intoBackground();
+            bt.setText("+"+DigitUtils.formatLargePercentage(value));
+        }
+
+
+    }
+
     @BindingAdapter(value = {"bindSettingBar_right"},requireAll = false)
     public static void bindSettingBar_Right(SettingBar bar,String right_txt_id) {
         bar.setRightText(right_txt_id);
