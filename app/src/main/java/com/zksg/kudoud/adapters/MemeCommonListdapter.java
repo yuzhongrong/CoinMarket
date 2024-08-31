@@ -1,5 +1,7 @@
 package com.zksg.kudoud.adapters;
 
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+
 import android.content.Context;
 import android.content.Intent;
 
@@ -27,8 +29,28 @@ public class MemeCommonListdapter extends SimpleDataBindingAdapter<CommonCategor
         super(context, R.layout.item_meme_list, DiffUtils.getInstance().getMemeBaseItemCallback());
         this.mContex=context;
         setOnItemClickListener((item, position) -> {
-//            start2DexscreenKline(context,item.getAddress(),item.getSymbol(),"");
+            openItem(item);
         });
+    }
+
+
+    private void openItem(CommonCategory.DataDTO item){
+
+        String contract="";
+        String symbol="";
+        if(!item.getToken0Address().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){
+            contract=item.getToken0Address();
+            symbol=item.getToken0Symbol();
+        }else{
+            contract=item.getToken1Address();
+            symbol=item.getToken1Symbol();
+        }
+        Intent i= new Intent(mContex, Kline2OrderActivity.class)
+                .putExtra("contract",contract)
+                .putExtra("symbol",symbol)
+                .putExtra("pair",item.getPair());
+        IntentUtils.openIntent(mContex,i);
+
     }
 
 

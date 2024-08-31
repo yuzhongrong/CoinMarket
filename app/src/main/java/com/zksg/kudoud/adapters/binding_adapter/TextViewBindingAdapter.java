@@ -1,6 +1,8 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
 import static com.zksg.kudoud.utils.GsonUtil.parseJsonArray;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_USDC_CONTRACT;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -546,11 +549,11 @@ public class TextViewBindingAdapter {
         String flat=bt.getContext().getString(R.string.str_precent);
 
         if(result){
-            bt.setText(DigitUtils.formatAmountPercentChange(value)+flat);
+            bt.setText(DigitUtils.formatLargePercentage(value));
             bt.setTextColor(bt.getContext().getColor(R.color.c_f71816));
         }else{
             bt.setTextColor(bt.getContext().getColor(R.color.c_1bc89e));
-            bt.setText("+"+DigitUtils.formatAmountPercentChange(value)+flat);
+            bt.setText("+"+DigitUtils.formatLargePercentage(value));
         }
 
 
@@ -860,11 +863,10 @@ public class TextViewBindingAdapter {
     @BindingAdapter(value = {"meme_sol_show"},requireAll = false)
     public static void meme_sol_show(TextView tv, CommonCategory.DataDTO value) {
         if(tv==null||value==null)return;
-        if(value.getToken0Address().equalsIgnoreCase("So11111111111111111111111111111111111111112")){
-            tv.setText(StringUtils.num2thousand00(new BigDecimal(value.getReserve0()).toPlainString())+"sol");
+        if(value.getToken0Address().equalsIgnoreCase(TOKEN_SOL_CONTRACT)||value.getToken0Address().equalsIgnoreCase(TOKEN_USDC_CONTRACT)){
+            tv.setText(StringUtils.num2thousand00(new BigDecimal(value.getReserve0()).toPlainString())+value.getToken0Symbol().toLowerCase());
         }else{
-            tv.setText(StringUtils.num2thousand00(new BigDecimal(value.getReserve1()).toPlainString())+"sol");
-
+            tv.setText(StringUtils.num2thousand00(new BigDecimal(value.getReserve1()).toPlainString())+value.getToken1Symbol().toLowerCase());
         }
 
     }
@@ -926,6 +928,9 @@ public class TextViewBindingAdapter {
         }
 
     }
+
+
+
 
     private static void matchImvDoge(ShapeImageView imv,String[] arrays,String target){
         boolean result= StringUtils.contains(arrays,target);

@@ -19,16 +19,31 @@
 
     >
 
-
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/icon"
+    >
     <com.hjq.shape.view.ShapeImageView
-        android:id="@+id/icon"
-        android:layout_width="@dimen/dp45"
-        android:layout_height="@dimen/dp45"
-        meme_imv="@{item.token0LogoUrl}"
+
+        android:layout_width="@dimen/dp35"
+        android:layout_height="@dimen/dp35"
+        meme_img_show="@{item}"
         app:shape_radius="@dimen/dp45"
-        android:src="@mipmap/ic_solana"
         android:scaleType="fitXY"
         />
+
+    <com.hjq.shape.view.ShapeImageView
+
+        android:layout_width="@dimen/dp12"
+        android:layout_height="@dimen/dp12"
+        app:shape_radius="@dimen/dp45"
+        android:src="@mipmap/ic_solana_common"
+        android:scaleType="fitXY"
+        android:layout_gravity="right|bottom"
+        />
+
+</FrameLayout>
 
 
     <LinearLayout
@@ -53,11 +68,11 @@
 
         <TextView
             android:id="@+id/vol"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp4"
-            android:text="@string/str_f_default"
+            android:text="--.--"
+            meme_sol_show="@{item}"
             android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12" />
 
@@ -66,10 +81,10 @@
 
     <TextView
         android:id="@+id/price"
+        meme_money_show="@{item.currentPriceUsd}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        meme_money_show="@{item.currentPriceUsd}"
         android:layout_marginRight="@dimen/dp25"
         android:layout_toLeftOf="@+id/change"
         android:text="$--.--"
@@ -86,10 +101,10 @@
         android:layout_alignParentRight="true"
         android:layout_centerInParent="true"
         android:ellipsize="end"
-        android:gravity="center"
-        android:maxLength="15"
+        android:gravity="right|center"
+        android:maxLength="12"
         android:maxLines="1"
-        android:text="@string/str_precent_1"
+        android:text="--.--%"
         android:textColor="@color/white"
         android:textSize="@dimen/sp12"
         android:textStyle="bold"

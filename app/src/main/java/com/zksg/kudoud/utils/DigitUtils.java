@@ -34,6 +34,17 @@ public class DigitUtils {
     }
 
 
+    public static String formatLargePercentage(double percentage) {
+        if (percentage >= 1_000_000_000) {
+            return String.format("%.2fB%%", percentage / 1_000_000_000);
+        } else if (percentage >= 1_000_000) {
+            return String.format("%.2fM%%", percentage / 1_000_000);
+        }else {
+            return String.format("%.2f%%", percentage);
+        }
+    }
+
+
     public static String formatNumber_zh(String numberStr) {
         // Parse the string to a double
         double number;

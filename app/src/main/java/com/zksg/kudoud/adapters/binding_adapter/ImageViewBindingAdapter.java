@@ -1,6 +1,7 @@
 package com.zksg.kudoud.adapters.binding_adapter;
 
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_USDC_CONTRACT;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import androidx.databinding.BindingAdapter;
 
 import com.netease.lib_image_loader.app.ImageLoaderManager;
+import com.netease.lib_network.entitys.CommonCategory;
 import com.zksg.kudoud.R;
 import com.zksg.kudoud.beans.DexEnum;
 import com.zksg.kudoud.entitys.UiWalletToken;
@@ -20,6 +22,18 @@ public class ImageViewBindingAdapter {
     public static void memeImv(ImageView imv, String url) {
 
         ImageLoaderManager.getInstance().displayImageForCircle(imv,url);
+
+    }
+
+
+    @BindingAdapter(value = {"meme_img_show"},requireAll = false)
+    public static void meme_img_show(ImageView imv, CommonCategory.DataDTO value) {
+        if(imv==null||value==null)return;
+        if(!value.getToken0Address().equalsIgnoreCase(TOKEN_SOL_CONTRACT)||value.getToken0Address().equalsIgnoreCase(TOKEN_USDC_CONTRACT)){
+            ImageLoaderManager.getInstance().displayImageForCircle(imv,value.getToken0LogoUrl());
+        }else{
+            ImageLoaderManager.getInstance().displayImageForCircle(imv,value.getToken1LogoUrl());
+        }
 
     }
 
@@ -62,7 +76,6 @@ public class ImageViewBindingAdapter {
         }else{
             ImageLoaderManager.getInstance().displayImageForCircle(imv,uitoken.getImageUrl());
         }
-
 
     }
 

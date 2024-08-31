@@ -40,13 +40,14 @@ open class BaseJobLoadingViewModel : ViewModel() {
 
 
     fun getCategoryDatas(category:String,resultTake:Int){
+        Log.d("----getCategoryDatas--->",category)
         viewModelScope.launch {
             withContext(Dispatchers.IO){
 //                loadingVisible.postValue(true)
                 DataRepository.getInstance().getCategoryDatas(category){
                     if(it.responseStatus.isSuccess){
                         if(it.result!=null&&it.result.data!=null){
-                            Log.d("---getTrendingTokens--->", GsonUtils.toJson(it.result.data))
+                            Log.d("---getCategoryDatas--->", GsonUtils.toJson(it.result.data))
                             categorys.postValue(it.result.data.take(resultTake))
                             //下面这个操作是为了全局提供热门数据
                             MMKV.mmkvWithID("request_data_share").encode(category, GsonUtils.toJson(it.result.data))

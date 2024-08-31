@@ -54,7 +54,7 @@
     <ImageView
         android:layout_width="@dimen/dp25"
         android:layout_height="@dimen/dp25"
-        meme_imv="@{item.token0LogoUrl}"
+        meme_img_show="@{item}"
         />
 
     </com.hjq.shape.layout.ShapeLinearLayout>

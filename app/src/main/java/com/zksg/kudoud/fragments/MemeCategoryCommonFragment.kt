@@ -46,6 +46,7 @@ class MemeCategoryCommonFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
+        Log.d("----onStart----",mCategory)
         mCategoryCommonFragmentViewModel!!.startFetchingTrendingTokens(mCategory,30)
     }
 
@@ -70,6 +71,7 @@ class MemeCategoryCommonFragment : BaseFragment() {
 
     override fun onStop() {
         super.onStop()
+        Log.d("----onStop----",mCategory)
         mCategoryCommonFragmentViewModel!!.stopFetchingTrendingTokens()
     }
 
