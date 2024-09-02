@@ -24,16 +24,8 @@ public enum CategoryEnum {
 	GOLDENDOG(getString(R.string.str_golddoge),"goldendog"),
 	PUMP_IN_HOT(getString(R.string.str_pumpin),"pump_in_hot"),
 	PUMP_OUT_HOT(getString(R.string.str_pumpin),"pump_out_hot"),
-	PUMP_IN_ALMOST(getString(R.string.str_pumpin),"pump_in_almost");
-	//所有类型标识
-	public final  int like_id=0;
-	public final  int new_id=1;
-	public final  int gainer_id=2;
-	public final  int alpha_id=3;
-	public final  int goldendog_id=4;
-	public final  int pump_in_hot_id=5;
-	public final  int pump_out_hot_id=6;
-	public final  int pump_in_almost_id=7;
+	PUMP_IN_ALMOST(getString(R.string.str_at_almost),"pump_in_almost");
+
 
 
 

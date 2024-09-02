@@ -33,6 +33,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
@@ -450,6 +451,15 @@ public class CommonBindingAdapter {
         }else if(state.equals("processed")){
             view.setVisibility(View.VISIBLE);
         }
+    }
+
+
+    @BindingAdapter(value = {"swap_progress_progressbar_show"}, requireAll = false)
+    public static void swap_progress_progressbar_show(ProgressBar view, double value) {
+        if(view==null) return;
+        int progress=(int) value;
+        view.setProgress(progress);
+
     }
 
     @SuppressLint("ResourceAsColor")

@@ -216,6 +216,13 @@ public class TextViewBindingAdapter {
         tv.setText(dollar+DigitUtils.formatAmount(value.getUsd()));
     }
 
+    @BindingAdapter(value = {"meme_liq1_tv"},requireAll = false)
+    public static void meme_liq1_tv(TextView tv, double value) {
+        if(tv==null)return;
+        String dollar=tv.getContext().getString(R.string.str_daller);
+        tv.setText(dollar+DigitUtils.formatAmount(value));
+    }
+
     @BindingAdapter(value = {"meme_wallet_token_price_tv"},requireAll = false)
     public static void meme_wallet_token_price_tv(TextView tv, UiWalletToken token) {
         if(tv==null||token==null)return;
@@ -949,6 +956,23 @@ public class TextViewBindingAdapter {
 
 
 
+    @BindingAdapter(value = {"load_progress_text"}, requireAll = false)
+    public static void load_progress_text(TextView view,double value) {
+        if(view==null)return;
+
+        view.setText(new BigDecimal(value).setScale(2, RoundingMode.HALF_UP).toPlainString()+"%");
+    }
+
+
+    @BindingAdapter(value = {"load_progress_time_text"}, requireAll = false)
+    public static void load_progress_time_text(TextView view,String value) {
+        if(view==null||TextUtils.isEmpty(value))return;
+
+        view.setText(TimeUtils.getRelativeTime(value));
+    }
+
+
+
 
     private static void matchImvDoge(ShapeImageView imv,String[] arrays,String target){
         boolean result= StringUtils.contains(arrays,target);
@@ -959,6 +983,9 @@ public class TextViewBindingAdapter {
         }
 
     }
+
+
+
 
 
 

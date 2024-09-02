@@ -144,6 +144,7 @@ class HomeFragment:BaseDialogFragment(){
         //meme category
         homeViewModel?.indicatorTitle?.set(
             arrayOf(
+                getString(R.string.str_at_almost),
                 getString(R.string.str_new_pair),
                 getString(R.string.str_24up),
                 getString(R.string.str_collect)
@@ -154,6 +155,7 @@ class HomeFragment:BaseDialogFragment(){
             MemeCategoryPagerAdapter(
                 childFragmentManager,
                 arrayOf(
+                    CategoryEnum.PUMP_IN_ALMOST,
                     CategoryEnum.NEW,
                     CategoryEnum.GAINER,
                     CategoryEnum.INCLUSION

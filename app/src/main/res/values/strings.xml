@@ -410,12 +410,13 @@
     <string name="str_coin_number">币种数量</string>
     <string name="str_tip_dex">DEX</string>
     <string name="str_new_pair">新开盘</string>
-    <string name="str_collect">收录榜</string>
+    <string name="str_collect">新收录</string>
     <string name="str_price">价格</string>
     <string name="str_vol">24h成交量</string>
     <string name="str_trade_now">立即交易</string>
     <string name="str_liq_tip">流动性</string>
     <string name="str_simple_pool">池子🔥</string>
     <string name="str_alpha">潜力狗</string>
+    <string name="str_at_almost">即将打满</string>
 
 </resources>

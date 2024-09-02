@@ -5,9 +5,12 @@ import android.util.Log;
 import com.zksg.kudoud.beans.LineChartBean;
 
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 public class TimeUtils {
@@ -62,6 +65,38 @@ public class TimeUtils {
         return mValues;
 
     }
+
+
+    public static String getRelativeTime(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+        try {
+            Date date = sdf.parse(dateString);
+            Date now = new Date();
+
+            long diffInMillis = now.getTime() - date.getTime();
+
+            long minutes = TimeUnit.MILLISECONDS.toMinutes(diffInMillis);
+            long hours = TimeUnit.MILLISECONDS.toHours(diffInMillis);
+            long days = TimeUnit.MILLISECONDS.toDays(diffInMillis);
+
+            if (days > 0) {
+                return days + "天前";
+            } else if (hours > 0) {
+                return hours + "小时前";
+            } else if (minutes > 0) {
+                return minutes + "分钟前";
+            } else {
+                return "刚刚";
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "未知时间";
+        }
+    }
+
 
     public enum Interval{
         HOUR,

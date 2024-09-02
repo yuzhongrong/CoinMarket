@@ -277,11 +277,11 @@ public class CommonCategory implements Serializable {
         @SerializedName("reply_count")
         private int replyCount;
         @SerializedName("progress")
-        private int progress;
+        private double progress;
         @SerializedName("first_half_elapsed_time")
-        private int firstHalfElapsedTime;
+        private double firstHalfElapsedTime;
         @SerializedName("second_half_elapsed_time")
-        private int secondHalfElapsedTime;
+        private double secondHalfElapsedTime;
         @SerializedName("winner_count")
         private int winnerCount;
         @SerializedName("winner_ratio")
@@ -1199,27 +1199,27 @@ public class CommonCategory implements Serializable {
             this.replyCount = replyCount;
         }
 
-        public int getProgress() {
+        public double getProgress() {
             return progress;
         }
 
-        public void setProgress(int progress) {
+        public void setProgress(double progress) {
             this.progress = progress;
         }
 
-        public int getFirstHalfElapsedTime() {
+        public double getFirstHalfElapsedTime() {
             return firstHalfElapsedTime;
         }
 
-        public void setFirstHalfElapsedTime(int firstHalfElapsedTime) {
+        public void setFirstHalfElapsedTime(double firstHalfElapsedTime) {
             this.firstHalfElapsedTime = firstHalfElapsedTime;
         }
 
-        public int getSecondHalfElapsedTime() {
+        public double getSecondHalfElapsedTime() {
             return secondHalfElapsedTime;
         }
 
-        public void setSecondHalfElapsedTime(int secondHalfElapsedTime) {
+        public void setSecondHalfElapsedTime(double secondHalfElapsedTime) {
             this.secondHalfElapsedTime = secondHalfElapsedTime;
         }
 

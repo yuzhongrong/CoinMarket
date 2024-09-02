@@ -14,6 +14,7 @@ import com.zksg.kudoud.databinding.ItemSocialsBinding;
 import com.zksg.kudoud.utils.DiffUtils;
 import com.zksg.kudoud.utils.IntentUtils;
 import com.zksg.kudoud.utils.StringUtils;
+import com.zksg.kudoud.utils.TelegramUtils;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class SocialAdapter extends SimpleDataBindingAdapter<DexScreenTokenInfo1.
             if(item.getType().equals("twitter")){
                 startTwitter(item);
             }else if(item.getType().equals("telegram")){
-                startTelegram(item);
+                TelegramUtils.startTelegram(context,item);
             }else if(item.getType().equals("discord")){
 
             }
@@ -61,21 +62,21 @@ public class SocialAdapter extends SimpleDataBindingAdapter<DexScreenTokenInfo1.
     }
 
 
-    public void startTelegram(DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO social){
-        String username="";
-        if(social==null){
-            ToastUtils.showShort(R.string.str_Invalid_telegram);
-            return;
-        }
-
-        if(social.getType().equals("telegram")){
-            username= StringUtils.extractUsernameFromUrlTG(social.getUrl());
-        }
-        if(username.equals("")){
-            ToastUtils.showShort(R.string.str_Invalid_telegram);
-            return;
-        }
-        IntentUtils.openTelegram(mContex,username);
-    }
+//    public void startTelegram(DexScreenTokenInfo1.PairsDTO.InfoDTO.SocialsDTO social){
+//        String username="";
+//        if(social==null){
+//            ToastUtils.showShort(R.string.str_Invalid_telegram);
+//            return;
+//        }
+//
+//        if(social.getType().equals("telegram")){
+//            username= StringUtils.extractUsernameFromUrlTG(social.getUrl());
+//        }
+//        if(username.equals("")){
+//            ToastUtils.showShort(R.string.str_Invalid_telegram);
+//            return;
+//        }
+//        IntentUtils.openTelegram(mContex,username);
+//    }
 
 }

@@ -652,7 +652,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         viewPagerAdapter="@{vm.memecategoryadapter}"
-        viewPagerOffsetLimit="@{3}"
+        viewPagerOffsetLimit="@{4}"
 
 
         />

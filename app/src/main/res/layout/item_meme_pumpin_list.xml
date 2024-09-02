@@ -23,6 +23,8 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/icon"
+    android:layout_centerInParent="true"
+    android:layout_alignParentLeft="true"
     >
     <com.hjq.shape.view.ShapeImageView
 
@@ -48,7 +50,7 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp45"
         android:layout_centerInParent="true"
         android:layout_marginLeft="@dimen/dp12"
         android:layout_toRightOf="@+id/icon"
@@ -68,30 +70,46 @@
 
         <TextView
             android:id="@+id/vol"
+            meme_sol_show="@{item}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp4"
+            android:layout_marginTop="@dimen/dp8"
             android:text="--.--"
-            meme_sol_show="@{item}"
             android:textColor="@color/primaryTextGray"
             android:textSize="@dimen/sp12" />
 
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/price"
-        meme_money_show="@{item.currentPriceUsd}"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp45"
         android:layout_centerInParent="true"
         android:layout_marginRight="@dimen/dp25"
         android:layout_toLeftOf="@+id/change"
-        android:text="$--.--"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp12"
-        android:textStyle="bold" />
+        android:orientation="vertical">
 
+        <TextView
+
+            load_progress_text="@{item.progress}"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp5"
+            android:gravity="right"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            swap_progress_progressbar_show="@{item.progress}"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="@dimen/dp3"
+            android:layout_marginTop="@dimen/dp12"
+            android:progressDrawable="@drawable/bg_rounded_progress_bar" />
+
+
+    </LinearLayout>
 
     <com.hjq.shape.view.ShapeTextView
         android:id="@+id/change"
@@ -104,13 +122,44 @@
         android:gravity="center"
         android:maxLength="12"
         android:maxLines="1"
+        android:padding="@dimen/dp5"
         android:text="--.--%"
         android:textColor="@color/white"
         android:textSize="@dimen/sp11"
         android:textStyle="bold"
-        app:shape_radius="@dimen/dp5"
-        android:padding="@dimen/dp5"
-        />
+        android:visibility="gone"
+        app:shape_radius="@dimen/dp5" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dp45"
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+
+        <TextView
+            meme_liq1_tv="@{item.marketCap}"
+            android:layout_width="@dimen/dp60"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            android:gravity="right"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="@dimen/dp60"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextGray"
+            android:textSize="@dimen/sp12"
+            android:text="----"
+            load_progress_time_text="@{item.createdAt}"
+            android:gravity="right"
+            android:layout_marginTop="@dimen/dp8"
+             />
+
+
+    </LinearLayout>
 
 
 
