@@ -285,7 +285,7 @@ public class CommonCategory implements Serializable {
         @SerializedName("winner_count")
         private int winnerCount;
         @SerializedName("winner_ratio")
-        private int winnerRatio;
+        private double winnerRatio;
         @SerializedName("up_count_7d")
         private int upCount7d;
         @SerializedName("up_count_14d")
@@ -1231,11 +1231,11 @@ public class CommonCategory implements Serializable {
             this.winnerCount = winnerCount;
         }
 
-        public int getWinnerRatio() {
+        public double getWinnerRatio() {
             return winnerRatio;
         }
 
-        public void setWinnerRatio(int winnerRatio) {
+        public void setWinnerRatio(double winnerRatio) {
             this.winnerRatio = winnerRatio;
         }
 

@@ -10,6 +10,7 @@ import com.zksg.kudoud.activitys.SearchActivity
 import com.zksg.kudoud.adapters.CategoryPagerAdapter
 import com.zksg.kudoud.adapters.MemeCategoryPagerAdapter
 import com.zksg.kudoud.adapters.SceneAdapter
+import com.zksg.kudoud.beans.CategoryEnum
 import com.zksg.kudoud.beans.CommonCategoryDataEnum
 import com.zksg.kudoud.state.MarketsFragmentViewModel
 import com.zksg.kudoud.state.SceneFragmentViewModel
@@ -35,17 +36,24 @@ class MarketsFragment:BaseFragment(){
         //meme category
         mMarketsFragmentViewModel?.indicatorTitle?.set(
             arrayOf(
-                getString(R.string.str_collect_coin),
                 getString(R.string.str_golddoge),
-                getString(R.string.str_pumpin),
                 getString(R.string.str_pumpout),
-                getString(R.string.str_whalewallet),
+                getString(R.string.str_pumpin),
+
             )
         )
 
+        mMarketsFragmentViewModel?.memecategoryadapter?.set(
+            MemeCategoryPagerAdapter(
+                childFragmentManager,
+                arrayOf(
+                    CategoryEnum.GOLDENDOG,
+                    CategoryEnum.PUMP_OUT_HOT,
+                    CategoryEnum.PUMP_IN_HOT,
 
-
-
+                )
+            )
+        )
     }
 
     inner class ClickProxy{

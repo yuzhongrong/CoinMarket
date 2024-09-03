@@ -14,4 +14,6 @@ class MarketsFragmentViewModel : ViewModel() {
     var indicatorTitle = ObservableField<Array<String>>()
 
     var adapter = ObservableField<MemeCategoryPagerAdapter?>()
+
+    var memecategoryadapter = ObservableField<MemeCategoryPagerAdapter?>()
 }

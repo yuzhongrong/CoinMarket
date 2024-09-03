@@ -92,10 +92,12 @@
 
         <!-- ViewPager -->
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager1"
+            android:id="@+id/markets_vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/dp5"
+            viewPagerAdapter="@{vm.memecategoryadapter}"
+            viewPagerOffsetLimit="@{3}"
 
 
             />
