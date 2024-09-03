@@ -5,6 +5,7 @@ import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_USDC_CONTRACT;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,11 +28,12 @@ public class MemePumpinalmostapter extends SimpleDataBindingAdapter<CommonCatego
         setOnItemClickListener((item, position) -> {
             String contract="";
             String refrence="https://t.me/dogeebot_bot?start=rt_17227702821093_";
-            if(!item.getToken0Address().equals(TOKEN_SOL_CONTRACT)||!item.getToken0Address().equals(TOKEN_USDC_CONTRACT)){
+            if(!item.getToken0Address().equals(TOKEN_SOL_CONTRACT)&&!item.getToken0Address().equals(TOKEN_USDC_CONTRACT)){
                 contract=item.getToken0Address();
             }else{
                 contract=item.getToken1Address();
             }
+            Log.d("-----MemePumpinalmostapter--->",contract);
             TelegramUtils.openTelegramBot1(mContex,refrence+contract);
         });
     }
