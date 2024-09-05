@@ -14,44 +14,36 @@ import com.zksg.kudoud.R;
 import com.zksg.kudoud.activitys.CoinsDetailActivity;
 import com.zksg.kudoud.activitys.Kline2OrderActivity;
 import com.zksg.kudoud.activitys.MemeChartDetailActivity;
+import com.zksg.kudoud.beans.CategoryEnum;
 import com.zksg.kudoud.databinding.ItemFeedTipBinding;
 import com.zksg.kudoud.databinding.ItemMemeListBinding;
 import com.zksg.kudoud.dialogs.DelBabyDialog;
 import com.zksg.kudoud.utils.DiffUtils;
 import com.zksg.kudoud.utils.IntentUtils;
+import com.zksg.kudoud.utils.TelegramUtils;
 import com.zksg.lib_api.baby.FeedTip;
 import com.zksg.lib_api.beans.MemeBaseEntry;
 
 public class MemeCommonListdapter extends SimpleDataBindingAdapter<CommonCategory.DataDTO, ItemMemeListBinding> {
 
     private Context mContex;
-    public MemeCommonListdapter(Context context) {
+    private String mCategory;
+    public MemeCommonListdapter(Context context,String category) {
         super(context, R.layout.item_meme_list, DiffUtils.getInstance().getMemeBaseItemCallback());
         this.mContex=context;
+        this.mCategory=category;
         setOnItemClickListener((item, position) -> {
-            openItem(item);
+            if(category.equals(CategoryEnum.PUMP_IN_HOT.getValue())){
+                TelegramUtils.openTelegramBot2(mContext,item);
+            }else{
+                TelegramUtils.openItem(mContext,item);
+            }
+
         });
     }
 
 
-    private void openItem(CommonCategory.DataDTO item){
 
-        String contract="";
-        String symbol="";
-        if(!item.getToken0Address().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){
-            contract=item.getToken0Address();
-            symbol=item.getToken0Symbol();
-        }else{
-            contract=item.getToken1Address();
-            symbol=item.getToken1Symbol();
-        }
-        Intent i= new Intent(mContex, Kline2OrderActivity.class)
-                .putExtra("contract",contract)
-                .putExtra("symbol",symbol)
-                .putExtra("pair",item.getPair());
-        IntentUtils.openIntent(mContex,i);
-
-    }
 
 
     @Override

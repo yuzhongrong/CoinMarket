@@ -52,7 +52,7 @@ class MemeCategoryCommonFragment : BaseFragment() {
 
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.list_meme_coins, BR.vm, mCategoryCommonFragmentViewModel!!)
-            .addBindingParam(BR.adapter,MemeCommonListdapter(context))
+            .addBindingParam(BR.adapter,MemeCommonListdapter(context,mCategory))
     }
 
     override fun loadInitData() {

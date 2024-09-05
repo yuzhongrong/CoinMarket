@@ -37,6 +37,7 @@ class MarketsFragment:BaseFragment(){
         mMarketsFragmentViewModel?.indicatorTitle?.set(
             arrayOf(
                 getString(R.string.str_golddoge),
+                getString(R.string.str_alpha),
                 getString(R.string.str_pumpout),
                 getString(R.string.str_pumpin),
 
@@ -48,6 +49,7 @@ class MarketsFragment:BaseFragment(){
                 childFragmentManager,
                 arrayOf(
                     CategoryEnum.GOLDENDOG,
+                    CategoryEnum.ALPHA,
                     CategoryEnum.PUMP_OUT_HOT,
                     CategoryEnum.PUMP_IN_HOT,
 

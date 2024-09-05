@@ -26,15 +26,7 @@ public class MemePumpinalmostapter extends SimpleDataBindingAdapter<CommonCatego
         super(context, R.layout.item_meme_pumpin_list, DiffUtils.getInstance().getMemeBaseItemCallback());
         this.mContex=context;
         setOnItemClickListener((item, position) -> {
-            String contract="";
-            String refrence="https://t.me/dogeebot_bot?start=rt_17227702821093_";
-            if(!item.getToken0Address().equals(TOKEN_SOL_CONTRACT)&&!item.getToken0Address().equals(TOKEN_USDC_CONTRACT)){
-                contract=item.getToken0Address();
-            }else{
-                contract=item.getToken1Address();
-            }
-            Log.d("-----MemePumpinalmostapter--->",contract);
-            TelegramUtils.openTelegramBot1(mContex,refrence+contract);
+            TelegramUtils.openTelegramBot2(mContext,item);
         });
     }
 

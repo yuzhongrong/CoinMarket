@@ -1,13 +1,19 @@
 package com.zksg.kudoud.utils;
 
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_USDC_CONTRACT;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.netease.lib_network.entitys.CommonCategory;
 import com.netease.lib_network.entitys.DexScreenTokenInfo1;
 import com.zksg.kudoud.R;
+import com.zksg.kudoud.activitys.Kline2OrderActivity;
 
 
 public class TelegramUtils {
@@ -72,6 +78,41 @@ public class TelegramUtils {
 
 
         }
+
+
+        public static void openTelegramBot2(Context mContext,CommonCategory.DataDTO item){
+
+            String contract="";
+            String refrence="https://t.me/dogeebot_bot?start=rt_17227702821093_";
+            if(!item.getToken0Address().equals(TOKEN_SOL_CONTRACT)&&!item.getToken0Address().equals(TOKEN_USDC_CONTRACT)){
+                contract=item.getToken0Address();
+            }else{
+                contract=item.getToken1Address();
+            }
+            Log.d("-----MemePumpinalmostapter--->",contract);
+            TelegramUtils.openTelegramBot1(mContext,refrence+contract);
+
+
+        }
+
+    public static void openItem(Context mContext,CommonCategory.DataDTO item){
+
+        String contract="";
+        String symbol="";
+        if(!item.getToken0Address().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){
+            contract=item.getToken0Address();
+            symbol=item.getToken0Symbol();
+        }else{
+            contract=item.getToken1Address();
+            symbol=item.getToken1Symbol();
+        }
+        Intent i= new Intent(mContext, Kline2OrderActivity.class)
+                .putExtra("contract",contract)
+                .putExtra("symbol",symbol)
+                .putExtra("pair",item.getPair());
+        IntentUtils.openIntent(mContext,i);
+
+    }
 
 
 
