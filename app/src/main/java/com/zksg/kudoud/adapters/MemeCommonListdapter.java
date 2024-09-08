@@ -30,7 +30,7 @@ public class MemeCommonListdapter extends SimpleDataBindingAdapter<CommonCategor
     private String mCategory;
     public MemeCommonListdapter(Context context,String category) {
         super(context, R.layout.item_meme_list, DiffUtils.getInstance().getMemeBaseItemCallback());
-        this.mContex=context;
+        this.mContext=context;
         this.mCategory=category;
         setOnItemClickListener((item, position) -> {
             if(category.equals(CategoryEnum.PUMP_IN_HOT.getValue())){

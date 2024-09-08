@@ -1,6 +1,7 @@
 package com.zksg.kudoud.adapters;
 
 import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_SOL_CONTRACT;
+import static com.zksg.kudoud.wallet.constants.Constants.TOKEN_USDC_CONTRACT;
 
 import android.content.Context;
 import android.content.Intent;
@@ -25,19 +26,23 @@ public class MemeTreadingListdapter extends SimpleDataBindingAdapter<CommonCateg
         this.setHasStableIds(true);
         setOnItemClickViewListener((item, position, viewId) -> {
 
-            String contract="";
+            String contract=item.getTargetToken();
             String symbol="";
-            if(!item.getToken0Address().equalsIgnoreCase(TOKEN_SOL_CONTRACT)){
-                contract=item.getToken0Address();
+            String logo="";
+            if(item.getToken0Address().equals(item.getTargetToken())){
+
                 symbol=item.getToken0Symbol();
+                logo=item.getToken0LogoUrl();
             }else{
-                contract=item.getToken1Address();
+
                 symbol=item.getToken1Symbol();
+                logo=item.getToken1LogoUrl();
             }
             Intent i= new Intent(context, Kline2OrderActivity.class)
                     .putExtra("contract",contract)
                     .putExtra("symbol",symbol)
-                    .putExtra("pair",item.getPair());
+                    .putExtra("pair",item.getPair())
+                    .putExtra("logo",logo);
             IntentUtils.openIntent(context,i);
 
         },R.id.action);

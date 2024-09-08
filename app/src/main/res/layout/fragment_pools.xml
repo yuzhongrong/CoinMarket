@@ -6,6 +6,9 @@
     <data>
 
         <variable
+            name="click"
+            type="com.zksg.kudoud.fragments.PoolFragment.ClickProxy" />
+        <variable
             name="vm"
             type="com.zksg.kudoud.state.PoolsFragmentViewModel" />
 
@@ -81,7 +84,8 @@
         itemspace="@{1}"
         orientation="@{1}"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         submitList="@{vm.tokenInfo.pairs}"
         app:shape_radius="@dimen/dp10"
 
@@ -101,14 +105,13 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         app:shape_radius="@dimen/dp45"
-        app:shape_solidColor="@color/c_131722"
-        app:shape_strokeWidth="0.2dp"
-        app:shape_strokeColor="@color/c_29313d"
-        app:shape_solidPressedColor="@color/c_29313d"
+        app:shape_solidColor="@color/c_29313d"
+        app:shape_solidPressedColor="@color/color"
         android:clickable="true"
         android:layout_marginLeft="@dimen/dp10"
         android:layout_marginRight="@dimen/dp10"
         android:layout_marginBottom="@dimen/dp5"
+        android:onClick="@{()->click.startExchange(vm.mTargetToken)}"
 
         />
 

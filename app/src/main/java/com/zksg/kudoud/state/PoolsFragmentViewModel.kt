@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.kunminx.architecture.domain.message.MutableResult
 import com.netease.lib_network.entitys.DexScreenTokenInfo1
 import com.zksg.kudoud.entitys.Base2QuoEntity
+import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.repository.DataRepository
 import com.zksg.kudoud.state.load.BaseLoadingViewModel
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +23,9 @@ class PoolsFragmentViewModel : BaseLoadingViewModel(){
     //计算总的base币个数的时候需要用到
     @JvmField
     var mBase2QuoEntity= ObservableField<Base2QuoEntity>()
+
+    @JvmField
+    var mTargetToken= ObservableField<UiWalletToken>()
 
 
     fun getTokenInfo(address:String){

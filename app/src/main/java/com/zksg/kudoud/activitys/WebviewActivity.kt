@@ -8,7 +8,6 @@ import com.kunminx.architecture.ui.page.BaseActivity
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
-import com.zksg.kudoud.databinding.ActivityWeightBinding
 import com.zksg.kudoud.state.WebViewActivityModel
 
 class WebviewActivity : BaseActivity() {

@@ -53,7 +53,16 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         initView(binding as ActivityMainBinding)
+        initObserver(binding as ActivityMainBinding)
 
+    }
+
+
+    private fun initObserver(mainBinding: ActivityMainBinding){
+        //这里负责跳转
+        mSharedViewModel!!.getToExchangePageNotify().observe(this){
+            mainBinding.homeNavigate!!.showTargetFragment(2)
+        }
     }
 
     private fun initView(mainBinding: ActivityMainBinding) {
@@ -121,6 +130,9 @@ class MainActivity : BaseActivity() {
 
         mainBinding.homeNavigate!!.setSelectedTabTextColor(getColor(R.color.colorAccent))
         mainBinding.homeNavigate!!.setTabTextColor(getColor(R.color.c_a0a0ab))
+
+
+
 
         initData()
 

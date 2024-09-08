@@ -112,7 +112,6 @@ class ExchangeFragment:BaseFragment(){
     @SuppressLint("SuspiciousIndentation")
     @RequiresApi(Build.VERSION_CODES.O)
     fun initObserve(){
-
         exViewModel!!.from.observe(this){
             //去钱包查询余额
             updateBalance(it.mint,true)
@@ -178,7 +177,19 @@ class ExchangeFragment:BaseFragment(){
 
         }
 
+        sharedViewModel!!.getToExchangePageNotify().observe(this){
+            //构造一个to token
+//            var targetToken=UiWalletToken(TOKEN_WIF_CONTRACT,"0","6","0","WIF","dogwifhat","https://www.dextools.io/resources/tokens/logos/solana/EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm.png",0)
+//            exViewModel!!.to.value=targetToken
+//            //构造一个from token
+//            var fromToken=UiWalletToken(TOKEN_SOL_CONTRACT,"0","9","0","SOL","Wrapped SOL","",R.mipmap.ic_solana_common)
+//            exViewModel!!.from.value=fromToken
 
+            if(it!=null){
+                exViewModel!!.to.value=it
+            }
+
+        }
 
 
     }

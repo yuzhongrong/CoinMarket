@@ -23,6 +23,17 @@ public class SharedViewModel extends ViewModel {
     public final UnPeekLiveData<Boolean> addTokenNotify=new UnPeekLiveData<>();
 
     public final UnPeekLiveData<Boolean> tokenlistUpdateNotify=new UnPeekLiveData<>();
+
+    public final UnPeekLiveData<UiWalletToken> toExchangePage=new UnPeekLiveData<>();
+
+    public ProtectedUnPeekLiveData<UiWalletToken> getToExchangePageNotify() {
+        return toExchangePage;
+    }
+    public void requestToExchangePageNotify(UiWalletToken value) {
+        toExchangePage.setValue(value);
+    }
+
+
     public ProtectedUnPeekLiveData<Boolean> getTokenListUpdateNotify() {
         return tokenlistUpdateNotify;
     }

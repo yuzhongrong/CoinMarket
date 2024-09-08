@@ -145,7 +145,7 @@
 
 
 
-                <net.lucode.hackware.magicindicator.MagicIndicator
+            <net.lucode.hackware.magicindicator.MagicIndicator
                     android:id="@+id/meme_magic_indicator_tab"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp50"
@@ -178,6 +178,8 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 
     </RelativeLayout>
 </layout>

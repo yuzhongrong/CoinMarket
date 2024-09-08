@@ -1,19 +1,25 @@
 package com.zksg.kudoud.fragments
 
 import android.os.Bundle
+import com.blankj.utilcode.util.ActivityUtils
 import com.kunminx.architecture.ui.page.BaseFragment
 import com.kunminx.architecture.ui.page.DataBindingConfig
 import com.zksg.kudoud.BR
 import com.zksg.kudoud.R
 import com.zksg.kudoud.adapters.MemePoolListdapter
+import com.zksg.kudoud.entitys.UiWalletToken
 import com.zksg.kudoud.state.Kline2OrderActivityViewModel
 import com.zksg.kudoud.state.PoolsFragmentViewModel
+import com.zksg.kudoud.state.SharedViewModel
 
-class PoolFragment(contract: String?,pair: String?,mKline2OrderActivityViewModel: Kline2OrderActivityViewModel?) : BaseFragment() {
+class PoolFragment(contract: String?,symbol: String?,pair: String?,logo:String?,mKline2OrderActivityViewModel: Kline2OrderActivityViewModel?) : BaseFragment() {
     var mContract=contract
     var mpair=pair
+    var msymbol=symbol
+    var mlogo=logo
     var mKline2OrderViewModel=mKline2OrderActivityViewModel
     var mPoolsFragmentViewModel: PoolsFragmentViewModel? = null
+    var mSharedViewModel: SharedViewModel? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -22,15 +28,23 @@ class PoolFragment(contract: String?,pair: String?,mKline2OrderActivityViewModel
         mPoolsFragmentViewModel = getFragmentScopeViewModel(
             PoolsFragmentViewModel::class.java
         )
+
+        mSharedViewModel =
+            getApplicationScopeViewModel(SharedViewModel::class.java)
+
     }
 
     override fun getDataBindingConfig(): DataBindingConfig {
         return DataBindingConfig(R.layout.fragment_pools, BR.vm, mPoolsFragmentViewModel!!)
             .addBindingParam(BR.adapter, MemePoolListdapter(requireContext()))
+            .addBindingParam(BR.click,ClickProxy())
     }
 
 
     override fun loadInitData() {
+        //构造一个targettoken出来
+        var targetToken=UiWalletToken(mContract,"0","6","0",msymbol,"",mlogo,0)
+        mPoolsFragmentViewModel!!.mTargetToken.set(targetToken)
         initWebView(mpair!!)
         initObsever()
         mContract?.let { mPoolsFragmentViewModel!!.getTokenInfo(it) }
@@ -89,5 +103,18 @@ class PoolFragment(contract: String?,pair: String?,mKline2OrderActivityViewModel
 
     }
 
+
+
+    inner class ClickProxy {
+
+        fun startExchange(mTargetToken: UiWalletToken){
+            ActivityUtils.finishActivity(this@PoolFragment.requireActivity(),true)
+            mSharedViewModel!!.requestToExchangePageNotify(mTargetToken)
+        }
+
+
+
+
+    }
 
 }

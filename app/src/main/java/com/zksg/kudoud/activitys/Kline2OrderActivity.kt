@@ -35,11 +35,12 @@ class Kline2OrderActivity : BaseDialogActivity() {
         var contract = intent.getStringExtra("contract")
         var pair=intent.getStringExtra("pair")
         var symbol = intent.getStringExtra("symbol")
+        var mlogo = intent.getStringExtra("logo")
         mKline2OrderActivityViewModel!!.symbol.set(symbol)
         //       String html= HtmlUtils.loadHTMLFromAssets(this,"kline_widget.html");
 
         Log.d("-----contract--->",contract!!)
-        val fragments = arrayOf<Fragment>(PoolFragment(contract,pair,mKline2OrderActivityViewModel),CheckFragment(contract),IntroduceFragment(contract,mKline2OrderActivityViewModel))
+        val fragments = arrayOf<Fragment>(PoolFragment(contract,symbol,pair,mKline2OrderActivityViewModel),CheckFragment(contract),IntroduceFragment(contract,mKline2OrderActivityViewModel))
         val adapter = SimpleFragmentPagerAdapter(supportFragmentManager, fragments)
         mKline2OrderActivityViewModel!!.tabAdapter.set(adapter)
 

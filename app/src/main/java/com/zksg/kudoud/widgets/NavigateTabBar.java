@@ -276,6 +276,11 @@ public class NavigateTabBar extends LinearLayout implements View.OnClickListener
         return mViewHolderList.get(1);
     }
 
+
+    public void showTargetFragment(int index){
+        showFragment(mViewHolderList.get(index));
+    }
+
     private void hideAllFragment() {
         if (mViewHolderList == null || mViewHolderList.size() == 0) {
             return;
