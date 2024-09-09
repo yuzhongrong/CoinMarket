@@ -154,7 +154,7 @@ class MainActivity : BaseActivity() {
 
         mMainActivityViewModel!!.ReqHotCointDatas("strict"){
 
-            if(it!=null){
+            if(it!=null&&it.size>0){
                 //初始化热门代币
                 var convertResault = TokenConverter.convertJubTokensToUiWalletTokens(it)
 //                mSharedViewModel!!.walletHotCoins.postValue(convertResault)

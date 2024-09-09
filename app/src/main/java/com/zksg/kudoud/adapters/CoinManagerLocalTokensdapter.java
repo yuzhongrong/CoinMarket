@@ -36,7 +36,7 @@ public class CoinManagerLocalTokensdapter extends SimpleDataBindingAdapter<UiWal
             oldLocalDatas.remove(item);
             mCoinManagerActivityViewModel.localdatas.postValue(oldLocalDatas);
 
-            //更新hottokens列表
+            //更新hottokens列表-这里没有处理自定义加入到列表的代币 remove后放到热门列表中去了的情况
             List<UiWalletToken> oldHotDatas= mCoinManagerActivityViewModel.hotdatas.getValue();
             oldHotDatas.add(item);
             mCoinManagerActivityViewModel.hotdatas.postValue(oldHotDatas);
