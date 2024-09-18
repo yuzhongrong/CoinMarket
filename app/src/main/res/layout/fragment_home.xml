@@ -57,12 +57,14 @@
                     android:id="@+id/logo"
                     android:layout_width="@dimen/dp40"
                     android:layout_height="@dimen/dp40"
-                    android:src="@mipmap/ic_home_icon"
+                    android:src="@mipmap/ic_mego_common"
                     android:padding="@dimen/dp3"
                     android:onClick="@{()->click.startPreSale()}"
                     app:shape_strokeWidth="@dimen/dp1"
+                    app:shape_solidColor="@color/c_29313d"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
+                    app:shape_radius="@dimen/dp45"
                     android:layout_marginLeft="@dimen/dp5"
 
                     />

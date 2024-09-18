@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
-            android:text="基本信息"
+            android:text="@string/str_base_info"
             android:textColor="@color/white"
             android:textSize="@dimen/sp16" />
 
@@ -305,7 +305,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="社交媒体"
+            android:text="@string/str_social_media"
             android:textColor="@color/white"
             android:textSize="@dimen/sp16"
             />

@@ -336,6 +336,7 @@
     <string name="str_receiver_address">接受地址</string>
     <string name="str_gas">网络费用</string>
     <string name="str_send_action">发送</string>
+    <string name="str_receiver_action">接收</string>
     <string name="str_need_sol">钱包至少需: </string>
     <string name="str_gas_tip">每笔交易在Solana网络上都需要支付一定数量的 SOL 作为交易费用。这个费用会根据交易的复杂性和网络的拥堵程度而变化</string>
     <string name="str_rent_tip"> 在Solana中，账户需要保持一定的 SOL 作为租金，以确保它们可以 \n 持续存在于链上。如果你在发送交易时涉及到创建或更新账户， \n 你需要确保账户有足够的 SOL 来支付租金。否则，账户可能会被清 \n 除其中的资产也会丢失</string>
@@ -347,6 +348,7 @@
     <string name="str_notget_last_chain">无法获取链上最新区块,无法创建交易</string>
     <string name="str_transation_pendding">交易已提交,等待链上确认</string>
     <string name="str_history">交易历史</string>
+    <string name="str_simple_history">历史</string>
     <string name="str_send">发送</string>
     <string name="str_receiver">接收</string>
     <string name="str_to_tag">到 </string>
@@ -418,5 +420,9 @@
     <string name="str_simple_pool">池子🔥</string>
     <string name="str_alpha">潜力狗</string>
     <string name="str_at_almost">即将打满</string>
+    <string name="str_social_media">社交媒体</string>
+    <string name="str_base_info">基本信息</string>
+    <string name="str_safe_check">安全</string>
+    <string name="str_introduction">简介</string>
 
 </resources>

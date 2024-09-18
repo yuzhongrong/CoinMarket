@@ -37,6 +37,10 @@ class Kline2OrderActivity : BaseDialogActivity() {
         var symbol = intent.getStringExtra("symbol")
         var mlogo = intent.getStringExtra("logo")
         mKline2OrderActivityViewModel!!.symbol.set(symbol)
+        mKline2OrderActivityViewModel!!.indicatorTitle.set(arrayOf(getString(R.string.str_simple_pool),getString(
+                    R.string.str_safe_check),getString(R.string.str_introduction)))
+
+
         //       String html= HtmlUtils.loadHTMLFromAssets(this,"kline_widget.html");
 
         Log.d("-----contract--->",contract!!)

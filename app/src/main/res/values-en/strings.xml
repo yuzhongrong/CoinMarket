@@ -125,8 +125,10 @@
     <string name="str_breathe">呼吸</string>
     <string name="str_exchange">交易所</string>
     <string name="str_install">下载</string>
-    <string name="str_home">主页</string>
+    <string name="str_home">Home</string>
+    <string name="str_receiver_action">Receiver</string>
     <string name="str_category">Category</string>
+    <string name="str_simple_history">History</string>
     <string name="str_markets">市场</string>
     <string name="str_wallet">Wallet</string>
     <string name="str_dex">兑换</string>
@@ -296,4 +298,12 @@
     <string name="str_simple_pool">pool</string>
     <string name="str_alpha">Alpha</string>
     <string name="str_at_almost">Almost</string>
+    <string name="str_social_media">Socials</string>
+    <string name="str_base_info">Basic info</string>
+    <string name="str_safe_check">Check</string>
+    <string name="str_introduction">Introduct</string>
+    <string name="str_24up">Gainer</string>
+    <string name="str_10_meme">2 BTC mining reward</string>
+    <string name="str_meme_tip">The Origin and Development of Meme CultureBuy Memes Quickly\n<font color="#f7a600">$meme</font>tokens enter the world of memes!！！</string>
+    <string name="str_lean">Learn now</string>
 </resources>
